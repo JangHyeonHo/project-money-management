@@ -1,7 +1,6 @@
 import ImageUploader from "@/app/_components/_input/image-uploader";
 import SiteStackedLayout from "@/app/_components/_layout/stacked-layout";
 import { HouserholdTypes, LayoutHeaders } from "@/app/_types/common-const";
-import { PhotoIcon } from "@heroicons/react/24/outline";
 import { useTranslations } from "next-intl";
 
 export default function HouseholdRegist() {

@@ -20,6 +20,8 @@ export default function CapitalManagement() {
     const cardItems = [
         { key: "CAP3", name: "CARD TEST DATA", money: -300000, currency: "WON" }
     ]
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const etcItems = []
 
     return (

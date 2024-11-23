@@ -3,6 +3,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { LayoutHeaders } from '../../_types/common-const'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image';
+import Link from 'next/link';
 
 /**
  * 기본 사이트 Layout
@@ -31,9 +32,11 @@ export default function SiteStackedLayout({ children, headtitle, headCurrent }: 
         { name: 'Sign out', href: '#' },
     ]
 
+    /* eslint-disable  @typescript-eslint/no-explicit-any */
     function classNames(...classes: any) {
         return classes.filter(Boolean).join(' ')
     }
+    /* eslint-disable  @typescript-eslint/no-explicit-any */
 
     return (
         <div className="min-h-full">
@@ -42,7 +45,7 @@ export default function SiteStackedLayout({ children, headtitle, headCurrent }: 
                     <div className="flex h-16 items-center justify-between">
                         <div className="flex items-center">
                             <div className="shrink-0">
-                                <a href='/'>
+                                <Link href='/'>
                                     <Image
                                         aria-hidden
                                         src="/images/money-management-icon.svg"
@@ -51,7 +54,7 @@ export default function SiteStackedLayout({ children, headtitle, headCurrent }: 
                                         width={30}
                                         height={30}
                                     />
-                                </a>
+                                </Link>
                             </div>
                             <div className="hidden md:block">
                                 <div className="ml-10 flex items-baseline space-x-4">
