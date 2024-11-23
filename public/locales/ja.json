@@ -1,0 +1,13 @@
+{
+    "word":{
+        "siteTitle" : "Money Management",
+        "capital":{
+            "title" : "Capital",
+            "management": "Capital Management",
+            "regist": "Capital Regist"
+        },
+        "household":{
+            "title": "Household"
+        }
+    }
+}
