@@ -1,6 +1,7 @@
 export const LayoutHeaders = {
     Capital : 0,
     Household : 1,
+    Config : 2,
 } as const;
 
 export const CapitalTypes = {

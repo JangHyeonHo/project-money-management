@@ -19,7 +19,9 @@
             "in-exp":"Income/Expenditure",
             "income":"Income",
             "expense":"Expenditure",
-            "date":"Issue Date"
+            "date":"Issue Date",
+            "category":"Household Category",
+            "subcategory":"Household Subcategory"
         },
         "common":{
             "btn":"Button",
@@ -34,7 +36,19 @@
             "data":"Data",
             "upload":"Upload",
             "read":"Read",
-            "comment":"Comment"
+            "comment":"Comment",
+            "config":"Configration",
+            "user":"User"
+        },
+        "users":{
+            "login":"Login",
+            "email":"E-mail",
+            "pwd":"Password",
+            "pwd-confirm":"Password Confirm",
+            "f-name":"First Name",
+            "l-name":"Last Name",
+            "signup":"Sign Up",
+            "autologin":"Auto Login"
         }
     },
     "msg":{
@@ -58,6 +72,16 @@
             "upload-file": "Upload a one file",
             "drag-drop": "or drag and drop",
             "image-limit": "Image File up to 10MB"
+        },
+        "users":{
+            "tos":"This service is designed for personal projects.<br></br>It can be used without any terms of use.<br></br>However, we only approve member services for a limited time.",
+            "password-info":"Passwords contain English numeric special characters",
+            "password-check-info":"Please enter your password again",
+            "error":{
+                "login":"E-mail or Password does not match.",
+                "email-input":"Please enter your E-mail",
+                "pwd-input":"Please enter your Password"
+            }
         }
     }
 }

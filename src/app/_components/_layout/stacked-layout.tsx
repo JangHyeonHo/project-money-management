@@ -25,6 +25,7 @@ export default function SiteStackedLayout({ children, headtitle, headCurrent }: 
     const navigation = [
         { name: w('household.title'), href: '/household/management', current: LayoutHeaders.Household },
         { name: w('capital.title'), href: '/capital/management', current: LayoutHeaders.Capital },
+        { name: w('common.config'), href: '#', current: LayoutHeaders.Config },
     ]
     const userNavigation = [
         { name: 'Your Profile', href: '#' },
@@ -91,6 +92,7 @@ export default function SiteStackedLayout({ children, headtitle, headCurrent }: 
                                         <MenuButton className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                             <span className="absolute -inset-1.5" />
                                             <span className="sr-only">Open user menu</span>
+                                            {/* TODO img => Image로 교체해야함 */}
                                             <img alt="" src={user.imageUrl} className="size-8 rounded-full" />
                                         </MenuButton>
                                     </div>
@@ -144,6 +146,7 @@ export default function SiteStackedLayout({ children, headtitle, headCurrent }: 
                     <div className="border-t border-gray-700 pb-3 pt-4">
                         <div className="flex items-center px-5">
                             <div className="shrink-0">
+                                {/* TODO img => Image로 교체해야함 */}
                                 <img alt="" src={user.imageUrl} className="size-10 rounded-full" />
                             </div>
                             <div className="ml-3">

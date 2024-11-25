@@ -1,11 +1,17 @@
+"use client"
+
 import ImageUploader from "@/app/_components/_input/image-uploader";
+import InputDropdown from "@/app/_components/_input/input-dropdown";
 import SiteStackedLayout from "@/app/_components/_layout/stacked-layout";
 import { HouserholdTypes, LayoutHeaders } from "@/app/_types/common-const";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 
 export default function HouseholdRegist() {
     const w = useTranslations('word');
     const m = useTranslations('msg');
+
+    const [householdValue, setHouseHoldValue] = useState<string>(HouserholdTypes.Income);
 
     const householdTypeItems = [
         { key: HouserholdTypes.Income, value: w('household.income') },
@@ -13,8 +19,18 @@ export default function HouseholdRegist() {
     ];
 
     const capitalKeyItems = [
-        { key: "CAP1", name: "TEST DATA" },
-        { key: "CAP3", name: "CARD TEST DATA" },
+        { key: "CAP1", value: "TEST DATA" },
+        { key: "CAP3", value: "CARD TEST DATA" },
+    ];
+
+    const householdCategoryItems = [
+        { key: "CATE1", value: "SALARY" },
+        { key: "CATE2", value: "SIDELINE WORK" }
+    ];
+
+    const householdSubcategoryItems = [
+        { key: "SCATE1", value: "-" },
+        { key: "SCATE2", value: "TEST" }
     ];
 
     return (
@@ -35,7 +51,6 @@ export default function HouseholdRegist() {
                             </label>
                             <ImageUploader
                                 className="max-w-md mb-4"
-                                key="householdImage"
                                 id="householdImage"
                                 name="householdImage" />
                             <div className="join join-vertical w-full max-w-md">
@@ -64,18 +79,16 @@ export default function HouseholdRegist() {
                                 <div className="label">
                                     <span className="label-text">{w('capital.name')}</span>
                                 </div>
-                                <select className="select select-bordered w-full"
-                                    key="capitalKey"
+                                <InputDropdown
+                                    dropdownItems={capitalKeyItems}
                                     id="capitalKey"
+                                    key="capitalKey"
                                     name="capitalKey"
-                                    required>
-                                    {capitalKeyItems.map(({ key, name }) => (
-                                        <option
-                                            key={"opt" + key}
-                                            value={key}
-                                        >{name}</option>
-                                    ))}
-                                </select>
+                                    btnName={w('common.select')}
+                                    className="w-full max-w-md"
+                                    required
+                                    isChangeBtnName={true}
+                                />
                             </label>
                         </div>
                         <div className="sm:col-span-4">
@@ -83,19 +96,51 @@ export default function HouseholdRegist() {
                                 <div className="label">
                                     <span className="label-text">{w('household.in-exp')}</span>
                                 </div>
-                                <select className="select select-bordered w-full bg-indigo-100"
-                                    key="householdType"
+                                <InputDropdown
+                                    dropdownItems={householdTypeItems}
                                     id="householdType"
+                                    key="householdType"
                                     name="householdType"
-                                    //className={"select select-bordered w-full " + (value === HouserholdTypes.Income ? "bg-indigo-100" : "bg-red-100" )}
-                                    required>
-                                    {householdTypeItems.map(({ key, value }) => (
-                                        <option
-                                            key={"opt" + key}
-                                            value={key}
-                                        >{value}</option>
-                                    ))}
-                                </select>
+                                    btnName={w('household.income')}
+                                    defaultInputValue={HouserholdTypes.Income}
+                                    className={"w-full max-w-md " + (householdValue === HouserholdTypes.Income ? "bg-indigo-100" : "bg-red-100" )}
+                                    setParentValue={setHouseHoldValue}
+                                    required
+                                    isChangeBtnName={true}
+                                />
+                            </label>
+                        </div>
+                        <div className="sm:col-span-4">
+                            <label className="form-control w-full max-w-md">
+                                <div className="label">
+                                    <span className="label-text">{w('household.category')}</span>
+                                </div>
+                                <InputDropdown
+                                    dropdownItems={householdCategoryItems}
+                                    id="householdCategory"
+                                    key="householdCategory"
+                                    name="householdCategory"
+                                    btnName={w('common.select')}
+                                    className="w-full max-w-md"
+                                    required
+                                    isChangeBtnName={true}
+                                />
+                            </label>
+                        </div>
+                        <div className="sm:col-span-4">
+                            <label className="form-control w-full max-w-md">
+                                <div className="label">
+                                    <span className="label-text">{w('household.subcategory')}</span>
+                                </div>
+                                <InputDropdown
+                                    dropdownItems={householdSubcategoryItems}
+                                    id="householdSubcategory"
+                                    key="householdSubcategory"
+                                    name="householdSubcategory"
+                                    btnName={w('common.select')}
+                                    className="w-full max-w-md"
+                                    isChangeBtnName={true}
+                                />
                             </label>
                         </div>
                         <div className="sm:col-span-4">

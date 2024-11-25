@@ -1,3 +1,4 @@
+import InputDropdown from "@/app/_components/_input/input-dropdown";
 import SiteStackedLayout from "@/app/_components/_layout/stacked-layout";
 import { CapitalTypes, LayoutHeaders } from "@/app/_types/common-const";
 import { useTranslations } from "next-intl";
@@ -17,6 +18,10 @@ export default function CapitalRegist() {
         { key: CapitalTypes.Etc, value: w('common.etc') }
     ];
 
+    const currencyItems = [
+        { key: "C1", value: "WON"}
+    ];
+
     return (
         <SiteStackedLayout
             headtitle={w('capital.regist')}
@@ -32,16 +37,30 @@ export default function CapitalRegist() {
                                 <div className="label">
                                     <span className="label-text">{w('capital.type')}</span>
                                 </div>
-                                <select className="select select-bordered w-full max-w-md"
+                                <InputDropdown 
+                                    dropdownItems={capitalTypeItems}
+                                    id="capitalType"
+                                    key="capitalType"
+                                    name="capitalType"
+                                    btnName={w('common.select')}
+                                    className="w-full max-w-md"
+                                    required
+                                    isChangeBtnName={true}
+                                />
+                                {/** 2024-11-24 Select방식에서 Dropdown방식으로 변경(모바일 UI가 불편함)
+                                 * 공통 input input-dropdown.tsx파일 생성
+                                 */}
+                                {/* <select className="select select-bordered w-full max-w-md"
                                     key="capitalType"
                                     id="capitalType"
                                     name="capitalType"
                                     required>
                                     <option value={"00"}>{w('common.select')}</option>
                                     {capitalTypeItems.map(({ key, value }) => (
-                                        <option key={"opt"+key} value={key} >{value}</option>
+                                        <option key={"opt" + key} value={key} >{value}</option>
                                     ))}
-                                </select>
+                                </select> */}
+                                {/** 2024-11-24 Select방식에서 Dropdown방식으로 변경(모바일 UI가 불편함) */}
                             </label>
                         </div>
                         <div className="sm:col-span-4">
@@ -75,12 +94,16 @@ export default function CapitalRegist() {
                                 <div className="label">
                                     <span className="label-text">{w('capital.currency')}</span>
                                 </div>
-                                <select className="select select-bordered w-full max-w-md"
+                                <InputDropdown 
+                                    dropdownItems={currencyItems}
                                     id="capitalCurrency"
+                                    key="capitalCurrency"
                                     name="capitalCurrency"
-                                    required>
-                                    <option>{w('common.select')}</option>
-                                </select>
+                                    btnName={w('common.select')}
+                                    className="w-full max-w-md"
+                                    required
+                                    isChangeBtnName={true}
+                                />
                             </label>
                         </div>
                         <div className="sm:col-span-4">
@@ -88,11 +111,11 @@ export default function CapitalRegist() {
                                 <div className="label">
                                     <span className="label-text">{w('common.comment')}</span>
                                 </div>
-                                <textarea className="textarea textarea-bordered w-full" 
+                                <textarea className="textarea textarea-bordered w-full"
                                     placeholder={w("common.comment")}
                                     id="capitalComment"
                                     name="capitalComment"
-                                    rows={5}/>
+                                    rows={5} />
                             </label>
                         </div>
                     </div>

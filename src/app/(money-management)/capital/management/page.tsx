@@ -1,7 +1,8 @@
 import SiteStackedLayout from "@/app/_components/_layout/stacked-layout";
 import { LayoutHeaders } from "@/app/_types/common-const";
 import { useTranslations } from "next-intl";
-import CapitalTable from "../_components/capital-table";
+import CapitalList from "../_components/capital-list";
+import CapitalListCollapse from "../_components/capital-list-collapse";
 
 
 /**
@@ -42,16 +43,25 @@ export default function CapitalManagement() {
                     </div>
                 </div>
                 <div className="border-b border-gray-900/10 pt-6 pb-8">
-                    <h2 className="text-base/7 font-semibold text-gray-900">{w('capital.cash')}</h2>
-                    <CapitalTable items={cashItems}></CapitalTable>
+                    <CapitalListCollapse
+                        title={w('capital.cash')}
+                    >
+                        <CapitalList items={cashItems} />
+                    </CapitalListCollapse>
                 </div>
                 <div className="border-b border-gray-900/10 pt-6 pb-8">
-                    <h2 className="text-base/7 font-semibold text-gray-900">{w('capital.card')}</h2>
-                    <CapitalTable items={cardItems}></CapitalTable>
+                    <CapitalListCollapse
+                        title={w('capital.card')}
+                    >
+                        <CapitalList items={cardItems} />
+                    </CapitalListCollapse>
                 </div>
                 <div className="border-b border-gray-900/10 pt-6 pb-8">
-                    <h2 className="text-base/7 font-semibold text-gray-900">{w('common.etc')}</h2>
-                    <CapitalTable></CapitalTable>
+                    <CapitalListCollapse
+                        title={w('common.etc')}
+                    >
+                        <CapitalList />
+                    </CapitalListCollapse>
                 </div>
             </div>
 

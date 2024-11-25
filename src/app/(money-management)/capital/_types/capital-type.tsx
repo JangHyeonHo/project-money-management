@@ -1,12 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-interface CapitalTableProps{
-    items?:Array<CapitalTableItemProps>
+interface CapitalListProps{
+    items?:Array<CapitalListItemProps>
     
 };
-interface CapitalTableItemProps{
+interface CapitalListItemProps{
     key:string,
     name:string,
     money:number,
     currency:string
+};
+
+interface CapitalListCollapseProps{
+    children?:React.JSX.Element
+    title?:string,
 };
 /* eslint-disable @typescript-eslint/no-unused-vars */
