@@ -1,31 +1,31 @@
+import GetUserCookieFromSession from "@/app/_actions/get-user-cookies";
+import { redirect } from "next/navigation";
+import HouseholdManagement from "../_components/household-management";
 import SiteStackedLayout from "@/app/_components/_layout/stacked-layout";
 import { LayoutHeaders } from "@/app/_types/common-const";
-import { useTranslations } from "next-intl";
 
-export default function HouseholdManagement() {
+export default async function Page() {
 
-    const w = useTranslations('word');
-    const m = useTranslations('msg');
+    // 세션 정보 확인
+    const userInfo = await GetUserCookieFromSession();
+    //console.log(userInfo);
+
+    if (!userInfo.isLogin) {
+        redirect("/login")
+    }
 
     return (
-        <SiteStackedLayout
-            headtitle={w('household.management')}
-            headCurrent={LayoutHeaders.Household}
-        >
-            <div>
-                <div className="border-b border-gray-900/10 pb-8">
-                    <h2 className="text-base/7 font-semibold text-gray-900">{w('household.management')}</h2>
-                    <p className="mt-1 text-sm/6 text-gray-600">{m('household.management-info')}</p>
-                    <div className="mt-4 flex items-center gap-x-6">
-                        <a
-                            href="./regist"
-                            className="btn btn-info btn-sm">
-                            {w('household.regist')}
-                        </a>
-                    </div>
-                </div>
-            </div>
 
+        <SiteStackedLayout
+            headtitle={'household.management'}
+            headCurrent={LayoutHeaders.Household}
+            isLogin={userInfo.isLogin}
+            userFirstName={userInfo.userFirstName}
+            userLastName={userInfo.userLastName}
+        >
+            <HouseholdManagement>
+
+            </HouseholdManagement>
         </SiteStackedLayout>
     )
 

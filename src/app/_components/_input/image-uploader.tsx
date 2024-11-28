@@ -1,12 +1,14 @@
+import { ImageUploaderProps } from "@/app/_types/common-types";
 import { PhotoIcon } from "@heroicons/react/24/outline";
 import { useTranslations } from "next-intl";
 
-export default function ImageUploader({className, id, key, name}:ImageUploaderProps) {
+export default function ImageUploader({className, id, name}:ImageUploaderProps) {
 
     const m = useTranslations('msg.common');
 
     return (
-        <div className= {className + " mt-1 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10"}>
+        <div 
+        className= {className + " mt-1 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10"}>
             <div className="text-center">
                 <PhotoIcon aria-hidden="true" className="mx-auto size-12 text-gray-300" />
                 <div className="mt-4 flex text-sm/6 text-gray-600">
@@ -16,7 +18,6 @@ export default function ImageUploader({className, id, key, name}:ImageUploaderPr
                     >
                         <span>{m("upload-file")}</span>
                         <input
-                            key={key}
                             id={id}
                             name={name}
                             type="file"

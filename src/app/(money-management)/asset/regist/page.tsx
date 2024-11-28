@@ -1,11 +1,11 @@
 import GetUserCookieFromSession from "@/app/_actions/get-user-cookies";
+import AssetRegist from "../_components/asset-regist";
 import { redirect } from "next/navigation";
-import HouseholdRegist from "../_components/household-regist";
 import SiteStackedLayout from "@/app/_components/_layout/stacked-layout";
 import { LayoutHeaders } from "@/app/_types/common-const";
 
 /**
- * 가계부 등록 화면
+ * 자본 등록 화면
  * @returns 
  */
 export default async function Page() {
@@ -19,17 +19,17 @@ export default async function Page() {
     }
 
     return (
-
         <SiteStackedLayout
-            headtitle={'household.regist'}
-            headCurrent={LayoutHeaders.Household}
+            headtitle={'asset.regist'}
+            headCurrent={LayoutHeaders.Asset}
             isLogin={userInfo.isLogin}
             userFirstName={userInfo.userFirstName}
             userLastName={userInfo.userLastName}
         >
-            <HouseholdRegist>
+            <AssetRegist>
 
-            </HouseholdRegist>
+            </AssetRegist>
         </SiteStackedLayout>
+
     )
 }
