@@ -1,12 +1,13 @@
 export const LayoutHeaders = {
-    Capital : 0,
+    Asset : 0,
     Household : 1,
     Config : 2,
 } as const;
 
-export const CapitalTypes = {
+export const AssetTypes = {
     Cash : "10",
-    Card : "20",
+    Bankbook : "20",
+    Card : "30",
     Etc : "99"
 } as const;
 

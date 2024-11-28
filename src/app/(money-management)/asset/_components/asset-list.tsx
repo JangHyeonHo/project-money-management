@@ -1,9 +1,10 @@
 import { useTranslations } from "next-intl";
+import { AssetListProps } from "../_types/asset-type";
 
 /** 
  * 자산 관리용 공통 리스트
 */
-export default function CapitalList({ items }: CapitalListProps) {
+export default function AssetList({ items }: AssetListProps) {
 
     const w = useTranslations('word');
 
@@ -12,15 +13,13 @@ export default function CapitalList({ items }: CapitalListProps) {
             <ul role="list" className="divide-y divide-gray-100">
                 {items?.map(({ key, name, money, currency }) => (
                     <li key={"li" + key} className="flex justify-between gap-x-6 py-5">
-                        <div className="flex min-w-0 gap-x-4">
-                            <div className="min-w-0 flex-auto">
-                                <p className="text-xs/2 font-semibold text-gray-900">{w('capital.name')}</p>
-                                <p className="mt-1 truncate text-sm/6 text-black-500">{name}</p>
-                            </div>
+                        <div className="flex flex-col min-w-0 gap-x-4">
+                            <p className="text-sm/4 font-semibold text-gray-600">{w('asset.name')}</p>
+                            <p className="mt-1 truncate text-sm/6 text-black-500">{name}</p>
                         </div>
                         <div className="shrink-0 flex flex-col items-end">
-                            <p className="text-xs/2 font-semibold text-gray-900">{w('capital.money')}</p>
-                            <p className={"mt-1 truncate text-sm/6 " + (money < 0 ? "text-red-600" : "text-indigo-600")}>
+                            <p className="text-sm/4 text-gray-500 mx-1">{w('asset.money')}</p>
+                            <p className={"mt-1 truncate text-semibold text-sm/6 " + (money < 0 ? "text-red-600" : "text-indigo-600")}>
                                 {money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                                 <span className="mx-1">
                                     {currency}
@@ -42,15 +41,15 @@ export default function CapitalList({ items }: CapitalListProps) {
                     </li>
                 ))}
             </ul>
-            
+
             {/** 2024-11-24 수정 Table방식에서 List방식으로 변경(모바일 UI가 불편함) */}
             {/* <table className="table">
                 <thead>
                     <tr>
                         <th></th>
-                        <th>{w('capital.name')}</th>
-                        <th>{w('capital.money')}</th>
-                        <th>{w('capital.currency')}</th>
+                        <th>{w('asset.name')}</th>
+                        <th>{w('asset.money')}</th>
+                        <th>{w('asset.currency')}</th>
                         <th>{w('common.btn')}</th>
                     </tr>
                 </thead>

@@ -1,8 +1,9 @@
 "use client"
 
+import { InputDropdownProps } from "@/app/_types/common-types";
 import { useState } from "react";
 
-export default function InputDropdown({ dropdownItems, btnName, id, name, required, className, isChangeBtnName, defaultInputValue, setParentValue }: InputDropdownProps) {
+export default function InputDropdown({ dropdownItems, btnName, id, name, required, disabled, className, isChangeBtnName, defaultInputValue, setParentValue }: InputDropdownProps) {
 
     const [inputValue, setInputValue] = useState<string>(defaultInputValue ? defaultInputValue : "");
     const [inputButtonName, setInputButtonName] = useState<string>(btnName ? btnName : "");
@@ -23,9 +24,9 @@ export default function InputDropdown({ dropdownItems, btnName, id, name, requir
     return (
         <>
             <details
-                className="dropdown"
+                className={(disabled ? "btn-disabled" : "dropdown")}
                 open={open}
-                onClick={(e) => { e.preventDefault(); isOpen(!open);}}>
+                onClick={(e) => { e.preventDefault(); if(!disabled) isOpen(!open);}}>
                 <summary
                     className={"btn m-1 justify-start " + className}
                 >{inputButtonName}</summary>

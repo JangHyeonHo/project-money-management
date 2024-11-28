@@ -1,22 +1,25 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-interface SiteStackedLayoutProps{
+export interface SiteStackedLayoutProps{
     children?:React.JSX.Element,
     headtitle?:string,
     headCurrent?:number,
+    isLogin?:boolean,
+    userFirstName?:string,
+    userLastName?:string,
 };
 
-interface ImageUploaderProps{
+export interface ImageUploaderProps{
     className?:string,
     key?:string,
     name?:string,
     id?:string,
 };
 
-interface InputDropdownProps{
+export interface InputDropdownProps{
     className?:string,
     name:string,
     id:string,
     required?:boolean,
+    disabled?:boolean,
     dropdownItems:Array<InputDropdownPropsItem>,
     btnName?:string,
     isChangeBtnName?:boolean,
@@ -25,8 +28,13 @@ interface InputDropdownProps{
 }
 
 
-interface InputDropdownPropsItem{
+export interface InputDropdownPropsItem{
     key:string,
     value:string,
 }
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
+export interface ProcessAlertProps{
+    isAlert?:boolean,
+    alertMsg?:string,
+    alertType?:string,
+};

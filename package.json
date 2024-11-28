@@ -15,7 +15,8 @@
     "@prisma/client": "^5.22.0",
     "@types/bcrypt": "^5.0.2",
     "bcrypt": "^5.1.1",
-    "next": "15.0.3",
+    "iron-session": "^8.0.4",
+    "next": "^15",
     "next-intl": "^3.25.1",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106"
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/typography": "^0.5.15",
+    "@types/crypto-js": "^4.2.2",
     "@types/node": "^22",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",

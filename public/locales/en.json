@@ -1,87 +1,136 @@
 {
-    "word":{
-        "siteTitle" : "Money Management",
-        "capital":{
-            "title" : "Capital",
-            "management": "Capital Management",
-            "regist": "Capital Regist",
-            "name": "Name of capital",
-            "type": "Type of capital",
+    "word": {
+        "siteTitle": "Money Management",
+        "asset": {
+            "title": "Asset",
+            "management": "Asset Management",
+            "regist": "Asset Regist",
+            "name": "Asset Name",
+            "type": "Asset Type",
             "money": "Amount",
             "currency": "Currency",
-            "cash":"Cash",
-            "card":"Card"
+            "cash": "Cash",
+            "card": "Card",
+            "bankbook": "Bankbook",
+            "cur-key": {
+                "usd": "US Dollar(USD)",
+                "cad": "Canadian Dollar(CAD)",
+                "eur": "Euro(EUR)",
+                "gbp": "Pound Sterling(GBP)",
+                "chf": "Swiss Franc(CHF)",
+                "nok": "Norwegian Krone(NOK)",
+                "sek": "Swedish Krona(SEK)",
+                "dkk": "Danish Krone(DKK)",
+                "pln": "Polish Zloty(PLN)",
+                "czk": "Czech Koruna(CZK)",
+                "huf": "Hungarian Forint(HUF)",
+                "cny": "Chinese Yuan(CNY)",
+                "jpy": "Japanese Yen(JPY)",
+                "krw": "Korean Won(KRW)",
+                "inr": "Indian Rupee(INR)",
+                "aud": "Australian Dollar(AUD)",
+                "sgd": "Singapore Dollar(SGD)",
+                "hkd": "Hong Kong Dollar(HKD)",
+                "thb": "Thai Baht(THB)",
+                "myr": "Malaysian Ringgit(MYR)",
+                "idr": "Indonesian Rupiah(IDR)",
+                "php": "Philippine Peso(PHP)",
+                "vnd": "Vietnamese Dong(VND)",
+                "brl": "Brazilian Real(BRL)",
+                "mxn": "Mexican Peso(MXN)",
+                "ars": "Argentine Peso(ARS)",
+                "clp": "Chilean Peso(CLP)",
+                "zar": "South African Rand(ZAR)",
+                "ngn": "Nigerian Naira(NGN)",
+                "egp": "Egyptian Pound(EGP)"
+            }
         },
-        "household":{
+        "household": {
             "title": "Household",
             "management": "Household Management",
             "regist": "Household Regist",
-            "in-exp":"Income/Expenditure",
-            "income":"Income",
-            "expense":"Expenditure",
-            "date":"Issue Date",
-            "category":"Household Category",
-            "subcategory":"Household Subcategory"
+            "in-exp": "Income/Expenditure",
+            "income": "Income",
+            "expense": "Expenditure",
+            "date": "Issue Date",
+            "category": "Household Category",
+            "subcategory": "Household Subcategory"
         },
-        "common":{
-            "btn":"Button",
-            "modify":"Modify",
-            "delete":"Delete",
-            "detail":"Detail",
+        "common": {
+            "btn": "Button",
+            "modify": "Modify",
+            "delete": "Delete",
+            "detail": "Detail",
             "save": "Save",
             "cancel": "Cancel",
             "select": "Choice",
-            "etc":"ETC",
-            "image":"Image",
-            "data":"Data",
-            "upload":"Upload",
-            "read":"Read",
-            "comment":"Comment",
-            "config":"Configration",
-            "user":"User"
+            "etc": "ETC",
+            "image": "Image",
+            "data": "Data",
+            "upload": "Upload",
+            "read": "Read",
+            "comment": "Comment",
+            "config": "Configration",
+            "user": "User"
         },
-        "users":{
-            "login":"Login",
-            "email":"E-mail",
-            "pwd":"Password",
-            "pwd-confirm":"Password Confirm",
-            "f-name":"First Name",
-            "l-name":"Last Name",
-            "signup":"Sign Up",
-            "autologin":"Auto Login"
+        "users": {
+            "login": "Sign In",
+            "logout": "Sign Out",
+            "email": "E-mail",
+            "pwd": "Password",
+            "pwd-confirm": "Password Confirm",
+            "f-name": "First Name",
+            "l-name": "Last Name",
+            "signup": "Sign Up",
+            "autologin": "Auto Sign"
         }
     },
-    "msg":{
-        "error":{
-            "notFound":{
+    "msg": {
+        "error": {
+            "notFound": {
                 "title": "Page not found",
                 "msg1": "Sorry, we couldn’t find the page you’re looking for.",
                 "back": "Go back home",
                 "contact": "Contact support"
+            },
+            "input": {
+                "required": "Please enter your {item}",
+                "c-range-min-max": "Please write {item} in {min} or more and {max} or less characters",
+                "c-range-min": "Please write {item} in at least {min} character",
+                "c-range-max": "Please write {item} in {max} character or less",
+                "range-min-max": "Please write {item} of {min} or more and {max} or less",
+                "range-min": "Please write {item} of {min} or more",
+                "range-max": "Please write {item} of {max} or less",
+                "number": "Please enter a valid number",
+                "select": "Please select a {item}"
+            },
+            "users": {
+                "login": "E-mail or Password does not match.",
+                "email-input": "Please enter your E-mail",
+                "pwd-input": "Please enter your Password",
+                "pwd-check-input": "The password does not match."
             }
         },
-        "capital":{
-            "regist-info":"This is where the user's capital information is registered.",
-            "management-info":"This is where you check the data on the capital you entered."
+        "asset": {
+            "regist-info": "This is where the user's asset information is registered.",
+            "management-info": "This is where you check the data on the asset you entered.",
+            "regist-success": "Your asset has been successfully registered.",
+            "regist-error": "Your asset registration failed."
         },
-        "household":{
+        "household": {
             "management-info": "You can check the household register you entered on a monthly basis.",
             "regist-info": "Please fill out the household register."
         },
-        "common":{
+        "common": {
             "upload-file": "Upload a one file",
             "drag-drop": "or drag and drop",
-            "image-limit": "Image File up to 10MB"
+            "image-limit": "Image File up to 10MB",
+            "input-max": "{item} can be entered up to {max} characters."
         },
-        "users":{
-            "tos":"This service is designed for personal projects.<br></br>It can be used without any terms of use.<br></br>However, we only approve member services for a limited time.",
-            "password-info":"Passwords contain English numeric special characters",
-            "password-check-info":"Please enter your password again",
-            "error":{
-                "login":"E-mail or Password does not match.",
-                "email-input":"Please enter your E-mail",
-                "pwd-input":"Please enter your Password"
-            }
+        "users": {
+            "tos": "This service is designed for personal projects.<br></br>It can be used without any terms of use.<br></br>However, we only approve member services for a limited time.",
+            "password-info": "Passwords contain English numeric special characters",
+            "password-check-info": "Please enter your password again"
         }
     }
 }

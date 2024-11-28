@@ -1,3 +1,4 @@
+import { ImageUploaderProps } from "@/app/_types/common-types";
 import { PhotoIcon } from "@heroicons/react/24/outline";
 import { useTranslations } from "next-intl";
 
