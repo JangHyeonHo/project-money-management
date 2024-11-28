@@ -31,7 +31,7 @@ export default async function Page() {
     const etcAssets:Array<AssetListItemProps> = [];
 
     if (assetManagementDatas) {
-        for (var i = 0; i < assetManagementDatas.length; i++) {
+        for (let i = 0; i < assetManagementDatas.length; i++) {
             switch (assetManagementDatas[i].asset_type) {
                 case AssetTypes.Cash:
                     cashAssets.push({

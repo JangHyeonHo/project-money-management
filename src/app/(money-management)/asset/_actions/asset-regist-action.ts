@@ -22,26 +22,26 @@ export async function AssetRegistAction(data: AssetRegistActionProps) {
     const userKey = session.userKey;
 
     try {
-        // const asset = await prisma.asset.create({
-        //     data: {
-        //         asset_type: data.assetType,
-        //         asset_name: data.assetName,
-        //         asset_money: data.assetMoney,
-        //         asset_currency: data.assetCurrency,
-        //         asset_comment: data.assetComment,
-        //         user_id: userKey
-        //     }
-        // });
-        // 테스트용
-        const asset = await prisma.asset.findFirst({
-            select: {
-                asset_type: true,
-                asset_name: true,
-                asset_money: true,
-                asset_currency: true,
-                asset_comment: true,
+        const asset = await prisma.asset.create({
+            data: {
+                asset_type: data.assetType,
+                asset_name: data.assetName,
+                asset_money: data.assetMoney,
+                asset_currency: data.assetCurrency,
+                asset_comment: data.assetComment,
+                user_id: userKey
             }
         });
+        // 테스트용
+        // const asset = await prisma.asset.findFirst({
+        //     select: {
+        //         asset_type: true,
+        //         asset_name: true,
+        //         asset_money: true,
+        //         asset_currency: true,
+        //         asset_comment: true,
+        //     }
+        // });
 
         return asset;
     } catch (e) {

@@ -141,7 +141,7 @@ export default function AssetRegist() {
      * @returns 
      */
     const validationCheck = (form: AssetRegistActionProps) => {
-        var error = false;
+        let error = false;
         // 타입 미선택일 경우
         if (form.assetType === "") {
             //type error

@@ -11,15 +11,12 @@ export default function ProcessAlert({ isAlert, alertType, alertMsg }: ProcessAl
     const [isOpen, setOpen] = useState<boolean>(isAlert ? true : false);
 
     useEffect(() => {
-        if(isOpen){
-            console.log("toast스타트")
-            const timer = setTimeout(() => {
-                setOpen(false);
-            }, 3000);
-            return () => {
-                clearTimeout(timer);
-            };
-        }
+        const timer = setTimeout(() => {
+            setOpen(false);
+        }, 3000);
+        return () => {
+            clearTimeout(timer);
+        };
     }, [setOpen]);
 
     const info = "M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z";

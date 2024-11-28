@@ -81,7 +81,7 @@ export default function Signup() {
      * @returns 
      */
     const validationCheck = (form: SignupActionProps) => {
-        var error = false;
+        let error = false;
         // 작성 에러 체크
         if (form.userEmail === "" || StringRangeCheck(form.userFirstName, 1, 320)) {
             //email error

@@ -79,7 +79,7 @@ export default function Login() {
      * @returns 
      */
     const validationCheck = (form: LoginActionProps) => {
-        var error = false;
+        let error = false;
         // 작성 에러 체크
         if (form.userEmail === "" || form.userEmail.trim().length === 0) {
             //email error
