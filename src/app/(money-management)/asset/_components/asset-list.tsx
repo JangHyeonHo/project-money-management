@@ -2,7 +2,6 @@
 
 import { useTranslations } from "next-intl";
 import { AssetListProps } from "../_types/asset-type";
-import { useRouter } from "next/navigation";
 
 /** 
  * 자산 관리용 공통 리스트
@@ -10,7 +9,6 @@ import { useRouter } from "next/navigation";
 export default function AssetList({ items, onDeleteClick }: AssetListProps) {
 
     const w = useTranslations('word');
-    const router = useRouter();
 
     const deleteClick = (deleteKey:string, deleteName:string) => {
         //Confirm창

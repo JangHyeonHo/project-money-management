@@ -1,10 +1,6 @@
 'use server'
 
 import prisma from "@/lib/db";
-import { sessionOptions, SessionData } from "@/lib/session";
-import { getIronSession } from "iron-session";
-import { cookies } from "next/headers";
-import { AssetRegModActionProps } from "../_types/asset-type";
 import { Prisma } from "../../../../../prisma/generated/client";
 
 /**
