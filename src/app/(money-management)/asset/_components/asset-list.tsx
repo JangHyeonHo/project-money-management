@@ -1,12 +1,22 @@
+"use client"
+
 import { useTranslations } from "next-intl";
 import { AssetListProps } from "../_types/asset-type";
 
 /** 
  * 자산 관리용 공통 리스트
 */
-export default function AssetList({ items }: AssetListProps) {
+export default function AssetList({ items, onDeleteClick }: AssetListProps) {
 
     const w = useTranslations('word');
+
+    const deleteClick = (deleteKey:string, deleteName:string) => {
+        //Confirm창
+        onDeleteClick({
+            key:deleteKey,
+            itemName:deleteName
+        });
+    }
 
     return (
         <div className="overflow-x-auto">
@@ -26,13 +36,15 @@ export default function AssetList({ items }: AssetListProps) {
                                 </span>
                             </p>
                             <p className="mt-1 join">
-                                <button
+                                <a
                                     key={"modBtn" + key}
+                                    href={`./modify/${key}`}
                                     className="btn btn-warning btn-sm join-item">
                                     {w('common.modify')}
-                                </button>
+                                </a>
                                 <button
                                     key={"delBtn" + key}
+                                    onClick={()=>{deleteClick(key, name)}}
                                     className="btn btn-error btn-sm join-item">
                                     {w('common.delete')}
                                 </button>

@@ -6,7 +6,7 @@ import { hashSync } from "bcrypt";
 import { getIronSession } from "iron-session";
 import { cookies } from "next/headers";
 import { SignupActionProps } from "../_types/user-types";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "../../../../prisma/generated/client";
 import { redirect } from "next/navigation";
 
 /**

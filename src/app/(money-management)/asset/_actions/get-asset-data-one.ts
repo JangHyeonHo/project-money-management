@@ -4,14 +4,14 @@ import prisma from "@/lib/db";
 import { Prisma } from "../../../../../prisma/generated/client";
 
 /**
- * 모든 자산 취득
+ * 자산 취득
  * @param formData 
  * @returns 
  */
-export async function GetAssetDatas(userKey:string) {
+export async function GetAssetDataOne(userKey:string, assetKey:string) {
 
     try {
-        const asset = await prisma.asset.findMany({
+        const asset = await prisma.asset.findFirst({
             select: {
                 id:true,
                 asset_type: true,
@@ -20,11 +20,9 @@ export async function GetAssetDatas(userKey:string) {
                 asset_currency: true,
                 asset_comment: true,
             },
-            orderBy:{
-                asset_type : "asc"
-            },
             where:{
-                user_id : userKey
+                user_id: userKey,
+                id : assetKey
             }
         });
 

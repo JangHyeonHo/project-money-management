@@ -5,6 +5,8 @@
             "title": "Asset",
             "management": "Asset Management",
             "regist": "Asset Regist",
+            "modify": "Asset Modify",
+            "delete": "Asset [{item}] Delete",
             "name": "Asset Name",
             "type": "Asset Type",
             "money": "Amount",
@@ -71,7 +73,9 @@
             "read": "Read",
             "comment": "Comment",
             "config": "Configration",
-            "user": "User"
+            "user": "User",
+            "yes": "Yes",
+            "no": "No"
         },
         "users": {
             "login": "Sign In",
@@ -115,7 +119,8 @@
             "regist-info": "This is where the user's asset information is registered.",
             "management-info": "This is where you check the data on the asset you entered.",
             "regist-success": "Your asset has been successfully registered.",
-            "regist-error": "Your asset registration failed."
+            "regist-error": "Your asset registration failed.",
+            "delete-info": "If you delete the asset data, you can't undo it. Are you sure you want to delete it?"
         },
         "household": {
             "management-info": "You can check the household register you entered on a monthly basis.",

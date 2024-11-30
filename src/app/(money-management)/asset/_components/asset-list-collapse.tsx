@@ -7,7 +7,7 @@ export default function AssetListCollapse({ children, title }: AssetListCollapse
 
     return (
         <>
-            <div tabIndex={0} className={"collapse collapse-arrow bg-base-200"}>
+            <div tabIndex={0} className={"collapse collapse-open collapse-arrow bg-base-200"}>
                 <input type="checkbox"/>
                 <div className="collapse-title text-xl font-medium">
                     {title}

@@ -1,5 +1,5 @@
 import GetUserCookieFromSession from "@/app/_actions/get-user-cookies";
-import AssetRegist from "../_components/asset-regist";
+import AssetRegModForm from "../_components/asset-regmod";
 import { redirect } from "next/navigation";
 import SiteStackedLayout from "@/app/_components/_layout/stacked-layout";
 import { LayoutHeaders } from "@/app/_types/common-const";
@@ -15,7 +15,7 @@ export default async function Page() {
     //console.log(userInfo);
 
     if (!userInfo.isLogin) {
-        redirect("/login")
+        redirect("/signin")
     }
 
     return (
@@ -26,9 +26,9 @@ export default async function Page() {
             userFirstName={userInfo.userFirstName}
             userLastName={userInfo.userLastName}
         >
-            <AssetRegist>
+            <AssetRegModForm>
 
-            </AssetRegist>
+            </AssetRegModForm>
         </SiteStackedLayout>
 
     )

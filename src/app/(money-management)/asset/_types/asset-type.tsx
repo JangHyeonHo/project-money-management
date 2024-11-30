@@ -1,6 +1,6 @@
 export interface AssetListProps{
-    items?:Array<AssetListItemProps>
-    
+    items?:Array<AssetListItemProps>,
+    onDeleteClick:(item: { key: string, itemName: string }) => void
 };
 export interface AssetListItemProps{
     key:string,
@@ -21,7 +21,18 @@ export interface AssetManagementProps{
     etcAssets:Array<AssetListItemProps>,
 }
 
-export interface AssetRegistActionProps{
+export interface AssetRegModFormProps{
+    isModify?:boolean,
+    assetId?:string,
+    assetType?:string,
+    assetName?:string,
+    assetMoney?:number,
+    assetCurrency?:string,
+    assetComment?:string,
+}
+
+export interface AssetRegModActionProps{
+    assetKey?:string,
     assetType:string,
     assetName:string,
     assetMoney:number,

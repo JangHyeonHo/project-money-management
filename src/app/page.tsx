@@ -10,7 +10,7 @@ export default async function Page() {
   //console.log(userInfo);
 
   if (!userInfo.isLogin) {
-    redirect("/login")
+    redirect("/signin")
   }
 
   return (
