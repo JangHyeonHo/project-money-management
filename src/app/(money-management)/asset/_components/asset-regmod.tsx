@@ -4,16 +4,17 @@ import InputDropdown from "@/app/_components/_input/input-dropdown";
 import { AssetTypes } from "@/app/_types/common-const";
 import { useTranslations } from "next-intl";
 import { FormEvent, useState } from "react";
-import { AssetRegistActionProps } from "../_types/asset-type";
+import { AssetRegModActionProps, AssetRegModFormProps } from "../_types/asset-type";
 import { StringRangeCheck } from "@/app/_utils/common-utils";
 import { AssetRegistAction } from "../_actions/asset-regist-action";
 import { redirect } from "next/navigation";
+import { AssetModifyAction } from "../_actions/asset-modify-action";
 
 /**
- * 자본 등록 화면
+ * 자본 등록/수정 화면
  * @returns 
  */
-export default function AssetRegist() {
+export default function AssetRegModForm({ isModify, assetId, assetType, assetName, assetMoney, assetCurrency, assetComment }: AssetRegModFormProps) {
 
     const w = useTranslations('word');
     const m = useTranslations('msg');
@@ -33,6 +34,14 @@ export default function AssetRegist() {
         { key: AssetTypes.Card, value: w('asset.card') },
         { key: AssetTypes.Etc, value: w('common.etc') }
     ];
+
+    const getAssetTypeItem = (itemKey?: string) => {
+        if (itemKey === undefined) return w('common.select');
+
+        const selectItem = assetTypeItems.find(({ key }) => key === itemKey);
+
+        return selectItem ? selectItem.value : w('common.select');
+    }
 
     /**
      * 대표적인 통화 30개정도 뽑았는데, 일단 이렇게 많이 필요 없을것 같아서 예시만 만들고 없앰
@@ -72,6 +81,14 @@ export default function AssetRegist() {
         //{ key: "egp", value: w("asset.cur-key.egp") }
     ];
 
+    const getCurrencyItem = (itemKey?: string) => {
+        if (itemKey === undefined) return w('common.select');
+
+        const selectItem = currencyItems.find(({ key }) => key === itemKey);
+
+        return selectItem ? selectItem.value : w('common.select');
+    }
+
     const assetSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setLoading(true);
@@ -91,19 +108,29 @@ export default function AssetRegist() {
             return;
         }
         // api호출(데이터 변조 방지를 위해 세션에서 바로 쿠키등록)
-        const data = await AssetRegistAction(formData);
-
-        setLoading(false);
-
-        // 로그인 데이터 존재 확인
-        if (data === null) {
-            //처리 에러 알람 표시
-            //setEmailError(e('login'));
+        if (isModify) {
+            //TODO 금액 변경시에는 Household로 금액이 바뀌게끔 설정하기
+            
+            const data = await AssetModifyAction(formData);
+            // 로그인 데이터 존재 확인
+            if (data === null) {
+                //처리 에러 알람 표시
+                //setEmailError(e('login'));
+            } else {
+                // 이전 화면으로 돌아가게(완료 메시지 띄울까..?)
+                redirect("/asset/management");
+            }
         } else {
-            // 이전 화면으로 돌아가게(완료 메시지 띄울까..?)
-            redirect("./management");
+            const data = await AssetRegistAction(formData);
+            // 로그인 데이터 존재 확인
+            if (data === null) {
+                //처리 에러 알람 표시
+                //setEmailError(e('login'));
+            } else {
+                // 이전 화면으로 돌아가게(완료 메시지 띄울까..?)
+                redirect("./management");
+            }
         }
-
     }
 
     /**
@@ -118,7 +145,8 @@ export default function AssetRegist() {
         const currency = form.get("assetCurrency");
         const comment = form.get("assetComment");
 
-        const data: AssetRegistActionProps = {
+        const data: AssetRegModActionProps = {
+            assetKey: isModify ? assetId : undefined,
             assetType: type === null ? "" : type.toString(),
             assetName: name === null ? "" : name.toString(),
             assetMoney: money === null ? 0 : Number(money.toString()), //Error시 NaN을 배출
@@ -140,7 +168,7 @@ export default function AssetRegist() {
      * @param form 
      * @returns 
      */
-    const validationCheck = (form: AssetRegistActionProps) => {
+    const validationCheck = (form: AssetRegModActionProps) => {
         let error = false;
         // 타입 미선택일 경우
         if (form.assetType === "") {
@@ -193,9 +221,10 @@ export default function AssetRegist() {
                                 id="assetType"
                                 key="assetType"
                                 name="assetType"
-                                btnName={w('common.select')}
+                                btnName={isModify ? getAssetTypeItem(assetType) : w('common.select')}
                                 className="w-full max-w-md"
                                 disabled={loading}
+                                defaultInputValue={isModify ? assetType : undefined}
                                 required
                                 isChangeBtnName={true}
                             />
@@ -232,6 +261,7 @@ export default function AssetRegist() {
                                 required
                                 placeholder="Type here"
                                 disabled={loading}
+                                defaultValue={isModify ? assetName : ""}
                                 maxLength={30}
                                 className="input input-bordered w-full max-w-md" />
                             {nameError !== "" &&
@@ -249,10 +279,10 @@ export default function AssetRegist() {
                             <input type="number"
                                 id="assetMoney"
                                 name="assetMoney"
-                                disabled={loading}
                                 required
+                                disabled={loading}
                                 step="0.01"
-                                defaultValue={0}
+                                defaultValue={isModify ? assetMoney : 0}
                                 className="input input-bordered w-full max-w-md" />
                             {amountError !== "" &&
                                 <div className="label">
@@ -272,8 +302,9 @@ export default function AssetRegist() {
                                 key="assetCurrency"
                                 name="assetCurrency"
                                 disabled={loading}
-                                btnName={w('common.select')}
+                                btnName={isModify ? getCurrencyItem(assetCurrency) : w('common.select')}
                                 className="w-full max-w-md"
+                                defaultInputValue={isModify ? assetCurrency : undefined}
                                 required
                                 isChangeBtnName={true}
                             />
@@ -295,6 +326,7 @@ export default function AssetRegist() {
                                 id="assetComment"
                                 name="assetComment"
                                 disabled={loading}
+                                defaultValue={isModify ? assetComment : undefined}
                                 maxLength={500}
                                 rows={5} />
                             {commentError !== "" &&
@@ -307,7 +339,7 @@ export default function AssetRegist() {
                 </div>
             </div>
 
-            <div className="mt-8 flex items-center gap-x-6">
+            <div className="my-8 flex items-center gap-x-6">
                 <button
                     type="submit"
                     disabled={loading}

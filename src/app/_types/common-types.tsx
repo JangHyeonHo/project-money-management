@@ -38,3 +38,11 @@ export interface ProcessAlertProps{
     alertMsg?:string,
     alertType?:string,
 };
+
+export interface ConfirmModalProps{
+    title?:string,
+    msg?:string,
+    isOpen:boolean,
+    onYes:()=>void,
+    onNo:()=>void,
+}

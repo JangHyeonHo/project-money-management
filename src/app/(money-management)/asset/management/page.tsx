@@ -6,7 +6,7 @@ import { AssetTypes, LayoutHeaders } from "@/app/_types/common-const";
 import SiteStackedLayout from "@/app/_components/_layout/stacked-layout";
 import { GetAssetDatas } from "../_actions/get-asset-datas";
 import { AssetListItemProps } from "../_types/asset-type";
-import { NullChangeBlankValue } from "@/app/_utils/common-utils";
+import { NullChangeBlankValueFromString } from "@/app/_utils/common-utils";
 
 
 /**
@@ -20,7 +20,7 @@ export default async function Page() {
     //console.log(userInfo);
 
     if (!userInfo.isLogin) {
-        redirect("/login")
+        redirect("/signin")
     }
 
     const assetManagementDatas = await GetAssetDatas(userInfo.userKey);
@@ -37,7 +37,7 @@ export default async function Page() {
                     cashAssets.push({
                         key:assetManagementDatas[i].id,
                         name:assetManagementDatas[i].asset_name,
-                        currency:NullChangeBlankValue(assetManagementDatas[i].asset_currency),
+                        currency:NullChangeBlankValueFromString(assetManagementDatas[i].asset_currency),
                         money:assetManagementDatas[i].asset_money,
                     });
                     break;
@@ -45,7 +45,7 @@ export default async function Page() {
                     cardAssets.push({
                         key:assetManagementDatas[i].id,
                         name:assetManagementDatas[i].asset_name,
-                        currency:NullChangeBlankValue(assetManagementDatas[i].asset_currency),
+                        currency:NullChangeBlankValueFromString(assetManagementDatas[i].asset_currency),
                         money:assetManagementDatas[i].asset_money,
                     });
                     break;
@@ -53,7 +53,7 @@ export default async function Page() {
                     bankbookAssets.push({
                         key:assetManagementDatas[i].id,
                         name:assetManagementDatas[i].asset_name,
-                        currency:NullChangeBlankValue(assetManagementDatas[i].asset_currency),
+                        currency:NullChangeBlankValueFromString(assetManagementDatas[i].asset_currency),
                         money:assetManagementDatas[i].asset_money,
                     });
                     break;
@@ -61,7 +61,7 @@ export default async function Page() {
                     etcAssets.push({
                         key:assetManagementDatas[i].id,
                         name:assetManagementDatas[i].asset_name,
-                        currency:NullChangeBlankValue(assetManagementDatas[i].asset_currency),
+                        currency:NullChangeBlankValueFromString(assetManagementDatas[i].asset_currency),
                         money:assetManagementDatas[i].asset_money,
                     });
                     break;

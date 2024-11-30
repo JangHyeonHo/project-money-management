@@ -3,10 +3,10 @@
 import { useTranslations } from "next-intl";
 import { redirect } from "next/navigation";
 import { FormEvent, useState } from "react";
-import { LoginAction } from "../_actions/login-action";
-import { LoginActionProps } from "../_types/user-types";
+import { SignInAction } from "../_actions/signin-action";
+import { SignInActionProps } from "../_types/user-types";
 
-export default function Login() {
+export default function SignIn() {
 
     const [loading, setLoading] = useState<boolean>(false);
     const [emailError, setEmailError] = useState<string>("");
@@ -20,7 +20,7 @@ export default function Login() {
      * @param event 
      * @returns 
      */
-    const loginSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    const SigninSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setLoading(true);
         setEmailError("");
@@ -35,7 +35,7 @@ export default function Login() {
             return;
         }
         // api호출(데이터 변조 방지를 위해 세션에서 바로 쿠키등록)
-        const data = await LoginAction(formData);
+        const data = await SignInAction(formData);
 
         setLoading(false);
 
@@ -59,7 +59,7 @@ export default function Login() {
         const email = form.get("userEmail");
         const pwd = form.get("userPassword");
 
-        const data: LoginActionProps = {
+        const data: SignInActionProps = {
             userEmail: email === null ? "" : email.toString(),
             userPassword: pwd === null ? "" : pwd.toString(),
         }
@@ -78,7 +78,7 @@ export default function Login() {
      * @param form 
      * @returns 
      */
-    const validationCheck = (form: LoginActionProps) => {
+    const validationCheck = (form: SignInActionProps) => {
         let error = false;
         // 작성 에러 체크
         if (form.userEmail === "" || form.userEmail.trim().length === 0) {
@@ -96,7 +96,7 @@ export default function Login() {
 
 
     return (
-        <form onSubmit={(event) => { loginSubmit(event) }}>
+        <form onSubmit={(event) => { SigninSubmit(event) }}>
             <div className="mx-auto pb-8 max-w-96 mt-10">
                 <div className="border border-gray-200">
                     <h2 className="mt-3 text-xl font-semibold text-gray-900 text-center">{w('users.login')}</h2>
@@ -158,6 +158,8 @@ export default function Login() {
                         </div>
                         <div className="col-span-1">
                             <button
+                                type="button"
+                                onClick={()=>{redirect("/signup")}}
                                 disabled={loading}
                                 className="btn btn-outline w-full max-w-md">
                                 {loading && <span className="loading loading-spinner"></span>}
