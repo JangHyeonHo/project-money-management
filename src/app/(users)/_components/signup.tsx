@@ -82,8 +82,8 @@ export default function Signup() {
      */
     const validationCheck = (form: SignupActionProps) => {
         let error = false;
-        // 작성 에러 체크
-        if (form.userEmail === "" || StringRangeCheck(form.userFirstName, 1, 320)) {
+        // 작성 에러 체크(버그 수정)
+        if (form.userEmail === "" || !StringRangeCheck(form.userFirstName, 1, 320)) {
             //email error
             setEmailError(e('input.c-range-min-max', { item: w('users.email'), min: 1, max: 320 }));
             error = true;
@@ -97,11 +97,11 @@ export default function Signup() {
             setPasswordCheckError(e('pwd-check-input'));
             error = true;
         }
-        if (form.userFirstName === "" || StringRangeCheck(form.userFirstName, 1, 20)) {
+        if (form.userFirstName === "" || !StringRangeCheck(form.userFirstName, 1, 20)) {
             setFirstNameError(e('input.c-range-min-max', { item: w('users.f-name'), min: 1, max: 20 }));
             error = true;
         }
-        if (form.userLastName === "" || StringRangeCheck(form.userLastName, 1, 20)) {
+        if (form.userLastName === "" || !StringRangeCheck(form.userLastName, 1, 20)) {
             setLastNameError(e('input.c-range-min-max', { item: w('users.l-name'), min: 1, max: 20 }));
             error = true;
         }

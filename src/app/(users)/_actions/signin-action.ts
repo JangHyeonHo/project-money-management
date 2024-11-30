@@ -5,14 +5,14 @@ import { sessionOptions, SessionData } from "@/lib/session";
 import { compareSync } from "bcrypt";
 import { getIronSession } from "iron-session";
 import { cookies } from "next/headers";
-import { LoginActionProps } from "../_types/user-types";
+import { SignInActionProps } from "../_types/user-types";
 
 /**
  * 로그인 서버 액션
  * @param formData 
  * @returns 
  */
-export async function LoginAction(data: LoginActionProps) {
+export async function SignInAction(data: SignInActionProps) {
 
     const user = await prisma.user.findFirst({
         select: {

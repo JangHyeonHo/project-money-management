@@ -9,5 +9,5 @@ export default async function LogoutAction(){
     const session = await getIronSession<SessionData>(await cookies(), sessionOptions)
     session.destroy();
     console.log("로그아웃 완료");
-    redirect("/login");
+    redirect("/signin");
 };

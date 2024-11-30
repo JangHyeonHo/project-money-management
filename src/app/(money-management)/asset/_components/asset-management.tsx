@@ -1,14 +1,36 @@
+"use client"
+
 import { useTranslations } from "next-intl";
 import AssetList from "./asset-list";
 import AssetListCollapse from "./asset-list-collapse";
 import { AssetManagementProps } from "../_types/asset-type";
+import ConfirmModal from "@/app/_components/_alert/confirm-modal";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-export default function AssetManagement({bankbookAssets, cashAssets, cardAssets, etcAssets}:AssetManagementProps) {
+export default function AssetManagement({ bankbookAssets, cashAssets, cardAssets, etcAssets }: AssetManagementProps) {
 
     const w = useTranslations('word');
     const m = useTranslations('msg');
 
-    //Test용 데이터, 나중에 기능 구현 후 삭제 예정
+    const [deleteItem, setDeleteItem] = useState<{ key: string, itemName: string }>({ key: "", itemName: "" });
+    const [openConfirm, setOpenConfirm] = useState<boolean>(false);
+
+    const router = useRouter();
+
+    const deleteCallback = (item: { key: string, itemName: string }) => {
+        setDeleteItem(item);
+        setOpenConfirm(true);
+    }
+
+    const deleteConfirmYesClick = () => {
+        router.push(`./delete/${deleteItem.key}`);
+    }
+
+    const deleteConfirmNoClick = () => {
+        setDeleteItem({ key: "", itemName: "" });
+        setOpenConfirm(false);
+    }
 
     return (
         <div>
@@ -23,32 +45,47 @@ export default function AssetManagement({bankbookAssets, cashAssets, cardAssets,
                     </a>
                 </div>
             </div>
+            <ConfirmModal
+                isOpen={openConfirm}
+                title={w("asset.delete", { item: deleteItem.itemName })}
+                msg={m("asset.delete-info")}
+                onYes={deleteConfirmYesClick}
+                onNo={deleteConfirmNoClick}
+            />
             <div className="border-b border-gray-900/10 pt-6 pb-8">
                 <AssetListCollapse
                     title={w('asset.cash')}
                 >
-                    <AssetList items={cashAssets} />
+                    <AssetList
+                        items={cashAssets}
+                        onDeleteClick={deleteCallback} />
                 </AssetListCollapse>
             </div>
             <div className="border-b border-gray-900/10 pt-6 pb-8">
                 <AssetListCollapse
                     title={w('asset.bankbook')}
                 >
-                    <AssetList items={bankbookAssets} />
+                    <AssetList
+                        items={bankbookAssets}
+                        onDeleteClick={deleteCallback} />
                 </AssetListCollapse>
             </div>
             <div className="border-b border-gray-900/10 pt-6 pb-8">
                 <AssetListCollapse
                     title={w('asset.card')}
                 >
-                    <AssetList items={cardAssets} />
+                    <AssetList
+                        items={cardAssets}
+                        onDeleteClick={deleteCallback} />
                 </AssetListCollapse>
             </div>
             <div className="border-b border-gray-900/10 pt-6 pb-8">
                 <AssetListCollapse
                     title={w('common.etc')}
                 >
-                    <AssetList items={etcAssets} />
+                    <AssetList
+                        items={etcAssets}
+                        onDeleteClick={deleteCallback} />
                 </AssetListCollapse>
             </div>
         </div>

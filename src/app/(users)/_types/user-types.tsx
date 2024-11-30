@@ -1,4 +1,4 @@
-export interface LoginActionProps {
+export interface SignInActionProps {
     userEmail: string,
     userPassword: string,
 }

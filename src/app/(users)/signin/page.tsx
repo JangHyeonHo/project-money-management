@@ -2,7 +2,7 @@
 
 import GetUserCookieFromSession from "@/app/_actions/get-user-cookies";
 import { redirect } from "next/navigation";
-import Login from "../_components/login";
+import SignIn from "../_components/signin";
 import SiteStackedLayout from "@/app/_components/_layout/stacked-layout";
 
 export default async function Page() {
@@ -17,9 +17,9 @@ export default async function Page() {
     return (
 
         <SiteStackedLayout>
-            <Login>
+            <SignIn>
 
-            </Login>
+            </SignIn>
         </SiteStackedLayout>
     )
 }
