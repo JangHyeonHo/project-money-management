@@ -229,16 +229,6 @@ export default function HouseholdRegist({ categoryItems, assetItems }: Household
         return error;
     }
 
-    const getAssetValue = (key: string | undefined) => {
-        if (key === undefined) return "";
-        for (const item of assetKeyItems) {
-            if (key === item.key) {
-                return item.value;
-            }
-        }
-        return "";
-    }
-
     return (
         <form onSubmit={householdSubmit}>
             <div className="border-b border-gray-900/10 pb-8">
