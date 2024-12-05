@@ -18,12 +18,6 @@ export default function HouseholdMonthInfo({ className, householdSelectedMonth, 
 
     const tableDefaultClassName = "p-4 pl-8 border-slate-300 ";
 
-    const getClassName = (type: string, issueDate: Date) => {
-        const className = (type === HouseholdTypes.Income ? "bg-sky-50" : "bg-rose-50")
-        // + (householdSelectedMonth.getDate() === issueDate.getDate() ? "-300" : "-50");
-        return className;
-    }
-
     return (
         <div className={"overflow-x-auto " + className}>
             <div className="relative border rounded-xl overflow-auto">
@@ -50,7 +44,7 @@ export default function HouseholdMonthInfo({ className, householdSelectedMonth, 
                                     <tr
                                         key={householdKey + index}
                                         className={
-                                            getClassName(householdType, issueDate)
+                                            householdType === HouseholdTypes.Income ? "bg-sky-50" : "bg-rose-50"
                                         }
                                     >
                                         <td className={"border-slate-300 p-2 w-16"}>

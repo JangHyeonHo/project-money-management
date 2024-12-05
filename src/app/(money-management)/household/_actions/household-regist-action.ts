@@ -21,7 +21,7 @@ export async function HouseholdRegistAction(data: HouseholdRegModActionProps) {
     }
     const userKey = session.userKey;
 
-    console.log(`issue_date : ${data.issueDate?.toISOString()}`)
+    //console.log(`issue_date : ${data.issueDate?.toISOString()}`)
     try {
         if (data.issueDate === undefined) {
             return null;
