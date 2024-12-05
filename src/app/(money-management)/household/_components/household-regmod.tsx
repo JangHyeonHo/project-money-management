@@ -11,6 +11,9 @@ import InputDatePicker from "@/app/_components/_input/input-datepicker";
 import { StringRangeCheck } from "@/app/_utils/common-utils";
 import { redirect } from "next/navigation";
 import { HouseholdRegistAction } from "../_actions/household-regist-action";
+import dayjs from "dayjs";
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 
 export default function HouseholdRegist({ categoryItems, assetItems }: HouseholdRegistProps) {
     const w = useTranslations('word');
@@ -115,7 +118,7 @@ export default function HouseholdRegist({ categoryItems, assetItems }: Household
         const formData = changeFormToApi(new FormData(event.currentTarget));
 
         //입력데이터 확인용
-        console.log(formData);
+        //console.log(formData);
 
         if (formData === null) {
             setLoading(false);
@@ -141,7 +144,7 @@ export default function HouseholdRegist({ categoryItems, assetItems }: Household
      * @returns 
      */
     const changeFormToApi = (form: FormData) => {
-        const image = form.get("householdImage");
+        //const image = form.get("householdImage");
         const issue = form.get("issueDate");
         const asset = form.get("assetKey");
         const hType = form.get("householdType");
@@ -151,13 +154,13 @@ export default function HouseholdRegist({ categoryItems, assetItems }: Household
         const amount = form.get("householdAmount");
         const comment = form.get("householdComment");
 
-        console.log(image);
-        if (issue) {
-            console.log();
-        }
+        //utc날짜 제거용
+        dayjs.extend(utc);
+        dayjs.extend(timezone);
+        
         const data: HouseholdRegModActionProps = {
             //householdKey: undefined,
-            issueDate: issue === null ? undefined : new Date(Date.parse(issue.toString())),
+            issueDate: issue === null ? undefined : dayjs(issue?.toString()).utc(true).toDate(),
             assetKey: asset === null ? "" : asset.toString(),
             householdType: hType === null ? "" : hType.toString(),
             householdCategory: category === null ? BigInt(-1) : BigInt(category.toString()),

@@ -46,7 +46,7 @@ export default function InputDatePicker({title, language, id, name, defaultDate,
         inputDateFormatProp: {
             day: "numeric",
             month: "long",
-            year: "numeric"
+            year: "numeric",
         }
     }
 

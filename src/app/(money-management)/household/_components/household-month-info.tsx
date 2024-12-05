@@ -3,6 +3,7 @@ import { HouseholdMonthInfoProps } from "../_types/household-type";
 import { useTranslations } from "next-intl";
 import { HouseholdTypes } from "@/app/_types/common-const";
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { CheckCircleIcon } from "@heroicons/react/16/solid";
 
 /**
  * 월별 데이터 표시
@@ -16,6 +17,12 @@ export default function HouseholdMonthInfo({ className, householdSelectedMonth, 
     const m = useTranslations('msg');
 
     const tableDefaultClassName = "p-4 pl-8 border-slate-300 ";
+
+    const getClassName = (type: string, issueDate: Date) => {
+        const className = (type === HouseholdTypes.Income ? "bg-sky-50" : "bg-rose-50")
+        // + (householdSelectedMonth.getDate() === issueDate.getDate() ? "-300" : "-50");
+        return className;
+    }
 
     return (
         <div className={"overflow-x-auto " + className}>
@@ -43,8 +50,7 @@ export default function HouseholdMonthInfo({ className, householdSelectedMonth, 
                                     <tr
                                         key={householdKey + index}
                                         className={
-                                            (householdType === HouseholdTypes.Income ? "bg-sky" : "bg-rose")
-                                            + (householdSelectedMonth.getDate() === issueDate.getDate() ? "-300" : "-50")
+                                            getClassName(householdType, issueDate)
                                         }
                                     >
                                         <td className={"border-slate-300 p-2 w-16"}>
@@ -63,9 +69,16 @@ export default function HouseholdMonthInfo({ className, householdSelectedMonth, 
                                                 </button>
                                             </div>
                                         </td>
-                                        <td className={tableDefaultClassName}>{issueDate.toLocaleDateString("en", {
-                                            year: "2-digit", month: "2-digit", day: "2-digit"
-                                        })}
+                                        <td className={tableDefaultClassName}>
+                                            {issueDate.toLocaleDateString("en", {
+                                                year: "2-digit", month: "2-digit", day: "2-digit"
+                                            })}
+                                            {householdSelectedMonth.getDate() === issueDate.getDate() &&
+                                                <CheckCircleIcon
+                                                    className="ml-2 inline"
+                                                    width={10}
+                                                />
+                                            }
                                         </td>
                                         <td className={tableDefaultClassName + "hidden md:table-cell truncate"}>{householdType === HouseholdTypes.Income ? w('household.income') : w('household.expense')}
                                         </td>
