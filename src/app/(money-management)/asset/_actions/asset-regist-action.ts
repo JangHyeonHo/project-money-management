@@ -52,6 +52,7 @@ export async function AssetRegistAction(data: AssetRegModActionProps) {
                 
             }
         }
+        console.error(`Prisma Error: ${e}`)
         return null;
     }
 }

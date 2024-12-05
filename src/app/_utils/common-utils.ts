@@ -14,3 +14,7 @@ export const NullChangeBlankValueFromNumber = (value:number | null) => {
     
     return value;
 }
+
+export const AmountChangeAutoComma = (value: number) => {
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}

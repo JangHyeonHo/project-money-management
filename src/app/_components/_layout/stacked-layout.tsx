@@ -42,18 +42,12 @@ export default function SiteStackedLayout({ children, headtitle, headCurrent, is
     const navigation = [
         { name: w('household.title'), href: '/household/management', current: LayoutHeaders.Household },
         { name: w('asset.title'), href: '/asset/management', current: LayoutHeaders.Asset },
-        { name: w('common.config'), href: '#', current: LayoutHeaders.Config },
+        { name: w('common.config'), href: '/settings', current: LayoutHeaders.Config },
     ]
     const userNavigation = [
         { name: 'Your Profile', href: '#' },
         { name: 'Settings', href: '#' },
     ]
-
-    /* eslint-disable  @typescript-eslint/no-explicit-any */
-    function classNames(...classes: any) {
-        return classes.filter(Boolean).join(' ')
-    }
-    /* eslint-disable  @typescript-eslint/no-explicit-any */
 
     return (
         <div className="min-h-full">
@@ -80,10 +74,10 @@ export default function SiteStackedLayout({ children, headtitle, headCurrent, is
                                             key={item.name}
                                             href={item.href}
                                             aria-current={item.current === headCurrent ? 'page' : undefined}
-                                            className={classNames(
-                                                item.current === headCurrent ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                'rounded-md px-3 py-2 text-sm font-medium',
-                                            )}
+                                            className={
+                                                item.current === headCurrent ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                                                +' rounded-md px-3 py-2 text-sm font-medium'
+                                            }
                                         >
                                             {item.name}
                                         </a>
@@ -157,10 +151,10 @@ export default function SiteStackedLayout({ children, headtitle, headCurrent, is
                                 as="a"
                                 href={item.href}
                                 aria-current={item.current === headCurrent ? 'page' : undefined}
-                                className={classNames(
-                                    item.current === headCurrent ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                    'block rounded-md px-3 py-2 text-base font-medium',
-                                )}
+                                className={
+                                    item.current === headCurrent ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'+
+                                    ' block rounded-md px-3 py-2 text-base font-medium'
+                                }
                             >
                                 {item.name}
                             </DisclosureButton>

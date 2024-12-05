@@ -28,6 +28,7 @@ export async function AssetDeleteAction(userKey:string, assetKey:string) {
 
             }
         }
+        console.error(`Prisma Error: ${e}`)
         return null;
     }
 }
