@@ -1,32 +1,46 @@
 "use client"
 
 import { InputDropdownProps } from "@/app/_types/common-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function InputDropdown({ dropdownItems, btnName, id, name, required, disabled, className, isChangeBtnName, defaultInputValue, setParentValue }: InputDropdownProps) {
+export default function InputDropdown({ dropdownItems, defaultBtnName, id, name, required, disabled, className, isChangeBtnName, defaultInputValue, setParentValue, onChange }: InputDropdownProps) {
 
-    const [inputValue, setInputValue] = useState<string>(defaultInputValue ? defaultInputValue : "");
-    const [inputButtonName, setInputButtonName] = useState<string>(btnName ? btnName : "");
+    const [inputValue, setInputValue] = useState<string>(defaultInputValue || "");
+    const [inputButtonName, setInputButtonName] = useState<string>(defaultBtnName || "");
     const [open, isOpen] = useState<boolean>(false);
 
+    // 고민을 좀 해봅시다... 초기화에 대해서
 
     const itemOnClick = (key: string, value: string) => {
         if (isChangeBtnName) {
             setInputButtonName(value);
         }
+        if (inputValue !== key) {
+            if (onChange) {
+                onChange(key);
+            }
+        }
         setInputValue(key);
-        if (setParentValue){
+        if (setParentValue) {
             setParentValue(key);
         }
-
     }
+
+    // 드랍다운 항목이 바뀌면 모두 초기화
+    useEffect(() => {
+        setInputButtonName(defaultBtnName || "");
+        if (setParentValue) {
+            setParentValue(defaultInputValue || "");
+        }
+        setInputValue(defaultInputValue || "");
+    }, [dropdownItems])
 
     return (
         <>
             <details
                 className={(disabled ? "btn-disabled" : "dropdown")}
                 open={open}
-                onClick={(e) => { e.preventDefault(); if(!disabled) isOpen(!open);}}>
+                onClick={(e) => { e.preventDefault(); if (!disabled) isOpen(!open); }}>
                 <summary
                     className={"btn m-1 justify-start " + className}
                 >{inputButtonName}</summary>

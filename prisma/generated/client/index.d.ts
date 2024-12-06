@@ -14,17 +14,29 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model User
+ * Model household
  * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
  * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
  */
-export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+export type household = $Result.DefaultSelection<Prisma.$householdPayload>
 /**
- * Model Asset
+ * Model household_categories
  * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
  * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
  */
-export type Asset = $Result.DefaultSelection<Prisma.$AssetPayload>
+export type household_categories = $Result.DefaultSelection<Prisma.$household_categoriesPayload>
+/**
+ * Model asset
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+ */
+export type asset = $Result.DefaultSelection<Prisma.$assetPayload>
+/**
+ * Model user
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+ */
+export type user = $Result.DefaultSelection<Prisma.$userPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -33,8 +45,8 @@ export type Asset = $Result.DefaultSelection<Prisma.$AssetPayload>
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Users
- * const users = await prisma.user.findMany()
+ * // Fetch zero or more Households
+ * const households = await prisma.household.findMany()
  * ```
  *
  * 
@@ -54,8 +66,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Users
-   * const users = await prisma.user.findMany()
+   * // Fetch zero or more Households
+   * const households = await prisma.household.findMany()
    * ```
    *
    * 
@@ -150,24 +162,44 @@ export class PrismaClient<
   $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb, ExtArgs>
 
       /**
-   * `prisma.user`: Exposes CRUD operations for the **User** model.
+   * `prisma.household`: Exposes CRUD operations for the **household** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Users
-    * const users = await prisma.user.findMany()
+    * // Fetch zero or more Households
+    * const households = await prisma.household.findMany()
     * ```
     */
-  get user(): Prisma.UserDelegate<ExtArgs>;
+  get household(): Prisma.householdDelegate<ExtArgs>;
 
   /**
-   * `prisma.asset`: Exposes CRUD operations for the **Asset** model.
+   * `prisma.household_categories`: Exposes CRUD operations for the **household_categories** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Household_categories
+    * const household_categories = await prisma.household_categories.findMany()
+    * ```
+    */
+  get household_categories(): Prisma.household_categoriesDelegate<ExtArgs>;
+
+  /**
+   * `prisma.asset`: Exposes CRUD operations for the **asset** model.
     * Example usage:
     * ```ts
     * // Fetch zero or more Assets
     * const assets = await prisma.asset.findMany()
     * ```
     */
-  get asset(): Prisma.AssetDelegate<ExtArgs>;
+  get asset(): Prisma.assetDelegate<ExtArgs>;
+
+  /**
+   * `prisma.user`: Exposes CRUD operations for the **user** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Users
+    * const users = await prisma.user.findMany()
+    * ```
+    */
+  get user(): Prisma.userDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -609,8 +641,10 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    User: 'User',
-    Asset: 'Asset'
+    household: 'household',
+    household_categories: 'household_categories',
+    asset: 'asset',
+    user: 'user'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -626,147 +660,287 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "asset"
+      modelProps: "household" | "household_categories" | "asset" | "user"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
-      User: {
-        payload: Prisma.$UserPayload<ExtArgs>
-        fields: Prisma.UserFieldRefs
+      household: {
+        payload: Prisma.$householdPayload<ExtArgs>
+        fields: Prisma.householdFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.UserFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
+            args: Prisma.householdFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$householdPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.UserFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+            args: Prisma.householdFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$householdPayload>
           }
           findFirst: {
-            args: Prisma.UserFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
+            args: Prisma.householdFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$householdPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.UserFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+            args: Prisma.householdFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$householdPayload>
           }
           findMany: {
-            args: Prisma.UserFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
+            args: Prisma.householdFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$householdPayload>[]
           }
           create: {
-            args: Prisma.UserCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+            args: Prisma.householdCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$householdPayload>
           }
           createMany: {
-            args: Prisma.UserCreateManyArgs<ExtArgs>
+            args: Prisma.householdCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.UserCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
+            args: Prisma.householdCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$householdPayload>[]
           }
           delete: {
-            args: Prisma.UserDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+            args: Prisma.householdDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$householdPayload>
           }
           update: {
-            args: Prisma.UserUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+            args: Prisma.householdUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$householdPayload>
           }
           deleteMany: {
-            args: Prisma.UserDeleteManyArgs<ExtArgs>
+            args: Prisma.householdDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.UserUpdateManyArgs<ExtArgs>
+            args: Prisma.householdUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.UserUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+            args: Prisma.householdUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$householdPayload>
           }
           aggregate: {
-            args: Prisma.UserAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateUser>
+            args: Prisma.HouseholdAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHousehold>
           }
           groupBy: {
-            args: Prisma.UserGroupByArgs<ExtArgs>
-            result: $Utils.Optional<UserGroupByOutputType>[]
+            args: Prisma.householdGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HouseholdGroupByOutputType>[]
           }
           count: {
-            args: Prisma.UserCountArgs<ExtArgs>
-            result: $Utils.Optional<UserCountAggregateOutputType> | number
+            args: Prisma.householdCountArgs<ExtArgs>
+            result: $Utils.Optional<HouseholdCountAggregateOutputType> | number
           }
         }
       }
-      Asset: {
-        payload: Prisma.$AssetPayload<ExtArgs>
-        fields: Prisma.AssetFieldRefs
+      household_categories: {
+        payload: Prisma.$household_categoriesPayload<ExtArgs>
+        fields: Prisma.household_categoriesFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.AssetFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssetPayload> | null
+            args: Prisma.household_categoriesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$household_categoriesPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.AssetFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssetPayload>
+            args: Prisma.household_categoriesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$household_categoriesPayload>
           }
           findFirst: {
-            args: Prisma.AssetFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssetPayload> | null
+            args: Prisma.household_categoriesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$household_categoriesPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.AssetFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssetPayload>
+            args: Prisma.household_categoriesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$household_categoriesPayload>
           }
           findMany: {
-            args: Prisma.AssetFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssetPayload>[]
+            args: Prisma.household_categoriesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$household_categoriesPayload>[]
           }
           create: {
-            args: Prisma.AssetCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssetPayload>
+            args: Prisma.household_categoriesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$household_categoriesPayload>
           }
           createMany: {
-            args: Prisma.AssetCreateManyArgs<ExtArgs>
+            args: Prisma.household_categoriesCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.AssetCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssetPayload>[]
+            args: Prisma.household_categoriesCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$household_categoriesPayload>[]
           }
           delete: {
-            args: Prisma.AssetDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssetPayload>
+            args: Prisma.household_categoriesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$household_categoriesPayload>
           }
           update: {
-            args: Prisma.AssetUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssetPayload>
+            args: Prisma.household_categoriesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$household_categoriesPayload>
           }
           deleteMany: {
-            args: Prisma.AssetDeleteManyArgs<ExtArgs>
+            args: Prisma.household_categoriesDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.AssetUpdateManyArgs<ExtArgs>
+            args: Prisma.household_categoriesUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.AssetUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssetPayload>
+            args: Prisma.household_categoriesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$household_categoriesPayload>
+          }
+          aggregate: {
+            args: Prisma.Household_categoriesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHousehold_categories>
+          }
+          groupBy: {
+            args: Prisma.household_categoriesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Household_categoriesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.household_categoriesCountArgs<ExtArgs>
+            result: $Utils.Optional<Household_categoriesCountAggregateOutputType> | number
+          }
+        }
+      }
+      asset: {
+        payload: Prisma.$assetPayload<ExtArgs>
+        fields: Prisma.assetFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.assetFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$assetPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.assetFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$assetPayload>
+          }
+          findFirst: {
+            args: Prisma.assetFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$assetPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.assetFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$assetPayload>
+          }
+          findMany: {
+            args: Prisma.assetFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$assetPayload>[]
+          }
+          create: {
+            args: Prisma.assetCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$assetPayload>
+          }
+          createMany: {
+            args: Prisma.assetCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.assetCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$assetPayload>[]
+          }
+          delete: {
+            args: Prisma.assetDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$assetPayload>
+          }
+          update: {
+            args: Prisma.assetUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$assetPayload>
+          }
+          deleteMany: {
+            args: Prisma.assetDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.assetUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.assetUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$assetPayload>
           }
           aggregate: {
             args: Prisma.AssetAggregateArgs<ExtArgs>
             result: $Utils.Optional<AggregateAsset>
           }
           groupBy: {
-            args: Prisma.AssetGroupByArgs<ExtArgs>
+            args: Prisma.assetGroupByArgs<ExtArgs>
             result: $Utils.Optional<AssetGroupByOutputType>[]
           }
           count: {
-            args: Prisma.AssetCountArgs<ExtArgs>
+            args: Prisma.assetCountArgs<ExtArgs>
             result: $Utils.Optional<AssetCountAggregateOutputType> | number
+          }
+        }
+      }
+      user: {
+        payload: Prisma.$userPayload<ExtArgs>
+        fields: Prisma.userFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.userFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$userPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.userFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$userPayload>
+          }
+          findFirst: {
+            args: Prisma.userFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$userPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.userFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$userPayload>
+          }
+          findMany: {
+            args: Prisma.userFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$userPayload>[]
+          }
+          create: {
+            args: Prisma.userCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$userPayload>
+          }
+          createMany: {
+            args: Prisma.userCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.userCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$userPayload>[]
+          }
+          delete: {
+            args: Prisma.userDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$userPayload>
+          }
+          update: {
+            args: Prisma.userUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$userPayload>
+          }
+          deleteMany: {
+            args: Prisma.userDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.userUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.userUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$userPayload>
+          }
+          aggregate: {
+            args: Prisma.UserAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUser>
+          }
+          groupBy: {
+            args: Prisma.userGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.userCountArgs<ExtArgs>
+            result: $Utils.Optional<UserCountAggregateOutputType> | number
           }
         }
       }
@@ -927,15 +1101,90 @@ export namespace Prisma {
 
 
   /**
+   * Count Type Household_categoriesCountOutputType
+   */
+
+  export type Household_categoriesCountOutputType = {
+    household_household_household_categoryTohousehold_categories: number
+    household_household_household_subcategoryTohousehold_categories: number
+  }
+
+  export type Household_categoriesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    household_household_household_categoryTohousehold_categories?: boolean | Household_categoriesCountOutputTypeCountHousehold_household_household_categoryTohousehold_categoriesArgs
+    household_household_household_subcategoryTohousehold_categories?: boolean | Household_categoriesCountOutputTypeCountHousehold_household_household_subcategoryTohousehold_categoriesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Household_categoriesCountOutputType without action
+   */
+  export type Household_categoriesCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Household_categoriesCountOutputType
+     */
+    select?: Household_categoriesCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Household_categoriesCountOutputType without action
+   */
+  export type Household_categoriesCountOutputTypeCountHousehold_household_household_categoryTohousehold_categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: householdWhereInput
+  }
+
+  /**
+   * Household_categoriesCountOutputType without action
+   */
+  export type Household_categoriesCountOutputTypeCountHousehold_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: householdWhereInput
+  }
+
+
+  /**
+   * Count Type AssetCountOutputType
+   */
+
+  export type AssetCountOutputType = {
+    household: number
+  }
+
+  export type AssetCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    household?: boolean | AssetCountOutputTypeCountHouseholdArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AssetCountOutputType without action
+   */
+  export type AssetCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssetCountOutputType
+     */
+    select?: AssetCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AssetCountOutputType without action
+   */
+  export type AssetCountOutputTypeCountHouseholdArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: householdWhereInput
+  }
+
+
+  /**
    * Count Type UserCountOutputType
    */
 
   export type UserCountOutputType = {
-    Asset: number
+    asset: number
+    household: number
+    household_categories: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Asset?: boolean | UserCountOutputTypeCountAssetArgs
+    asset?: boolean | UserCountOutputTypeCountAssetArgs
+    household?: boolean | UserCountOutputTypeCountHouseholdArgs
+    household_categories?: boolean | UserCountOutputTypeCountHousehold_categoriesArgs
   }
 
   // Custom InputTypes
@@ -953,7 +1202,21 @@ export namespace Prisma {
    * UserCountOutputType without action
    */
   export type UserCountOutputTypeCountAssetArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AssetWhereInput
+    where?: assetWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountHouseholdArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: householdWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountHousehold_categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: household_categoriesWhereInput
   }
 
 
@@ -962,369 +1225,493 @@ export namespace Prisma {
    */
 
   /**
-   * Model User
+   * Model household
    */
 
-  export type AggregateUser = {
-    _count: UserCountAggregateOutputType | null
-    _min: UserMinAggregateOutputType | null
-    _max: UserMaxAggregateOutputType | null
+  export type AggregateHousehold = {
+    _count: HouseholdCountAggregateOutputType | null
+    _avg: HouseholdAvgAggregateOutputType | null
+    _sum: HouseholdSumAggregateOutputType | null
+    _min: HouseholdMinAggregateOutputType | null
+    _max: HouseholdMaxAggregateOutputType | null
   }
 
-  export type UserMinAggregateOutputType = {
+  export type HouseholdAvgAggregateOutputType = {
+    household_amount: number | null
+    household_category: number | null
+    household_subcategory: number | null
+  }
+
+  export type HouseholdSumAggregateOutputType = {
+    household_amount: number | null
+    household_category: bigint | null
+    household_subcategory: bigint | null
+  }
+
+  export type HouseholdMinAggregateOutputType = {
     id: string | null
-    user_email: string | null
-    user_password: string | null
-    user_first_name: string | null
-    user_last_name: string | null
-    delete_flg: boolean | null
+    issue_date: Date | null
+    asset_id: string | null
+    user_id: string | null
+    household_type: string | null
+    household_amount: number | null
+    household_comment: string | null
+    image_path: string | null
+    image_text: string | null
     created_at: Date | null
     updated_at: Date | null
+    household_category: bigint | null
+    household_subcategory: bigint | null
+    household_name: string | null
   }
 
-  export type UserMaxAggregateOutputType = {
+  export type HouseholdMaxAggregateOutputType = {
     id: string | null
-    user_email: string | null
-    user_password: string | null
-    user_first_name: string | null
-    user_last_name: string | null
-    delete_flg: boolean | null
+    issue_date: Date | null
+    asset_id: string | null
+    user_id: string | null
+    household_type: string | null
+    household_amount: number | null
+    household_comment: string | null
+    image_path: string | null
+    image_text: string | null
     created_at: Date | null
     updated_at: Date | null
+    household_category: bigint | null
+    household_subcategory: bigint | null
+    household_name: string | null
   }
 
-  export type UserCountAggregateOutputType = {
+  export type HouseholdCountAggregateOutputType = {
     id: number
-    user_email: number
-    user_password: number
-    user_first_name: number
-    user_last_name: number
-    delete_flg: number
+    issue_date: number
+    asset_id: number
+    user_id: number
+    household_type: number
+    household_amount: number
+    household_comment: number
+    image_path: number
+    image_text: number
     created_at: number
     updated_at: number
+    household_category: number
+    household_subcategory: number
+    household_name: number
     _all: number
   }
 
 
-  export type UserMinAggregateInputType = {
-    id?: true
-    user_email?: true
-    user_password?: true
-    user_first_name?: true
-    user_last_name?: true
-    delete_flg?: true
-    created_at?: true
-    updated_at?: true
+  export type HouseholdAvgAggregateInputType = {
+    household_amount?: true
+    household_category?: true
+    household_subcategory?: true
   }
 
-  export type UserMaxAggregateInputType = {
-    id?: true
-    user_email?: true
-    user_password?: true
-    user_first_name?: true
-    user_last_name?: true
-    delete_flg?: true
-    created_at?: true
-    updated_at?: true
+  export type HouseholdSumAggregateInputType = {
+    household_amount?: true
+    household_category?: true
+    household_subcategory?: true
   }
 
-  export type UserCountAggregateInputType = {
+  export type HouseholdMinAggregateInputType = {
     id?: true
-    user_email?: true
-    user_password?: true
-    user_first_name?: true
-    user_last_name?: true
-    delete_flg?: true
+    issue_date?: true
+    asset_id?: true
+    user_id?: true
+    household_type?: true
+    household_amount?: true
+    household_comment?: true
+    image_path?: true
+    image_text?: true
     created_at?: true
     updated_at?: true
+    household_category?: true
+    household_subcategory?: true
+    household_name?: true
+  }
+
+  export type HouseholdMaxAggregateInputType = {
+    id?: true
+    issue_date?: true
+    asset_id?: true
+    user_id?: true
+    household_type?: true
+    household_amount?: true
+    household_comment?: true
+    image_path?: true
+    image_text?: true
+    created_at?: true
+    updated_at?: true
+    household_category?: true
+    household_subcategory?: true
+    household_name?: true
+  }
+
+  export type HouseholdCountAggregateInputType = {
+    id?: true
+    issue_date?: true
+    asset_id?: true
+    user_id?: true
+    household_type?: true
+    household_amount?: true
+    household_comment?: true
+    image_path?: true
+    image_text?: true
+    created_at?: true
+    updated_at?: true
+    household_category?: true
+    household_subcategory?: true
+    household_name?: true
     _all?: true
   }
 
-  export type UserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HouseholdAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which User to aggregate.
+     * Filter which household to aggregate.
      */
-    where?: UserWhereInput
+    where?: householdWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Users to fetch.
+     * Determine the order of households to fetch.
      */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    orderBy?: householdOrderByWithRelationInput | householdOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: UserWhereUniqueInput
+    cursor?: householdWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Users from the position of the cursor.
+     * Take `±n` households from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Users.
+     * Skip the first `n` households.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Users
+     * Count returned households
     **/
-    _count?: true | UserCountAggregateInputType
+    _count?: true | HouseholdCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: HouseholdAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: HouseholdSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: UserMinAggregateInputType
+    _min?: HouseholdMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: UserMaxAggregateInputType
+    _max?: HouseholdMaxAggregateInputType
   }
 
-  export type GetUserAggregateType<T extends UserAggregateArgs> = {
-        [P in keyof T & keyof AggregateUser]: P extends '_count' | 'count'
+  export type GetHouseholdAggregateType<T extends HouseholdAggregateArgs> = {
+        [P in keyof T & keyof AggregateHousehold]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateUser[P]>
-      : GetScalarType<T[P], AggregateUser[P]>
+        : GetScalarType<T[P], AggregateHousehold[P]>
+      : GetScalarType<T[P], AggregateHousehold[P]>
   }
 
 
 
 
-  export type UserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserWhereInput
-    orderBy?: UserOrderByWithAggregationInput | UserOrderByWithAggregationInput[]
-    by: UserScalarFieldEnum[] | UserScalarFieldEnum
-    having?: UserScalarWhereWithAggregatesInput
+  export type householdGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: householdWhereInput
+    orderBy?: householdOrderByWithAggregationInput | householdOrderByWithAggregationInput[]
+    by: HouseholdScalarFieldEnum[] | HouseholdScalarFieldEnum
+    having?: householdScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: UserCountAggregateInputType | true
-    _min?: UserMinAggregateInputType
-    _max?: UserMaxAggregateInputType
+    _count?: HouseholdCountAggregateInputType | true
+    _avg?: HouseholdAvgAggregateInputType
+    _sum?: HouseholdSumAggregateInputType
+    _min?: HouseholdMinAggregateInputType
+    _max?: HouseholdMaxAggregateInputType
   }
 
-  export type UserGroupByOutputType = {
+  export type HouseholdGroupByOutputType = {
     id: string
-    user_email: string
-    user_password: string
-    user_first_name: string | null
-    user_last_name: string | null
-    delete_flg: boolean
+    issue_date: Date
+    asset_id: string
+    user_id: string
+    household_type: string
+    household_amount: number
+    household_comment: string | null
+    image_path: string | null
+    image_text: string | null
     created_at: Date
     updated_at: Date | null
-    _count: UserCountAggregateOutputType | null
-    _min: UserMinAggregateOutputType | null
-    _max: UserMaxAggregateOutputType | null
+    household_category: bigint | null
+    household_subcategory: bigint | null
+    household_name: string | null
+    _count: HouseholdCountAggregateOutputType | null
+    _avg: HouseholdAvgAggregateOutputType | null
+    _sum: HouseholdSumAggregateOutputType | null
+    _min: HouseholdMinAggregateOutputType | null
+    _max: HouseholdMaxAggregateOutputType | null
   }
 
-  type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
+  type GetHouseholdGroupByPayload<T extends householdGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<UserGroupByOutputType, T['by']> &
+      PickEnumerable<HouseholdGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof UserGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof HouseholdGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], UserGroupByOutputType[P]>
-            : GetScalarType<T[P], UserGroupByOutputType[P]>
+              : GetScalarType<T[P], HouseholdGroupByOutputType[P]>
+            : GetScalarType<T[P], HouseholdGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type householdSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    user_email?: boolean
-    user_password?: boolean
-    user_first_name?: boolean
-    user_last_name?: boolean
-    delete_flg?: boolean
+    issue_date?: boolean
+    asset_id?: boolean
+    user_id?: boolean
+    household_type?: boolean
+    household_amount?: boolean
+    household_comment?: boolean
+    image_path?: boolean
+    image_text?: boolean
     created_at?: boolean
     updated_at?: boolean
-    Asset?: boolean | User$AssetArgs<ExtArgs>
-    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["user"]>
+    household_category?: boolean
+    household_subcategory?: boolean
+    household_name?: boolean
+    Asset?: boolean | assetDefaultArgs<ExtArgs>
+    household_categories_household_household_categoryTohousehold_categories?: boolean | household$household_categories_household_household_categoryTohousehold_categoriesArgs<ExtArgs>
+    household_categories_household_household_subcategoryTohousehold_categories?: boolean | household$household_categories_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs>
+    User?: boolean | userDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["household"]>
 
-  export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type householdSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    user_email?: boolean
-    user_password?: boolean
-    user_first_name?: boolean
-    user_last_name?: boolean
-    delete_flg?: boolean
+    issue_date?: boolean
+    asset_id?: boolean
+    user_id?: boolean
+    household_type?: boolean
+    household_amount?: boolean
+    household_comment?: boolean
+    image_path?: boolean
+    image_text?: boolean
     created_at?: boolean
     updated_at?: boolean
-  }, ExtArgs["result"]["user"]>
+    household_category?: boolean
+    household_subcategory?: boolean
+    household_name?: boolean
+    Asset?: boolean | assetDefaultArgs<ExtArgs>
+    household_categories_household_household_categoryTohousehold_categories?: boolean | household$household_categories_household_household_categoryTohousehold_categoriesArgs<ExtArgs>
+    household_categories_household_household_subcategoryTohousehold_categories?: boolean | household$household_categories_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs>
+    User?: boolean | userDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["household"]>
 
-  export type UserSelectScalar = {
+  export type householdSelectScalar = {
     id?: boolean
-    user_email?: boolean
-    user_password?: boolean
-    user_first_name?: boolean
-    user_last_name?: boolean
-    delete_flg?: boolean
+    issue_date?: boolean
+    asset_id?: boolean
+    user_id?: boolean
+    household_type?: boolean
+    household_amount?: boolean
+    household_comment?: boolean
+    image_path?: boolean
+    image_text?: boolean
     created_at?: boolean
     updated_at?: boolean
+    household_category?: boolean
+    household_subcategory?: boolean
+    household_name?: boolean
   }
 
-  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Asset?: boolean | User$AssetArgs<ExtArgs>
-    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  export type householdInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Asset?: boolean | assetDefaultArgs<ExtArgs>
+    household_categories_household_household_categoryTohousehold_categories?: boolean | household$household_categories_household_household_categoryTohousehold_categoriesArgs<ExtArgs>
+    household_categories_household_household_subcategoryTohousehold_categories?: boolean | household$household_categories_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs>
+    User?: boolean | userDefaultArgs<ExtArgs>
   }
-  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type householdIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Asset?: boolean | assetDefaultArgs<ExtArgs>
+    household_categories_household_household_categoryTohousehold_categories?: boolean | household$household_categories_household_household_categoryTohousehold_categoriesArgs<ExtArgs>
+    household_categories_household_household_subcategoryTohousehold_categories?: boolean | household$household_categories_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs>
+    User?: boolean | userDefaultArgs<ExtArgs>
+  }
 
-  export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "User"
+  export type $householdPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "household"
     objects: {
-      Asset: Prisma.$AssetPayload<ExtArgs>[]
+      Asset: Prisma.$assetPayload<ExtArgs>
+      household_categories_household_household_categoryTohousehold_categories: Prisma.$household_categoriesPayload<ExtArgs> | null
+      household_categories_household_household_subcategoryTohousehold_categories: Prisma.$household_categoriesPayload<ExtArgs> | null
+      User: Prisma.$userPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      user_email: string
-      user_password: string
-      user_first_name: string | null
-      user_last_name: string | null
-      delete_flg: boolean
+      issue_date: Date
+      asset_id: string
+      user_id: string
+      household_type: string
+      household_amount: number
+      household_comment: string | null
+      image_path: string | null
+      image_text: string | null
       created_at: Date
       updated_at: Date | null
-    }, ExtArgs["result"]["user"]>
+      household_category: bigint | null
+      household_subcategory: bigint | null
+      household_name: string | null
+    }, ExtArgs["result"]["household"]>
     composites: {}
   }
 
-  type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
+  type householdGetPayload<S extends boolean | null | undefined | householdDefaultArgs> = $Result.GetResult<Prisma.$householdPayload, S>
 
-  type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: UserCountAggregateInputType | true
+  type householdCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<householdFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: HouseholdCountAggregateInputType | true
     }
 
-  export interface UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['User'], meta: { name: 'User' } }
+  export interface householdDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['household'], meta: { name: 'household' } }
     /**
-     * Find zero or one User that matches the filter.
-     * @param {UserFindUniqueArgs} args - Arguments to find a User
+     * Find zero or one Household that matches the filter.
+     * @param {householdFindUniqueArgs} args - Arguments to find a Household
      * @example
-     * // Get one User
-     * const user = await prisma.user.findUnique({
+     * // Get one Household
+     * const household = await prisma.household.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends UserFindUniqueArgs>(args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends householdFindUniqueArgs>(args: SelectSubset<T, householdFindUniqueArgs<ExtArgs>>): Prisma__householdClient<$Result.GetResult<Prisma.$householdPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
 
     /**
-     * Find one User that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Household that matches the filter or throw an error with `error.code='P2025'` 
      * if no matches were found.
-     * @param {UserFindUniqueOrThrowArgs} args - Arguments to find a User
+     * @param {householdFindUniqueOrThrowArgs} args - Arguments to find a Household
      * @example
-     * // Get one User
-     * const user = await prisma.user.findUniqueOrThrow({
+     * // Get one Household
+     * const household = await prisma.household.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(args: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends householdFindUniqueOrThrowArgs>(args: SelectSubset<T, householdFindUniqueOrThrowArgs<ExtArgs>>): Prisma__householdClient<$Result.GetResult<Prisma.$householdPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
 
     /**
-     * Find the first User that matches the filter.
+     * Find the first Household that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserFindFirstArgs} args - Arguments to find a User
+     * @param {householdFindFirstArgs} args - Arguments to find a Household
      * @example
-     * // Get one User
-     * const user = await prisma.user.findFirst({
+     * // Get one Household
+     * const household = await prisma.household.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends UserFindFirstArgs>(args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends householdFindFirstArgs>(args?: SelectSubset<T, householdFindFirstArgs<ExtArgs>>): Prisma__householdClient<$Result.GetResult<Prisma.$householdPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
 
     /**
-     * Find the first User that matches the filter or
+     * Find the first Household that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserFindFirstOrThrowArgs} args - Arguments to find a User
+     * @param {householdFindFirstOrThrowArgs} args - Arguments to find a Household
      * @example
-     * // Get one User
-     * const user = await prisma.user.findFirstOrThrow({
+     * // Get one Household
+     * const household = await prisma.household.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends householdFindFirstOrThrowArgs>(args?: SelectSubset<T, householdFindFirstOrThrowArgs<ExtArgs>>): Prisma__householdClient<$Result.GetResult<Prisma.$householdPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
 
     /**
-     * Find zero or more Users that matches the filter.
+     * Find zero or more Households that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {householdFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Users
-     * const users = await prisma.user.findMany()
+     * // Get all Households
+     * const households = await prisma.household.findMany()
      * 
-     * // Get first 10 Users
-     * const users = await prisma.user.findMany({ take: 10 })
+     * // Get first 10 Households
+     * const households = await prisma.household.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
+     * const householdWithIdOnly = await prisma.household.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends UserFindManyArgs>(args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends householdFindManyArgs>(args?: SelectSubset<T, householdFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$householdPayload<ExtArgs>, T, "findMany">>
 
     /**
-     * Create a User.
-     * @param {UserCreateArgs} args - Arguments to create a User.
+     * Create a Household.
+     * @param {householdCreateArgs} args - Arguments to create a Household.
      * @example
-     * // Create one User
-     * const User = await prisma.user.create({
+     * // Create one Household
+     * const Household = await prisma.household.create({
      *   data: {
-     *     // ... data to create a User
+     *     // ... data to create a Household
      *   }
      * })
      * 
      */
-    create<T extends UserCreateArgs>(args: SelectSubset<T, UserCreateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends householdCreateArgs>(args: SelectSubset<T, householdCreateArgs<ExtArgs>>): Prisma__householdClient<$Result.GetResult<Prisma.$householdPayload<ExtArgs>, T, "create">, never, ExtArgs>
 
     /**
-     * Create many Users.
-     * @param {UserCreateManyArgs} args - Arguments to create many Users.
+     * Create many Households.
+     * @param {householdCreateManyArgs} args - Arguments to create many Households.
      * @example
-     * // Create many Users
-     * const user = await prisma.user.createMany({
+     * // Create many Households
+     * const household = await prisma.household.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends UserCreateManyArgs>(args?: SelectSubset<T, UserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends householdCreateManyArgs>(args?: SelectSubset<T, householdCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Users and returns the data saved in the database.
-     * @param {UserCreateManyAndReturnArgs} args - Arguments to create many Users.
+     * Create many Households and returns the data saved in the database.
+     * @param {householdCreateManyAndReturnArgs} args - Arguments to create many Households.
      * @example
-     * // Create many Users
-     * const user = await prisma.user.createManyAndReturn({
+     * // Create many Households
+     * const household = await prisma.household.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Users and only return the `id`
-     * const userWithIdOnly = await prisma.user.createManyAndReturn({ 
+     * // Create many Households and only return the `id`
+     * const householdWithIdOnly = await prisma.household.createManyAndReturn({ 
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -1334,28 +1721,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends UserCreateManyAndReturnArgs>(args?: SelectSubset<T, UserCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "createManyAndReturn">>
+    createManyAndReturn<T extends householdCreateManyAndReturnArgs>(args?: SelectSubset<T, householdCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$householdPayload<ExtArgs>, T, "createManyAndReturn">>
 
     /**
-     * Delete a User.
-     * @param {UserDeleteArgs} args - Arguments to delete one User.
+     * Delete a Household.
+     * @param {householdDeleteArgs} args - Arguments to delete one Household.
      * @example
-     * // Delete one User
-     * const User = await prisma.user.delete({
+     * // Delete one Household
+     * const Household = await prisma.household.delete({
      *   where: {
-     *     // ... filter to delete one User
+     *     // ... filter to delete one Household
      *   }
      * })
      * 
      */
-    delete<T extends UserDeleteArgs>(args: SelectSubset<T, UserDeleteArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends householdDeleteArgs>(args: SelectSubset<T, householdDeleteArgs<ExtArgs>>): Prisma__householdClient<$Result.GetResult<Prisma.$householdPayload<ExtArgs>, T, "delete">, never, ExtArgs>
 
     /**
-     * Update one User.
-     * @param {UserUpdateArgs} args - Arguments to update one User.
+     * Update one Household.
+     * @param {householdUpdateArgs} args - Arguments to update one Household.
      * @example
-     * // Update one User
-     * const user = await prisma.user.update({
+     * // Update one Household
+     * const household = await prisma.household.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1365,30 +1752,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends UserUpdateArgs>(args: SelectSubset<T, UserUpdateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends householdUpdateArgs>(args: SelectSubset<T, householdUpdateArgs<ExtArgs>>): Prisma__householdClient<$Result.GetResult<Prisma.$householdPayload<ExtArgs>, T, "update">, never, ExtArgs>
 
     /**
-     * Delete zero or more Users.
-     * @param {UserDeleteManyArgs} args - Arguments to filter Users to delete.
+     * Delete zero or more Households.
+     * @param {householdDeleteManyArgs} args - Arguments to filter Households to delete.
      * @example
-     * // Delete a few Users
-     * const { count } = await prisma.user.deleteMany({
+     * // Delete a few Households
+     * const { count } = await prisma.household.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends UserDeleteManyArgs>(args?: SelectSubset<T, UserDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends householdDeleteManyArgs>(args?: SelectSubset<T, householdDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Users.
+     * Update zero or more Households.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {householdUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Users
-     * const user = await prisma.user.updateMany({
+     * // Update many Households
+     * const household = await prisma.household.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1398,56 +1785,56 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends UserUpdateManyArgs>(args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends householdUpdateManyArgs>(args: SelectSubset<T, householdUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one User.
-     * @param {UserUpsertArgs} args - Arguments to update or create a User.
+     * Create or update one Household.
+     * @param {householdUpsertArgs} args - Arguments to update or create a Household.
      * @example
-     * // Update or create a User
-     * const user = await prisma.user.upsert({
+     * // Update or create a Household
+     * const household = await prisma.household.upsert({
      *   create: {
-     *     // ... data to create a User
+     *     // ... data to create a Household
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the User we want to update
+     *     // ... the filter for the Household we want to update
      *   }
      * })
      */
-    upsert<T extends UserUpsertArgs>(args: SelectSubset<T, UserUpsertArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends householdUpsertArgs>(args: SelectSubset<T, householdUpsertArgs<ExtArgs>>): Prisma__householdClient<$Result.GetResult<Prisma.$householdPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
 
 
     /**
-     * Count the number of Users.
+     * Count the number of Households.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserCountArgs} args - Arguments to filter Users to count.
+     * @param {householdCountArgs} args - Arguments to filter Households to count.
      * @example
-     * // Count the number of Users
-     * const count = await prisma.user.count({
+     * // Count the number of Households
+     * const count = await prisma.household.count({
      *   where: {
-     *     // ... the filter for the Users we want to count
+     *     // ... the filter for the Households we want to count
      *   }
      * })
     **/
-    count<T extends UserCountArgs>(
-      args?: Subset<T, UserCountArgs>,
+    count<T extends householdCountArgs>(
+      args?: Subset<T, householdCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], UserCountAggregateOutputType>
+          : GetScalarType<T['select'], HouseholdCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a User.
+     * Allows you to perform aggregations operations on a Household.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {HouseholdAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -1467,13 +1854,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends UserAggregateArgs>(args: Subset<T, UserAggregateArgs>): Prisma.PrismaPromise<GetUserAggregateType<T>>
+    aggregate<T extends HouseholdAggregateArgs>(args: Subset<T, HouseholdAggregateArgs>): Prisma.PrismaPromise<GetHouseholdAggregateType<T>>
 
     /**
-     * Group by User.
+     * Group by Household.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserGroupByArgs} args - Group by arguments.
+     * @param {householdGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -1488,14 +1875,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends UserGroupByArgs,
+      T extends householdGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: UserGroupByArgs['orderBy'] }
-        : { orderBy?: UserGroupByArgs['orderBy'] },
+        ? { orderBy: householdGroupByArgs['orderBy'] }
+        : { orderBy?: householdGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -1544,22 +1931,25 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, UserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, householdGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHouseholdGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the User model
+   * Fields of the household model
    */
-  readonly fields: UserFieldRefs;
+  readonly fields: householdFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for User.
+   * The delegate class that acts as a "Promise-like" for household.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__householdClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Asset<T extends User$AssetArgs<ExtArgs> = {}>(args?: Subset<T, User$AssetArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssetPayload<ExtArgs>, T, "findMany"> | Null>
+    Asset<T extends assetDefaultArgs<ExtArgs> = {}>(args?: Subset<T, assetDefaultArgs<ExtArgs>>): Prisma__assetClient<$Result.GetResult<Prisma.$assetPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    household_categories_household_household_categoryTohousehold_categories<T extends household$household_categories_household_household_categoryTohousehold_categoriesArgs<ExtArgs> = {}>(args?: Subset<T, household$household_categories_household_household_categoryTohousehold_categoriesArgs<ExtArgs>>): Prisma__household_categoriesClient<$Result.GetResult<Prisma.$household_categoriesPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    household_categories_household_household_subcategoryTohousehold_categories<T extends household$household_categories_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs> = {}>(args?: Subset<T, household$household_categories_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs>>): Prisma__household_categoriesClient<$Result.GetResult<Prisma.$household_categoriesPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    User<T extends userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, userDefaultArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1586,367 +1976,1444 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the User model
+   * Fields of the household model
    */ 
-  interface UserFieldRefs {
-    readonly id: FieldRef<"User", 'String'>
-    readonly user_email: FieldRef<"User", 'String'>
-    readonly user_password: FieldRef<"User", 'String'>
-    readonly user_first_name: FieldRef<"User", 'String'>
-    readonly user_last_name: FieldRef<"User", 'String'>
-    readonly delete_flg: FieldRef<"User", 'Boolean'>
-    readonly created_at: FieldRef<"User", 'DateTime'>
-    readonly updated_at: FieldRef<"User", 'DateTime'>
+  interface householdFieldRefs {
+    readonly id: FieldRef<"household", 'String'>
+    readonly issue_date: FieldRef<"household", 'DateTime'>
+    readonly asset_id: FieldRef<"household", 'String'>
+    readonly user_id: FieldRef<"household", 'String'>
+    readonly household_type: FieldRef<"household", 'String'>
+    readonly household_amount: FieldRef<"household", 'Float'>
+    readonly household_comment: FieldRef<"household", 'String'>
+    readonly image_path: FieldRef<"household", 'String'>
+    readonly image_text: FieldRef<"household", 'String'>
+    readonly created_at: FieldRef<"household", 'DateTime'>
+    readonly updated_at: FieldRef<"household", 'DateTime'>
+    readonly household_category: FieldRef<"household", 'BigInt'>
+    readonly household_subcategory: FieldRef<"household", 'BigInt'>
+    readonly household_name: FieldRef<"household", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * User findUnique
+   * household findUnique
    */
-  export type UserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type householdFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the User
+     * Select specific fields to fetch from the household
      */
-    select?: UserSelect<ExtArgs> | null
+    select?: householdSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
+    include?: householdInclude<ExtArgs> | null
     /**
-     * Filter, which User to fetch.
+     * Filter, which household to fetch.
      */
-    where: UserWhereUniqueInput
+    where: householdWhereUniqueInput
   }
 
   /**
-   * User findUniqueOrThrow
+   * household findUniqueOrThrow
    */
-  export type UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type householdFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the User
+     * Select specific fields to fetch from the household
      */
-    select?: UserSelect<ExtArgs> | null
+    select?: householdSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
+    include?: householdInclude<ExtArgs> | null
     /**
-     * Filter, which User to fetch.
+     * Filter, which household to fetch.
      */
-    where: UserWhereUniqueInput
+    where: householdWhereUniqueInput
   }
 
   /**
-   * User findFirst
+   * household findFirst
    */
-  export type UserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type householdFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the User
+     * Select specific fields to fetch from the household
      */
-    select?: UserSelect<ExtArgs> | null
+    select?: householdSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
+    include?: householdInclude<ExtArgs> | null
     /**
-     * Filter, which User to fetch.
+     * Filter, which household to fetch.
      */
-    where?: UserWhereInput
+    where?: householdWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Users to fetch.
+     * Determine the order of households to fetch.
      */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    orderBy?: householdOrderByWithRelationInput | householdOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Users.
+     * Sets the position for searching for households.
      */
-    cursor?: UserWhereUniqueInput
+    cursor?: householdWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Users from the position of the cursor.
+     * Take `±n` households from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Users.
+     * Skip the first `n` households.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Users.
+     * Filter by unique combinations of households.
      */
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+    distinct?: HouseholdScalarFieldEnum | HouseholdScalarFieldEnum[]
   }
 
   /**
-   * User findFirstOrThrow
+   * household findFirstOrThrow
    */
-  export type UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type householdFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the User
+     * Select specific fields to fetch from the household
      */
-    select?: UserSelect<ExtArgs> | null
+    select?: householdSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
+    include?: householdInclude<ExtArgs> | null
     /**
-     * Filter, which User to fetch.
+     * Filter, which household to fetch.
      */
-    where?: UserWhereInput
+    where?: householdWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Users to fetch.
+     * Determine the order of households to fetch.
      */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    orderBy?: householdOrderByWithRelationInput | householdOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Users.
+     * Sets the position for searching for households.
      */
-    cursor?: UserWhereUniqueInput
+    cursor?: householdWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Users from the position of the cursor.
+     * Take `±n` households from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Users.
+     * Skip the first `n` households.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Users.
+     * Filter by unique combinations of households.
      */
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+    distinct?: HouseholdScalarFieldEnum | HouseholdScalarFieldEnum[]
   }
 
   /**
-   * User findMany
+   * household findMany
    */
-  export type UserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type householdFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the User
+     * Select specific fields to fetch from the household
      */
-    select?: UserSelect<ExtArgs> | null
+    select?: householdSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
+    include?: householdInclude<ExtArgs> | null
     /**
-     * Filter, which Users to fetch.
+     * Filter, which households to fetch.
      */
-    where?: UserWhereInput
+    where?: householdWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Users to fetch.
+     * Determine the order of households to fetch.
      */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    orderBy?: householdOrderByWithRelationInput | householdOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Users.
+     * Sets the position for listing households.
      */
-    cursor?: UserWhereUniqueInput
+    cursor?: householdWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Users from the position of the cursor.
+     * Take `±n` households from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Users.
+     * Skip the first `n` households.
      */
     skip?: number
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+    distinct?: HouseholdScalarFieldEnum | HouseholdScalarFieldEnum[]
   }
 
   /**
-   * User create
+   * household create
    */
-  export type UserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type householdCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the User
+     * Select specific fields to fetch from the household
      */
-    select?: UserSelect<ExtArgs> | null
+    select?: householdSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
+    include?: householdInclude<ExtArgs> | null
     /**
-     * The data needed to create a User.
+     * The data needed to create a household.
      */
-    data: XOR<UserCreateInput, UserUncheckedCreateInput>
+    data: XOR<householdCreateInput, householdUncheckedCreateInput>
   }
 
   /**
-   * User createMany
+   * household createMany
    */
-  export type UserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type householdCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Users.
+     * The data used to create many households.
      */
-    data: UserCreateManyInput | UserCreateManyInput[]
+    data: householdCreateManyInput | householdCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * User createManyAndReturn
+   * household createManyAndReturn
    */
-  export type UserCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type householdCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the User
+     * Select specific fields to fetch from the household
      */
-    select?: UserSelectCreateManyAndReturn<ExtArgs> | null
+    select?: householdSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * The data used to create many Users.
+     * The data used to create many households.
      */
-    data: UserCreateManyInput | UserCreateManyInput[]
+    data: householdCreateManyInput | householdCreateManyInput[]
     skipDuplicates?: boolean
-  }
-
-  /**
-   * User update
-   */
-  export type UserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * The data needed to update a User.
-     */
-    data: XOR<UserUpdateInput, UserUncheckedUpdateInput>
-    /**
-     * Choose, which User to update.
-     */
-    where: UserWhereUniqueInput
+    include?: householdIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * User updateMany
+   * household update
    */
-  export type UserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type householdUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Users.
+     * Select specific fields to fetch from the household
      */
-    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
-    /**
-     * Filter which Users to update
-     */
-    where?: UserWhereInput
-  }
-
-  /**
-   * User upsert
-   */
-  export type UserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
+    select?: householdSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
+    include?: householdInclude<ExtArgs> | null
     /**
-     * The filter to search for the User to update in case it exists.
+     * The data needed to update a household.
      */
-    where: UserWhereUniqueInput
+    data: XOR<householdUpdateInput, householdUncheckedUpdateInput>
     /**
-     * In case the User found by the `where` argument doesn't exist, create a new User with this data.
+     * Choose, which household to update.
      */
-    create: XOR<UserCreateInput, UserUncheckedCreateInput>
-    /**
-     * In case the User was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+    where: householdWhereUniqueInput
   }
 
   /**
-   * User delete
+   * household updateMany
    */
-  export type UserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type householdUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the User
+     * The data used to update households.
      */
-    select?: UserSelect<ExtArgs> | null
+    data: XOR<householdUpdateManyMutationInput, householdUncheckedUpdateManyInput>
+    /**
+     * Filter which households to update
+     */
+    where?: householdWhereInput
+  }
+
+  /**
+   * household upsert
+   */
+  export type householdUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the household
+     */
+    select?: householdSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
+    include?: householdInclude<ExtArgs> | null
     /**
-     * Filter which User to delete.
+     * The filter to search for the household to update in case it exists.
      */
-    where: UserWhereUniqueInput
+    where: householdWhereUniqueInput
+    /**
+     * In case the household found by the `where` argument doesn't exist, create a new household with this data.
+     */
+    create: XOR<householdCreateInput, householdUncheckedCreateInput>
+    /**
+     * In case the household was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<householdUpdateInput, householdUncheckedUpdateInput>
   }
 
   /**
-   * User deleteMany
+   * household delete
    */
-  export type UserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type householdDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Users to delete
+     * Select specific fields to fetch from the household
      */
-    where?: UserWhereInput
-  }
-
-  /**
-   * User.Asset
-   */
-  export type User$AssetArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Asset
-     */
-    select?: AssetSelect<ExtArgs> | null
+    select?: householdSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssetInclude<ExtArgs> | null
-    where?: AssetWhereInput
-    orderBy?: AssetOrderByWithRelationInput | AssetOrderByWithRelationInput[]
-    cursor?: AssetWhereUniqueInput
+    include?: householdInclude<ExtArgs> | null
+    /**
+     * Filter which household to delete.
+     */
+    where: householdWhereUniqueInput
+  }
+
+  /**
+   * household deleteMany
+   */
+  export type householdDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which households to delete
+     */
+    where?: householdWhereInput
+  }
+
+  /**
+   * household.household_categories_household_household_categoryTohousehold_categories
+   */
+  export type household$household_categories_household_household_categoryTohousehold_categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the household_categories
+     */
+    select?: household_categoriesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: household_categoriesInclude<ExtArgs> | null
+    where?: household_categoriesWhereInput
+  }
+
+  /**
+   * household.household_categories_household_household_subcategoryTohousehold_categories
+   */
+  export type household$household_categories_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the household_categories
+     */
+    select?: household_categoriesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: household_categoriesInclude<ExtArgs> | null
+    where?: household_categoriesWhereInput
+  }
+
+  /**
+   * household without action
+   */
+  export type householdDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the household
+     */
+    select?: householdSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: householdInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model household_categories
+   */
+
+  export type AggregateHousehold_categories = {
+    _count: Household_categoriesCountAggregateOutputType | null
+    _avg: Household_categoriesAvgAggregateOutputType | null
+    _sum: Household_categoriesSumAggregateOutputType | null
+    _min: Household_categoriesMinAggregateOutputType | null
+    _max: Household_categoriesMaxAggregateOutputType | null
+  }
+
+  export type Household_categoriesAvgAggregateOutputType = {
+    id: number | null
+    parent_category_id: number | null
+  }
+
+  export type Household_categoriesSumAggregateOutputType = {
+    id: bigint | null
+    parent_category_id: bigint | null
+  }
+
+  export type Household_categoriesMinAggregateOutputType = {
+    id: bigint | null
+    user_id: string | null
+    category_name: string | null
+    parent_category_id: bigint | null
+    category_comment: string | null
+    created_at: Date | null
+    update_at: Date | null
+    household_type: string | null
+  }
+
+  export type Household_categoriesMaxAggregateOutputType = {
+    id: bigint | null
+    user_id: string | null
+    category_name: string | null
+    parent_category_id: bigint | null
+    category_comment: string | null
+    created_at: Date | null
+    update_at: Date | null
+    household_type: string | null
+  }
+
+  export type Household_categoriesCountAggregateOutputType = {
+    id: number
+    user_id: number
+    category_name: number
+    parent_category_id: number
+    category_comment: number
+    created_at: number
+    update_at: number
+    household_type: number
+    _all: number
+  }
+
+
+  export type Household_categoriesAvgAggregateInputType = {
+    id?: true
+    parent_category_id?: true
+  }
+
+  export type Household_categoriesSumAggregateInputType = {
+    id?: true
+    parent_category_id?: true
+  }
+
+  export type Household_categoriesMinAggregateInputType = {
+    id?: true
+    user_id?: true
+    category_name?: true
+    parent_category_id?: true
+    category_comment?: true
+    created_at?: true
+    update_at?: true
+    household_type?: true
+  }
+
+  export type Household_categoriesMaxAggregateInputType = {
+    id?: true
+    user_id?: true
+    category_name?: true
+    parent_category_id?: true
+    category_comment?: true
+    created_at?: true
+    update_at?: true
+    household_type?: true
+  }
+
+  export type Household_categoriesCountAggregateInputType = {
+    id?: true
+    user_id?: true
+    category_name?: true
+    parent_category_id?: true
+    category_comment?: true
+    created_at?: true
+    update_at?: true
+    household_type?: true
+    _all?: true
+  }
+
+  export type Household_categoriesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which household_categories to aggregate.
+     */
+    where?: household_categoriesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of household_categories to fetch.
+     */
+    orderBy?: household_categoriesOrderByWithRelationInput | household_categoriesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: household_categoriesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` household_categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` household_categories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned household_categories
+    **/
+    _count?: true | Household_categoriesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Household_categoriesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Household_categoriesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Household_categoriesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Household_categoriesMaxAggregateInputType
+  }
+
+  export type GetHousehold_categoriesAggregateType<T extends Household_categoriesAggregateArgs> = {
+        [P in keyof T & keyof AggregateHousehold_categories]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHousehold_categories[P]>
+      : GetScalarType<T[P], AggregateHousehold_categories[P]>
+  }
+
+
+
+
+  export type household_categoriesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: household_categoriesWhereInput
+    orderBy?: household_categoriesOrderByWithAggregationInput | household_categoriesOrderByWithAggregationInput[]
+    by: Household_categoriesScalarFieldEnum[] | Household_categoriesScalarFieldEnum
+    having?: household_categoriesScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    distinct?: AssetScalarFieldEnum | AssetScalarFieldEnum[]
+    _count?: Household_categoriesCountAggregateInputType | true
+    _avg?: Household_categoriesAvgAggregateInputType
+    _sum?: Household_categoriesSumAggregateInputType
+    _min?: Household_categoriesMinAggregateInputType
+    _max?: Household_categoriesMaxAggregateInputType
+  }
+
+  export type Household_categoriesGroupByOutputType = {
+    id: bigint
+    user_id: string
+    category_name: string
+    parent_category_id: bigint | null
+    category_comment: string | null
+    created_at: Date
+    update_at: Date | null
+    household_type: string
+    _count: Household_categoriesCountAggregateOutputType | null
+    _avg: Household_categoriesAvgAggregateOutputType | null
+    _sum: Household_categoriesSumAggregateOutputType | null
+    _min: Household_categoriesMinAggregateOutputType | null
+    _max: Household_categoriesMaxAggregateOutputType | null
+  }
+
+  type GetHousehold_categoriesGroupByPayload<T extends household_categoriesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Household_categoriesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Household_categoriesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Household_categoriesGroupByOutputType[P]>
+            : GetScalarType<T[P], Household_categoriesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type household_categoriesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    category_name?: boolean
+    parent_category_id?: boolean
+    category_comment?: boolean
+    created_at?: boolean
+    update_at?: boolean
+    household_type?: boolean
+    household_household_household_categoryTohousehold_categories?: boolean | household_categories$household_household_household_categoryTohousehold_categoriesArgs<ExtArgs>
+    household_household_household_subcategoryTohousehold_categories?: boolean | household_categories$household_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs>
+    User?: boolean | userDefaultArgs<ExtArgs>
+    _count?: boolean | Household_categoriesCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["household_categories"]>
+
+  export type household_categoriesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    category_name?: boolean
+    parent_category_id?: boolean
+    category_comment?: boolean
+    created_at?: boolean
+    update_at?: boolean
+    household_type?: boolean
+    User?: boolean | userDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["household_categories"]>
+
+  export type household_categoriesSelectScalar = {
+    id?: boolean
+    user_id?: boolean
+    category_name?: boolean
+    parent_category_id?: boolean
+    category_comment?: boolean
+    created_at?: boolean
+    update_at?: boolean
+    household_type?: boolean
+  }
+
+  export type household_categoriesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    household_household_household_categoryTohousehold_categories?: boolean | household_categories$household_household_household_categoryTohousehold_categoriesArgs<ExtArgs>
+    household_household_household_subcategoryTohousehold_categories?: boolean | household_categories$household_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs>
+    User?: boolean | userDefaultArgs<ExtArgs>
+    _count?: boolean | Household_categoriesCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type household_categoriesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | userDefaultArgs<ExtArgs>
+  }
+
+  export type $household_categoriesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "household_categories"
+    objects: {
+      household_household_household_categoryTohousehold_categories: Prisma.$householdPayload<ExtArgs>[]
+      household_household_household_subcategoryTohousehold_categories: Prisma.$householdPayload<ExtArgs>[]
+      User: Prisma.$userPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: bigint
+      user_id: string
+      category_name: string
+      parent_category_id: bigint | null
+      category_comment: string | null
+      created_at: Date
+      update_at: Date | null
+      household_type: string
+    }, ExtArgs["result"]["household_categories"]>
+    composites: {}
+  }
+
+  type household_categoriesGetPayload<S extends boolean | null | undefined | household_categoriesDefaultArgs> = $Result.GetResult<Prisma.$household_categoriesPayload, S>
+
+  type household_categoriesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<household_categoriesFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: Household_categoriesCountAggregateInputType | true
+    }
+
+  export interface household_categoriesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['household_categories'], meta: { name: 'household_categories' } }
+    /**
+     * Find zero or one Household_categories that matches the filter.
+     * @param {household_categoriesFindUniqueArgs} args - Arguments to find a Household_categories
+     * @example
+     * // Get one Household_categories
+     * const household_categories = await prisma.household_categories.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends household_categoriesFindUniqueArgs>(args: SelectSubset<T, household_categoriesFindUniqueArgs<ExtArgs>>): Prisma__household_categoriesClient<$Result.GetResult<Prisma.$household_categoriesPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Household_categories that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {household_categoriesFindUniqueOrThrowArgs} args - Arguments to find a Household_categories
+     * @example
+     * // Get one Household_categories
+     * const household_categories = await prisma.household_categories.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends household_categoriesFindUniqueOrThrowArgs>(args: SelectSubset<T, household_categoriesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__household_categoriesClient<$Result.GetResult<Prisma.$household_categoriesPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Household_categories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {household_categoriesFindFirstArgs} args - Arguments to find a Household_categories
+     * @example
+     * // Get one Household_categories
+     * const household_categories = await prisma.household_categories.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends household_categoriesFindFirstArgs>(args?: SelectSubset<T, household_categoriesFindFirstArgs<ExtArgs>>): Prisma__household_categoriesClient<$Result.GetResult<Prisma.$household_categoriesPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Household_categories that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {household_categoriesFindFirstOrThrowArgs} args - Arguments to find a Household_categories
+     * @example
+     * // Get one Household_categories
+     * const household_categories = await prisma.household_categories.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends household_categoriesFindFirstOrThrowArgs>(args?: SelectSubset<T, household_categoriesFindFirstOrThrowArgs<ExtArgs>>): Prisma__household_categoriesClient<$Result.GetResult<Prisma.$household_categoriesPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Household_categories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {household_categoriesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Household_categories
+     * const household_categories = await prisma.household_categories.findMany()
+     * 
+     * // Get first 10 Household_categories
+     * const household_categories = await prisma.household_categories.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const household_categoriesWithIdOnly = await prisma.household_categories.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends household_categoriesFindManyArgs>(args?: SelectSubset<T, household_categoriesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$household_categoriesPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Household_categories.
+     * @param {household_categoriesCreateArgs} args - Arguments to create a Household_categories.
+     * @example
+     * // Create one Household_categories
+     * const Household_categories = await prisma.household_categories.create({
+     *   data: {
+     *     // ... data to create a Household_categories
+     *   }
+     * })
+     * 
+     */
+    create<T extends household_categoriesCreateArgs>(args: SelectSubset<T, household_categoriesCreateArgs<ExtArgs>>): Prisma__household_categoriesClient<$Result.GetResult<Prisma.$household_categoriesPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Household_categories.
+     * @param {household_categoriesCreateManyArgs} args - Arguments to create many Household_categories.
+     * @example
+     * // Create many Household_categories
+     * const household_categories = await prisma.household_categories.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends household_categoriesCreateManyArgs>(args?: SelectSubset<T, household_categoriesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Household_categories and returns the data saved in the database.
+     * @param {household_categoriesCreateManyAndReturnArgs} args - Arguments to create many Household_categories.
+     * @example
+     * // Create many Household_categories
+     * const household_categories = await prisma.household_categories.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Household_categories and only return the `id`
+     * const household_categoriesWithIdOnly = await prisma.household_categories.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends household_categoriesCreateManyAndReturnArgs>(args?: SelectSubset<T, household_categoriesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$household_categoriesPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Household_categories.
+     * @param {household_categoriesDeleteArgs} args - Arguments to delete one Household_categories.
+     * @example
+     * // Delete one Household_categories
+     * const Household_categories = await prisma.household_categories.delete({
+     *   where: {
+     *     // ... filter to delete one Household_categories
+     *   }
+     * })
+     * 
+     */
+    delete<T extends household_categoriesDeleteArgs>(args: SelectSubset<T, household_categoriesDeleteArgs<ExtArgs>>): Prisma__household_categoriesClient<$Result.GetResult<Prisma.$household_categoriesPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Household_categories.
+     * @param {household_categoriesUpdateArgs} args - Arguments to update one Household_categories.
+     * @example
+     * // Update one Household_categories
+     * const household_categories = await prisma.household_categories.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends household_categoriesUpdateArgs>(args: SelectSubset<T, household_categoriesUpdateArgs<ExtArgs>>): Prisma__household_categoriesClient<$Result.GetResult<Prisma.$household_categoriesPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Household_categories.
+     * @param {household_categoriesDeleteManyArgs} args - Arguments to filter Household_categories to delete.
+     * @example
+     * // Delete a few Household_categories
+     * const { count } = await prisma.household_categories.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends household_categoriesDeleteManyArgs>(args?: SelectSubset<T, household_categoriesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Household_categories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {household_categoriesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Household_categories
+     * const household_categories = await prisma.household_categories.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends household_categoriesUpdateManyArgs>(args: SelectSubset<T, household_categoriesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Household_categories.
+     * @param {household_categoriesUpsertArgs} args - Arguments to update or create a Household_categories.
+     * @example
+     * // Update or create a Household_categories
+     * const household_categories = await prisma.household_categories.upsert({
+     *   create: {
+     *     // ... data to create a Household_categories
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Household_categories we want to update
+     *   }
+     * })
+     */
+    upsert<T extends household_categoriesUpsertArgs>(args: SelectSubset<T, household_categoriesUpsertArgs<ExtArgs>>): Prisma__household_categoriesClient<$Result.GetResult<Prisma.$household_categoriesPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Household_categories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {household_categoriesCountArgs} args - Arguments to filter Household_categories to count.
+     * @example
+     * // Count the number of Household_categories
+     * const count = await prisma.household_categories.count({
+     *   where: {
+     *     // ... the filter for the Household_categories we want to count
+     *   }
+     * })
+    **/
+    count<T extends household_categoriesCountArgs>(
+      args?: Subset<T, household_categoriesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Household_categoriesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Household_categories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Household_categoriesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Household_categoriesAggregateArgs>(args: Subset<T, Household_categoriesAggregateArgs>): Prisma.PrismaPromise<GetHousehold_categoriesAggregateType<T>>
+
+    /**
+     * Group by Household_categories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {household_categoriesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends household_categoriesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: household_categoriesGroupByArgs['orderBy'] }
+        : { orderBy?: household_categoriesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, household_categoriesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHousehold_categoriesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the household_categories model
+   */
+  readonly fields: household_categoriesFieldRefs;
   }
 
   /**
-   * User without action
+   * The delegate class that acts as a "Promise-like" for household_categories.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export interface Prisma__household_categoriesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    household_household_household_categoryTohousehold_categories<T extends household_categories$household_household_household_categoryTohousehold_categoriesArgs<ExtArgs> = {}>(args?: Subset<T, household_categories$household_household_household_categoryTohousehold_categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$householdPayload<ExtArgs>, T, "findMany"> | Null>
+    household_household_household_subcategoryTohousehold_categories<T extends household_categories$household_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs> = {}>(args?: Subset<T, household_categories$household_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$householdPayload<ExtArgs>, T, "findMany"> | Null>
+    User<T extends userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, userDefaultArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
-     * Select specific fields to fetch from the User
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
      */
-    select?: UserSelect<ExtArgs> | null
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the household_categories model
+   */ 
+  interface household_categoriesFieldRefs {
+    readonly id: FieldRef<"household_categories", 'BigInt'>
+    readonly user_id: FieldRef<"household_categories", 'String'>
+    readonly category_name: FieldRef<"household_categories", 'String'>
+    readonly parent_category_id: FieldRef<"household_categories", 'BigInt'>
+    readonly category_comment: FieldRef<"household_categories", 'String'>
+    readonly created_at: FieldRef<"household_categories", 'DateTime'>
+    readonly update_at: FieldRef<"household_categories", 'DateTime'>
+    readonly household_type: FieldRef<"household_categories", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * household_categories findUnique
+   */
+  export type household_categoriesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the household_categories
+     */
+    select?: household_categoriesSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
+    include?: household_categoriesInclude<ExtArgs> | null
+    /**
+     * Filter, which household_categories to fetch.
+     */
+    where: household_categoriesWhereUniqueInput
+  }
+
+  /**
+   * household_categories findUniqueOrThrow
+   */
+  export type household_categoriesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the household_categories
+     */
+    select?: household_categoriesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: household_categoriesInclude<ExtArgs> | null
+    /**
+     * Filter, which household_categories to fetch.
+     */
+    where: household_categoriesWhereUniqueInput
+  }
+
+  /**
+   * household_categories findFirst
+   */
+  export type household_categoriesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the household_categories
+     */
+    select?: household_categoriesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: household_categoriesInclude<ExtArgs> | null
+    /**
+     * Filter, which household_categories to fetch.
+     */
+    where?: household_categoriesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of household_categories to fetch.
+     */
+    orderBy?: household_categoriesOrderByWithRelationInput | household_categoriesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for household_categories.
+     */
+    cursor?: household_categoriesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` household_categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` household_categories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of household_categories.
+     */
+    distinct?: Household_categoriesScalarFieldEnum | Household_categoriesScalarFieldEnum[]
+  }
+
+  /**
+   * household_categories findFirstOrThrow
+   */
+  export type household_categoriesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the household_categories
+     */
+    select?: household_categoriesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: household_categoriesInclude<ExtArgs> | null
+    /**
+     * Filter, which household_categories to fetch.
+     */
+    where?: household_categoriesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of household_categories to fetch.
+     */
+    orderBy?: household_categoriesOrderByWithRelationInput | household_categoriesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for household_categories.
+     */
+    cursor?: household_categoriesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` household_categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` household_categories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of household_categories.
+     */
+    distinct?: Household_categoriesScalarFieldEnum | Household_categoriesScalarFieldEnum[]
+  }
+
+  /**
+   * household_categories findMany
+   */
+  export type household_categoriesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the household_categories
+     */
+    select?: household_categoriesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: household_categoriesInclude<ExtArgs> | null
+    /**
+     * Filter, which household_categories to fetch.
+     */
+    where?: household_categoriesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of household_categories to fetch.
+     */
+    orderBy?: household_categoriesOrderByWithRelationInput | household_categoriesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing household_categories.
+     */
+    cursor?: household_categoriesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` household_categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` household_categories.
+     */
+    skip?: number
+    distinct?: Household_categoriesScalarFieldEnum | Household_categoriesScalarFieldEnum[]
+  }
+
+  /**
+   * household_categories create
+   */
+  export type household_categoriesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the household_categories
+     */
+    select?: household_categoriesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: household_categoriesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a household_categories.
+     */
+    data: XOR<household_categoriesCreateInput, household_categoriesUncheckedCreateInput>
+  }
+
+  /**
+   * household_categories createMany
+   */
+  export type household_categoriesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many household_categories.
+     */
+    data: household_categoriesCreateManyInput | household_categoriesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * household_categories createManyAndReturn
+   */
+  export type household_categoriesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the household_categories
+     */
+    select?: household_categoriesSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many household_categories.
+     */
+    data: household_categoriesCreateManyInput | household_categoriesCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: household_categoriesIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * household_categories update
+   */
+  export type household_categoriesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the household_categories
+     */
+    select?: household_categoriesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: household_categoriesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a household_categories.
+     */
+    data: XOR<household_categoriesUpdateInput, household_categoriesUncheckedUpdateInput>
+    /**
+     * Choose, which household_categories to update.
+     */
+    where: household_categoriesWhereUniqueInput
+  }
+
+  /**
+   * household_categories updateMany
+   */
+  export type household_categoriesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update household_categories.
+     */
+    data: XOR<household_categoriesUpdateManyMutationInput, household_categoriesUncheckedUpdateManyInput>
+    /**
+     * Filter which household_categories to update
+     */
+    where?: household_categoriesWhereInput
+  }
+
+  /**
+   * household_categories upsert
+   */
+  export type household_categoriesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the household_categories
+     */
+    select?: household_categoriesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: household_categoriesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the household_categories to update in case it exists.
+     */
+    where: household_categoriesWhereUniqueInput
+    /**
+     * In case the household_categories found by the `where` argument doesn't exist, create a new household_categories with this data.
+     */
+    create: XOR<household_categoriesCreateInput, household_categoriesUncheckedCreateInput>
+    /**
+     * In case the household_categories was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<household_categoriesUpdateInput, household_categoriesUncheckedUpdateInput>
+  }
+
+  /**
+   * household_categories delete
+   */
+  export type household_categoriesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the household_categories
+     */
+    select?: household_categoriesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: household_categoriesInclude<ExtArgs> | null
+    /**
+     * Filter which household_categories to delete.
+     */
+    where: household_categoriesWhereUniqueInput
+  }
+
+  /**
+   * household_categories deleteMany
+   */
+  export type household_categoriesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which household_categories to delete
+     */
+    where?: household_categoriesWhereInput
+  }
+
+  /**
+   * household_categories.household_household_household_categoryTohousehold_categories
+   */
+  export type household_categories$household_household_household_categoryTohousehold_categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the household
+     */
+    select?: householdSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: householdInclude<ExtArgs> | null
+    where?: householdWhereInput
+    orderBy?: householdOrderByWithRelationInput | householdOrderByWithRelationInput[]
+    cursor?: householdWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HouseholdScalarFieldEnum | HouseholdScalarFieldEnum[]
+  }
+
+  /**
+   * household_categories.household_household_household_subcategoryTohousehold_categories
+   */
+  export type household_categories$household_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the household
+     */
+    select?: householdSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: householdInclude<ExtArgs> | null
+    where?: householdWhereInput
+    orderBy?: householdOrderByWithRelationInput | householdOrderByWithRelationInput[]
+    cursor?: householdWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HouseholdScalarFieldEnum | HouseholdScalarFieldEnum[]
+  }
+
+  /**
+   * household_categories without action
+   */
+  export type household_categoriesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the household_categories
+     */
+    select?: household_categoriesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: household_categoriesInclude<ExtArgs> | null
   }
 
 
   /**
-   * Model Asset
+   * Model asset
    */
 
   export type AggregateAsset = {
@@ -2050,37 +3517,37 @@ export namespace Prisma {
 
   export type AssetAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Asset to aggregate.
+     * Filter which asset to aggregate.
      */
-    where?: AssetWhereInput
+    where?: assetWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Assets to fetch.
+     * Determine the order of assets to fetch.
      */
-    orderBy?: AssetOrderByWithRelationInput | AssetOrderByWithRelationInput[]
+    orderBy?: assetOrderByWithRelationInput | assetOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: AssetWhereUniqueInput
+    cursor?: assetWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Assets from the position of the cursor.
+     * Take `±n` assets from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Assets.
+     * Skip the first `n` assets.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Assets
+     * Count returned assets
     **/
     _count?: true | AssetCountAggregateInputType
     /**
@@ -2120,11 +3587,11 @@ export namespace Prisma {
 
 
 
-  export type AssetGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AssetWhereInput
-    orderBy?: AssetOrderByWithAggregationInput | AssetOrderByWithAggregationInput[]
+  export type assetGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: assetWhereInput
+    orderBy?: assetOrderByWithAggregationInput | assetOrderByWithAggregationInput[]
     by: AssetScalarFieldEnum[] | AssetScalarFieldEnum
-    having?: AssetScalarWhereWithAggregatesInput
+    having?: assetScalarWhereWithAggregatesInput
     take?: number
     skip?: number
     _count?: AssetCountAggregateInputType | true
@@ -2140,7 +3607,7 @@ export namespace Prisma {
     asset_type: string
     asset_name: string
     asset_money: number
-    asset_currency: string | null
+    asset_currency: string
     asset_comment: string | null
     created_at: Date
     updated_at: Date | null
@@ -2151,7 +3618,7 @@ export namespace Prisma {
     _max: AssetMaxAggregateOutputType | null
   }
 
-  type GetAssetGroupByPayload<T extends AssetGroupByArgs> = Prisma.PrismaPromise<
+  type GetAssetGroupByPayload<T extends assetGroupByArgs> = Prisma.PrismaPromise<
     Array<
       PickEnumerable<AssetGroupByOutputType, T['by']> &
         {
@@ -2165,7 +3632,7 @@ export namespace Prisma {
     >
 
 
-  export type AssetSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type assetSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     user_id?: boolean
     asset_type?: boolean
@@ -2175,10 +3642,12 @@ export namespace Prisma {
     asset_comment?: boolean
     created_at?: boolean
     updated_at?: boolean
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | userDefaultArgs<ExtArgs>
+    household?: boolean | asset$householdArgs<ExtArgs>
+    _count?: boolean | AssetCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["asset"]>
 
-  export type AssetSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type assetSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     user_id?: boolean
     asset_type?: boolean
@@ -2188,10 +3657,10 @@ export namespace Prisma {
     asset_comment?: boolean
     created_at?: boolean
     updated_at?: boolean
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | userDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["asset"]>
 
-  export type AssetSelectScalar = {
+  export type assetSelectScalar = {
     id?: boolean
     user_id?: boolean
     asset_type?: boolean
@@ -2203,17 +3672,20 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
-  export type AssetInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | UserDefaultArgs<ExtArgs>
+  export type assetInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | userDefaultArgs<ExtArgs>
+    household?: boolean | asset$householdArgs<ExtArgs>
+    _count?: boolean | AssetCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type AssetIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | UserDefaultArgs<ExtArgs>
+  export type assetIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | userDefaultArgs<ExtArgs>
   }
 
-  export type $AssetPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Asset"
+  export type $assetPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "asset"
     objects: {
-      User: Prisma.$UserPayload<ExtArgs>
+      user: Prisma.$userPayload<ExtArgs>
+      household: Prisma.$householdPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2221,7 +3693,7 @@ export namespace Prisma {
       asset_type: string
       asset_name: string
       asset_money: number
-      asset_currency: string | null
+      asset_currency: string
       asset_comment: string | null
       created_at: Date
       updated_at: Date | null
@@ -2229,18 +3701,18 @@ export namespace Prisma {
     composites: {}
   }
 
-  type AssetGetPayload<S extends boolean | null | undefined | AssetDefaultArgs> = $Result.GetResult<Prisma.$AssetPayload, S>
+  type assetGetPayload<S extends boolean | null | undefined | assetDefaultArgs> = $Result.GetResult<Prisma.$assetPayload, S>
 
-  type AssetCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<AssetFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type assetCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<assetFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: AssetCountAggregateInputType | true
     }
 
-  export interface AssetDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Asset'], meta: { name: 'Asset' } }
+  export interface assetDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['asset'], meta: { name: 'asset' } }
     /**
      * Find zero or one Asset that matches the filter.
-     * @param {AssetFindUniqueArgs} args - Arguments to find a Asset
+     * @param {assetFindUniqueArgs} args - Arguments to find a Asset
      * @example
      * // Get one Asset
      * const asset = await prisma.asset.findUnique({
@@ -2249,12 +3721,12 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends AssetFindUniqueArgs>(args: SelectSubset<T, AssetFindUniqueArgs<ExtArgs>>): Prisma__AssetClient<$Result.GetResult<Prisma.$AssetPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends assetFindUniqueArgs>(args: SelectSubset<T, assetFindUniqueArgs<ExtArgs>>): Prisma__assetClient<$Result.GetResult<Prisma.$assetPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
 
     /**
      * Find one Asset that matches the filter or throw an error with `error.code='P2025'` 
      * if no matches were found.
-     * @param {AssetFindUniqueOrThrowArgs} args - Arguments to find a Asset
+     * @param {assetFindUniqueOrThrowArgs} args - Arguments to find a Asset
      * @example
      * // Get one Asset
      * const asset = await prisma.asset.findUniqueOrThrow({
@@ -2263,13 +3735,13 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends AssetFindUniqueOrThrowArgs>(args: SelectSubset<T, AssetFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AssetClient<$Result.GetResult<Prisma.$AssetPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends assetFindUniqueOrThrowArgs>(args: SelectSubset<T, assetFindUniqueOrThrowArgs<ExtArgs>>): Prisma__assetClient<$Result.GetResult<Prisma.$assetPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
 
     /**
      * Find the first Asset that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssetFindFirstArgs} args - Arguments to find a Asset
+     * @param {assetFindFirstArgs} args - Arguments to find a Asset
      * @example
      * // Get one Asset
      * const asset = await prisma.asset.findFirst({
@@ -2278,14 +3750,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends AssetFindFirstArgs>(args?: SelectSubset<T, AssetFindFirstArgs<ExtArgs>>): Prisma__AssetClient<$Result.GetResult<Prisma.$AssetPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends assetFindFirstArgs>(args?: SelectSubset<T, assetFindFirstArgs<ExtArgs>>): Prisma__assetClient<$Result.GetResult<Prisma.$assetPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
 
     /**
      * Find the first Asset that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssetFindFirstOrThrowArgs} args - Arguments to find a Asset
+     * @param {assetFindFirstOrThrowArgs} args - Arguments to find a Asset
      * @example
      * // Get one Asset
      * const asset = await prisma.asset.findFirstOrThrow({
@@ -2294,13 +3766,13 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends AssetFindFirstOrThrowArgs>(args?: SelectSubset<T, AssetFindFirstOrThrowArgs<ExtArgs>>): Prisma__AssetClient<$Result.GetResult<Prisma.$AssetPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends assetFindFirstOrThrowArgs>(args?: SelectSubset<T, assetFindFirstOrThrowArgs<ExtArgs>>): Prisma__assetClient<$Result.GetResult<Prisma.$assetPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
 
     /**
      * Find zero or more Assets that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssetFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {assetFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Assets
      * const assets = await prisma.asset.findMany()
@@ -2312,11 +3784,11 @@ export namespace Prisma {
      * const assetWithIdOnly = await prisma.asset.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends AssetFindManyArgs>(args?: SelectSubset<T, AssetFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssetPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends assetFindManyArgs>(args?: SelectSubset<T, assetFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$assetPayload<ExtArgs>, T, "findMany">>
 
     /**
      * Create a Asset.
-     * @param {AssetCreateArgs} args - Arguments to create a Asset.
+     * @param {assetCreateArgs} args - Arguments to create a Asset.
      * @example
      * // Create one Asset
      * const Asset = await prisma.asset.create({
@@ -2326,11 +3798,11 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends AssetCreateArgs>(args: SelectSubset<T, AssetCreateArgs<ExtArgs>>): Prisma__AssetClient<$Result.GetResult<Prisma.$AssetPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends assetCreateArgs>(args: SelectSubset<T, assetCreateArgs<ExtArgs>>): Prisma__assetClient<$Result.GetResult<Prisma.$assetPayload<ExtArgs>, T, "create">, never, ExtArgs>
 
     /**
      * Create many Assets.
-     * @param {AssetCreateManyArgs} args - Arguments to create many Assets.
+     * @param {assetCreateManyArgs} args - Arguments to create many Assets.
      * @example
      * // Create many Assets
      * const asset = await prisma.asset.createMany({
@@ -2340,11 +3812,11 @@ export namespace Prisma {
      * })
      *     
      */
-    createMany<T extends AssetCreateManyArgs>(args?: SelectSubset<T, AssetCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends assetCreateManyArgs>(args?: SelectSubset<T, assetCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Assets and returns the data saved in the database.
-     * @param {AssetCreateManyAndReturnArgs} args - Arguments to create many Assets.
+     * @param {assetCreateManyAndReturnArgs} args - Arguments to create many Assets.
      * @example
      * // Create many Assets
      * const asset = await prisma.asset.createManyAndReturn({
@@ -2364,11 +3836,11 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends AssetCreateManyAndReturnArgs>(args?: SelectSubset<T, AssetCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssetPayload<ExtArgs>, T, "createManyAndReturn">>
+    createManyAndReturn<T extends assetCreateManyAndReturnArgs>(args?: SelectSubset<T, assetCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$assetPayload<ExtArgs>, T, "createManyAndReturn">>
 
     /**
      * Delete a Asset.
-     * @param {AssetDeleteArgs} args - Arguments to delete one Asset.
+     * @param {assetDeleteArgs} args - Arguments to delete one Asset.
      * @example
      * // Delete one Asset
      * const Asset = await prisma.asset.delete({
@@ -2378,11 +3850,11 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends AssetDeleteArgs>(args: SelectSubset<T, AssetDeleteArgs<ExtArgs>>): Prisma__AssetClient<$Result.GetResult<Prisma.$AssetPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends assetDeleteArgs>(args: SelectSubset<T, assetDeleteArgs<ExtArgs>>): Prisma__assetClient<$Result.GetResult<Prisma.$assetPayload<ExtArgs>, T, "delete">, never, ExtArgs>
 
     /**
      * Update one Asset.
-     * @param {AssetUpdateArgs} args - Arguments to update one Asset.
+     * @param {assetUpdateArgs} args - Arguments to update one Asset.
      * @example
      * // Update one Asset
      * const asset = await prisma.asset.update({
@@ -2395,11 +3867,11 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends AssetUpdateArgs>(args: SelectSubset<T, AssetUpdateArgs<ExtArgs>>): Prisma__AssetClient<$Result.GetResult<Prisma.$AssetPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends assetUpdateArgs>(args: SelectSubset<T, assetUpdateArgs<ExtArgs>>): Prisma__assetClient<$Result.GetResult<Prisma.$assetPayload<ExtArgs>, T, "update">, never, ExtArgs>
 
     /**
      * Delete zero or more Assets.
-     * @param {AssetDeleteManyArgs} args - Arguments to filter Assets to delete.
+     * @param {assetDeleteManyArgs} args - Arguments to filter Assets to delete.
      * @example
      * // Delete a few Assets
      * const { count } = await prisma.asset.deleteMany({
@@ -2409,13 +3881,13 @@ export namespace Prisma {
      * })
      * 
      */
-    deleteMany<T extends AssetDeleteManyArgs>(args?: SelectSubset<T, AssetDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends assetDeleteManyArgs>(args?: SelectSubset<T, assetDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Assets.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssetUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {assetUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
      * // Update many Assets
      * const asset = await prisma.asset.updateMany({
@@ -2428,11 +3900,11 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends AssetUpdateManyArgs>(args: SelectSubset<T, AssetUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends assetUpdateManyArgs>(args: SelectSubset<T, assetUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Asset.
-     * @param {AssetUpsertArgs} args - Arguments to update or create a Asset.
+     * @param {assetUpsertArgs} args - Arguments to update or create a Asset.
      * @example
      * // Update or create a Asset
      * const asset = await prisma.asset.upsert({
@@ -2447,14 +3919,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends AssetUpsertArgs>(args: SelectSubset<T, AssetUpsertArgs<ExtArgs>>): Prisma__AssetClient<$Result.GetResult<Prisma.$AssetPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends assetUpsertArgs>(args: SelectSubset<T, assetUpsertArgs<ExtArgs>>): Prisma__assetClient<$Result.GetResult<Prisma.$assetPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
 
 
     /**
      * Count the number of Assets.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssetCountArgs} args - Arguments to filter Assets to count.
+     * @param {assetCountArgs} args - Arguments to filter Assets to count.
      * @example
      * // Count the number of Assets
      * const count = await prisma.asset.count({
@@ -2463,8 +3935,8 @@ export namespace Prisma {
      *   }
      * })
     **/
-    count<T extends AssetCountArgs>(
-      args?: Subset<T, AssetCountArgs>,
+    count<T extends assetCountArgs>(
+      args?: Subset<T, assetCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
@@ -2503,7 +3975,7 @@ export namespace Prisma {
      * Group by Asset.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssetGroupByArgs} args - Group by arguments.
+     * @param {assetGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -2518,14 +3990,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends AssetGroupByArgs,
+      T extends assetGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: AssetGroupByArgs['orderBy'] }
-        : { orderBy?: AssetGroupByArgs['orderBy'] },
+        ? { orderBy: assetGroupByArgs['orderBy'] }
+        : { orderBy?: assetGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -2574,22 +4046,23 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, AssetGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAssetGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, assetGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAssetGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Asset model
+   * Fields of the asset model
    */
-  readonly fields: AssetFieldRefs;
+  readonly fields: assetFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Asset.
+   * The delegate class that acts as a "Promise-like" for asset.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__AssetClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__assetClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    User<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    user<T extends userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, userDefaultArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    household<T extends asset$householdArgs<ExtArgs> = {}>(args?: Subset<T, asset$householdArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$householdPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2616,347 +4089,1399 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Asset model
+   * Fields of the asset model
    */ 
-  interface AssetFieldRefs {
-    readonly id: FieldRef<"Asset", 'String'>
-    readonly user_id: FieldRef<"Asset", 'String'>
-    readonly asset_type: FieldRef<"Asset", 'String'>
-    readonly asset_name: FieldRef<"Asset", 'String'>
-    readonly asset_money: FieldRef<"Asset", 'Float'>
-    readonly asset_currency: FieldRef<"Asset", 'String'>
-    readonly asset_comment: FieldRef<"Asset", 'String'>
-    readonly created_at: FieldRef<"Asset", 'DateTime'>
-    readonly updated_at: FieldRef<"Asset", 'DateTime'>
+  interface assetFieldRefs {
+    readonly id: FieldRef<"asset", 'String'>
+    readonly user_id: FieldRef<"asset", 'String'>
+    readonly asset_type: FieldRef<"asset", 'String'>
+    readonly asset_name: FieldRef<"asset", 'String'>
+    readonly asset_money: FieldRef<"asset", 'Float'>
+    readonly asset_currency: FieldRef<"asset", 'String'>
+    readonly asset_comment: FieldRef<"asset", 'String'>
+    readonly created_at: FieldRef<"asset", 'DateTime'>
+    readonly updated_at: FieldRef<"asset", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * Asset findUnique
+   * asset findUnique
    */
-  export type AssetFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type assetFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Asset
+     * Select specific fields to fetch from the asset
      */
-    select?: AssetSelect<ExtArgs> | null
+    select?: assetSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssetInclude<ExtArgs> | null
+    include?: assetInclude<ExtArgs> | null
     /**
-     * Filter, which Asset to fetch.
+     * Filter, which asset to fetch.
      */
-    where: AssetWhereUniqueInput
+    where: assetWhereUniqueInput
   }
 
   /**
-   * Asset findUniqueOrThrow
+   * asset findUniqueOrThrow
    */
-  export type AssetFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type assetFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Asset
+     * Select specific fields to fetch from the asset
      */
-    select?: AssetSelect<ExtArgs> | null
+    select?: assetSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssetInclude<ExtArgs> | null
+    include?: assetInclude<ExtArgs> | null
     /**
-     * Filter, which Asset to fetch.
+     * Filter, which asset to fetch.
      */
-    where: AssetWhereUniqueInput
+    where: assetWhereUniqueInput
   }
 
   /**
-   * Asset findFirst
+   * asset findFirst
    */
-  export type AssetFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type assetFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Asset
+     * Select specific fields to fetch from the asset
      */
-    select?: AssetSelect<ExtArgs> | null
+    select?: assetSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssetInclude<ExtArgs> | null
+    include?: assetInclude<ExtArgs> | null
     /**
-     * Filter, which Asset to fetch.
+     * Filter, which asset to fetch.
      */
-    where?: AssetWhereInput
+    where?: assetWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Assets to fetch.
+     * Determine the order of assets to fetch.
      */
-    orderBy?: AssetOrderByWithRelationInput | AssetOrderByWithRelationInput[]
+    orderBy?: assetOrderByWithRelationInput | assetOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Assets.
+     * Sets the position for searching for assets.
      */
-    cursor?: AssetWhereUniqueInput
+    cursor?: assetWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Assets from the position of the cursor.
+     * Take `±n` assets from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Assets.
+     * Skip the first `n` assets.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Assets.
+     * Filter by unique combinations of assets.
      */
     distinct?: AssetScalarFieldEnum | AssetScalarFieldEnum[]
   }
 
   /**
-   * Asset findFirstOrThrow
+   * asset findFirstOrThrow
    */
-  export type AssetFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type assetFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Asset
+     * Select specific fields to fetch from the asset
      */
-    select?: AssetSelect<ExtArgs> | null
+    select?: assetSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssetInclude<ExtArgs> | null
+    include?: assetInclude<ExtArgs> | null
     /**
-     * Filter, which Asset to fetch.
+     * Filter, which asset to fetch.
      */
-    where?: AssetWhereInput
+    where?: assetWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Assets to fetch.
+     * Determine the order of assets to fetch.
      */
-    orderBy?: AssetOrderByWithRelationInput | AssetOrderByWithRelationInput[]
+    orderBy?: assetOrderByWithRelationInput | assetOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Assets.
+     * Sets the position for searching for assets.
      */
-    cursor?: AssetWhereUniqueInput
+    cursor?: assetWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Assets from the position of the cursor.
+     * Take `±n` assets from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Assets.
+     * Skip the first `n` assets.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Assets.
+     * Filter by unique combinations of assets.
      */
     distinct?: AssetScalarFieldEnum | AssetScalarFieldEnum[]
   }
 
   /**
-   * Asset findMany
+   * asset findMany
    */
-  export type AssetFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type assetFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Asset
+     * Select specific fields to fetch from the asset
      */
-    select?: AssetSelect<ExtArgs> | null
+    select?: assetSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssetInclude<ExtArgs> | null
+    include?: assetInclude<ExtArgs> | null
     /**
-     * Filter, which Assets to fetch.
+     * Filter, which assets to fetch.
      */
-    where?: AssetWhereInput
+    where?: assetWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Assets to fetch.
+     * Determine the order of assets to fetch.
      */
-    orderBy?: AssetOrderByWithRelationInput | AssetOrderByWithRelationInput[]
+    orderBy?: assetOrderByWithRelationInput | assetOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Assets.
+     * Sets the position for listing assets.
      */
-    cursor?: AssetWhereUniqueInput
+    cursor?: assetWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Assets from the position of the cursor.
+     * Take `±n` assets from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Assets.
+     * Skip the first `n` assets.
      */
     skip?: number
     distinct?: AssetScalarFieldEnum | AssetScalarFieldEnum[]
   }
 
   /**
-   * Asset create
+   * asset create
    */
-  export type AssetCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type assetCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Asset
+     * Select specific fields to fetch from the asset
      */
-    select?: AssetSelect<ExtArgs> | null
+    select?: assetSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssetInclude<ExtArgs> | null
+    include?: assetInclude<ExtArgs> | null
     /**
-     * The data needed to create a Asset.
+     * The data needed to create a asset.
      */
-    data: XOR<AssetCreateInput, AssetUncheckedCreateInput>
+    data: XOR<assetCreateInput, assetUncheckedCreateInput>
   }
 
   /**
-   * Asset createMany
+   * asset createMany
    */
-  export type AssetCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type assetCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Assets.
+     * The data used to create many assets.
      */
-    data: AssetCreateManyInput | AssetCreateManyInput[]
+    data: assetCreateManyInput | assetCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Asset createManyAndReturn
+   * asset createManyAndReturn
    */
-  export type AssetCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type assetCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Asset
+     * Select specific fields to fetch from the asset
      */
-    select?: AssetSelectCreateManyAndReturn<ExtArgs> | null
+    select?: assetSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * The data used to create many Assets.
+     * The data used to create many assets.
      */
-    data: AssetCreateManyInput | AssetCreateManyInput[]
+    data: assetCreateManyInput | assetCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssetIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: assetIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Asset update
+   * asset update
    */
-  export type AssetUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type assetUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Asset
+     * Select specific fields to fetch from the asset
      */
-    select?: AssetSelect<ExtArgs> | null
+    select?: assetSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssetInclude<ExtArgs> | null
+    include?: assetInclude<ExtArgs> | null
     /**
-     * The data needed to update a Asset.
+     * The data needed to update a asset.
      */
-    data: XOR<AssetUpdateInput, AssetUncheckedUpdateInput>
+    data: XOR<assetUpdateInput, assetUncheckedUpdateInput>
     /**
-     * Choose, which Asset to update.
+     * Choose, which asset to update.
      */
-    where: AssetWhereUniqueInput
+    where: assetWhereUniqueInput
   }
 
   /**
-   * Asset updateMany
+   * asset updateMany
    */
-  export type AssetUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type assetUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Assets.
+     * The data used to update assets.
      */
-    data: XOR<AssetUpdateManyMutationInput, AssetUncheckedUpdateManyInput>
+    data: XOR<assetUpdateManyMutationInput, assetUncheckedUpdateManyInput>
     /**
-     * Filter which Assets to update
+     * Filter which assets to update
      */
-    where?: AssetWhereInput
+    where?: assetWhereInput
   }
 
   /**
-   * Asset upsert
+   * asset upsert
    */
-  export type AssetUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type assetUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Asset
+     * Select specific fields to fetch from the asset
      */
-    select?: AssetSelect<ExtArgs> | null
+    select?: assetSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssetInclude<ExtArgs> | null
+    include?: assetInclude<ExtArgs> | null
     /**
-     * The filter to search for the Asset to update in case it exists.
+     * The filter to search for the asset to update in case it exists.
      */
-    where: AssetWhereUniqueInput
+    where: assetWhereUniqueInput
     /**
-     * In case the Asset found by the `where` argument doesn't exist, create a new Asset with this data.
+     * In case the asset found by the `where` argument doesn't exist, create a new asset with this data.
      */
-    create: XOR<AssetCreateInput, AssetUncheckedCreateInput>
+    create: XOR<assetCreateInput, assetUncheckedCreateInput>
     /**
-     * In case the Asset was found with the provided `where` argument, update it with this data.
+     * In case the asset was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<AssetUpdateInput, AssetUncheckedUpdateInput>
+    update: XOR<assetUpdateInput, assetUncheckedUpdateInput>
   }
 
   /**
-   * Asset delete
+   * asset delete
    */
-  export type AssetDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type assetDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Asset
+     * Select specific fields to fetch from the asset
      */
-    select?: AssetSelect<ExtArgs> | null
+    select?: assetSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssetInclude<ExtArgs> | null
+    include?: assetInclude<ExtArgs> | null
     /**
-     * Filter which Asset to delete.
+     * Filter which asset to delete.
      */
-    where: AssetWhereUniqueInput
+    where: assetWhereUniqueInput
   }
 
   /**
-   * Asset deleteMany
+   * asset deleteMany
    */
-  export type AssetDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type assetDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Assets to delete
+     * Filter which assets to delete
      */
-    where?: AssetWhereInput
+    where?: assetWhereInput
   }
 
   /**
-   * Asset without action
+   * asset.household
    */
-  export type AssetDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type asset$householdArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Asset
+     * Select specific fields to fetch from the household
      */
-    select?: AssetSelect<ExtArgs> | null
+    select?: householdSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssetInclude<ExtArgs> | null
+    include?: householdInclude<ExtArgs> | null
+    where?: householdWhereInput
+    orderBy?: householdOrderByWithRelationInput | householdOrderByWithRelationInput[]
+    cursor?: householdWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HouseholdScalarFieldEnum | HouseholdScalarFieldEnum[]
+  }
+
+  /**
+   * asset without action
+   */
+  export type assetDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the asset
+     */
+    select?: assetSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: assetInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model user
+   */
+
+  export type AggregateUser = {
+    _count: UserCountAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
+  }
+
+  export type UserMinAggregateOutputType = {
+    id: string | null
+    user_email: string | null
+    user_password: string | null
+    user_first_name: string | null
+    user_last_name: string | null
+    delete_flg: boolean | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type UserMaxAggregateOutputType = {
+    id: string | null
+    user_email: string | null
+    user_password: string | null
+    user_first_name: string | null
+    user_last_name: string | null
+    delete_flg: boolean | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type UserCountAggregateOutputType = {
+    id: number
+    user_email: number
+    user_password: number
+    user_first_name: number
+    user_last_name: number
+    delete_flg: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type UserMinAggregateInputType = {
+    id?: true
+    user_email?: true
+    user_password?: true
+    user_first_name?: true
+    user_last_name?: true
+    delete_flg?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type UserMaxAggregateInputType = {
+    id?: true
+    user_email?: true
+    user_password?: true
+    user_first_name?: true
+    user_last_name?: true
+    delete_flg?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type UserCountAggregateInputType = {
+    id?: true
+    user_email?: true
+    user_password?: true
+    user_first_name?: true
+    user_last_name?: true
+    delete_flg?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type UserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which user to aggregate.
+     */
+    where?: userWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of users to fetch.
+     */
+    orderBy?: userOrderByWithRelationInput | userOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: userWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned users
+    **/
+    _count?: true | UserCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserMaxAggregateInputType
+  }
+
+  export type GetUserAggregateType<T extends UserAggregateArgs> = {
+        [P in keyof T & keyof AggregateUser]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUser[P]>
+      : GetScalarType<T[P], AggregateUser[P]>
+  }
+
+
+
+
+  export type userGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: userWhereInput
+    orderBy?: userOrderByWithAggregationInput | userOrderByWithAggregationInput[]
+    by: UserScalarFieldEnum[] | UserScalarFieldEnum
+    having?: userScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserCountAggregateInputType | true
+    _min?: UserMinAggregateInputType
+    _max?: UserMaxAggregateInputType
+  }
+
+  export type UserGroupByOutputType = {
+    id: string
+    user_email: string
+    user_password: string
+    user_first_name: string | null
+    user_last_name: string | null
+    delete_flg: boolean
+    created_at: Date
+    updated_at: Date | null
+    _count: UserCountAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
+  }
+
+  type GetUserGroupByPayload<T extends userGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserGroupByOutputType[P]>
+            : GetScalarType<T[P], UserGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type userSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_email?: boolean
+    user_password?: boolean
+    user_first_name?: boolean
+    user_last_name?: boolean
+    delete_flg?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    asset?: boolean | user$assetArgs<ExtArgs>
+    household?: boolean | user$householdArgs<ExtArgs>
+    household_categories?: boolean | user$household_categoriesArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["user"]>
+
+  export type userSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_email?: boolean
+    user_password?: boolean
+    user_first_name?: boolean
+    user_last_name?: boolean
+    delete_flg?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }, ExtArgs["result"]["user"]>
+
+  export type userSelectScalar = {
+    id?: boolean
+    user_email?: boolean
+    user_password?: boolean
+    user_first_name?: boolean
+    user_last_name?: boolean
+    delete_flg?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type userInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    asset?: boolean | user$assetArgs<ExtArgs>
+    household?: boolean | user$householdArgs<ExtArgs>
+    household_categories?: boolean | user$household_categoriesArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type userIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $userPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "user"
+    objects: {
+      asset: Prisma.$assetPayload<ExtArgs>[]
+      household: Prisma.$householdPayload<ExtArgs>[]
+      household_categories: Prisma.$household_categoriesPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      user_email: string
+      user_password: string
+      user_first_name: string | null
+      user_last_name: string | null
+      delete_flg: boolean
+      created_at: Date
+      updated_at: Date | null
+    }, ExtArgs["result"]["user"]>
+    composites: {}
+  }
+
+  type userGetPayload<S extends boolean | null | undefined | userDefaultArgs> = $Result.GetResult<Prisma.$userPayload, S>
+
+  type userCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<userFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: UserCountAggregateInputType | true
+    }
+
+  export interface userDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['user'], meta: { name: 'user' } }
+    /**
+     * Find zero or one User that matches the filter.
+     * @param {userFindUniqueArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends userFindUniqueArgs>(args: SelectSubset<T, userFindUniqueArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one User that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {userFindUniqueOrThrowArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends userFindUniqueOrThrowArgs>(args: SelectSubset<T, userFindUniqueOrThrowArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first User that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {userFindFirstArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends userFindFirstArgs>(args?: SelectSubset<T, userFindFirstArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first User that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {userFindFirstOrThrowArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends userFindFirstOrThrowArgs>(args?: SelectSubset<T, userFindFirstOrThrowArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Users that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {userFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Users
+     * const users = await prisma.user.findMany()
+     * 
+     * // Get first 10 Users
+     * const users = await prisma.user.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends userFindManyArgs>(args?: SelectSubset<T, userFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a User.
+     * @param {userCreateArgs} args - Arguments to create a User.
+     * @example
+     * // Create one User
+     * const User = await prisma.user.create({
+     *   data: {
+     *     // ... data to create a User
+     *   }
+     * })
+     * 
+     */
+    create<T extends userCreateArgs>(args: SelectSubset<T, userCreateArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Users.
+     * @param {userCreateManyArgs} args - Arguments to create many Users.
+     * @example
+     * // Create many Users
+     * const user = await prisma.user.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends userCreateManyArgs>(args?: SelectSubset<T, userCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Users and returns the data saved in the database.
+     * @param {userCreateManyAndReturnArgs} args - Arguments to create many Users.
+     * @example
+     * // Create many Users
+     * const user = await prisma.user.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Users and only return the `id`
+     * const userWithIdOnly = await prisma.user.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends userCreateManyAndReturnArgs>(args?: SelectSubset<T, userCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a User.
+     * @param {userDeleteArgs} args - Arguments to delete one User.
+     * @example
+     * // Delete one User
+     * const User = await prisma.user.delete({
+     *   where: {
+     *     // ... filter to delete one User
+     *   }
+     * })
+     * 
+     */
+    delete<T extends userDeleteArgs>(args: SelectSubset<T, userDeleteArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one User.
+     * @param {userUpdateArgs} args - Arguments to update one User.
+     * @example
+     * // Update one User
+     * const user = await prisma.user.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends userUpdateArgs>(args: SelectSubset<T, userUpdateArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Users.
+     * @param {userDeleteManyArgs} args - Arguments to filter Users to delete.
+     * @example
+     * // Delete a few Users
+     * const { count } = await prisma.user.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends userDeleteManyArgs>(args?: SelectSubset<T, userDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {userUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Users
+     * const user = await prisma.user.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends userUpdateManyArgs>(args: SelectSubset<T, userUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one User.
+     * @param {userUpsertArgs} args - Arguments to update or create a User.
+     * @example
+     * // Update or create a User
+     * const user = await prisma.user.upsert({
+     *   create: {
+     *     // ... data to create a User
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the User we want to update
+     *   }
+     * })
+     */
+    upsert<T extends userUpsertArgs>(args: SelectSubset<T, userUpsertArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {userCountArgs} args - Arguments to filter Users to count.
+     * @example
+     * // Count the number of Users
+     * const count = await prisma.user.count({
+     *   where: {
+     *     // ... the filter for the Users we want to count
+     *   }
+     * })
+    **/
+    count<T extends userCountArgs>(
+      args?: Subset<T, userCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a User.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserAggregateArgs>(args: Subset<T, UserAggregateArgs>): Prisma.PrismaPromise<GetUserAggregateType<T>>
+
+    /**
+     * Group by User.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {userGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends userGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: userGroupByArgs['orderBy'] }
+        : { orderBy?: userGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, userGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the user model
+   */
+  readonly fields: userFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for user.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__userClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    asset<T extends user$assetArgs<ExtArgs> = {}>(args?: Subset<T, user$assetArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$assetPayload<ExtArgs>, T, "findMany"> | Null>
+    household<T extends user$householdArgs<ExtArgs> = {}>(args?: Subset<T, user$householdArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$householdPayload<ExtArgs>, T, "findMany"> | Null>
+    household_categories<T extends user$household_categoriesArgs<ExtArgs> = {}>(args?: Subset<T, user$household_categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$household_categoriesPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the user model
+   */ 
+  interface userFieldRefs {
+    readonly id: FieldRef<"user", 'String'>
+    readonly user_email: FieldRef<"user", 'String'>
+    readonly user_password: FieldRef<"user", 'String'>
+    readonly user_first_name: FieldRef<"user", 'String'>
+    readonly user_last_name: FieldRef<"user", 'String'>
+    readonly delete_flg: FieldRef<"user", 'Boolean'>
+    readonly created_at: FieldRef<"user", 'DateTime'>
+    readonly updated_at: FieldRef<"user", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * user findUnique
+   */
+  export type userFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user
+     */
+    select?: userSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: userInclude<ExtArgs> | null
+    /**
+     * Filter, which user to fetch.
+     */
+    where: userWhereUniqueInput
+  }
+
+  /**
+   * user findUniqueOrThrow
+   */
+  export type userFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user
+     */
+    select?: userSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: userInclude<ExtArgs> | null
+    /**
+     * Filter, which user to fetch.
+     */
+    where: userWhereUniqueInput
+  }
+
+  /**
+   * user findFirst
+   */
+  export type userFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user
+     */
+    select?: userSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: userInclude<ExtArgs> | null
+    /**
+     * Filter, which user to fetch.
+     */
+    where?: userWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of users to fetch.
+     */
+    orderBy?: userOrderByWithRelationInput | userOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for users.
+     */
+    cursor?: userWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of users.
+     */
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * user findFirstOrThrow
+   */
+  export type userFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user
+     */
+    select?: userSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: userInclude<ExtArgs> | null
+    /**
+     * Filter, which user to fetch.
+     */
+    where?: userWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of users to fetch.
+     */
+    orderBy?: userOrderByWithRelationInput | userOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for users.
+     */
+    cursor?: userWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of users.
+     */
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * user findMany
+   */
+  export type userFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user
+     */
+    select?: userSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: userInclude<ExtArgs> | null
+    /**
+     * Filter, which users to fetch.
+     */
+    where?: userWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of users to fetch.
+     */
+    orderBy?: userOrderByWithRelationInput | userOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing users.
+     */
+    cursor?: userWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` users.
+     */
+    skip?: number
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * user create
+   */
+  export type userCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user
+     */
+    select?: userSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: userInclude<ExtArgs> | null
+    /**
+     * The data needed to create a user.
+     */
+    data: XOR<userCreateInput, userUncheckedCreateInput>
+  }
+
+  /**
+   * user createMany
+   */
+  export type userCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many users.
+     */
+    data: userCreateManyInput | userCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * user createManyAndReturn
+   */
+  export type userCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user
+     */
+    select?: userSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many users.
+     */
+    data: userCreateManyInput | userCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * user update
+   */
+  export type userUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user
+     */
+    select?: userSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: userInclude<ExtArgs> | null
+    /**
+     * The data needed to update a user.
+     */
+    data: XOR<userUpdateInput, userUncheckedUpdateInput>
+    /**
+     * Choose, which user to update.
+     */
+    where: userWhereUniqueInput
+  }
+
+  /**
+   * user updateMany
+   */
+  export type userUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update users.
+     */
+    data: XOR<userUpdateManyMutationInput, userUncheckedUpdateManyInput>
+    /**
+     * Filter which users to update
+     */
+    where?: userWhereInput
+  }
+
+  /**
+   * user upsert
+   */
+  export type userUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user
+     */
+    select?: userSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: userInclude<ExtArgs> | null
+    /**
+     * The filter to search for the user to update in case it exists.
+     */
+    where: userWhereUniqueInput
+    /**
+     * In case the user found by the `where` argument doesn't exist, create a new user with this data.
+     */
+    create: XOR<userCreateInput, userUncheckedCreateInput>
+    /**
+     * In case the user was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<userUpdateInput, userUncheckedUpdateInput>
+  }
+
+  /**
+   * user delete
+   */
+  export type userDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user
+     */
+    select?: userSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: userInclude<ExtArgs> | null
+    /**
+     * Filter which user to delete.
+     */
+    where: userWhereUniqueInput
+  }
+
+  /**
+   * user deleteMany
+   */
+  export type userDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which users to delete
+     */
+    where?: userWhereInput
+  }
+
+  /**
+   * user.asset
+   */
+  export type user$assetArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the asset
+     */
+    select?: assetSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: assetInclude<ExtArgs> | null
+    where?: assetWhereInput
+    orderBy?: assetOrderByWithRelationInput | assetOrderByWithRelationInput[]
+    cursor?: assetWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AssetScalarFieldEnum | AssetScalarFieldEnum[]
+  }
+
+  /**
+   * user.household
+   */
+  export type user$householdArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the household
+     */
+    select?: householdSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: householdInclude<ExtArgs> | null
+    where?: householdWhereInput
+    orderBy?: householdOrderByWithRelationInput | householdOrderByWithRelationInput[]
+    cursor?: householdWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HouseholdScalarFieldEnum | HouseholdScalarFieldEnum[]
+  }
+
+  /**
+   * user.household_categories
+   */
+  export type user$household_categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the household_categories
+     */
+    select?: household_categoriesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: household_categoriesInclude<ExtArgs> | null
+    where?: household_categoriesWhereInput
+    orderBy?: household_categoriesOrderByWithRelationInput | household_categoriesOrderByWithRelationInput[]
+    cursor?: household_categoriesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Household_categoriesScalarFieldEnum | Household_categoriesScalarFieldEnum[]
+  }
+
+  /**
+   * user without action
+   */
+  export type userDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user
+     */
+    select?: userSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: userInclude<ExtArgs> | null
   }
 
 
@@ -2974,18 +5499,38 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-  export const UserScalarFieldEnum: {
+  export const HouseholdScalarFieldEnum: {
     id: 'id',
-    user_email: 'user_email',
-    user_password: 'user_password',
-    user_first_name: 'user_first_name',
-    user_last_name: 'user_last_name',
-    delete_flg: 'delete_flg',
+    issue_date: 'issue_date',
+    asset_id: 'asset_id',
+    user_id: 'user_id',
+    household_type: 'household_type',
+    household_amount: 'household_amount',
+    household_comment: 'household_comment',
+    image_path: 'image_path',
+    image_text: 'image_text',
     created_at: 'created_at',
-    updated_at: 'updated_at'
+    updated_at: 'updated_at',
+    household_category: 'household_category',
+    household_subcategory: 'household_subcategory',
+    household_name: 'household_name'
   };
 
-  export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+  export type HouseholdScalarFieldEnum = (typeof HouseholdScalarFieldEnum)[keyof typeof HouseholdScalarFieldEnum]
+
+
+  export const Household_categoriesScalarFieldEnum: {
+    id: 'id',
+    user_id: 'user_id',
+    category_name: 'category_name',
+    parent_category_id: 'parent_category_id',
+    category_comment: 'category_comment',
+    created_at: 'created_at',
+    update_at: 'update_at',
+    household_type: 'household_type'
+  };
+
+  export type Household_categoriesScalarFieldEnum = (typeof Household_categoriesScalarFieldEnum)[keyof typeof Household_categoriesScalarFieldEnum]
 
 
   export const AssetScalarFieldEnum: {
@@ -3001,6 +5546,20 @@ export namespace Prisma {
   };
 
   export type AssetScalarFieldEnum = (typeof AssetScalarFieldEnum)[keyof typeof AssetScalarFieldEnum]
+
+
+  export const UserScalarFieldEnum: {
+    id: 'id',
+    user_email: 'user_email',
+    user_password: 'user_password',
+    user_first_name: 'user_first_name',
+    user_last_name: 'user_last_name',
+    delete_flg: 'delete_flg',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3047,13 +5606,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -3082,6 +5634,27 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'BigInt'
+   */
+  export type BigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt'>
+    
+
+
+  /**
+   * Reference to a field of type 'BigInt[]'
+   */
+  export type ListBigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -3098,313 +5671,722 @@ export namespace Prisma {
    */
 
 
-  export type UserWhereInput = {
-    AND?: UserWhereInput | UserWhereInput[]
-    OR?: UserWhereInput[]
-    NOT?: UserWhereInput | UserWhereInput[]
-    id?: UuidFilter<"User"> | string
-    user_email?: StringFilter<"User"> | string
-    user_password?: StringFilter<"User"> | string
-    user_first_name?: StringNullableFilter<"User"> | string | null
-    user_last_name?: StringNullableFilter<"User"> | string | null
-    delete_flg?: BoolFilter<"User"> | boolean
-    created_at?: DateTimeFilter<"User"> | Date | string
-    updated_at?: DateTimeNullableFilter<"User"> | Date | string | null
-    Asset?: AssetListRelationFilter
+  export type householdWhereInput = {
+    AND?: householdWhereInput | householdWhereInput[]
+    OR?: householdWhereInput[]
+    NOT?: householdWhereInput | householdWhereInput[]
+    id?: UuidFilter<"household"> | string
+    issue_date?: DateTimeFilter<"household"> | Date | string
+    asset_id?: UuidFilter<"household"> | string
+    user_id?: UuidFilter<"household"> | string
+    household_type?: StringFilter<"household"> | string
+    household_amount?: FloatFilter<"household"> | number
+    household_comment?: StringNullableFilter<"household"> | string | null
+    image_path?: StringNullableFilter<"household"> | string | null
+    image_text?: StringNullableFilter<"household"> | string | null
+    created_at?: DateTimeFilter<"household"> | Date | string
+    updated_at?: DateTimeNullableFilter<"household"> | Date | string | null
+    household_category?: BigIntNullableFilter<"household"> | bigint | number | null
+    household_subcategory?: BigIntNullableFilter<"household"> | bigint | number | null
+    household_name?: StringNullableFilter<"household"> | string | null
+    Asset?: XOR<AssetRelationFilter, assetWhereInput>
+    household_categories_household_household_categoryTohousehold_categories?: XOR<Household_categoriesNullableRelationFilter, household_categoriesWhereInput> | null
+    household_categories_household_household_subcategoryTohousehold_categories?: XOR<Household_categoriesNullableRelationFilter, household_categoriesWhereInput> | null
+    User?: XOR<UserRelationFilter, userWhereInput>
   }
 
-  export type UserOrderByWithRelationInput = {
+  export type householdOrderByWithRelationInput = {
     id?: SortOrder
-    user_email?: SortOrder
-    user_password?: SortOrder
-    user_first_name?: SortOrderInput | SortOrder
-    user_last_name?: SortOrderInput | SortOrder
-    delete_flg?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrderInput | SortOrder
-    Asset?: AssetOrderByRelationAggregateInput
-  }
-
-  export type UserWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    user_email?: string
-    AND?: UserWhereInput | UserWhereInput[]
-    OR?: UserWhereInput[]
-    NOT?: UserWhereInput | UserWhereInput[]
-    user_password?: StringFilter<"User"> | string
-    user_first_name?: StringNullableFilter<"User"> | string | null
-    user_last_name?: StringNullableFilter<"User"> | string | null
-    delete_flg?: BoolFilter<"User"> | boolean
-    created_at?: DateTimeFilter<"User"> | Date | string
-    updated_at?: DateTimeNullableFilter<"User"> | Date | string | null
-    Asset?: AssetListRelationFilter
-  }, "id" | "user_email">
-
-  export type UserOrderByWithAggregationInput = {
-    id?: SortOrder
-    user_email?: SortOrder
-    user_password?: SortOrder
-    user_first_name?: SortOrderInput | SortOrder
-    user_last_name?: SortOrderInput | SortOrder
-    delete_flg?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrderInput | SortOrder
-    _count?: UserCountOrderByAggregateInput
-    _max?: UserMaxOrderByAggregateInput
-    _min?: UserMinOrderByAggregateInput
-  }
-
-  export type UserScalarWhereWithAggregatesInput = {
-    AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
-    OR?: UserScalarWhereWithAggregatesInput[]
-    NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
-    id?: UuidWithAggregatesFilter<"User"> | string
-    user_email?: StringWithAggregatesFilter<"User"> | string
-    user_password?: StringWithAggregatesFilter<"User"> | string
-    user_first_name?: StringNullableWithAggregatesFilter<"User"> | string | null
-    user_last_name?: StringNullableWithAggregatesFilter<"User"> | string | null
-    delete_flg?: BoolWithAggregatesFilter<"User"> | boolean
-    created_at?: DateTimeWithAggregatesFilter<"User"> | Date | string
-    updated_at?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
-  }
-
-  export type AssetWhereInput = {
-    AND?: AssetWhereInput | AssetWhereInput[]
-    OR?: AssetWhereInput[]
-    NOT?: AssetWhereInput | AssetWhereInput[]
-    id?: UuidFilter<"Asset"> | string
-    user_id?: UuidFilter<"Asset"> | string
-    asset_type?: StringFilter<"Asset"> | string
-    asset_name?: StringFilter<"Asset"> | string
-    asset_money?: FloatFilter<"Asset"> | number
-    asset_currency?: StringNullableFilter<"Asset"> | string | null
-    asset_comment?: StringNullableFilter<"Asset"> | string | null
-    created_at?: DateTimeFilter<"Asset"> | Date | string
-    updated_at?: DateTimeNullableFilter<"Asset"> | Date | string | null
-    User?: XOR<UserRelationFilter, UserWhereInput>
-  }
-
-  export type AssetOrderByWithRelationInput = {
-    id?: SortOrder
+    issue_date?: SortOrder
+    asset_id?: SortOrder
     user_id?: SortOrder
-    asset_type?: SortOrder
-    asset_name?: SortOrder
-    asset_money?: SortOrder
-    asset_currency?: SortOrderInput | SortOrder
-    asset_comment?: SortOrderInput | SortOrder
+    household_type?: SortOrder
+    household_amount?: SortOrder
+    household_comment?: SortOrderInput | SortOrder
+    image_path?: SortOrderInput | SortOrder
+    image_text?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrderInput | SortOrder
-    User?: UserOrderByWithRelationInput
+    household_category?: SortOrderInput | SortOrder
+    household_subcategory?: SortOrderInput | SortOrder
+    household_name?: SortOrderInput | SortOrder
+    Asset?: assetOrderByWithRelationInput
+    household_categories_household_household_categoryTohousehold_categories?: household_categoriesOrderByWithRelationInput
+    household_categories_household_household_subcategoryTohousehold_categories?: household_categoriesOrderByWithRelationInput
+    User?: userOrderByWithRelationInput
   }
 
-  export type AssetWhereUniqueInput = Prisma.AtLeast<{
+  export type householdWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: AssetWhereInput | AssetWhereInput[]
-    OR?: AssetWhereInput[]
-    NOT?: AssetWhereInput | AssetWhereInput[]
-    user_id?: UuidFilter<"Asset"> | string
-    asset_type?: StringFilter<"Asset"> | string
-    asset_name?: StringFilter<"Asset"> | string
-    asset_money?: FloatFilter<"Asset"> | number
-    asset_currency?: StringNullableFilter<"Asset"> | string | null
-    asset_comment?: StringNullableFilter<"Asset"> | string | null
-    created_at?: DateTimeFilter<"Asset"> | Date | string
-    updated_at?: DateTimeNullableFilter<"Asset"> | Date | string | null
-    User?: XOR<UserRelationFilter, UserWhereInput>
+    AND?: householdWhereInput | householdWhereInput[]
+    OR?: householdWhereInput[]
+    NOT?: householdWhereInput | householdWhereInput[]
+    issue_date?: DateTimeFilter<"household"> | Date | string
+    asset_id?: UuidFilter<"household"> | string
+    user_id?: UuidFilter<"household"> | string
+    household_type?: StringFilter<"household"> | string
+    household_amount?: FloatFilter<"household"> | number
+    household_comment?: StringNullableFilter<"household"> | string | null
+    image_path?: StringNullableFilter<"household"> | string | null
+    image_text?: StringNullableFilter<"household"> | string | null
+    created_at?: DateTimeFilter<"household"> | Date | string
+    updated_at?: DateTimeNullableFilter<"household"> | Date | string | null
+    household_category?: BigIntNullableFilter<"household"> | bigint | number | null
+    household_subcategory?: BigIntNullableFilter<"household"> | bigint | number | null
+    household_name?: StringNullableFilter<"household"> | string | null
+    Asset?: XOR<AssetRelationFilter, assetWhereInput>
+    household_categories_household_household_categoryTohousehold_categories?: XOR<Household_categoriesNullableRelationFilter, household_categoriesWhereInput> | null
+    household_categories_household_household_subcategoryTohousehold_categories?: XOR<Household_categoriesNullableRelationFilter, household_categoriesWhereInput> | null
+    User?: XOR<UserRelationFilter, userWhereInput>
   }, "id">
 
-  export type AssetOrderByWithAggregationInput = {
+  export type householdOrderByWithAggregationInput = {
+    id?: SortOrder
+    issue_date?: SortOrder
+    asset_id?: SortOrder
+    user_id?: SortOrder
+    household_type?: SortOrder
+    household_amount?: SortOrder
+    household_comment?: SortOrderInput | SortOrder
+    image_path?: SortOrderInput | SortOrder
+    image_text?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    household_category?: SortOrderInput | SortOrder
+    household_subcategory?: SortOrderInput | SortOrder
+    household_name?: SortOrderInput | SortOrder
+    _count?: householdCountOrderByAggregateInput
+    _avg?: householdAvgOrderByAggregateInput
+    _max?: householdMaxOrderByAggregateInput
+    _min?: householdMinOrderByAggregateInput
+    _sum?: householdSumOrderByAggregateInput
+  }
+
+  export type householdScalarWhereWithAggregatesInput = {
+    AND?: householdScalarWhereWithAggregatesInput | householdScalarWhereWithAggregatesInput[]
+    OR?: householdScalarWhereWithAggregatesInput[]
+    NOT?: householdScalarWhereWithAggregatesInput | householdScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"household"> | string
+    issue_date?: DateTimeWithAggregatesFilter<"household"> | Date | string
+    asset_id?: UuidWithAggregatesFilter<"household"> | string
+    user_id?: UuidWithAggregatesFilter<"household"> | string
+    household_type?: StringWithAggregatesFilter<"household"> | string
+    household_amount?: FloatWithAggregatesFilter<"household"> | number
+    household_comment?: StringNullableWithAggregatesFilter<"household"> | string | null
+    image_path?: StringNullableWithAggregatesFilter<"household"> | string | null
+    image_text?: StringNullableWithAggregatesFilter<"household"> | string | null
+    created_at?: DateTimeWithAggregatesFilter<"household"> | Date | string
+    updated_at?: DateTimeNullableWithAggregatesFilter<"household"> | Date | string | null
+    household_category?: BigIntNullableWithAggregatesFilter<"household"> | bigint | number | null
+    household_subcategory?: BigIntNullableWithAggregatesFilter<"household"> | bigint | number | null
+    household_name?: StringNullableWithAggregatesFilter<"household"> | string | null
+  }
+
+  export type household_categoriesWhereInput = {
+    AND?: household_categoriesWhereInput | household_categoriesWhereInput[]
+    OR?: household_categoriesWhereInput[]
+    NOT?: household_categoriesWhereInput | household_categoriesWhereInput[]
+    id?: BigIntFilter<"household_categories"> | bigint | number
+    user_id?: UuidFilter<"household_categories"> | string
+    category_name?: StringFilter<"household_categories"> | string
+    parent_category_id?: BigIntNullableFilter<"household_categories"> | bigint | number | null
+    category_comment?: StringNullableFilter<"household_categories"> | string | null
+    created_at?: DateTimeFilter<"household_categories"> | Date | string
+    update_at?: DateTimeNullableFilter<"household_categories"> | Date | string | null
+    household_type?: StringFilter<"household_categories"> | string
+    household_household_household_categoryTohousehold_categories?: HouseholdListRelationFilter
+    household_household_household_subcategoryTohousehold_categories?: HouseholdListRelationFilter
+    User?: XOR<UserRelationFilter, userWhereInput>
+  }
+
+  export type household_categoriesOrderByWithRelationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    category_name?: SortOrder
+    parent_category_id?: SortOrderInput | SortOrder
+    category_comment?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    update_at?: SortOrderInput | SortOrder
+    household_type?: SortOrder
+    household_household_household_categoryTohousehold_categories?: householdOrderByRelationAggregateInput
+    household_household_household_subcategoryTohousehold_categories?: householdOrderByRelationAggregateInput
+    User?: userOrderByWithRelationInput
+  }
+
+  export type household_categoriesWhereUniqueInput = Prisma.AtLeast<{
+    id?: bigint | number
+    AND?: household_categoriesWhereInput | household_categoriesWhereInput[]
+    OR?: household_categoriesWhereInput[]
+    NOT?: household_categoriesWhereInput | household_categoriesWhereInput[]
+    user_id?: UuidFilter<"household_categories"> | string
+    category_name?: StringFilter<"household_categories"> | string
+    parent_category_id?: BigIntNullableFilter<"household_categories"> | bigint | number | null
+    category_comment?: StringNullableFilter<"household_categories"> | string | null
+    created_at?: DateTimeFilter<"household_categories"> | Date | string
+    update_at?: DateTimeNullableFilter<"household_categories"> | Date | string | null
+    household_type?: StringFilter<"household_categories"> | string
+    household_household_household_categoryTohousehold_categories?: HouseholdListRelationFilter
+    household_household_household_subcategoryTohousehold_categories?: HouseholdListRelationFilter
+    User?: XOR<UserRelationFilter, userWhereInput>
+  }, "id">
+
+  export type household_categoriesOrderByWithAggregationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    category_name?: SortOrder
+    parent_category_id?: SortOrderInput | SortOrder
+    category_comment?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    update_at?: SortOrderInput | SortOrder
+    household_type?: SortOrder
+    _count?: household_categoriesCountOrderByAggregateInput
+    _avg?: household_categoriesAvgOrderByAggregateInput
+    _max?: household_categoriesMaxOrderByAggregateInput
+    _min?: household_categoriesMinOrderByAggregateInput
+    _sum?: household_categoriesSumOrderByAggregateInput
+  }
+
+  export type household_categoriesScalarWhereWithAggregatesInput = {
+    AND?: household_categoriesScalarWhereWithAggregatesInput | household_categoriesScalarWhereWithAggregatesInput[]
+    OR?: household_categoriesScalarWhereWithAggregatesInput[]
+    NOT?: household_categoriesScalarWhereWithAggregatesInput | household_categoriesScalarWhereWithAggregatesInput[]
+    id?: BigIntWithAggregatesFilter<"household_categories"> | bigint | number
+    user_id?: UuidWithAggregatesFilter<"household_categories"> | string
+    category_name?: StringWithAggregatesFilter<"household_categories"> | string
+    parent_category_id?: BigIntNullableWithAggregatesFilter<"household_categories"> | bigint | number | null
+    category_comment?: StringNullableWithAggregatesFilter<"household_categories"> | string | null
+    created_at?: DateTimeWithAggregatesFilter<"household_categories"> | Date | string
+    update_at?: DateTimeNullableWithAggregatesFilter<"household_categories"> | Date | string | null
+    household_type?: StringWithAggregatesFilter<"household_categories"> | string
+  }
+
+  export type assetWhereInput = {
+    AND?: assetWhereInput | assetWhereInput[]
+    OR?: assetWhereInput[]
+    NOT?: assetWhereInput | assetWhereInput[]
+    id?: UuidFilter<"asset"> | string
+    user_id?: UuidFilter<"asset"> | string
+    asset_type?: StringFilter<"asset"> | string
+    asset_name?: StringFilter<"asset"> | string
+    asset_money?: FloatFilter<"asset"> | number
+    asset_currency?: StringFilter<"asset"> | string
+    asset_comment?: StringNullableFilter<"asset"> | string | null
+    created_at?: DateTimeFilter<"asset"> | Date | string
+    updated_at?: DateTimeNullableFilter<"asset"> | Date | string | null
+    user?: XOR<UserRelationFilter, userWhereInput>
+    household?: HouseholdListRelationFilter
+  }
+
+  export type assetOrderByWithRelationInput = {
     id?: SortOrder
     user_id?: SortOrder
     asset_type?: SortOrder
     asset_name?: SortOrder
     asset_money?: SortOrder
-    asset_currency?: SortOrderInput | SortOrder
+    asset_currency?: SortOrder
     asset_comment?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrderInput | SortOrder
-    _count?: AssetCountOrderByAggregateInput
-    _avg?: AssetAvgOrderByAggregateInput
-    _max?: AssetMaxOrderByAggregateInput
-    _min?: AssetMinOrderByAggregateInput
-    _sum?: AssetSumOrderByAggregateInput
+    user?: userOrderByWithRelationInput
+    household?: householdOrderByRelationAggregateInput
   }
 
-  export type AssetScalarWhereWithAggregatesInput = {
-    AND?: AssetScalarWhereWithAggregatesInput | AssetScalarWhereWithAggregatesInput[]
-    OR?: AssetScalarWhereWithAggregatesInput[]
-    NOT?: AssetScalarWhereWithAggregatesInput | AssetScalarWhereWithAggregatesInput[]
-    id?: UuidWithAggregatesFilter<"Asset"> | string
-    user_id?: UuidWithAggregatesFilter<"Asset"> | string
-    asset_type?: StringWithAggregatesFilter<"Asset"> | string
-    asset_name?: StringWithAggregatesFilter<"Asset"> | string
-    asset_money?: FloatWithAggregatesFilter<"Asset"> | number
-    asset_currency?: StringNullableWithAggregatesFilter<"Asset"> | string | null
-    asset_comment?: StringNullableWithAggregatesFilter<"Asset"> | string | null
-    created_at?: DateTimeWithAggregatesFilter<"Asset"> | Date | string
-    updated_at?: DateTimeNullableWithAggregatesFilter<"Asset"> | Date | string | null
-  }
-
-  export type UserCreateInput = {
+  export type assetWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    user_email: string
-    user_password: string
-    user_first_name?: string | null
-    user_last_name?: string | null
-    delete_flg?: boolean
+    AND?: assetWhereInput | assetWhereInput[]
+    OR?: assetWhereInput[]
+    NOT?: assetWhereInput | assetWhereInput[]
+    user_id?: UuidFilter<"asset"> | string
+    asset_type?: StringFilter<"asset"> | string
+    asset_name?: StringFilter<"asset"> | string
+    asset_money?: FloatFilter<"asset"> | number
+    asset_currency?: StringFilter<"asset"> | string
+    asset_comment?: StringNullableFilter<"asset"> | string | null
+    created_at?: DateTimeFilter<"asset"> | Date | string
+    updated_at?: DateTimeNullableFilter<"asset"> | Date | string | null
+    user?: XOR<UserRelationFilter, userWhereInput>
+    household?: HouseholdListRelationFilter
+  }, "id">
+
+  export type assetOrderByWithAggregationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    asset_type?: SortOrder
+    asset_name?: SortOrder
+    asset_money?: SortOrder
+    asset_currency?: SortOrder
+    asset_comment?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    _count?: assetCountOrderByAggregateInput
+    _avg?: assetAvgOrderByAggregateInput
+    _max?: assetMaxOrderByAggregateInput
+    _min?: assetMinOrderByAggregateInput
+    _sum?: assetSumOrderByAggregateInput
+  }
+
+  export type assetScalarWhereWithAggregatesInput = {
+    AND?: assetScalarWhereWithAggregatesInput | assetScalarWhereWithAggregatesInput[]
+    OR?: assetScalarWhereWithAggregatesInput[]
+    NOT?: assetScalarWhereWithAggregatesInput | assetScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"asset"> | string
+    user_id?: UuidWithAggregatesFilter<"asset"> | string
+    asset_type?: StringWithAggregatesFilter<"asset"> | string
+    asset_name?: StringWithAggregatesFilter<"asset"> | string
+    asset_money?: FloatWithAggregatesFilter<"asset"> | number
+    asset_currency?: StringWithAggregatesFilter<"asset"> | string
+    asset_comment?: StringNullableWithAggregatesFilter<"asset"> | string | null
+    created_at?: DateTimeWithAggregatesFilter<"asset"> | Date | string
+    updated_at?: DateTimeNullableWithAggregatesFilter<"asset"> | Date | string | null
+  }
+
+  export type userWhereInput = {
+    AND?: userWhereInput | userWhereInput[]
+    OR?: userWhereInput[]
+    NOT?: userWhereInput | userWhereInput[]
+    id?: UuidFilter<"user"> | string
+    user_email?: StringFilter<"user"> | string
+    user_password?: StringFilter<"user"> | string
+    user_first_name?: StringNullableFilter<"user"> | string | null
+    user_last_name?: StringNullableFilter<"user"> | string | null
+    delete_flg?: BoolFilter<"user"> | boolean
+    created_at?: DateTimeFilter<"user"> | Date | string
+    updated_at?: DateTimeNullableFilter<"user"> | Date | string | null
+    asset?: AssetListRelationFilter
+    household?: HouseholdListRelationFilter
+    household_categories?: Household_categoriesListRelationFilter
+  }
+
+  export type userOrderByWithRelationInput = {
+    id?: SortOrder
+    user_email?: SortOrder
+    user_password?: SortOrder
+    user_first_name?: SortOrderInput | SortOrder
+    user_last_name?: SortOrderInput | SortOrder
+    delete_flg?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    asset?: assetOrderByRelationAggregateInput
+    household?: householdOrderByRelationAggregateInput
+    household_categories?: household_categoriesOrderByRelationAggregateInput
+  }
+
+  export type userWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    user_email?: string
+    AND?: userWhereInput | userWhereInput[]
+    OR?: userWhereInput[]
+    NOT?: userWhereInput | userWhereInput[]
+    user_password?: StringFilter<"user"> | string
+    user_first_name?: StringNullableFilter<"user"> | string | null
+    user_last_name?: StringNullableFilter<"user"> | string | null
+    delete_flg?: BoolFilter<"user"> | boolean
+    created_at?: DateTimeFilter<"user"> | Date | string
+    updated_at?: DateTimeNullableFilter<"user"> | Date | string | null
+    asset?: AssetListRelationFilter
+    household?: HouseholdListRelationFilter
+    household_categories?: Household_categoriesListRelationFilter
+  }, "id" | "user_email">
+
+  export type userOrderByWithAggregationInput = {
+    id?: SortOrder
+    user_email?: SortOrder
+    user_password?: SortOrder
+    user_first_name?: SortOrderInput | SortOrder
+    user_last_name?: SortOrderInput | SortOrder
+    delete_flg?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    _count?: userCountOrderByAggregateInput
+    _max?: userMaxOrderByAggregateInput
+    _min?: userMinOrderByAggregateInput
+  }
+
+  export type userScalarWhereWithAggregatesInput = {
+    AND?: userScalarWhereWithAggregatesInput | userScalarWhereWithAggregatesInput[]
+    OR?: userScalarWhereWithAggregatesInput[]
+    NOT?: userScalarWhereWithAggregatesInput | userScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"user"> | string
+    user_email?: StringWithAggregatesFilter<"user"> | string
+    user_password?: StringWithAggregatesFilter<"user"> | string
+    user_first_name?: StringNullableWithAggregatesFilter<"user"> | string | null
+    user_last_name?: StringNullableWithAggregatesFilter<"user"> | string | null
+    delete_flg?: BoolWithAggregatesFilter<"user"> | boolean
+    created_at?: DateTimeWithAggregatesFilter<"user"> | Date | string
+    updated_at?: DateTimeNullableWithAggregatesFilter<"user"> | Date | string | null
+  }
+
+  export type householdCreateInput = {
+    id?: string
+    issue_date: Date | string
+    household_type: string
+    household_amount?: number
+    household_comment?: string | null
+    image_path?: string | null
+    image_text?: string | null
     created_at?: Date | string
     updated_at?: Date | string | null
-    Asset?: AssetCreateNestedManyWithoutUserInput
+    household_name?: string | null
+    Asset: assetCreateNestedOneWithoutHouseholdInput
+    household_categories_household_household_categoryTohousehold_categories?: household_categoriesCreateNestedOneWithoutHousehold_household_household_categoryTohousehold_categoriesInput
+    household_categories_household_household_subcategoryTohousehold_categories?: household_categoriesCreateNestedOneWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput
+    User: userCreateNestedOneWithoutHouseholdInput
   }
 
-  export type UserUncheckedCreateInput = {
+  export type householdUncheckedCreateInput = {
     id?: string
-    user_email: string
-    user_password: string
-    user_first_name?: string | null
-    user_last_name?: string | null
-    delete_flg?: boolean
+    issue_date: Date | string
+    asset_id: string
+    user_id: string
+    household_type: string
+    household_amount?: number
+    household_comment?: string | null
+    image_path?: string | null
+    image_text?: string | null
     created_at?: Date | string
     updated_at?: Date | string | null
-    Asset?: AssetUncheckedCreateNestedManyWithoutUserInput
+    household_category?: bigint | number | null
+    household_subcategory?: bigint | number | null
+    household_name?: string | null
   }
 
-  export type UserUpdateInput = {
+  export type householdUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user_email?: StringFieldUpdateOperationsInput | string
-    user_password?: StringFieldUpdateOperationsInput | string
-    user_first_name?: NullableStringFieldUpdateOperationsInput | string | null
-    user_last_name?: NullableStringFieldUpdateOperationsInput | string | null
-    delete_flg?: BoolFieldUpdateOperationsInput | boolean
+    issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_amount?: FloatFieldUpdateOperationsInput | number
+    household_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    image_path?: NullableStringFieldUpdateOperationsInput | string | null
+    image_text?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Asset?: AssetUpdateManyWithoutUserNestedInput
+    household_name?: NullableStringFieldUpdateOperationsInput | string | null
+    Asset?: assetUpdateOneRequiredWithoutHouseholdNestedInput
+    household_categories_household_household_categoryTohousehold_categories?: household_categoriesUpdateOneWithoutHousehold_household_household_categoryTohousehold_categoriesNestedInput
+    household_categories_household_household_subcategoryTohousehold_categories?: household_categoriesUpdateOneWithoutHousehold_household_household_subcategoryTohousehold_categoriesNestedInput
+    User?: userUpdateOneRequiredWithoutHouseholdNestedInput
   }
 
-  export type UserUncheckedUpdateInput = {
+  export type householdUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user_email?: StringFieldUpdateOperationsInput | string
-    user_password?: StringFieldUpdateOperationsInput | string
-    user_first_name?: NullableStringFieldUpdateOperationsInput | string | null
-    user_last_name?: NullableStringFieldUpdateOperationsInput | string | null
-    delete_flg?: BoolFieldUpdateOperationsInput | boolean
+    issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    asset_id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_amount?: FloatFieldUpdateOperationsInput | number
+    household_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    image_path?: NullableStringFieldUpdateOperationsInput | string | null
+    image_text?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Asset?: AssetUncheckedUpdateManyWithoutUserNestedInput
+    household_category?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_subcategory?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type UserCreateManyInput = {
+  export type householdCreateManyInput = {
     id?: string
-    user_email: string
-    user_password: string
-    user_first_name?: string | null
-    user_last_name?: string | null
-    delete_flg?: boolean
+    issue_date: Date | string
+    asset_id: string
+    user_id: string
+    household_type: string
+    household_amount?: number
+    household_comment?: string | null
+    image_path?: string | null
+    image_text?: string | null
     created_at?: Date | string
     updated_at?: Date | string | null
+    household_category?: bigint | number | null
+    household_subcategory?: bigint | number | null
+    household_name?: string | null
   }
 
-  export type UserUpdateManyMutationInput = {
+  export type householdUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user_email?: StringFieldUpdateOperationsInput | string
-    user_password?: StringFieldUpdateOperationsInput | string
-    user_first_name?: NullableStringFieldUpdateOperationsInput | string | null
-    user_last_name?: NullableStringFieldUpdateOperationsInput | string | null
-    delete_flg?: BoolFieldUpdateOperationsInput | boolean
+    issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_amount?: FloatFieldUpdateOperationsInput | number
+    household_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    image_path?: NullableStringFieldUpdateOperationsInput | string | null
+    image_text?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type UserUncheckedUpdateManyInput = {
+  export type householdUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user_email?: StringFieldUpdateOperationsInput | string
-    user_password?: StringFieldUpdateOperationsInput | string
-    user_first_name?: NullableStringFieldUpdateOperationsInput | string | null
-    user_last_name?: NullableStringFieldUpdateOperationsInput | string | null
-    delete_flg?: BoolFieldUpdateOperationsInput | boolean
+    issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    asset_id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_amount?: FloatFieldUpdateOperationsInput | number
+    household_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    image_path?: NullableStringFieldUpdateOperationsInput | string | null
+    image_text?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_category?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_subcategory?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type AssetCreateInput = {
+  export type household_categoriesCreateInput = {
+    id?: bigint | number
+    category_name: string
+    parent_category_id?: bigint | number | null
+    category_comment?: string | null
+    created_at?: Date | string
+    update_at?: Date | string | null
+    household_type?: string
+    household_household_household_categoryTohousehold_categories?: householdCreateNestedManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput
+    household_household_household_subcategoryTohousehold_categories?: householdCreateNestedManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput
+    User: userCreateNestedOneWithoutHousehold_categoriesInput
+  }
+
+  export type household_categoriesUncheckedCreateInput = {
+    id?: bigint | number
+    user_id: string
+    category_name: string
+    parent_category_id?: bigint | number | null
+    category_comment?: string | null
+    created_at?: Date | string
+    update_at?: Date | string | null
+    household_type?: string
+    household_household_household_categoryTohousehold_categories?: householdUncheckedCreateNestedManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput
+    household_household_household_subcategoryTohousehold_categories?: householdUncheckedCreateNestedManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput
+  }
+
+  export type household_categoriesUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    category_name?: StringFieldUpdateOperationsInput | string
+    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    category_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_household_household_categoryTohousehold_categories?: householdUpdateManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesNestedInput
+    household_household_household_subcategoryTohousehold_categories?: householdUpdateManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesNestedInput
+    User?: userUpdateOneRequiredWithoutHousehold_categoriesNestedInput
+  }
+
+  export type household_categoriesUncheckedUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    user_id?: StringFieldUpdateOperationsInput | string
+    category_name?: StringFieldUpdateOperationsInput | string
+    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    category_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_household_household_categoryTohousehold_categories?: householdUncheckedUpdateManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesNestedInput
+    household_household_household_subcategoryTohousehold_categories?: householdUncheckedUpdateManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesNestedInput
+  }
+
+  export type household_categoriesCreateManyInput = {
+    id?: bigint | number
+    user_id: string
+    category_name: string
+    parent_category_id?: bigint | number | null
+    category_comment?: string | null
+    created_at?: Date | string
+    update_at?: Date | string | null
+    household_type?: string
+  }
+
+  export type household_categoriesUpdateManyMutationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    category_name?: StringFieldUpdateOperationsInput | string
+    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    category_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_type?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type household_categoriesUncheckedUpdateManyInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    user_id?: StringFieldUpdateOperationsInput | string
+    category_name?: StringFieldUpdateOperationsInput | string
+    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    category_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_type?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type assetCreateInput = {
     id?: string
     asset_type: string
     asset_name: string
     asset_money: number
-    asset_currency?: string | null
+    asset_currency: string
     asset_comment?: string | null
     created_at?: Date | string
     updated_at?: Date | string | null
-    User: UserCreateNestedOneWithoutAssetInput
+    user: userCreateNestedOneWithoutAssetInput
+    household?: householdCreateNestedManyWithoutAssetInput
   }
 
-  export type AssetUncheckedCreateInput = {
+  export type assetUncheckedCreateInput = {
     id?: string
     user_id: string
     asset_type: string
     asset_name: string
     asset_money: number
-    asset_currency?: string | null
+    asset_currency: string
     asset_comment?: string | null
     created_at?: Date | string
     updated_at?: Date | string | null
+    household?: householdUncheckedCreateNestedManyWithoutAssetInput
   }
 
-  export type AssetUpdateInput = {
+  export type assetUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     asset_type?: StringFieldUpdateOperationsInput | string
     asset_name?: StringFieldUpdateOperationsInput | string
     asset_money?: FloatFieldUpdateOperationsInput | number
-    asset_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    asset_currency?: StringFieldUpdateOperationsInput | string
     asset_comment?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    User?: UserUpdateOneRequiredWithoutAssetNestedInput
+    user?: userUpdateOneRequiredWithoutAssetNestedInput
+    household?: householdUpdateManyWithoutAssetNestedInput
   }
 
-  export type AssetUncheckedUpdateInput = {
+  export type assetUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
     asset_type?: StringFieldUpdateOperationsInput | string
     asset_name?: StringFieldUpdateOperationsInput | string
     asset_money?: FloatFieldUpdateOperationsInput | number
-    asset_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    asset_currency?: StringFieldUpdateOperationsInput | string
     asset_comment?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household?: householdUncheckedUpdateManyWithoutAssetNestedInput
   }
 
-  export type AssetCreateManyInput = {
+  export type assetCreateManyInput = {
     id?: string
     user_id: string
     asset_type: string
     asset_name: string
     asset_money: number
-    asset_currency?: string | null
+    asset_currency: string
     asset_comment?: string | null
     created_at?: Date | string
     updated_at?: Date | string | null
   }
 
-  export type AssetUpdateManyMutationInput = {
+  export type assetUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     asset_type?: StringFieldUpdateOperationsInput | string
     asset_name?: StringFieldUpdateOperationsInput | string
     asset_money?: FloatFieldUpdateOperationsInput | number
-    asset_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    asset_currency?: StringFieldUpdateOperationsInput | string
     asset_comment?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type AssetUncheckedUpdateManyInput = {
+  export type assetUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
     asset_type?: StringFieldUpdateOperationsInput | string
     asset_name?: StringFieldUpdateOperationsInput | string
     asset_money?: FloatFieldUpdateOperationsInput | number
-    asset_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    asset_currency?: StringFieldUpdateOperationsInput | string
     asset_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type userCreateInput = {
+    id?: string
+    user_email: string
+    user_password: string
+    user_first_name?: string | null
+    user_last_name?: string | null
+    delete_flg?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    asset?: assetCreateNestedManyWithoutUserInput
+    household?: householdCreateNestedManyWithoutUserInput
+    household_categories?: household_categoriesCreateNestedManyWithoutUserInput
+  }
+
+  export type userUncheckedCreateInput = {
+    id?: string
+    user_email: string
+    user_password: string
+    user_first_name?: string | null
+    user_last_name?: string | null
+    delete_flg?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    asset?: assetUncheckedCreateNestedManyWithoutUserInput
+    household?: householdUncheckedCreateNestedManyWithoutUserInput
+    household_categories?: household_categoriesUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type userUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_email?: StringFieldUpdateOperationsInput | string
+    user_password?: StringFieldUpdateOperationsInput | string
+    user_first_name?: NullableStringFieldUpdateOperationsInput | string | null
+    user_last_name?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_flg?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    asset?: assetUpdateManyWithoutUserNestedInput
+    household?: householdUpdateManyWithoutUserNestedInput
+    household_categories?: household_categoriesUpdateManyWithoutUserNestedInput
+  }
+
+  export type userUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_email?: StringFieldUpdateOperationsInput | string
+    user_password?: StringFieldUpdateOperationsInput | string
+    user_first_name?: NullableStringFieldUpdateOperationsInput | string | null
+    user_last_name?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_flg?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    asset?: assetUncheckedUpdateManyWithoutUserNestedInput
+    household?: householdUncheckedUpdateManyWithoutUserNestedInput
+    household_categories?: household_categoriesUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type userCreateManyInput = {
+    id?: string
+    user_email: string
+    user_password: string
+    user_first_name?: string | null
+    user_last_name?: string | null
+    delete_flg?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string | null
+  }
+
+  export type userUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_email?: StringFieldUpdateOperationsInput | string
+    user_password?: StringFieldUpdateOperationsInput | string
+    user_first_name?: NullableStringFieldUpdateOperationsInput | string | null
+    user_last_name?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_flg?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type userUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_email?: StringFieldUpdateOperationsInput | string
+    user_password?: StringFieldUpdateOperationsInput | string
+    user_first_name?: NullableStringFieldUpdateOperationsInput | string | null
+    user_last_name?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_flg?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -3419,6 +6401,17 @@ export namespace Prisma {
     gte?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedUuidFilter<$PrismaModel> | string
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -3436,6 +6429,17 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -3451,22 +6455,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
   export type DateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -3478,10 +6466,30 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type AssetListRelationFilter = {
-    every?: AssetWhereInput
-    some?: AssetWhereInput
-    none?: AssetWhereInput
+  export type BigIntNullableFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntNullableFilter<$PrismaModel> | bigint | number | null
+  }
+
+  export type AssetRelationFilter = {
+    is?: assetWhereInput
+    isNot?: assetWhereInput
+  }
+
+  export type Household_categoriesNullableRelationFilter = {
+    is?: household_categoriesWhereInput | null
+    isNot?: household_categoriesWhereInput | null
+  }
+
+  export type UserRelationFilter = {
+    is?: userWhereInput
+    isNot?: userWhereInput
   }
 
   export type SortOrderInput = {
@@ -3489,41 +6497,67 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type AssetOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type UserCountOrderByAggregateInput = {
+  export type householdCountOrderByAggregateInput = {
     id?: SortOrder
-    user_email?: SortOrder
-    user_password?: SortOrder
-    user_first_name?: SortOrder
-    user_last_name?: SortOrder
-    delete_flg?: SortOrder
+    issue_date?: SortOrder
+    asset_id?: SortOrder
+    user_id?: SortOrder
+    household_type?: SortOrder
+    household_amount?: SortOrder
+    household_comment?: SortOrder
+    image_path?: SortOrder
+    image_text?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    household_category?: SortOrder
+    household_subcategory?: SortOrder
+    household_name?: SortOrder
   }
 
-  export type UserMaxOrderByAggregateInput = {
-    id?: SortOrder
-    user_email?: SortOrder
-    user_password?: SortOrder
-    user_first_name?: SortOrder
-    user_last_name?: SortOrder
-    delete_flg?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+  export type householdAvgOrderByAggregateInput = {
+    household_amount?: SortOrder
+    household_category?: SortOrder
+    household_subcategory?: SortOrder
   }
 
-  export type UserMinOrderByAggregateInput = {
+  export type householdMaxOrderByAggregateInput = {
     id?: SortOrder
-    user_email?: SortOrder
-    user_password?: SortOrder
-    user_first_name?: SortOrder
-    user_last_name?: SortOrder
-    delete_flg?: SortOrder
+    issue_date?: SortOrder
+    asset_id?: SortOrder
+    user_id?: SortOrder
+    household_type?: SortOrder
+    household_amount?: SortOrder
+    household_comment?: SortOrder
+    image_path?: SortOrder
+    image_text?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    household_category?: SortOrder
+    household_subcategory?: SortOrder
+    household_name?: SortOrder
+  }
+
+  export type householdMinOrderByAggregateInput = {
+    id?: SortOrder
+    issue_date?: SortOrder
+    asset_id?: SortOrder
+    user_id?: SortOrder
+    household_type?: SortOrder
+    household_amount?: SortOrder
+    household_comment?: SortOrder
+    image_path?: SortOrder
+    image_text?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    household_category?: SortOrder
+    household_subcategory?: SortOrder
+    household_name?: SortOrder
+  }
+
+  export type householdSumOrderByAggregateInput = {
+    household_amount?: SortOrder
+    household_category?: SortOrder
+    household_subcategory?: SortOrder
   }
 
   export type UuidWithAggregatesFilter<$PrismaModel = never> = {
@@ -3539,6 +6573,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -3559,6 +6607,22 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -3577,28 +6641,6 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -3613,148 +6655,242 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type FloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
+  export type BigIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntNullableWithAggregatesFilter<$PrismaModel> | bigint | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedBigIntNullableFilter<$PrismaModel>
+    _min?: NestedBigIntNullableFilter<$PrismaModel>
+    _max?: NestedBigIntNullableFilter<$PrismaModel>
   }
 
-  export type UserRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
+  export type BigIntFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
   }
 
-  export type AssetCountOrderByAggregateInput = {
+  export type HouseholdListRelationFilter = {
+    every?: householdWhereInput
+    some?: householdWhereInput
+    none?: householdWhereInput
+  }
+
+  export type householdOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type household_categoriesCountOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
-    asset_type?: SortOrder
-    asset_name?: SortOrder
-    asset_money?: SortOrder
-    asset_currency?: SortOrder
-    asset_comment?: SortOrder
+    category_name?: SortOrder
+    parent_category_id?: SortOrder
+    category_comment?: SortOrder
     created_at?: SortOrder
-    updated_at?: SortOrder
+    update_at?: SortOrder
+    household_type?: SortOrder
   }
 
-  export type AssetAvgOrderByAggregateInput = {
-    asset_money?: SortOrder
+  export type household_categoriesAvgOrderByAggregateInput = {
+    id?: SortOrder
+    parent_category_id?: SortOrder
   }
 
-  export type AssetMaxOrderByAggregateInput = {
+  export type household_categoriesMaxOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
-    asset_type?: SortOrder
-    asset_name?: SortOrder
-    asset_money?: SortOrder
-    asset_currency?: SortOrder
-    asset_comment?: SortOrder
+    category_name?: SortOrder
+    parent_category_id?: SortOrder
+    category_comment?: SortOrder
     created_at?: SortOrder
-    updated_at?: SortOrder
+    update_at?: SortOrder
+    household_type?: SortOrder
   }
 
-  export type AssetMinOrderByAggregateInput = {
+  export type household_categoriesMinOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
-    asset_type?: SortOrder
-    asset_name?: SortOrder
-    asset_money?: SortOrder
-    asset_currency?: SortOrder
-    asset_comment?: SortOrder
+    category_name?: SortOrder
+    parent_category_id?: SortOrder
+    category_comment?: SortOrder
     created_at?: SortOrder
-    updated_at?: SortOrder
+    update_at?: SortOrder
+    household_type?: SortOrder
   }
 
-  export type AssetSumOrderByAggregateInput = {
-    asset_money?: SortOrder
+  export type household_categoriesSumOrderByAggregateInput = {
+    id?: SortOrder
+    parent_category_id?: SortOrder
   }
 
-  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+  export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
     _count?: NestedIntFilter<$PrismaModel>
     _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedBigIntFilter<$PrismaModel>
+    _min?: NestedBigIntFilter<$PrismaModel>
+    _max?: NestedBigIntFilter<$PrismaModel>
   }
 
-  export type AssetCreateNestedManyWithoutUserInput = {
-    create?: XOR<AssetCreateWithoutUserInput, AssetUncheckedCreateWithoutUserInput> | AssetCreateWithoutUserInput[] | AssetUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AssetCreateOrConnectWithoutUserInput | AssetCreateOrConnectWithoutUserInput[]
-    createMany?: AssetCreateManyUserInputEnvelope
-    connect?: AssetWhereUniqueInput | AssetWhereUniqueInput[]
+  export type assetCountOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    asset_type?: SortOrder
+    asset_name?: SortOrder
+    asset_money?: SortOrder
+    asset_currency?: SortOrder
+    asset_comment?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
   }
 
-  export type AssetUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<AssetCreateWithoutUserInput, AssetUncheckedCreateWithoutUserInput> | AssetCreateWithoutUserInput[] | AssetUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AssetCreateOrConnectWithoutUserInput | AssetCreateOrConnectWithoutUserInput[]
-    createMany?: AssetCreateManyUserInputEnvelope
-    connect?: AssetWhereUniqueInput | AssetWhereUniqueInput[]
+  export type assetAvgOrderByAggregateInput = {
+    asset_money?: SortOrder
+  }
+
+  export type assetMaxOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    asset_type?: SortOrder
+    asset_name?: SortOrder
+    asset_money?: SortOrder
+    asset_currency?: SortOrder
+    asset_comment?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type assetMinOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    asset_type?: SortOrder
+    asset_name?: SortOrder
+    asset_money?: SortOrder
+    asset_currency?: SortOrder
+    asset_comment?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type assetSumOrderByAggregateInput = {
+    asset_money?: SortOrder
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type AssetListRelationFilter = {
+    every?: assetWhereInput
+    some?: assetWhereInput
+    none?: assetWhereInput
+  }
+
+  export type Household_categoriesListRelationFilter = {
+    every?: household_categoriesWhereInput
+    some?: household_categoriesWhereInput
+    none?: household_categoriesWhereInput
+  }
+
+  export type assetOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type household_categoriesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type userCountOrderByAggregateInput = {
+    id?: SortOrder
+    user_email?: SortOrder
+    user_password?: SortOrder
+    user_first_name?: SortOrder
+    user_last_name?: SortOrder
+    delete_flg?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type userMaxOrderByAggregateInput = {
+    id?: SortOrder
+    user_email?: SortOrder
+    user_password?: SortOrder
+    user_first_name?: SortOrder
+    user_last_name?: SortOrder
+    delete_flg?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type userMinOrderByAggregateInput = {
+    id?: SortOrder
+    user_email?: SortOrder
+    user_password?: SortOrder
+    user_first_name?: SortOrder
+    user_last_name?: SortOrder
+    delete_flg?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type assetCreateNestedOneWithoutHouseholdInput = {
+    create?: XOR<assetCreateWithoutHouseholdInput, assetUncheckedCreateWithoutHouseholdInput>
+    connectOrCreate?: assetCreateOrConnectWithoutHouseholdInput
+    connect?: assetWhereUniqueInput
+  }
+
+  export type household_categoriesCreateNestedOneWithoutHousehold_household_household_categoryTohousehold_categoriesInput = {
+    create?: XOR<household_categoriesCreateWithoutHousehold_household_household_categoryTohousehold_categoriesInput, household_categoriesUncheckedCreateWithoutHousehold_household_household_categoryTohousehold_categoriesInput>
+    connectOrCreate?: household_categoriesCreateOrConnectWithoutHousehold_household_household_categoryTohousehold_categoriesInput
+    connect?: household_categoriesWhereUniqueInput
+  }
+
+  export type household_categoriesCreateNestedOneWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput = {
+    create?: XOR<household_categoriesCreateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput, household_categoriesUncheckedCreateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput>
+    connectOrCreate?: household_categoriesCreateOrConnectWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput
+    connect?: household_categoriesWhereUniqueInput
+  }
+
+  export type userCreateNestedOneWithoutHouseholdInput = {
+    create?: XOR<userCreateWithoutHouseholdInput, userUncheckedCreateWithoutHouseholdInput>
+    connectOrCreate?: userCreateOrConnectWithoutHouseholdInput
+    connect?: userWhereUniqueInput
   }
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
-
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
-  }
-
-  export type AssetUpdateManyWithoutUserNestedInput = {
-    create?: XOR<AssetCreateWithoutUserInput, AssetUncheckedCreateWithoutUserInput> | AssetCreateWithoutUserInput[] | AssetUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AssetCreateOrConnectWithoutUserInput | AssetCreateOrConnectWithoutUserInput[]
-    upsert?: AssetUpsertWithWhereUniqueWithoutUserInput | AssetUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: AssetCreateManyUserInputEnvelope
-    set?: AssetWhereUniqueInput | AssetWhereUniqueInput[]
-    disconnect?: AssetWhereUniqueInput | AssetWhereUniqueInput[]
-    delete?: AssetWhereUniqueInput | AssetWhereUniqueInput[]
-    connect?: AssetWhereUniqueInput | AssetWhereUniqueInput[]
-    update?: AssetUpdateWithWhereUniqueWithoutUserInput | AssetUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: AssetUpdateManyWithWhereWithoutUserInput | AssetUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: AssetScalarWhereInput | AssetScalarWhereInput[]
-  }
-
-  export type AssetUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<AssetCreateWithoutUserInput, AssetUncheckedCreateWithoutUserInput> | AssetCreateWithoutUserInput[] | AssetUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AssetCreateOrConnectWithoutUserInput | AssetCreateOrConnectWithoutUserInput[]
-    upsert?: AssetUpsertWithWhereUniqueWithoutUserInput | AssetUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: AssetCreateManyUserInputEnvelope
-    set?: AssetWhereUniqueInput | AssetWhereUniqueInput[]
-    disconnect?: AssetWhereUniqueInput | AssetWhereUniqueInput[]
-    delete?: AssetWhereUniqueInput | AssetWhereUniqueInput[]
-    connect?: AssetWhereUniqueInput | AssetWhereUniqueInput[]
-    update?: AssetUpdateWithWhereUniqueWithoutUserInput | AssetUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: AssetUpdateManyWithWhereWithoutUserInput | AssetUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: AssetScalarWhereInput | AssetScalarWhereInput[]
-  }
-
-  export type UserCreateNestedOneWithoutAssetInput = {
-    create?: XOR<UserCreateWithoutAssetInput, UserUncheckedCreateWithoutAssetInput>
-    connectOrCreate?: UserCreateOrConnectWithoutAssetInput
-    connect?: UserWhereUniqueInput
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -3765,12 +6901,348 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type UserUpdateOneRequiredWithoutAssetNestedInput = {
-    create?: XOR<UserCreateWithoutAssetInput, UserUncheckedCreateWithoutAssetInput>
-    connectOrCreate?: UserCreateOrConnectWithoutAssetInput
-    upsert?: UserUpsertWithoutAssetInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAssetInput, UserUpdateWithoutAssetInput>, UserUncheckedUpdateWithoutAssetInput>
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type assetUpdateOneRequiredWithoutHouseholdNestedInput = {
+    create?: XOR<assetCreateWithoutHouseholdInput, assetUncheckedCreateWithoutHouseholdInput>
+    connectOrCreate?: assetCreateOrConnectWithoutHouseholdInput
+    upsert?: assetUpsertWithoutHouseholdInput
+    connect?: assetWhereUniqueInput
+    update?: XOR<XOR<assetUpdateToOneWithWhereWithoutHouseholdInput, assetUpdateWithoutHouseholdInput>, assetUncheckedUpdateWithoutHouseholdInput>
+  }
+
+  export type household_categoriesUpdateOneWithoutHousehold_household_household_categoryTohousehold_categoriesNestedInput = {
+    create?: XOR<household_categoriesCreateWithoutHousehold_household_household_categoryTohousehold_categoriesInput, household_categoriesUncheckedCreateWithoutHousehold_household_household_categoryTohousehold_categoriesInput>
+    connectOrCreate?: household_categoriesCreateOrConnectWithoutHousehold_household_household_categoryTohousehold_categoriesInput
+    upsert?: household_categoriesUpsertWithoutHousehold_household_household_categoryTohousehold_categoriesInput
+    disconnect?: household_categoriesWhereInput | boolean
+    delete?: household_categoriesWhereInput | boolean
+    connect?: household_categoriesWhereUniqueInput
+    update?: XOR<XOR<household_categoriesUpdateToOneWithWhereWithoutHousehold_household_household_categoryTohousehold_categoriesInput, household_categoriesUpdateWithoutHousehold_household_household_categoryTohousehold_categoriesInput>, household_categoriesUncheckedUpdateWithoutHousehold_household_household_categoryTohousehold_categoriesInput>
+  }
+
+  export type household_categoriesUpdateOneWithoutHousehold_household_household_subcategoryTohousehold_categoriesNestedInput = {
+    create?: XOR<household_categoriesCreateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput, household_categoriesUncheckedCreateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput>
+    connectOrCreate?: household_categoriesCreateOrConnectWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput
+    upsert?: household_categoriesUpsertWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput
+    disconnect?: household_categoriesWhereInput | boolean
+    delete?: household_categoriesWhereInput | boolean
+    connect?: household_categoriesWhereUniqueInput
+    update?: XOR<XOR<household_categoriesUpdateToOneWithWhereWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput, household_categoriesUpdateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput>, household_categoriesUncheckedUpdateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput>
+  }
+
+  export type userUpdateOneRequiredWithoutHouseholdNestedInput = {
+    create?: XOR<userCreateWithoutHouseholdInput, userUncheckedCreateWithoutHouseholdInput>
+    connectOrCreate?: userCreateOrConnectWithoutHouseholdInput
+    upsert?: userUpsertWithoutHouseholdInput
+    connect?: userWhereUniqueInput
+    update?: XOR<XOR<userUpdateToOneWithWhereWithoutHouseholdInput, userUpdateWithoutHouseholdInput>, userUncheckedUpdateWithoutHouseholdInput>
+  }
+
+  export type NullableBigIntFieldUpdateOperationsInput = {
+    set?: bigint | number | null
+    increment?: bigint | number
+    decrement?: bigint | number
+    multiply?: bigint | number
+    divide?: bigint | number
+  }
+
+  export type householdCreateNestedManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+    create?: XOR<householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput> | householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[] | householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
+    connectOrCreate?: householdCreateOrConnectWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdCreateOrConnectWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
+    createMany?: householdCreateManyHousehold_categories_household_household_categoryTohousehold_categoriesInputEnvelope
+    connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+  }
+
+  export type householdCreateNestedManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
+    create?: XOR<householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput> | householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[] | householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
+    connectOrCreate?: householdCreateOrConnectWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdCreateOrConnectWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
+    createMany?: householdCreateManyHousehold_categories_household_household_subcategoryTohousehold_categoriesInputEnvelope
+    connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+  }
+
+  export type userCreateNestedOneWithoutHousehold_categoriesInput = {
+    create?: XOR<userCreateWithoutHousehold_categoriesInput, userUncheckedCreateWithoutHousehold_categoriesInput>
+    connectOrCreate?: userCreateOrConnectWithoutHousehold_categoriesInput
+    connect?: userWhereUniqueInput
+  }
+
+  export type householdUncheckedCreateNestedManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+    create?: XOR<householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput> | householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[] | householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
+    connectOrCreate?: householdCreateOrConnectWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdCreateOrConnectWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
+    createMany?: householdCreateManyHousehold_categories_household_household_categoryTohousehold_categoriesInputEnvelope
+    connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+  }
+
+  export type householdUncheckedCreateNestedManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
+    create?: XOR<householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput> | householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[] | householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
+    connectOrCreate?: householdCreateOrConnectWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdCreateOrConnectWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
+    createMany?: householdCreateManyHousehold_categories_household_household_subcategoryTohousehold_categoriesInputEnvelope
+    connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+  }
+
+  export type BigIntFieldUpdateOperationsInput = {
+    set?: bigint | number
+    increment?: bigint | number
+    decrement?: bigint | number
+    multiply?: bigint | number
+    divide?: bigint | number
+  }
+
+  export type householdUpdateManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesNestedInput = {
+    create?: XOR<householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput> | householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[] | householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
+    connectOrCreate?: householdCreateOrConnectWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdCreateOrConnectWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
+    upsert?: householdUpsertWithWhereUniqueWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdUpsertWithWhereUniqueWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
+    createMany?: householdCreateManyHousehold_categories_household_household_categoryTohousehold_categoriesInputEnvelope
+    set?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    disconnect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    delete?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    update?: householdUpdateWithWhereUniqueWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdUpdateWithWhereUniqueWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
+    updateMany?: householdUpdateManyWithWhereWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdUpdateManyWithWhereWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
+    deleteMany?: householdScalarWhereInput | householdScalarWhereInput[]
+  }
+
+  export type householdUpdateManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesNestedInput = {
+    create?: XOR<householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput> | householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[] | householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
+    connectOrCreate?: householdCreateOrConnectWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdCreateOrConnectWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
+    upsert?: householdUpsertWithWhereUniqueWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdUpsertWithWhereUniqueWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
+    createMany?: householdCreateManyHousehold_categories_household_household_subcategoryTohousehold_categoriesInputEnvelope
+    set?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    disconnect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    delete?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    update?: householdUpdateWithWhereUniqueWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdUpdateWithWhereUniqueWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
+    updateMany?: householdUpdateManyWithWhereWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdUpdateManyWithWhereWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
+    deleteMany?: householdScalarWhereInput | householdScalarWhereInput[]
+  }
+
+  export type userUpdateOneRequiredWithoutHousehold_categoriesNestedInput = {
+    create?: XOR<userCreateWithoutHousehold_categoriesInput, userUncheckedCreateWithoutHousehold_categoriesInput>
+    connectOrCreate?: userCreateOrConnectWithoutHousehold_categoriesInput
+    upsert?: userUpsertWithoutHousehold_categoriesInput
+    connect?: userWhereUniqueInput
+    update?: XOR<XOR<userUpdateToOneWithWhereWithoutHousehold_categoriesInput, userUpdateWithoutHousehold_categoriesInput>, userUncheckedUpdateWithoutHousehold_categoriesInput>
+  }
+
+  export type householdUncheckedUpdateManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesNestedInput = {
+    create?: XOR<householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput> | householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[] | householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
+    connectOrCreate?: householdCreateOrConnectWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdCreateOrConnectWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
+    upsert?: householdUpsertWithWhereUniqueWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdUpsertWithWhereUniqueWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
+    createMany?: householdCreateManyHousehold_categories_household_household_categoryTohousehold_categoriesInputEnvelope
+    set?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    disconnect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    delete?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    update?: householdUpdateWithWhereUniqueWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdUpdateWithWhereUniqueWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
+    updateMany?: householdUpdateManyWithWhereWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdUpdateManyWithWhereWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
+    deleteMany?: householdScalarWhereInput | householdScalarWhereInput[]
+  }
+
+  export type householdUncheckedUpdateManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesNestedInput = {
+    create?: XOR<householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput> | householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[] | householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
+    connectOrCreate?: householdCreateOrConnectWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdCreateOrConnectWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
+    upsert?: householdUpsertWithWhereUniqueWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdUpsertWithWhereUniqueWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
+    createMany?: householdCreateManyHousehold_categories_household_household_subcategoryTohousehold_categoriesInputEnvelope
+    set?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    disconnect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    delete?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    update?: householdUpdateWithWhereUniqueWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdUpdateWithWhereUniqueWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
+    updateMany?: householdUpdateManyWithWhereWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdUpdateManyWithWhereWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
+    deleteMany?: householdScalarWhereInput | householdScalarWhereInput[]
+  }
+
+  export type userCreateNestedOneWithoutAssetInput = {
+    create?: XOR<userCreateWithoutAssetInput, userUncheckedCreateWithoutAssetInput>
+    connectOrCreate?: userCreateOrConnectWithoutAssetInput
+    connect?: userWhereUniqueInput
+  }
+
+  export type householdCreateNestedManyWithoutAssetInput = {
+    create?: XOR<householdCreateWithoutAssetInput, householdUncheckedCreateWithoutAssetInput> | householdCreateWithoutAssetInput[] | householdUncheckedCreateWithoutAssetInput[]
+    connectOrCreate?: householdCreateOrConnectWithoutAssetInput | householdCreateOrConnectWithoutAssetInput[]
+    createMany?: householdCreateManyAssetInputEnvelope
+    connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+  }
+
+  export type householdUncheckedCreateNestedManyWithoutAssetInput = {
+    create?: XOR<householdCreateWithoutAssetInput, householdUncheckedCreateWithoutAssetInput> | householdCreateWithoutAssetInput[] | householdUncheckedCreateWithoutAssetInput[]
+    connectOrCreate?: householdCreateOrConnectWithoutAssetInput | householdCreateOrConnectWithoutAssetInput[]
+    createMany?: householdCreateManyAssetInputEnvelope
+    connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+  }
+
+  export type userUpdateOneRequiredWithoutAssetNestedInput = {
+    create?: XOR<userCreateWithoutAssetInput, userUncheckedCreateWithoutAssetInput>
+    connectOrCreate?: userCreateOrConnectWithoutAssetInput
+    upsert?: userUpsertWithoutAssetInput
+    connect?: userWhereUniqueInput
+    update?: XOR<XOR<userUpdateToOneWithWhereWithoutAssetInput, userUpdateWithoutAssetInput>, userUncheckedUpdateWithoutAssetInput>
+  }
+
+  export type householdUpdateManyWithoutAssetNestedInput = {
+    create?: XOR<householdCreateWithoutAssetInput, householdUncheckedCreateWithoutAssetInput> | householdCreateWithoutAssetInput[] | householdUncheckedCreateWithoutAssetInput[]
+    connectOrCreate?: householdCreateOrConnectWithoutAssetInput | householdCreateOrConnectWithoutAssetInput[]
+    upsert?: householdUpsertWithWhereUniqueWithoutAssetInput | householdUpsertWithWhereUniqueWithoutAssetInput[]
+    createMany?: householdCreateManyAssetInputEnvelope
+    set?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    disconnect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    delete?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    update?: householdUpdateWithWhereUniqueWithoutAssetInput | householdUpdateWithWhereUniqueWithoutAssetInput[]
+    updateMany?: householdUpdateManyWithWhereWithoutAssetInput | householdUpdateManyWithWhereWithoutAssetInput[]
+    deleteMany?: householdScalarWhereInput | householdScalarWhereInput[]
+  }
+
+  export type householdUncheckedUpdateManyWithoutAssetNestedInput = {
+    create?: XOR<householdCreateWithoutAssetInput, householdUncheckedCreateWithoutAssetInput> | householdCreateWithoutAssetInput[] | householdUncheckedCreateWithoutAssetInput[]
+    connectOrCreate?: householdCreateOrConnectWithoutAssetInput | householdCreateOrConnectWithoutAssetInput[]
+    upsert?: householdUpsertWithWhereUniqueWithoutAssetInput | householdUpsertWithWhereUniqueWithoutAssetInput[]
+    createMany?: householdCreateManyAssetInputEnvelope
+    set?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    disconnect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    delete?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    update?: householdUpdateWithWhereUniqueWithoutAssetInput | householdUpdateWithWhereUniqueWithoutAssetInput[]
+    updateMany?: householdUpdateManyWithWhereWithoutAssetInput | householdUpdateManyWithWhereWithoutAssetInput[]
+    deleteMany?: householdScalarWhereInput | householdScalarWhereInput[]
+  }
+
+  export type assetCreateNestedManyWithoutUserInput = {
+    create?: XOR<assetCreateWithoutUserInput, assetUncheckedCreateWithoutUserInput> | assetCreateWithoutUserInput[] | assetUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: assetCreateOrConnectWithoutUserInput | assetCreateOrConnectWithoutUserInput[]
+    createMany?: assetCreateManyUserInputEnvelope
+    connect?: assetWhereUniqueInput | assetWhereUniqueInput[]
+  }
+
+  export type householdCreateNestedManyWithoutUserInput = {
+    create?: XOR<householdCreateWithoutUserInput, householdUncheckedCreateWithoutUserInput> | householdCreateWithoutUserInput[] | householdUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: householdCreateOrConnectWithoutUserInput | householdCreateOrConnectWithoutUserInput[]
+    createMany?: householdCreateManyUserInputEnvelope
+    connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+  }
+
+  export type household_categoriesCreateNestedManyWithoutUserInput = {
+    create?: XOR<household_categoriesCreateWithoutUserInput, household_categoriesUncheckedCreateWithoutUserInput> | household_categoriesCreateWithoutUserInput[] | household_categoriesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: household_categoriesCreateOrConnectWithoutUserInput | household_categoriesCreateOrConnectWithoutUserInput[]
+    createMany?: household_categoriesCreateManyUserInputEnvelope
+    connect?: household_categoriesWhereUniqueInput | household_categoriesWhereUniqueInput[]
+  }
+
+  export type assetUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<assetCreateWithoutUserInput, assetUncheckedCreateWithoutUserInput> | assetCreateWithoutUserInput[] | assetUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: assetCreateOrConnectWithoutUserInput | assetCreateOrConnectWithoutUserInput[]
+    createMany?: assetCreateManyUserInputEnvelope
+    connect?: assetWhereUniqueInput | assetWhereUniqueInput[]
+  }
+
+  export type householdUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<householdCreateWithoutUserInput, householdUncheckedCreateWithoutUserInput> | householdCreateWithoutUserInput[] | householdUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: householdCreateOrConnectWithoutUserInput | householdCreateOrConnectWithoutUserInput[]
+    createMany?: householdCreateManyUserInputEnvelope
+    connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+  }
+
+  export type household_categoriesUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<household_categoriesCreateWithoutUserInput, household_categoriesUncheckedCreateWithoutUserInput> | household_categoriesCreateWithoutUserInput[] | household_categoriesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: household_categoriesCreateOrConnectWithoutUserInput | household_categoriesCreateOrConnectWithoutUserInput[]
+    createMany?: household_categoriesCreateManyUserInputEnvelope
+    connect?: household_categoriesWhereUniqueInput | household_categoriesWhereUniqueInput[]
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type assetUpdateManyWithoutUserNestedInput = {
+    create?: XOR<assetCreateWithoutUserInput, assetUncheckedCreateWithoutUserInput> | assetCreateWithoutUserInput[] | assetUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: assetCreateOrConnectWithoutUserInput | assetCreateOrConnectWithoutUserInput[]
+    upsert?: assetUpsertWithWhereUniqueWithoutUserInput | assetUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: assetCreateManyUserInputEnvelope
+    set?: assetWhereUniqueInput | assetWhereUniqueInput[]
+    disconnect?: assetWhereUniqueInput | assetWhereUniqueInput[]
+    delete?: assetWhereUniqueInput | assetWhereUniqueInput[]
+    connect?: assetWhereUniqueInput | assetWhereUniqueInput[]
+    update?: assetUpdateWithWhereUniqueWithoutUserInput | assetUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: assetUpdateManyWithWhereWithoutUserInput | assetUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: assetScalarWhereInput | assetScalarWhereInput[]
+  }
+
+  export type householdUpdateManyWithoutUserNestedInput = {
+    create?: XOR<householdCreateWithoutUserInput, householdUncheckedCreateWithoutUserInput> | householdCreateWithoutUserInput[] | householdUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: householdCreateOrConnectWithoutUserInput | householdCreateOrConnectWithoutUserInput[]
+    upsert?: householdUpsertWithWhereUniqueWithoutUserInput | householdUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: householdCreateManyUserInputEnvelope
+    set?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    disconnect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    delete?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    update?: householdUpdateWithWhereUniqueWithoutUserInput | householdUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: householdUpdateManyWithWhereWithoutUserInput | householdUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: householdScalarWhereInput | householdScalarWhereInput[]
+  }
+
+  export type household_categoriesUpdateManyWithoutUserNestedInput = {
+    create?: XOR<household_categoriesCreateWithoutUserInput, household_categoriesUncheckedCreateWithoutUserInput> | household_categoriesCreateWithoutUserInput[] | household_categoriesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: household_categoriesCreateOrConnectWithoutUserInput | household_categoriesCreateOrConnectWithoutUserInput[]
+    upsert?: household_categoriesUpsertWithWhereUniqueWithoutUserInput | household_categoriesUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: household_categoriesCreateManyUserInputEnvelope
+    set?: household_categoriesWhereUniqueInput | household_categoriesWhereUniqueInput[]
+    disconnect?: household_categoriesWhereUniqueInput | household_categoriesWhereUniqueInput[]
+    delete?: household_categoriesWhereUniqueInput | household_categoriesWhereUniqueInput[]
+    connect?: household_categoriesWhereUniqueInput | household_categoriesWhereUniqueInput[]
+    update?: household_categoriesUpdateWithWhereUniqueWithoutUserInput | household_categoriesUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: household_categoriesUpdateManyWithWhereWithoutUserInput | household_categoriesUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: household_categoriesScalarWhereInput | household_categoriesScalarWhereInput[]
+  }
+
+  export type assetUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<assetCreateWithoutUserInput, assetUncheckedCreateWithoutUserInput> | assetCreateWithoutUserInput[] | assetUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: assetCreateOrConnectWithoutUserInput | assetCreateOrConnectWithoutUserInput[]
+    upsert?: assetUpsertWithWhereUniqueWithoutUserInput | assetUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: assetCreateManyUserInputEnvelope
+    set?: assetWhereUniqueInput | assetWhereUniqueInput[]
+    disconnect?: assetWhereUniqueInput | assetWhereUniqueInput[]
+    delete?: assetWhereUniqueInput | assetWhereUniqueInput[]
+    connect?: assetWhereUniqueInput | assetWhereUniqueInput[]
+    update?: assetUpdateWithWhereUniqueWithoutUserInput | assetUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: assetUpdateManyWithWhereWithoutUserInput | assetUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: assetScalarWhereInput | assetScalarWhereInput[]
+  }
+
+  export type householdUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<householdCreateWithoutUserInput, householdUncheckedCreateWithoutUserInput> | householdCreateWithoutUserInput[] | householdUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: householdCreateOrConnectWithoutUserInput | householdCreateOrConnectWithoutUserInput[]
+    upsert?: householdUpsertWithWhereUniqueWithoutUserInput | householdUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: householdCreateManyUserInputEnvelope
+    set?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    disconnect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    delete?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+    update?: householdUpdateWithWhereUniqueWithoutUserInput | householdUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: householdUpdateManyWithWhereWithoutUserInput | householdUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: householdScalarWhereInput | householdScalarWhereInput[]
+  }
+
+  export type household_categoriesUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<household_categoriesCreateWithoutUserInput, household_categoriesUncheckedCreateWithoutUserInput> | household_categoriesCreateWithoutUserInput[] | household_categoriesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: household_categoriesCreateOrConnectWithoutUserInput | household_categoriesCreateOrConnectWithoutUserInput[]
+    upsert?: household_categoriesUpsertWithWhereUniqueWithoutUserInput | household_categoriesUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: household_categoriesCreateManyUserInputEnvelope
+    set?: household_categoriesWhereUniqueInput | household_categoriesWhereUniqueInput[]
+    disconnect?: household_categoriesWhereUniqueInput | household_categoriesWhereUniqueInput[]
+    delete?: household_categoriesWhereUniqueInput | household_categoriesWhereUniqueInput[]
+    connect?: household_categoriesWhereUniqueInput | household_categoriesWhereUniqueInput[]
+    update?: household_categoriesUpdateWithWhereUniqueWithoutUserInput | household_categoriesUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: household_categoriesUpdateManyWithWhereWithoutUserInput | household_categoriesUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: household_categoriesScalarWhereInput | household_categoriesScalarWhereInput[]
   }
 
   export type NestedUuidFilter<$PrismaModel = never> = {
@@ -3782,6 +7254,17 @@ export namespace Prisma {
     gt?: string | StringFieldRefInput<$PrismaModel>
     gte?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedUuidFilter<$PrismaModel> | string
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -3798,6 +7281,17 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -3812,22 +7306,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -3837,6 +7315,17 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedBigIntNullableFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntNullableFilter<$PrismaModel> | bigint | number | null
   }
 
   export type NestedUuidWithAggregatesFilter<$PrismaModel = never> = {
@@ -3864,6 +7353,20 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -3879,6 +7382,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -3909,28 +7428,6 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -3945,97 +7442,418 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
+  export type NestedBigIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntNullableWithAggregatesFilter<$PrismaModel> | bigint | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedBigIntNullableFilter<$PrismaModel>
+    _min?: NestedBigIntNullableFilter<$PrismaModel>
+    _max?: NestedBigIntNullableFilter<$PrismaModel>
   }
 
-  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedBigIntFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
+  }
+
+  export type NestedBigIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
     _count?: NestedIntFilter<$PrismaModel>
     _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedBigIntFilter<$PrismaModel>
+    _min?: NestedBigIntFilter<$PrismaModel>
+    _max?: NestedBigIntFilter<$PrismaModel>
   }
 
-  export type AssetCreateWithoutUserInput = {
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type assetCreateWithoutHouseholdInput = {
     id?: string
     asset_type: string
     asset_name: string
     asset_money: number
-    asset_currency?: string | null
+    asset_currency: string
+    asset_comment?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    user: userCreateNestedOneWithoutAssetInput
+  }
+
+  export type assetUncheckedCreateWithoutHouseholdInput = {
+    id?: string
+    user_id: string
+    asset_type: string
+    asset_name: string
+    asset_money: number
+    asset_currency: string
     asset_comment?: string | null
     created_at?: Date | string
     updated_at?: Date | string | null
   }
 
-  export type AssetUncheckedCreateWithoutUserInput = {
+  export type assetCreateOrConnectWithoutHouseholdInput = {
+    where: assetWhereUniqueInput
+    create: XOR<assetCreateWithoutHouseholdInput, assetUncheckedCreateWithoutHouseholdInput>
+  }
+
+  export type household_categoriesCreateWithoutHousehold_household_household_categoryTohousehold_categoriesInput = {
+    id?: bigint | number
+    category_name: string
+    parent_category_id?: bigint | number | null
+    category_comment?: string | null
+    created_at?: Date | string
+    update_at?: Date | string | null
+    household_type?: string
+    household_household_household_subcategoryTohousehold_categories?: householdCreateNestedManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput
+    User: userCreateNestedOneWithoutHousehold_categoriesInput
+  }
+
+  export type household_categoriesUncheckedCreateWithoutHousehold_household_household_categoryTohousehold_categoriesInput = {
+    id?: bigint | number
+    user_id: string
+    category_name: string
+    parent_category_id?: bigint | number | null
+    category_comment?: string | null
+    created_at?: Date | string
+    update_at?: Date | string | null
+    household_type?: string
+    household_household_household_subcategoryTohousehold_categories?: householdUncheckedCreateNestedManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput
+  }
+
+  export type household_categoriesCreateOrConnectWithoutHousehold_household_household_categoryTohousehold_categoriesInput = {
+    where: household_categoriesWhereUniqueInput
+    create: XOR<household_categoriesCreateWithoutHousehold_household_household_categoryTohousehold_categoriesInput, household_categoriesUncheckedCreateWithoutHousehold_household_household_categoryTohousehold_categoriesInput>
+  }
+
+  export type household_categoriesCreateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput = {
+    id?: bigint | number
+    category_name: string
+    parent_category_id?: bigint | number | null
+    category_comment?: string | null
+    created_at?: Date | string
+    update_at?: Date | string | null
+    household_type?: string
+    household_household_household_categoryTohousehold_categories?: householdCreateNestedManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput
+    User: userCreateNestedOneWithoutHousehold_categoriesInput
+  }
+
+  export type household_categoriesUncheckedCreateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput = {
+    id?: bigint | number
+    user_id: string
+    category_name: string
+    parent_category_id?: bigint | number | null
+    category_comment?: string | null
+    created_at?: Date | string
+    update_at?: Date | string | null
+    household_type?: string
+    household_household_household_categoryTohousehold_categories?: householdUncheckedCreateNestedManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput
+  }
+
+  export type household_categoriesCreateOrConnectWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput = {
+    where: household_categoriesWhereUniqueInput
+    create: XOR<household_categoriesCreateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput, household_categoriesUncheckedCreateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput>
+  }
+
+  export type userCreateWithoutHouseholdInput = {
     id?: string
-    asset_type: string
-    asset_name: string
-    asset_money: number
-    asset_currency?: string | null
-    asset_comment?: string | null
+    user_email: string
+    user_password: string
+    user_first_name?: string | null
+    user_last_name?: string | null
+    delete_flg?: boolean
     created_at?: Date | string
     updated_at?: Date | string | null
+    asset?: assetCreateNestedManyWithoutUserInput
+    household_categories?: household_categoriesCreateNestedManyWithoutUserInput
   }
 
-  export type AssetCreateOrConnectWithoutUserInput = {
-    where: AssetWhereUniqueInput
-    create: XOR<AssetCreateWithoutUserInput, AssetUncheckedCreateWithoutUserInput>
+  export type userUncheckedCreateWithoutHouseholdInput = {
+    id?: string
+    user_email: string
+    user_password: string
+    user_first_name?: string | null
+    user_last_name?: string | null
+    delete_flg?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    asset?: assetUncheckedCreateNestedManyWithoutUserInput
+    household_categories?: household_categoriesUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type AssetCreateManyUserInputEnvelope = {
-    data: AssetCreateManyUserInput | AssetCreateManyUserInput[]
+  export type userCreateOrConnectWithoutHouseholdInput = {
+    where: userWhereUniqueInput
+    create: XOR<userCreateWithoutHouseholdInput, userUncheckedCreateWithoutHouseholdInput>
+  }
+
+  export type assetUpsertWithoutHouseholdInput = {
+    update: XOR<assetUpdateWithoutHouseholdInput, assetUncheckedUpdateWithoutHouseholdInput>
+    create: XOR<assetCreateWithoutHouseholdInput, assetUncheckedCreateWithoutHouseholdInput>
+    where?: assetWhereInput
+  }
+
+  export type assetUpdateToOneWithWhereWithoutHouseholdInput = {
+    where?: assetWhereInput
+    data: XOR<assetUpdateWithoutHouseholdInput, assetUncheckedUpdateWithoutHouseholdInput>
+  }
+
+  export type assetUpdateWithoutHouseholdInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    asset_type?: StringFieldUpdateOperationsInput | string
+    asset_name?: StringFieldUpdateOperationsInput | string
+    asset_money?: FloatFieldUpdateOperationsInput | number
+    asset_currency?: StringFieldUpdateOperationsInput | string
+    asset_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user?: userUpdateOneRequiredWithoutAssetNestedInput
+  }
+
+  export type assetUncheckedUpdateWithoutHouseholdInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    asset_type?: StringFieldUpdateOperationsInput | string
+    asset_name?: StringFieldUpdateOperationsInput | string
+    asset_money?: FloatFieldUpdateOperationsInput | number
+    asset_currency?: StringFieldUpdateOperationsInput | string
+    asset_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type household_categoriesUpsertWithoutHousehold_household_household_categoryTohousehold_categoriesInput = {
+    update: XOR<household_categoriesUpdateWithoutHousehold_household_household_categoryTohousehold_categoriesInput, household_categoriesUncheckedUpdateWithoutHousehold_household_household_categoryTohousehold_categoriesInput>
+    create: XOR<household_categoriesCreateWithoutHousehold_household_household_categoryTohousehold_categoriesInput, household_categoriesUncheckedCreateWithoutHousehold_household_household_categoryTohousehold_categoriesInput>
+    where?: household_categoriesWhereInput
+  }
+
+  export type household_categoriesUpdateToOneWithWhereWithoutHousehold_household_household_categoryTohousehold_categoriesInput = {
+    where?: household_categoriesWhereInput
+    data: XOR<household_categoriesUpdateWithoutHousehold_household_household_categoryTohousehold_categoriesInput, household_categoriesUncheckedUpdateWithoutHousehold_household_household_categoryTohousehold_categoriesInput>
+  }
+
+  export type household_categoriesUpdateWithoutHousehold_household_household_categoryTohousehold_categoriesInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    category_name?: StringFieldUpdateOperationsInput | string
+    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    category_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_household_household_subcategoryTohousehold_categories?: householdUpdateManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesNestedInput
+    User?: userUpdateOneRequiredWithoutHousehold_categoriesNestedInput
+  }
+
+  export type household_categoriesUncheckedUpdateWithoutHousehold_household_household_categoryTohousehold_categoriesInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    user_id?: StringFieldUpdateOperationsInput | string
+    category_name?: StringFieldUpdateOperationsInput | string
+    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    category_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_household_household_subcategoryTohousehold_categories?: householdUncheckedUpdateManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesNestedInput
+  }
+
+  export type household_categoriesUpsertWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput = {
+    update: XOR<household_categoriesUpdateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput, household_categoriesUncheckedUpdateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput>
+    create: XOR<household_categoriesCreateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput, household_categoriesUncheckedCreateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput>
+    where?: household_categoriesWhereInput
+  }
+
+  export type household_categoriesUpdateToOneWithWhereWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput = {
+    where?: household_categoriesWhereInput
+    data: XOR<household_categoriesUpdateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput, household_categoriesUncheckedUpdateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput>
+  }
+
+  export type household_categoriesUpdateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    category_name?: StringFieldUpdateOperationsInput | string
+    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    category_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_household_household_categoryTohousehold_categories?: householdUpdateManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesNestedInput
+    User?: userUpdateOneRequiredWithoutHousehold_categoriesNestedInput
+  }
+
+  export type household_categoriesUncheckedUpdateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    user_id?: StringFieldUpdateOperationsInput | string
+    category_name?: StringFieldUpdateOperationsInput | string
+    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    category_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_household_household_categoryTohousehold_categories?: householdUncheckedUpdateManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesNestedInput
+  }
+
+  export type userUpsertWithoutHouseholdInput = {
+    update: XOR<userUpdateWithoutHouseholdInput, userUncheckedUpdateWithoutHouseholdInput>
+    create: XOR<userCreateWithoutHouseholdInput, userUncheckedCreateWithoutHouseholdInput>
+    where?: userWhereInput
+  }
+
+  export type userUpdateToOneWithWhereWithoutHouseholdInput = {
+    where?: userWhereInput
+    data: XOR<userUpdateWithoutHouseholdInput, userUncheckedUpdateWithoutHouseholdInput>
+  }
+
+  export type userUpdateWithoutHouseholdInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_email?: StringFieldUpdateOperationsInput | string
+    user_password?: StringFieldUpdateOperationsInput | string
+    user_first_name?: NullableStringFieldUpdateOperationsInput | string | null
+    user_last_name?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_flg?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    asset?: assetUpdateManyWithoutUserNestedInput
+    household_categories?: household_categoriesUpdateManyWithoutUserNestedInput
+  }
+
+  export type userUncheckedUpdateWithoutHouseholdInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_email?: StringFieldUpdateOperationsInput | string
+    user_password?: StringFieldUpdateOperationsInput | string
+    user_first_name?: NullableStringFieldUpdateOperationsInput | string | null
+    user_last_name?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_flg?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    asset?: assetUncheckedUpdateManyWithoutUserNestedInput
+    household_categories?: household_categoriesUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+    id?: string
+    issue_date: Date | string
+    household_type: string
+    household_amount?: number
+    household_comment?: string | null
+    image_path?: string | null
+    image_text?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    household_name?: string | null
+    Asset: assetCreateNestedOneWithoutHouseholdInput
+    household_categories_household_household_subcategoryTohousehold_categories?: household_categoriesCreateNestedOneWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput
+    User: userCreateNestedOneWithoutHouseholdInput
+  }
+
+  export type householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+    id?: string
+    issue_date: Date | string
+    asset_id: string
+    user_id: string
+    household_type: string
+    household_amount?: number
+    household_comment?: string | null
+    image_path?: string | null
+    image_text?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    household_subcategory?: bigint | number | null
+    household_name?: string | null
+  }
+
+  export type householdCreateOrConnectWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+    where: householdWhereUniqueInput
+    create: XOR<householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput>
+  }
+
+  export type householdCreateManyHousehold_categories_household_household_categoryTohousehold_categoriesInputEnvelope = {
+    data: householdCreateManyHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdCreateManyHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
     skipDuplicates?: boolean
   }
 
-  export type AssetUpsertWithWhereUniqueWithoutUserInput = {
-    where: AssetWhereUniqueInput
-    update: XOR<AssetUpdateWithoutUserInput, AssetUncheckedUpdateWithoutUserInput>
-    create: XOR<AssetCreateWithoutUserInput, AssetUncheckedCreateWithoutUserInput>
+  export type householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
+    id?: string
+    issue_date: Date | string
+    household_type: string
+    household_amount?: number
+    household_comment?: string | null
+    image_path?: string | null
+    image_text?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    household_name?: string | null
+    Asset: assetCreateNestedOneWithoutHouseholdInput
+    household_categories_household_household_categoryTohousehold_categories?: household_categoriesCreateNestedOneWithoutHousehold_household_household_categoryTohousehold_categoriesInput
+    User: userCreateNestedOneWithoutHouseholdInput
   }
 
-  export type AssetUpdateWithWhereUniqueWithoutUserInput = {
-    where: AssetWhereUniqueInput
-    data: XOR<AssetUpdateWithoutUserInput, AssetUncheckedUpdateWithoutUserInput>
+  export type householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
+    id?: string
+    issue_date: Date | string
+    asset_id: string
+    user_id: string
+    household_type: string
+    household_amount?: number
+    household_comment?: string | null
+    image_path?: string | null
+    image_text?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    household_category?: bigint | number | null
+    household_name?: string | null
   }
 
-  export type AssetUpdateManyWithWhereWithoutUserInput = {
-    where: AssetScalarWhereInput
-    data: XOR<AssetUpdateManyMutationInput, AssetUncheckedUpdateManyWithoutUserInput>
+  export type householdCreateOrConnectWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
+    where: householdWhereUniqueInput
+    create: XOR<householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput>
   }
 
-  export type AssetScalarWhereInput = {
-    AND?: AssetScalarWhereInput | AssetScalarWhereInput[]
-    OR?: AssetScalarWhereInput[]
-    NOT?: AssetScalarWhereInput | AssetScalarWhereInput[]
-    id?: UuidFilter<"Asset"> | string
-    user_id?: UuidFilter<"Asset"> | string
-    asset_type?: StringFilter<"Asset"> | string
-    asset_name?: StringFilter<"Asset"> | string
-    asset_money?: FloatFilter<"Asset"> | number
-    asset_currency?: StringNullableFilter<"Asset"> | string | null
-    asset_comment?: StringNullableFilter<"Asset"> | string | null
-    created_at?: DateTimeFilter<"Asset"> | Date | string
-    updated_at?: DateTimeNullableFilter<"Asset"> | Date | string | null
+  export type householdCreateManyHousehold_categories_household_household_subcategoryTohousehold_categoriesInputEnvelope = {
+    data: householdCreateManyHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdCreateManyHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
+    skipDuplicates?: boolean
   }
 
-  export type UserCreateWithoutAssetInput = {
+  export type userCreateWithoutHousehold_categoriesInput = {
     id?: string
     user_email: string
     user_password: string
@@ -4044,9 +7862,11 @@ export namespace Prisma {
     delete_flg?: boolean
     created_at?: Date | string
     updated_at?: Date | string | null
+    asset?: assetCreateNestedManyWithoutUserInput
+    household?: householdCreateNestedManyWithoutUserInput
   }
 
-  export type UserUncheckedCreateWithoutAssetInput = {
+  export type userUncheckedCreateWithoutHousehold_categoriesInput = {
     id?: string
     user_email: string
     user_password: string
@@ -4055,25 +7875,79 @@ export namespace Prisma {
     delete_flg?: boolean
     created_at?: Date | string
     updated_at?: Date | string | null
+    asset?: assetUncheckedCreateNestedManyWithoutUserInput
+    household?: householdUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type UserCreateOrConnectWithoutAssetInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutAssetInput, UserUncheckedCreateWithoutAssetInput>
+  export type userCreateOrConnectWithoutHousehold_categoriesInput = {
+    where: userWhereUniqueInput
+    create: XOR<userCreateWithoutHousehold_categoriesInput, userUncheckedCreateWithoutHousehold_categoriesInput>
   }
 
-  export type UserUpsertWithoutAssetInput = {
-    update: XOR<UserUpdateWithoutAssetInput, UserUncheckedUpdateWithoutAssetInput>
-    create: XOR<UserCreateWithoutAssetInput, UserUncheckedCreateWithoutAssetInput>
-    where?: UserWhereInput
+  export type householdUpsertWithWhereUniqueWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+    where: householdWhereUniqueInput
+    update: XOR<householdUpdateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput, householdUncheckedUpdateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput>
+    create: XOR<householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput>
   }
 
-  export type UserUpdateToOneWithWhereWithoutAssetInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutAssetInput, UserUncheckedUpdateWithoutAssetInput>
+  export type householdUpdateWithWhereUniqueWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+    where: householdWhereUniqueInput
+    data: XOR<householdUpdateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput, householdUncheckedUpdateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput>
   }
 
-  export type UserUpdateWithoutAssetInput = {
+  export type householdUpdateManyWithWhereWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+    where: householdScalarWhereInput
+    data: XOR<householdUpdateManyMutationInput, householdUncheckedUpdateManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput>
+  }
+
+  export type householdScalarWhereInput = {
+    AND?: householdScalarWhereInput | householdScalarWhereInput[]
+    OR?: householdScalarWhereInput[]
+    NOT?: householdScalarWhereInput | householdScalarWhereInput[]
+    id?: UuidFilter<"household"> | string
+    issue_date?: DateTimeFilter<"household"> | Date | string
+    asset_id?: UuidFilter<"household"> | string
+    user_id?: UuidFilter<"household"> | string
+    household_type?: StringFilter<"household"> | string
+    household_amount?: FloatFilter<"household"> | number
+    household_comment?: StringNullableFilter<"household"> | string | null
+    image_path?: StringNullableFilter<"household"> | string | null
+    image_text?: StringNullableFilter<"household"> | string | null
+    created_at?: DateTimeFilter<"household"> | Date | string
+    updated_at?: DateTimeNullableFilter<"household"> | Date | string | null
+    household_category?: BigIntNullableFilter<"household"> | bigint | number | null
+    household_subcategory?: BigIntNullableFilter<"household"> | bigint | number | null
+    household_name?: StringNullableFilter<"household"> | string | null
+  }
+
+  export type householdUpsertWithWhereUniqueWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
+    where: householdWhereUniqueInput
+    update: XOR<householdUpdateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput, householdUncheckedUpdateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput>
+    create: XOR<householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput>
+  }
+
+  export type householdUpdateWithWhereUniqueWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
+    where: householdWhereUniqueInput
+    data: XOR<householdUpdateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput, householdUncheckedUpdateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput>
+  }
+
+  export type householdUpdateManyWithWhereWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
+    where: householdScalarWhereInput
+    data: XOR<householdUpdateManyMutationInput, householdUncheckedUpdateManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput>
+  }
+
+  export type userUpsertWithoutHousehold_categoriesInput = {
+    update: XOR<userUpdateWithoutHousehold_categoriesInput, userUncheckedUpdateWithoutHousehold_categoriesInput>
+    create: XOR<userCreateWithoutHousehold_categoriesInput, userUncheckedCreateWithoutHousehold_categoriesInput>
+    where?: userWhereInput
+  }
+
+  export type userUpdateToOneWithWhereWithoutHousehold_categoriesInput = {
+    where?: userWhereInput
+    data: XOR<userUpdateWithoutHousehold_categoriesInput, userUncheckedUpdateWithoutHousehold_categoriesInput>
+  }
+
+  export type userUpdateWithoutHousehold_categoriesInput = {
     id?: StringFieldUpdateOperationsInput | string
     user_email?: StringFieldUpdateOperationsInput | string
     user_password?: StringFieldUpdateOperationsInput | string
@@ -4082,9 +7956,11 @@ export namespace Prisma {
     delete_flg?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    asset?: assetUpdateManyWithoutUserNestedInput
+    household?: householdUpdateManyWithoutUserNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutAssetInput = {
+  export type userUncheckedUpdateWithoutHousehold_categoriesInput = {
     id?: StringFieldUpdateOperationsInput | string
     user_email?: StringFieldUpdateOperationsInput | string
     user_password?: StringFieldUpdateOperationsInput | string
@@ -4093,50 +7969,667 @@ export namespace Prisma {
     delete_flg?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    asset?: assetUncheckedUpdateManyWithoutUserNestedInput
+    household?: householdUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type AssetCreateManyUserInput = {
+  export type userCreateWithoutAssetInput = {
+    id?: string
+    user_email: string
+    user_password: string
+    user_first_name?: string | null
+    user_last_name?: string | null
+    delete_flg?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    household?: householdCreateNestedManyWithoutUserInput
+    household_categories?: household_categoriesCreateNestedManyWithoutUserInput
+  }
+
+  export type userUncheckedCreateWithoutAssetInput = {
+    id?: string
+    user_email: string
+    user_password: string
+    user_first_name?: string | null
+    user_last_name?: string | null
+    delete_flg?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    household?: householdUncheckedCreateNestedManyWithoutUserInput
+    household_categories?: household_categoriesUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type userCreateOrConnectWithoutAssetInput = {
+    where: userWhereUniqueInput
+    create: XOR<userCreateWithoutAssetInput, userUncheckedCreateWithoutAssetInput>
+  }
+
+  export type householdCreateWithoutAssetInput = {
+    id?: string
+    issue_date: Date | string
+    household_type: string
+    household_amount?: number
+    household_comment?: string | null
+    image_path?: string | null
+    image_text?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    household_name?: string | null
+    household_categories_household_household_categoryTohousehold_categories?: household_categoriesCreateNestedOneWithoutHousehold_household_household_categoryTohousehold_categoriesInput
+    household_categories_household_household_subcategoryTohousehold_categories?: household_categoriesCreateNestedOneWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput
+    User: userCreateNestedOneWithoutHouseholdInput
+  }
+
+  export type householdUncheckedCreateWithoutAssetInput = {
+    id?: string
+    issue_date: Date | string
+    user_id: string
+    household_type: string
+    household_amount?: number
+    household_comment?: string | null
+    image_path?: string | null
+    image_text?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    household_category?: bigint | number | null
+    household_subcategory?: bigint | number | null
+    household_name?: string | null
+  }
+
+  export type householdCreateOrConnectWithoutAssetInput = {
+    where: householdWhereUniqueInput
+    create: XOR<householdCreateWithoutAssetInput, householdUncheckedCreateWithoutAssetInput>
+  }
+
+  export type householdCreateManyAssetInputEnvelope = {
+    data: householdCreateManyAssetInput | householdCreateManyAssetInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type userUpsertWithoutAssetInput = {
+    update: XOR<userUpdateWithoutAssetInput, userUncheckedUpdateWithoutAssetInput>
+    create: XOR<userCreateWithoutAssetInput, userUncheckedCreateWithoutAssetInput>
+    where?: userWhereInput
+  }
+
+  export type userUpdateToOneWithWhereWithoutAssetInput = {
+    where?: userWhereInput
+    data: XOR<userUpdateWithoutAssetInput, userUncheckedUpdateWithoutAssetInput>
+  }
+
+  export type userUpdateWithoutAssetInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_email?: StringFieldUpdateOperationsInput | string
+    user_password?: StringFieldUpdateOperationsInput | string
+    user_first_name?: NullableStringFieldUpdateOperationsInput | string | null
+    user_last_name?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_flg?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household?: householdUpdateManyWithoutUserNestedInput
+    household_categories?: household_categoriesUpdateManyWithoutUserNestedInput
+  }
+
+  export type userUncheckedUpdateWithoutAssetInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_email?: StringFieldUpdateOperationsInput | string
+    user_password?: StringFieldUpdateOperationsInput | string
+    user_first_name?: NullableStringFieldUpdateOperationsInput | string | null
+    user_last_name?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_flg?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household?: householdUncheckedUpdateManyWithoutUserNestedInput
+    household_categories?: household_categoriesUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type householdUpsertWithWhereUniqueWithoutAssetInput = {
+    where: householdWhereUniqueInput
+    update: XOR<householdUpdateWithoutAssetInput, householdUncheckedUpdateWithoutAssetInput>
+    create: XOR<householdCreateWithoutAssetInput, householdUncheckedCreateWithoutAssetInput>
+  }
+
+  export type householdUpdateWithWhereUniqueWithoutAssetInput = {
+    where: householdWhereUniqueInput
+    data: XOR<householdUpdateWithoutAssetInput, householdUncheckedUpdateWithoutAssetInput>
+  }
+
+  export type householdUpdateManyWithWhereWithoutAssetInput = {
+    where: householdScalarWhereInput
+    data: XOR<householdUpdateManyMutationInput, householdUncheckedUpdateManyWithoutAssetInput>
+  }
+
+  export type assetCreateWithoutUserInput = {
     id?: string
     asset_type: string
     asset_name: string
     asset_money: number
-    asset_currency?: string | null
+    asset_currency: string
+    asset_comment?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    household?: householdCreateNestedManyWithoutAssetInput
+  }
+
+  export type assetUncheckedCreateWithoutUserInput = {
+    id?: string
+    asset_type: string
+    asset_name: string
+    asset_money: number
+    asset_currency: string
+    asset_comment?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    household?: householdUncheckedCreateNestedManyWithoutAssetInput
+  }
+
+  export type assetCreateOrConnectWithoutUserInput = {
+    where: assetWhereUniqueInput
+    create: XOR<assetCreateWithoutUserInput, assetUncheckedCreateWithoutUserInput>
+  }
+
+  export type assetCreateManyUserInputEnvelope = {
+    data: assetCreateManyUserInput | assetCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type householdCreateWithoutUserInput = {
+    id?: string
+    issue_date: Date | string
+    household_type: string
+    household_amount?: number
+    household_comment?: string | null
+    image_path?: string | null
+    image_text?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    household_name?: string | null
+    Asset: assetCreateNestedOneWithoutHouseholdInput
+    household_categories_household_household_categoryTohousehold_categories?: household_categoriesCreateNestedOneWithoutHousehold_household_household_categoryTohousehold_categoriesInput
+    household_categories_household_household_subcategoryTohousehold_categories?: household_categoriesCreateNestedOneWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput
+  }
+
+  export type householdUncheckedCreateWithoutUserInput = {
+    id?: string
+    issue_date: Date | string
+    asset_id: string
+    household_type: string
+    household_amount?: number
+    household_comment?: string | null
+    image_path?: string | null
+    image_text?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    household_category?: bigint | number | null
+    household_subcategory?: bigint | number | null
+    household_name?: string | null
+  }
+
+  export type householdCreateOrConnectWithoutUserInput = {
+    where: householdWhereUniqueInput
+    create: XOR<householdCreateWithoutUserInput, householdUncheckedCreateWithoutUserInput>
+  }
+
+  export type householdCreateManyUserInputEnvelope = {
+    data: householdCreateManyUserInput | householdCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type household_categoriesCreateWithoutUserInput = {
+    id?: bigint | number
+    category_name: string
+    parent_category_id?: bigint | number | null
+    category_comment?: string | null
+    created_at?: Date | string
+    update_at?: Date | string | null
+    household_type?: string
+    household_household_household_categoryTohousehold_categories?: householdCreateNestedManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput
+    household_household_household_subcategoryTohousehold_categories?: householdCreateNestedManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput
+  }
+
+  export type household_categoriesUncheckedCreateWithoutUserInput = {
+    id?: bigint | number
+    category_name: string
+    parent_category_id?: bigint | number | null
+    category_comment?: string | null
+    created_at?: Date | string
+    update_at?: Date | string | null
+    household_type?: string
+    household_household_household_categoryTohousehold_categories?: householdUncheckedCreateNestedManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput
+    household_household_household_subcategoryTohousehold_categories?: householdUncheckedCreateNestedManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput
+  }
+
+  export type household_categoriesCreateOrConnectWithoutUserInput = {
+    where: household_categoriesWhereUniqueInput
+    create: XOR<household_categoriesCreateWithoutUserInput, household_categoriesUncheckedCreateWithoutUserInput>
+  }
+
+  export type household_categoriesCreateManyUserInputEnvelope = {
+    data: household_categoriesCreateManyUserInput | household_categoriesCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type assetUpsertWithWhereUniqueWithoutUserInput = {
+    where: assetWhereUniqueInput
+    update: XOR<assetUpdateWithoutUserInput, assetUncheckedUpdateWithoutUserInput>
+    create: XOR<assetCreateWithoutUserInput, assetUncheckedCreateWithoutUserInput>
+  }
+
+  export type assetUpdateWithWhereUniqueWithoutUserInput = {
+    where: assetWhereUniqueInput
+    data: XOR<assetUpdateWithoutUserInput, assetUncheckedUpdateWithoutUserInput>
+  }
+
+  export type assetUpdateManyWithWhereWithoutUserInput = {
+    where: assetScalarWhereInput
+    data: XOR<assetUpdateManyMutationInput, assetUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type assetScalarWhereInput = {
+    AND?: assetScalarWhereInput | assetScalarWhereInput[]
+    OR?: assetScalarWhereInput[]
+    NOT?: assetScalarWhereInput | assetScalarWhereInput[]
+    id?: UuidFilter<"asset"> | string
+    user_id?: UuidFilter<"asset"> | string
+    asset_type?: StringFilter<"asset"> | string
+    asset_name?: StringFilter<"asset"> | string
+    asset_money?: FloatFilter<"asset"> | number
+    asset_currency?: StringFilter<"asset"> | string
+    asset_comment?: StringNullableFilter<"asset"> | string | null
+    created_at?: DateTimeFilter<"asset"> | Date | string
+    updated_at?: DateTimeNullableFilter<"asset"> | Date | string | null
+  }
+
+  export type householdUpsertWithWhereUniqueWithoutUserInput = {
+    where: householdWhereUniqueInput
+    update: XOR<householdUpdateWithoutUserInput, householdUncheckedUpdateWithoutUserInput>
+    create: XOR<householdCreateWithoutUserInput, householdUncheckedCreateWithoutUserInput>
+  }
+
+  export type householdUpdateWithWhereUniqueWithoutUserInput = {
+    where: householdWhereUniqueInput
+    data: XOR<householdUpdateWithoutUserInput, householdUncheckedUpdateWithoutUserInput>
+  }
+
+  export type householdUpdateManyWithWhereWithoutUserInput = {
+    where: householdScalarWhereInput
+    data: XOR<householdUpdateManyMutationInput, householdUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type household_categoriesUpsertWithWhereUniqueWithoutUserInput = {
+    where: household_categoriesWhereUniqueInput
+    update: XOR<household_categoriesUpdateWithoutUserInput, household_categoriesUncheckedUpdateWithoutUserInput>
+    create: XOR<household_categoriesCreateWithoutUserInput, household_categoriesUncheckedCreateWithoutUserInput>
+  }
+
+  export type household_categoriesUpdateWithWhereUniqueWithoutUserInput = {
+    where: household_categoriesWhereUniqueInput
+    data: XOR<household_categoriesUpdateWithoutUserInput, household_categoriesUncheckedUpdateWithoutUserInput>
+  }
+
+  export type household_categoriesUpdateManyWithWhereWithoutUserInput = {
+    where: household_categoriesScalarWhereInput
+    data: XOR<household_categoriesUpdateManyMutationInput, household_categoriesUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type household_categoriesScalarWhereInput = {
+    AND?: household_categoriesScalarWhereInput | household_categoriesScalarWhereInput[]
+    OR?: household_categoriesScalarWhereInput[]
+    NOT?: household_categoriesScalarWhereInput | household_categoriesScalarWhereInput[]
+    id?: BigIntFilter<"household_categories"> | bigint | number
+    user_id?: UuidFilter<"household_categories"> | string
+    category_name?: StringFilter<"household_categories"> | string
+    parent_category_id?: BigIntNullableFilter<"household_categories"> | bigint | number | null
+    category_comment?: StringNullableFilter<"household_categories"> | string | null
+    created_at?: DateTimeFilter<"household_categories"> | Date | string
+    update_at?: DateTimeNullableFilter<"household_categories"> | Date | string | null
+    household_type?: StringFilter<"household_categories"> | string
+  }
+
+  export type householdCreateManyHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+    id?: string
+    issue_date: Date | string
+    asset_id: string
+    user_id: string
+    household_type: string
+    household_amount?: number
+    household_comment?: string | null
+    image_path?: string | null
+    image_text?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    household_subcategory?: bigint | number | null
+    household_name?: string | null
+  }
+
+  export type householdCreateManyHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
+    id?: string
+    issue_date: Date | string
+    asset_id: string
+    user_id: string
+    household_type: string
+    household_amount?: number
+    household_comment?: string | null
+    image_path?: string | null
+    image_text?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    household_category?: bigint | number | null
+    household_name?: string | null
+  }
+
+  export type householdUpdateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_amount?: FloatFieldUpdateOperationsInput | number
+    household_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    image_path?: NullableStringFieldUpdateOperationsInput | string | null
+    image_text?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_name?: NullableStringFieldUpdateOperationsInput | string | null
+    Asset?: assetUpdateOneRequiredWithoutHouseholdNestedInput
+    household_categories_household_household_subcategoryTohousehold_categories?: household_categoriesUpdateOneWithoutHousehold_household_household_subcategoryTohousehold_categoriesNestedInput
+    User?: userUpdateOneRequiredWithoutHouseholdNestedInput
+  }
+
+  export type householdUncheckedUpdateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    asset_id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_amount?: FloatFieldUpdateOperationsInput | number
+    household_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    image_path?: NullableStringFieldUpdateOperationsInput | string | null
+    image_text?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_subcategory?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_name?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type householdUncheckedUpdateManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    asset_id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_amount?: FloatFieldUpdateOperationsInput | number
+    household_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    image_path?: NullableStringFieldUpdateOperationsInput | string | null
+    image_text?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_subcategory?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_name?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type householdUpdateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_amount?: FloatFieldUpdateOperationsInput | number
+    household_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    image_path?: NullableStringFieldUpdateOperationsInput | string | null
+    image_text?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_name?: NullableStringFieldUpdateOperationsInput | string | null
+    Asset?: assetUpdateOneRequiredWithoutHouseholdNestedInput
+    household_categories_household_household_categoryTohousehold_categories?: household_categoriesUpdateOneWithoutHousehold_household_household_categoryTohousehold_categoriesNestedInput
+    User?: userUpdateOneRequiredWithoutHouseholdNestedInput
+  }
+
+  export type householdUncheckedUpdateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    asset_id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_amount?: FloatFieldUpdateOperationsInput | number
+    household_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    image_path?: NullableStringFieldUpdateOperationsInput | string | null
+    image_text?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_category?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_name?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type householdUncheckedUpdateManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    asset_id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_amount?: FloatFieldUpdateOperationsInput | number
+    household_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    image_path?: NullableStringFieldUpdateOperationsInput | string | null
+    image_text?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_category?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_name?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type householdCreateManyAssetInput = {
+    id?: string
+    issue_date: Date | string
+    user_id: string
+    household_type: string
+    household_amount?: number
+    household_comment?: string | null
+    image_path?: string | null
+    image_text?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    household_category?: bigint | number | null
+    household_subcategory?: bigint | number | null
+    household_name?: string | null
+  }
+
+  export type householdUpdateWithoutAssetInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_amount?: FloatFieldUpdateOperationsInput | number
+    household_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    image_path?: NullableStringFieldUpdateOperationsInput | string | null
+    image_text?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_name?: NullableStringFieldUpdateOperationsInput | string | null
+    household_categories_household_household_categoryTohousehold_categories?: household_categoriesUpdateOneWithoutHousehold_household_household_categoryTohousehold_categoriesNestedInput
+    household_categories_household_household_subcategoryTohousehold_categories?: household_categoriesUpdateOneWithoutHousehold_household_household_subcategoryTohousehold_categoriesNestedInput
+    User?: userUpdateOneRequiredWithoutHouseholdNestedInput
+  }
+
+  export type householdUncheckedUpdateWithoutAssetInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_amount?: FloatFieldUpdateOperationsInput | number
+    household_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    image_path?: NullableStringFieldUpdateOperationsInput | string | null
+    image_text?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_category?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_subcategory?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_name?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type householdUncheckedUpdateManyWithoutAssetInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_amount?: FloatFieldUpdateOperationsInput | number
+    household_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    image_path?: NullableStringFieldUpdateOperationsInput | string | null
+    image_text?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_category?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_subcategory?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_name?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type assetCreateManyUserInput = {
+    id?: string
+    asset_type: string
+    asset_name: string
+    asset_money: number
+    asset_currency: string
     asset_comment?: string | null
     created_at?: Date | string
     updated_at?: Date | string | null
   }
 
-  export type AssetUpdateWithoutUserInput = {
+  export type householdCreateManyUserInput = {
+    id?: string
+    issue_date: Date | string
+    asset_id: string
+    household_type: string
+    household_amount?: number
+    household_comment?: string | null
+    image_path?: string | null
+    image_text?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    household_category?: bigint | number | null
+    household_subcategory?: bigint | number | null
+    household_name?: string | null
+  }
+
+  export type household_categoriesCreateManyUserInput = {
+    id?: bigint | number
+    category_name: string
+    parent_category_id?: bigint | number | null
+    category_comment?: string | null
+    created_at?: Date | string
+    update_at?: Date | string | null
+    household_type?: string
+  }
+
+  export type assetUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     asset_type?: StringFieldUpdateOperationsInput | string
     asset_name?: StringFieldUpdateOperationsInput | string
     asset_money?: FloatFieldUpdateOperationsInput | number
-    asset_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    asset_currency?: StringFieldUpdateOperationsInput | string
+    asset_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household?: householdUpdateManyWithoutAssetNestedInput
+  }
+
+  export type assetUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    asset_type?: StringFieldUpdateOperationsInput | string
+    asset_name?: StringFieldUpdateOperationsInput | string
+    asset_money?: FloatFieldUpdateOperationsInput | number
+    asset_currency?: StringFieldUpdateOperationsInput | string
+    asset_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household?: householdUncheckedUpdateManyWithoutAssetNestedInput
+  }
+
+  export type assetUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    asset_type?: StringFieldUpdateOperationsInput | string
+    asset_name?: StringFieldUpdateOperationsInput | string
+    asset_money?: FloatFieldUpdateOperationsInput | number
+    asset_currency?: StringFieldUpdateOperationsInput | string
     asset_comment?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type AssetUncheckedUpdateWithoutUserInput = {
+  export type householdUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    asset_type?: StringFieldUpdateOperationsInput | string
-    asset_name?: StringFieldUpdateOperationsInput | string
-    asset_money?: FloatFieldUpdateOperationsInput | number
-    asset_currency?: NullableStringFieldUpdateOperationsInput | string | null
-    asset_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_amount?: FloatFieldUpdateOperationsInput | number
+    household_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    image_path?: NullableStringFieldUpdateOperationsInput | string | null
+    image_text?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_name?: NullableStringFieldUpdateOperationsInput | string | null
+    Asset?: assetUpdateOneRequiredWithoutHouseholdNestedInput
+    household_categories_household_household_categoryTohousehold_categories?: household_categoriesUpdateOneWithoutHousehold_household_household_categoryTohousehold_categoriesNestedInput
+    household_categories_household_household_subcategoryTohousehold_categories?: household_categoriesUpdateOneWithoutHousehold_household_household_subcategoryTohousehold_categoriesNestedInput
   }
 
-  export type AssetUncheckedUpdateManyWithoutUserInput = {
+  export type householdUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    asset_type?: StringFieldUpdateOperationsInput | string
-    asset_name?: StringFieldUpdateOperationsInput | string
-    asset_money?: FloatFieldUpdateOperationsInput | number
-    asset_currency?: NullableStringFieldUpdateOperationsInput | string | null
-    asset_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    asset_id?: StringFieldUpdateOperationsInput | string
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_amount?: FloatFieldUpdateOperationsInput | number
+    household_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    image_path?: NullableStringFieldUpdateOperationsInput | string | null
+    image_text?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_category?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_subcategory?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_name?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type householdUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    asset_id?: StringFieldUpdateOperationsInput | string
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_amount?: FloatFieldUpdateOperationsInput | number
+    household_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    image_path?: NullableStringFieldUpdateOperationsInput | string | null
+    image_text?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_category?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_subcategory?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_name?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type household_categoriesUpdateWithoutUserInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    category_name?: StringFieldUpdateOperationsInput | string
+    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    category_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_household_household_categoryTohousehold_categories?: householdUpdateManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesNestedInput
+    household_household_household_subcategoryTohousehold_categories?: householdUpdateManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesNestedInput
+  }
+
+  export type household_categoriesUncheckedUpdateWithoutUserInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    category_name?: StringFieldUpdateOperationsInput | string
+    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    category_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_type?: StringFieldUpdateOperationsInput | string
+    household_household_household_categoryTohousehold_categories?: householdUncheckedUpdateManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesNestedInput
+    household_household_household_subcategoryTohousehold_categories?: householdUncheckedUpdateManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesNestedInput
+  }
+
+  export type household_categoriesUncheckedUpdateManyWithoutUserInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    category_name?: StringFieldUpdateOperationsInput | string
+    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    category_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    household_type?: StringFieldUpdateOperationsInput | string
   }
 
 
@@ -4145,17 +8638,33 @@ export namespace Prisma {
    * Aliases for legacy arg types
    */
     /**
+     * @deprecated Use Household_categoriesCountOutputTypeDefaultArgs instead
+     */
+    export type Household_categoriesCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Household_categoriesCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use AssetCountOutputTypeDefaultArgs instead
+     */
+    export type AssetCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AssetCountOutputTypeDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use UserCountOutputTypeDefaultArgs instead
      */
     export type UserCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserCountOutputTypeDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use UserDefaultArgs instead
+     * @deprecated Use householdDefaultArgs instead
      */
-    export type UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
+    export type householdArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = householdDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use AssetDefaultArgs instead
+     * @deprecated Use household_categoriesDefaultArgs instead
      */
-    export type AssetArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AssetDefaultArgs<ExtArgs>
+    export type household_categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = household_categoriesDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use assetDefaultArgs instead
+     */
+    export type assetArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = assetDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use userDefaultArgs instead
+     */
+    export type userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = userDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

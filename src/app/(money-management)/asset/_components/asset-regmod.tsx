@@ -221,7 +221,7 @@ export default function AssetRegModForm({ isModify, assetId, assetType, assetNam
                                 id="assetType"
                                 key="assetType"
                                 name="assetType"
-                                btnName={isModify ? getAssetTypeItem(assetType) : w('common.select')}
+                                defaultBtnName={isModify ? getAssetTypeItem(assetType) : w('common.select')}
                                 className="w-full max-w-md"
                                 disabled={loading}
                                 defaultInputValue={isModify ? assetType : undefined}
@@ -302,7 +302,7 @@ export default function AssetRegModForm({ isModify, assetId, assetType, assetNam
                                 key="assetCurrency"
                                 name="assetCurrency"
                                 disabled={loading}
-                                btnName={isModify ? getCurrencyItem(assetCurrency) : w('common.select')}
+                                defaultBtnName={isModify ? getCurrencyItem(assetCurrency) : w('common.select')}
                                 className="w-full max-w-md"
                                 defaultInputValue={isModify ? assetCurrency : undefined}
                                 required
