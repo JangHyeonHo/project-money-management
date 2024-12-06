@@ -122,15 +122,32 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.UserScalarFieldEnum = {
+exports.Prisma.HouseholdScalarFieldEnum = {
   id: 'id',
-  user_email: 'user_email',
-  user_password: 'user_password',
-  user_first_name: 'user_first_name',
-  user_last_name: 'user_last_name',
-  delete_flg: 'delete_flg',
+  issue_date: 'issue_date',
+  asset_id: 'asset_id',
+  user_id: 'user_id',
+  household_type: 'household_type',
+  household_amount: 'household_amount',
+  household_comment: 'household_comment',
+  image_path: 'image_path',
+  image_text: 'image_text',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  household_category: 'household_category',
+  household_subcategory: 'household_subcategory',
+  household_name: 'household_name'
+};
+
+exports.Prisma.Household_categoriesScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  category_name: 'category_name',
+  parent_category_id: 'parent_category_id',
+  category_comment: 'category_comment',
+  created_at: 'created_at',
+  update_at: 'update_at',
+  household_type: 'household_type'
 };
 
 exports.Prisma.AssetScalarFieldEnum = {
@@ -141,6 +158,17 @@ exports.Prisma.AssetScalarFieldEnum = {
   asset_money: 'asset_money',
   asset_currency: 'asset_currency',
   asset_comment: 'asset_comment',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  user_email: 'user_email',
+  user_password: 'user_password',
+  user_first_name: 'user_first_name',
+  user_last_name: 'user_last_name',
+  delete_flg: 'delete_flg',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -162,8 +190,10 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  User: 'User',
-  Asset: 'Asset'
+  household: 'household',
+  household_categories: 'household_categories',
+  asset: 'asset',
+  user: 'user'
 };
 
 /**

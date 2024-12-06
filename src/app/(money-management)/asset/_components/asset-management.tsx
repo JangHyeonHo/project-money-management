@@ -52,7 +52,7 @@ export default function AssetManagement({ bankbookAssets, cashAssets, cardAssets
                 onYes={deleteConfirmYesClick}
                 onNo={deleteConfirmNoClick}
             />
-            <div className="border-b border-gray-900/10 pt-6 pb-8">
+            <div className="border-b border-gray-900/10 py-4">
                 <AssetListCollapse
                     title={w('asset.cash')}
                 >
@@ -61,7 +61,7 @@ export default function AssetManagement({ bankbookAssets, cashAssets, cardAssets
                         onDeleteClick={deleteCallback} />
                 </AssetListCollapse>
             </div>
-            <div className="border-b border-gray-900/10 pt-6 pb-8">
+            <div className="border-b border-gray-900/10 py-4">
                 <AssetListCollapse
                     title={w('asset.bankbook')}
                 >
@@ -70,7 +70,7 @@ export default function AssetManagement({ bankbookAssets, cashAssets, cardAssets
                         onDeleteClick={deleteCallback} />
                 </AssetListCollapse>
             </div>
-            <div className="border-b border-gray-900/10 pt-6 pb-8">
+            <div className="border-b border-gray-900/10 py-4">
                 <AssetListCollapse
                     title={w('asset.card')}
                 >
@@ -79,7 +79,7 @@ export default function AssetManagement({ bankbookAssets, cashAssets, cardAssets
                         onDeleteClick={deleteCallback} />
                 </AssetListCollapse>
             </div>
-            <div className="border-b border-gray-900/10 pt-6 pb-8">
+            <div className="border-b border-gray-900/10 py-4">
                 <AssetListCollapse
                     title={w('common.etc')}
                 >

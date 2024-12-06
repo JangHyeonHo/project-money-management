@@ -10,6 +10,7 @@
             "name": "Asset Name",
             "type": "Asset Type",
             "money": "Amount",
+            "total": "Total Amount",
             "currency": "Currency",
             "cash": "Cash",
             "card": "Card",
@@ -56,7 +57,12 @@
             "expense": "Expenditure",
             "date": "Issue Date",
             "category": "Household Category",
-            "subcategory": "Household Subcategory"
+            "subcategory": "Household Subcategory",
+            "name": "Household Name"
+        },
+        "settings": {
+            "title": "Settings",
+            "household": "Household Settings"
         },
         "common": {
             "btn": "Button",
@@ -124,7 +130,9 @@
         },
         "household": {
             "management-info": "You can check the household register you entered on a monthly basis.",
-            "regist-info": "Please fill out the household register."
+            "regist-info": "Please fill out the household register.",
+            "not-exist-datedata": "No data for that date",
+            "not-exist-monthdata": "No data for that month"
         },
         "common": {
             "upload-file": "Upload a one file",

@@ -2,7 +2,7 @@
 import GetUserCookieFromSession from "@/app/_actions/get-user-cookies";
 import { redirect } from "next/navigation";
 import AssetManagement from "../_components/asset-management";
-import { AssetTypes, LayoutHeaders } from "@/app/_types/common-const";
+import { AssetTypes, HouseholdTypes, LayoutHeaders } from "@/app/_types/common-const";
 import SiteStackedLayout from "@/app/_components/_layout/stacked-layout";
 import { GetAssetDatas } from "../_actions/get-asset-datas";
 import { AssetListItemProps } from "../_types/asset-type";
@@ -25,20 +25,30 @@ export default async function Page() {
 
     const assetManagementDatas = await GetAssetDatas(userInfo.userKey);
 
-    const cashAssets:Array<AssetListItemProps> = [];
-    const cardAssets:Array<AssetListItemProps> = [];
-    const bankbookAssets:Array<AssetListItemProps> = [];
-    const etcAssets:Array<AssetListItemProps> = [];
+    const cashAssets:AssetListItemProps[] = [];
+    const cardAssets:AssetListItemProps[] = [];
+    const bankbookAssets:AssetListItemProps[] = [];
+    const etcAssets:AssetListItemProps[] = [];
 
     if (assetManagementDatas) {
         for (let i = 0; i < assetManagementDatas.length; i++) {
+            let totalIncome = 0;
+            assetManagementDatas[i].household.filter((item)=> item.household_type === HouseholdTypes.Income)
+            .forEach(({household_amount})=>{
+                totalIncome += household_amount;
+            })
+            assetManagementDatas[i].household.filter((item)=> item.household_type === HouseholdTypes.Expenditure)
+            .forEach(({household_amount})=>{
+                totalIncome -= household_amount;
+            })
+
             switch (assetManagementDatas[i].asset_type) {
                 case AssetTypes.Cash:
                     cashAssets.push({
                         key:assetManagementDatas[i].id,
                         name:assetManagementDatas[i].asset_name,
                         currency:NullChangeBlankValueFromString(assetManagementDatas[i].asset_currency),
-                        money:assetManagementDatas[i].asset_money,
+                        money:assetManagementDatas[i].asset_money + totalIncome,
                     });
                     break;
                 case AssetTypes.Card:
@@ -46,7 +56,7 @@ export default async function Page() {
                         key:assetManagementDatas[i].id,
                         name:assetManagementDatas[i].asset_name,
                         currency:NullChangeBlankValueFromString(assetManagementDatas[i].asset_currency),
-                        money:assetManagementDatas[i].asset_money,
+                        money:assetManagementDatas[i].asset_money + totalIncome,
                     });
                     break;
                 case AssetTypes.Bankbook:
@@ -54,7 +64,7 @@ export default async function Page() {
                         key:assetManagementDatas[i].id,
                         name:assetManagementDatas[i].asset_name,
                         currency:NullChangeBlankValueFromString(assetManagementDatas[i].asset_currency),
-                        money:assetManagementDatas[i].asset_money,
+                        money:assetManagementDatas[i].asset_money + totalIncome,
                     });
                     break;
                 case AssetTypes.Etc:
@@ -62,7 +72,7 @@ export default async function Page() {
                         key:assetManagementDatas[i].id,
                         name:assetManagementDatas[i].asset_name,
                         currency:NullChangeBlankValueFromString(assetManagementDatas[i].asset_currency),
-                        money:assetManagementDatas[i].asset_money,
+                        money:assetManagementDatas[i].asset_money + totalIncome,
                     });
                     break;
             }

@@ -26,7 +26,7 @@ export async function AssetModifyAction(data: AssetRegModActionProps) {
             data: {
                 asset_type: data.assetType,
                 asset_name: data.assetName,
-                asset_money: data.assetMoney,
+                //asset_money: data.assetMoney,
                 asset_currency: data.assetCurrency,
                 asset_comment: data.assetComment,
             },
@@ -45,6 +45,7 @@ export async function AssetModifyAction(data: AssetRegModActionProps) {
 
             }
         }
+        console.error(`Prisma Error: ${e}`)
         return null;
     }
 }

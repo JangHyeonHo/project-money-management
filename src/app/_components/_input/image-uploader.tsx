@@ -2,7 +2,7 @@ import { ImageUploaderProps } from "@/app/_types/common-types";
 import { PhotoIcon } from "@heroicons/react/24/outline";
 import { useTranslations } from "next-intl";
 
-export default function ImageUploader({className, id, name}:ImageUploaderProps) {
+export default function ImageUploader({className, id, name, disabled}:ImageUploaderProps) {
 
     const m = useTranslations('msg.common');
 
@@ -20,6 +20,7 @@ export default function ImageUploader({className, id, name}:ImageUploaderProps) 
                         <input
                             id={id}
                             name={name}
+                            disabled={disabled}
                             type="file"
                             accept='image/*'
                             className="sr-only" />

@@ -19,6 +19,7 @@ export async function GetAssetDatas(userKey:string) {
                 asset_money: true,
                 asset_currency: true,
                 asset_comment: true,
+                household: true,
             },
             orderBy:{
                 asset_type : "asc"
@@ -37,6 +38,7 @@ export async function GetAssetDatas(userKey:string) {
                 
             }
         }
+        console.error(`Prisma Error: ${e}`)
         return null;
     }
 }

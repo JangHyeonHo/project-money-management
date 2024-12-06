@@ -57,6 +57,7 @@ export async function SignupAction(data: SignupActionProps) {
 
             }
         }
+        console.error(`Prisma Error: ${e}`)
         return null;
     }
 

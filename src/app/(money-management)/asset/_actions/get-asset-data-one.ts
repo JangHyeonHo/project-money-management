@@ -35,6 +35,7 @@ export async function GetAssetDataOne(userKey:string, assetKey:string) {
                 
             }
         }
+        console.error(`Prisma Error: ${e}`)
         return null;
     }
 }
