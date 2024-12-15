@@ -1,5 +1,4 @@
 import { getRequestConfig } from "next-intl/server";
-import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 
 /**
@@ -10,6 +9,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
     let locale = await requestLocale;
 
     // Ensure that a valid locale is used
+    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     if (!locale || !routing.locales.includes(locale as any)) {
         locale = routing.defaultLocale;
     }

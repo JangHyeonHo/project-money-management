@@ -109,12 +109,12 @@ export default function SiteStackedLayout({ children, headtitle, headCurrent, is
                         <div className="hidden md:block">
                             <div className="ml-4 flex items-center md:ml-6">
                                 {isLogin === undefined || !isLogin ?
-                                    <a
+                                    <Link
                                         className='text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium'
-                                        href="/login"
+                                        href="/signin"
                                     >
                                         {w("users.login")}
-                                    </a>
+                                    </Link>
                                     :
                                     <Menu as="div" className="relative ml-3">
                                         <div>
@@ -130,21 +130,22 @@ export default function SiteStackedLayout({ children, headtitle, headCurrent, is
                                         >
                                             {userNavigation.map((item) => (
                                                 <MenuItem key={item.name}>
-                                                    <a
+                                                    <Link
                                                         href={item.href}
                                                         className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
                                                     >
                                                         {item.name}
-                                                    </a>
+                                                    </Link>
                                                 </MenuItem>
                                             ))}
                                             <MenuItem>
-                                                <a
+                                                <Link
+                                                    href="#"
                                                     onClick={() => LogoutAction()}
                                                     className="cursor-pointer block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
                                                 >
                                                     {w("users.logout")}
-                                                </a>
+                                                </Link>
                                             </MenuItem>
                                         </MenuItems>
                                     </Menu>

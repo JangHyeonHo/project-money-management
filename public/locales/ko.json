@@ -101,8 +101,8 @@
             }
         },
         "users": {
-            "login": "Sign In",
-            "logout": "Sign Out",
+            "login": "로그인",
+            "logout": "로그아웃",
             "email": "E-mail",
             "pwd": "비밀번호",
             "pwd-confirm": "비밀번호 확인",
