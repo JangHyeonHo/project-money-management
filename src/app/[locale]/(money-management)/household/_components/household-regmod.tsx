@@ -45,6 +45,8 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
     const [amountError, setAmountError] = useState<string>("");
     const [commentError, setCommentError] = useState<string>("");
 
+    const [inputIssueDate, setInputIssueDate] = useState<Date | undefined>(issueDate);
+
     const [householdTypeItems] = useState<InputDropdownPropsItem[]>([
         { key: HouseholdTypes.Income, value: w('household.income') },
         { key: HouseholdTypes.Expenditure, value: w('household.expense') }
@@ -173,7 +175,7 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
      */
     const changeFormToApi = (form: FormData) => {
         //const image = form.get("householdImage");
-        const issue = form.get("issueDate");
+        const issue = inputIssueDate;
         const asset = form.get("assetKey");
         const hType = form.get("householdType");
         const category = form.get("householdCategory");
@@ -186,9 +188,13 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
         dayjs.extend(utc);
         dayjs.extend(timezone);
 
+        // if(issue){
+        //     console.log(dayjs(issue).utc(true).toDate());
+        // }
+
         const data: HouseholdRegModActionProps = {
             householdKey: isModify ? householdKey : undefined,
-            issueDate: issue === null ? undefined : dayjs(issue?.toString()).utc(true).toDate(),
+            issueDate: issue === null ? undefined : dayjs(issue).utc(true).toDate(),
             assetKey: asset === null ? "" : asset.toString(),
             householdType: hType === null ? "" : hType.toString(),
             householdCategory: category === null ? BigInt(-1) : BigInt(category.toString()),
@@ -329,7 +335,8 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
                                 name="issueDate"
                                 disabled={loading}
                                 language={locale}
-                                defaultDate={isModify ? issueDate : undefined}
+                                defaultDate={isModify ? issueDate : inputIssueDate}
+                                setDate={setInputIssueDate}
                             ></InputDatePicker>
                             {/* <input type="date"
                                 id="issueDate"

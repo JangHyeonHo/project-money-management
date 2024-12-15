@@ -31,7 +31,7 @@ export default function HouseholdManagement({ householdDateTotalAssetItems, hous
     const dateClick = (selectDate: Date) => {
         setSelectDate(selectDate);
         if (householdDateTotalAssetItems) {
-            setTotalAssetData(householdDateTotalAssetItems.find((item) => item.issueDate.getDate() === selectDate.getDate()));
+            setTotalAssetData(householdDateTotalAssetItems.find((item) => item.issueDate.toLocaleDateString() === selectDate.toLocaleDateString()));
         }
         if (householdMonthItems) {
             setMonthData(householdMonthItems.find((item) => item.issueDate.toLocaleDateString(locale, {

@@ -7,10 +7,9 @@ import { useState } from "react"
 import DatePicker from "tailwind-datepicker-react"
 import { IOptions } from "tailwind-datepicker-react/types/Options"
 
-export default function InputDatePicker({title, language, id, name, defaultDate, disabled }:InputDatePickerProps) {
+export default function InputDatePicker({title, language, id, name, defaultDate, disabled, setDate }:InputDatePickerProps) {
 
     const w = useTranslations('word');
-
 
     /**시간관계상 DatePicker는 일단 기성품을 쓰기로 함
      * 이후에 만들 여유가 있으면 수제 커스텀으로 만들어 보는것도 괜찮을지도
@@ -60,6 +59,9 @@ export default function InputDatePicker({title, language, id, name, defaultDate,
     const handleChange = (selectedDate: Date) => {
         //console.log(selectedDate)
         setSelectDate(selectedDate);
+        if(setDate){
+            setDate(selectedDate);
+        }
     }
     const handleClose = (state: boolean) => {
         setShow(state)

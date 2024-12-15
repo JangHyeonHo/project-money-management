@@ -36,6 +36,7 @@ export interface InputDatePickerProps{
     id:string,
     defaultDate?:Date,
     disabled?:boolean,
+    setDate?:(date:Date)=>void,
 }
 
 
