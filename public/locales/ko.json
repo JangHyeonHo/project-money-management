@@ -1,13 +1,168 @@
 {
-    "word":{
-        "siteTitle" : "Money Management",
-        "capital":{
-            "title" : "Capital",
-            "management": "Capital Management",
-            "regist": "Capital Regist"
+    "word": {
+        "siteTitle": "내맘대로 쓰는 가계부",
+        "asset": {
+            "title": "자산",
+            "management": "자산 관리",
+            "regist": "자산 등록",
+            "modify": "자산 수정",
+            "delete": "자산 삭제 [{item}]",
+            "name": "자산 명",
+            "type": "자산 종류",
+            "money": "금액",
+            "total": "총 금액",
+            "currency": "통화",
+            "cash": "현금",
+            "card": "카드",
+            "bankbook": "통장",
+            "difference":"차액",
+            "cur-key": {
+                "usd": "미국 달러(USD)",
+                "cad": "Canadian Dollar(CAD)",
+                "eur": "유럽 유로(EUR)",
+                "gbp": "Pound Sterling(GBP)",
+                "chf": "Swiss Franc(CHF)",
+                "nok": "Norwegian Krone(NOK)",
+                "sek": "Swedish Krona(SEK)",
+                "dkk": "Danish Krone(DKK)",
+                "pln": "Polish Zloty(PLN)",
+                "czk": "Czech Koruna(CZK)",
+                "huf": "Hungarian Forint(HUF)",
+                "cny": "중국 위안(CNY)",
+                "jpy": "일본 엔(JPY)",
+                "krw": "한국 원(KRW)",
+                "inr": "Indian Rupee(INR)",
+                "aud": "호주 달러(AUD)",
+                "sgd": "Singapore Dollar(SGD)",
+                "hkd": "Hong Kong Dollar(HKD)",
+                "thb": "Thai Baht(THB)",
+                "myr": "Malaysian Ringgit(MYR)",
+                "idr": "Indonesian Rupiah(IDR)",
+                "php": "Philippine Peso(PHP)",
+                "vnd": "Vietnamese Dong(VND)",
+                "brl": "Brazilian Real(BRL)",
+                "mxn": "Mexican Peso(MXN)",
+                "ars": "Argentine Peso(ARS)",
+                "clp": "Chilean Peso(CLP)",
+                "zar": "South African Rand(ZAR)",
+                "ngn": "Nigerian Naira(NGN)",
+                "egp": "Egyptian Pound(EGP)"
+            }
         },
-        "household":{
-            "title": "Household"
+        "household": {
+            "title": "가계부",
+            "management": "가계부 관리",
+            "regist": "가계부 등록",
+            "in-exp": "수입/지출",
+            "income": "수입",
+            "expense": "지출",
+            "date": "발행일",
+            "category": "대분류",
+            "subcategory": "소분류",
+            "name": "가계부 명",
+            "delete": "가계부 삭제 [{item}]"
+        },
+        "settings": {
+            "title": "설정",
+            "household": "가계부 설정"
+        },
+        "common": {
+            "btn": "버튼",
+            "modify": "수정",
+            "delete": "삭제",
+            "detail": "상세",
+            "save": "저장",
+            "cancel": "취소",
+            "select": "선택",
+            "etc": "기타",
+            "image": "이미지",
+            "data": "데이터",
+            "upload": "업로드",
+            "read": "읽기",
+            "comment": "비고",
+            "config": "설정",
+            "user": "유저",
+            "yes": "예",
+            "no": "아니오",
+            "more": "더 보기",
+            "sel-date": "날짜 선택",
+            "today":"오늘",
+            "clear":"초기화",
+            "yesterday":"어제",
+            "tomorrow":"내일",
+            "weekend": {
+                "mo":"월", 
+                "tu":"화", 
+                "we":"수", 
+                "th":"목", 
+                "fr":"금", 
+                "sa":"토",
+                "su":"일"
+            }
+        },
+        "users": {
+            "login": "로그인",
+            "logout": "로그아웃",
+            "email": "E-mail",
+            "pwd": "비밀번호",
+            "pwd-confirm": "비밀번호 확인",
+            "f-name": "이름",
+            "l-name": "성",
+            "signup": "회원 가입",
+            "autologin": "Auto Sign"
+        }
+    },
+    "msg": {
+        "error": {
+            "notFound": {
+                "title": "Page not found",
+                "msg1": "죄송하지만, 해당 페이지는 존재하지 않습니다.",
+                "back": "돌아가기",
+                "contact": "관리자에게 연락하기"
+            },
+            "input": {
+                "required": "{item}은/는 필수 항목입니다.",
+                "c-range-min-max": "{item}은/는 {min}글자 이상 {max}글자 이하로 작성해 주세요",
+                "c-range-min": "{item}은/는 {min}글자 이상으로 작성해 주세요",
+                "c-range-max": "{item}은/는 {max}글자 이하로 작성해 주세요",
+                "range-min-max": "{item}은/는 {min} 이상 {max} 이하로 작성해 주세요",
+                "range-min": "{item}은/는 {min} 이상으로 작성해 주세요",
+                "range-max": "{item}은/는 {min} 이하로 작성해 주세요",
+                "number": "올바른 숫자를 입력해 주세요",
+                "select": "{item}을/를 선택해 주세요"
+            },
+            "users": {
+                "login": "E-mail 혹은 비밀번호가 일치하지 않습니다.",
+                "email-input": "E-mail을 입력해 주세요",
+                "pwd-input": "비밀번호를 입력해 주세요",
+                "pwd-check-input": "비밀번호가 일치하지 않습니다."
+            }
+        },
+        "asset": {
+            "regist-info": "유저의 자산 정보를 등록할 수 있습니다.",
+            "management-info": "등록한 자산에 대한 데이터를 확인하는 곳입니다.",
+            "regist-success": "자산이 성공적으로 등록되었습니다.",
+            "regist-error": "자산 등록에 실패하셨습니다.",
+            "delete-info": "자산 데이터를 삭제하면 되돌릴 수 없습니다. 또한 해당 자산과 관련된 가계부 데이터도 삭제됩니다. 삭제하시겠습니까?",
+            "modify-info": "자산 금액이 수정되었습니다. 수정된 금액은 차액으로 가계부에 자동으로 입력됩니다. 수정하시겠습니까?"
+        },
+        "household": {
+            "management-info": "월별로 입력한 가계부를 확인할 수 있습니다.",
+            "regist-info": "가계부를 등록해주세요.",
+            "not-exist-datedata": "해당 날짜에 데이터가 존재하지 않습니다.",
+            "not-exist-monthdata": "해당 월에 대한 데이터가 존재하지 않습니다.",
+            "delete-info": "가계부 데이터를 삭제하면 되돌릴 수 없습니다. 정말 삭제하시겠습니까?"
+        },
+        "common": {
+            "upload-file": "파일 하나 업로드",
+            "drag-drop": "혹은 드래그 앤 드롭",
+            "image-limit": "최대 10MB의 이미지 파일",
+            "input-max": "{item}은/는 최대 {max} 글자까지 입력할 수 있습니다."
+        },
+        "users": {
+            "tos": "이 서비스는 개인 프로젝트를 위해 설계되었습니다.<br></br>사용 약관 없이 사용할 수 있습니다.<br></br> 단, 회원 서비스는 제한된 기간 동안만 승인됩니다.",
+            "password-info": "비밀번호에는 영어/숫자/특수 문자를 포함해야 합니다.",
+            "password-check-info": "비밀번호를 다시 입력해 주세요"
         }
     }
 }
