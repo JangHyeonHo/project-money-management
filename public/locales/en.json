@@ -15,6 +15,7 @@
             "cash": "Cash",
             "card": "Card",
             "bankbook": "Bankbook",
+            "difference":"Difference",
             "cur-key": {
                 "usd": "US Dollar(USD)",
                 "cad": "Canadian Dollar(CAD)",
@@ -58,7 +59,8 @@
             "date": "Issue Date",
             "category": "Household Category",
             "subcategory": "Household Subcategory",
-            "name": "Household Name"
+            "name": "Household Name",
+            "delete": "Household [{item}] Delete"
         },
         "settings": {
             "title": "Settings",
@@ -81,7 +83,22 @@
             "config": "Configration",
             "user": "User",
             "yes": "Yes",
-            "no": "No"
+            "no": "No",
+            "more": "More",
+            "sel-date": "Select Date",
+            "today":"Today",
+            "clear":"Clear",
+            "yesterday":"Yesterday",
+            "tomorrow":"Tomorrow",
+            "weekend": {
+                "mo":"Mo", 
+                "tu":"Tu", 
+                "we":"We", 
+                "th":"Th", 
+                "fr":"Fr", 
+                "sa":"Sa",
+                "su":"Su"
+            }
         },
         "users": {
             "login": "Sign In",
@@ -126,13 +143,15 @@
             "management-info": "This is where you check the data on the asset you entered.",
             "regist-success": "Your asset has been successfully registered.",
             "regist-error": "Your asset registration failed.",
-            "delete-info": "If you delete the asset data, you can't undo it. Are you sure you want to delete it?"
+            "delete-info": "If you delete the asset data, you can't undo it. It will also delete the household data related to that asset. Are you sure you want to delete it?",
+            "modify-info": "The asset amount has been modified. The revised amount will be automatically entered into the household register as the difference. Would that be all right?"
         },
         "household": {
             "management-info": "You can check the household register you entered on a monthly basis.",
             "regist-info": "Please fill out the household register.",
             "not-exist-datedata": "No data for that date",
-            "not-exist-monthdata": "No data for that month"
+            "not-exist-monthdata": "No data for that month",
+            "delete-info": "If you delete the household data, you can't undo it. Are you sure you want to delete it?"
         },
         "common": {
             "upload-file": "Upload a one file",

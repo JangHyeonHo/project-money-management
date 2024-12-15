@@ -26,7 +26,7 @@ model household {
   household_category                                                         BigInt?
   household_subcategory                                                      BigInt?
   household_name                                                             String?               @db.VarChar
-  Asset                                                                      asset                 @relation(fields: [asset_id], references: [id], onDelete: SetNull)
+  Asset                                                                      asset                 @relation(fields: [asset_id], references: [id], onDelete: Cascade)
   household_categories_household_household_categoryTohousehold_categories    household_categories? @relation("household_household_categoryTohousehold_categories", fields: [household_category], references: [id])
   household_categories_household_household_subcategoryTohousehold_categories household_categories? @relation("household_household_subcategoryTohousehold_categories", fields: [household_subcategory], references: [id])
   User                                                                       user                  @relation(fields: [user_id], references: [id], onDelete: Cascade)
