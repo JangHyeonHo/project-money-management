@@ -141,7 +141,10 @@ export default function SiteStackedLayout({ children, headtitle, headCurrent, is
                                             <MenuItem>
                                                 <Link
                                                     href="#"
-                                                    onClick={() => LogoutAction()}
+                                                    onClick={() => {
+                                                        LogoutAction()
+                                                        router.push('/signin');
+                                                    }}
                                                     className="cursor-pointer block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
                                                 >
                                                     {w("users.logout")}

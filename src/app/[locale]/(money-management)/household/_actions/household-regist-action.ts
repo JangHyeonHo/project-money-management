@@ -26,10 +26,9 @@ export async function HouseholdRegistAction(data: HouseholdRegModActionProps) {
         if (data.issueDate === undefined) {
             return null;
         }
-        const asset = await prisma.household.create({
+        const household = await prisma.household.create({
             data: {
                 issue_date: data.issueDate,
-                asset_id: data.assetKey,
                 household_type: data.householdType,
                 household_category: data.householdCategory ? data.householdCategory : null,
                 household_subcategory: data.householdSubcategory ? data.householdSubcategory : null,
@@ -37,10 +36,10 @@ export async function HouseholdRegistAction(data: HouseholdRegModActionProps) {
                 household_amount: data.householdAmount,
                 household_comment: data.householdComment,
                 user_id: userKey,
+                asset_id: data.assetKey,
             }
         });
-
-        return asset;
+        return household;
     } catch (e) {
         if (e instanceof Prisma.PrismaClientKnownRequestError) {
             // The .code property can be accessed in a type-safe manner
