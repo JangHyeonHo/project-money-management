@@ -13,5 +13,9 @@ export const AssetTypes = {
 
 export const HouseholdTypes = {
     Income : "I",
-    Expenditure: "E"
+    Expenditure: "E",
+} as const;
+
+export const SettingMenus = {
+    Category : 0,
 } as const;

@@ -7,6 +7,7 @@ import { HouseholdDateTotalAssetData, HouseholdDateTotalAssetItem, HouseholdMont
 import { EventSourceInput } from "@fullcalendar/core/index.js";
 import { NullChangeBlankValueFromString } from "@/app/[locale]/_utils/common-utils";
 import { redirect } from "@/i18n/routing";
+import { IsExistUserAssetData } from "../../asset/_actions/is-exist-asset";
 
 //Page기능 넣으려고 했는데.. Page보다 더보기 기능으로 넣는게 나을까 싶어서 일단은 보류
 // type Props = {
@@ -31,10 +32,13 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         return;
     }
 
-    // TODO household 리스트
+    // 자산데이터 존재 확인
+    const isAssetExist = await IsExistUserAssetData(userInfo.userKey);
+
+    // 가계부 리스트 취득
     const householdDatas = await GetHouseholdDatas(userInfo.userKey);
 
-    const dateTotalAssetItems: HouseholdDateTotalAssetItem[] = [];
+    const dateTotalAssetItems: HouseholdDateTotalAssetItem[] = [];    
 
     // 1. 날짜별 총 자산정리(날짜별 카운팅 추가)
     if (householdDatas !== null) {
@@ -149,6 +153,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                 householdDateTotalAssetItems={dateTotalAssetItems}
                 householdMonthItems={householdMonthItems}
                 calendarEvents={calendarEvents}
+                isNothingAsset={isAssetExist===0}
                 locale={locale}
             >
 

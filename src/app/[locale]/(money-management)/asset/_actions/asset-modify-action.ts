@@ -29,6 +29,7 @@ export async function AssetModifyAction(data: AssetRegModActionProps) {
                 //asset_money: data.assetMoney,
                 asset_currency: data.assetCurrency,
                 asset_comment: data.assetComment,
+                updated_at: data.updateDate,
             },
             where: {
                 id: data.assetKey,

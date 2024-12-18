@@ -15,7 +15,8 @@
             "cash": "현금",
             "card": "카드",
             "bankbook": "통장",
-            "difference":"차액",
+            "difference": "차액",
+            "transfer": "이체",
             "cur-key": {
                 "usd": "미국 달러(USD)",
                 "cad": "Canadian Dollar(CAD)",
@@ -64,7 +65,7 @@
         },
         "settings": {
             "title": "설정",
-            "household": "가계부 설정"
+            "category": "가계부 분류 설정"
         },
         "common": {
             "btn": "버튼",
@@ -86,18 +87,19 @@
             "no": "아니오",
             "more": "더 보기",
             "sel-date": "날짜 선택",
-            "today":"오늘",
-            "clear":"초기화",
-            "yesterday":"어제",
-            "tomorrow":"내일",
+            "today": "오늘",
+            "clear": "초기화",
+            "yesterday": "어제",
+            "tomorrow": "내일",
+            "add-item": "{item} 추가",
             "weekend": {
-                "mo":"월", 
-                "tu":"화", 
-                "we":"수", 
-                "th":"목", 
-                "fr":"금", 
-                "sa":"토",
-                "su":"일"
+                "mo": "월",
+                "tu": "화",
+                "we": "수",
+                "th": "목",
+                "fr": "금",
+                "sa": "토",
+                "su": "일"
             }
         },
         "users": {
@@ -109,7 +111,48 @@
             "f-name": "이름",
             "l-name": "성",
             "signup": "회원 가입",
-            "autologin": "Auto Sign"
+            "autologin": "Auto Sign",
+            "init-category": {
+                "salary": "급여",
+                "ex-income": "부수입",
+                "pocket-money": "용돈",
+                "etc-income": "기타 수입",
+                "food-exp": "식비",
+                "trans-exp": "교통비",
+                "enter-exp": "유흥비",
+                "util-exp": "공과금",
+                "cong-exp": "경조사비",
+                "live-exp": "생활비",
+                "misc-exp": "잡비",
+                "trans-deposit": "이체 입금",
+                "eat-out": "외식",
+                "mart": "마트/슈퍼마켓",
+                "conv": "편의점",
+                "public-trans": "대중교통",
+                "taxi": "택시",
+                "gas": "주유비",
+                "maintain": "보수비용",
+                "movie": "영화/콘서트",
+                "music": "음악/서적",
+                "app": "어플",
+                "travel": "여행",
+                "hobby": "취미",
+                "karaoke": "노래방",
+                "game": "게임",
+                "water-bill": "수도세",
+                "elect-bill": "전기세",
+                "gas-bill": "가스비",
+                "month-rent": "월세",
+                "phone-bill": "통신/인터넷 요금",
+                "present": "선물",
+                "supplies": "생필품/용품",
+                "homes": "가구/가전제품",
+                "cloth": "의류",
+                "hospital": "병원",
+                "medicine": "약/의약품",
+                "Parents": "부모님",
+                "trans-withdrawal": "이체 출금"
+            }
         }
     },
     "msg": {
@@ -135,7 +178,8 @@
                 "login": "E-mail 혹은 비밀번호가 일치하지 않습니다.",
                 "email-input": "E-mail을 입력해 주세요",
                 "pwd-input": "비밀번호를 입력해 주세요",
-                "pwd-check-input": "비밀번호가 일치하지 않습니다."
+                "pwd-check-input": "비밀번호가 일치하지 않습니다.",
+                "pwd-error": "비밀번호는 영어 숫자 특수문자 포함하여 8글자 이상으로 작성해주세요"
             }
         },
         "asset": {
@@ -143,26 +187,71 @@
             "management-info": "등록한 자산에 대한 데이터를 확인하는 곳입니다.",
             "regist-success": "자산이 성공적으로 등록되었습니다.",
             "regist-error": "자산 등록에 실패하셨습니다.",
-            "delete-info": "자산 데이터를 삭제하면 되돌릴 수 없습니다. 또한 해당 자산과 관련된 가계부 데이터도 삭제됩니다. 삭제하시겠습니까?",
-            "modify-info": "자산 금액이 수정되었습니다. 수정된 금액은 차액으로 가계부에 자동으로 입력됩니다. 수정하시겠습니까?"
+            "delete-info": "자산 데이터를 삭제하면 되돌릴 수 없습니다.<br></br> 또한 해당 자산과 관련된 가계부 데이터도 삭제됩니다.<br></br> 삭제하시겠습니까?",
+            "modify-info": "자산 금액이 수정되었습니다.<br></br> 수정된 금액은 차액으로 가계부에 자동으로 입력됩니다.<br></br> 수정하시겠습니까?"
         },
         "household": {
-            "management-info": "월별로 입력한 가계부를 확인할 수 있습니다.",
+            "management-info": "월별로 입력한 가계부를 확인할 수 있습니다.<br></br>가계부를 등록하기 전에 우선 자산을 등록해주세요.",
             "regist-info": "가계부를 등록해주세요.",
             "not-exist-datedata": "해당 날짜에 데이터가 존재하지 않습니다.",
             "not-exist-monthdata": "해당 월에 대한 데이터가 존재하지 않습니다.",
-            "delete-info": "가계부 데이터를 삭제하면 되돌릴 수 없습니다. 정말 삭제하시겠습니까?"
+            "delete-info": "가계부 데이터를 삭제하면 되돌릴 수 없습니다.<br></br> 정말 삭제하시겠습니까?"
+        },
+        "settings": {
+            "category-info": "아래는 가계부의 대분류와 소분류를 설정하는 곳입니다."
         },
         "common": {
             "upload-file": "파일 하나 업로드",
             "drag-drop": "혹은 드래그 앤 드롭",
             "image-limit": "최대 10MB의 이미지 파일",
-            "input-max": "{item}은/는 최대 {max} 글자까지 입력할 수 있습니다."
+            "input-max": "{item}은/는 최대 {max} 글자까지 입력할 수 있습니다.",
+            "ready":"해당 서비스는 준비중입니다."
         },
         "users": {
             "tos": "이 서비스는 개인 프로젝트를 위해 설계되었습니다.<br></br>사용 약관 없이 사용할 수 있습니다.<br></br> 단, 회원 서비스는 제한된 기간 동안만 승인됩니다.",
             "password-info": "비밀번호에는 영어/숫자/특수 문자를 포함해야 합니다.",
-            "password-check-info": "비밀번호를 다시 입력해 주세요"
+            "password-check-info": "비밀번호를 다시 입력해 주세요",
+            "init-comment": {
+                "salary": "고용에 대한 정기 급여.",
+                "ex-income": "정규 급여 외 추가 수입.",
+                "pocket-money": "소액 지출을 위한 용돈.",
+                "etc-income": "기타 다양한 출처의 수입.",
+                "food-exp": "식음료 지출.",
+                "trans-exp": "교통 비용 (요금, 연료, 유지 보수).",
+                "enter-exp": "오락 비용 (영화, 콘서트 등).",
+                "util-exp": "공과금 (전기, 수도, 가스).",
+                "cong-exp": "행사 축의금/조의금.",
+                "live-exp": "기본 생활비 (주거, 식비 등).",
+                "misc-exp": "작고 계획되지 않은 지출.",
+                "trans-deposit": "계좌 입금.",
+                "eat-out": "외식 비용.",
+                "mart": "식료품 및 생필품 비용.",
+                "conv": "편의점 지출.",
+                "public-trans": "대중교통 요금.",
+                "taxi": "택시 또는 차량 호출 요금.",
+                "gas": "차량 연료 비용.",
+                "maintain": "유지 보수 비용.",
+                "movie": "영화 관람 비용.",
+                "music": "음악, 콘서트, 서적 비용.",
+                "app": "앱 구입 비용.",
+                "travel": "여행 관련 비용.",
+                "hobby": "취미 관련 비용.",
+                "karaoke": "노래방 비용.",
+                "game": "게임 관련 비용.",
+                "water-bill": "수도 요금.",
+                "elect-bill": "전기 요금.",
+                "gas-bill": "가스 요금.",
+                "month-rent": "월세.",
+                "phone-bill": "통신/인터넷 요금.",
+                "present": "선물 구입 비용.",
+                "supplies": "필요 물품 구입 비용.",
+                "homes": "가구 및 가전 제품 비용.",
+                "cloth": "의류 비용.",
+                "hospital": "의료 및 병원 비용.",
+                "medicine": "약 및 처방약 비용.",
+                "Parents": "부모님께 드리는 용돈/생활비.",
+                "trans-withdrawal": "계좌 출금."
+            }
         }
     }
 }

@@ -135,7 +135,7 @@ exports.Prisma.HouseholdScalarFieldEnum = {
   created_at: 'created_at',
   updated_at: 'updated_at',
   household_category: 'household_category',
-  household_subcategory: 'household_subcategory',
+  household_category_userid: 'household_category_userid',
   household_name: 'household_name'
 };
 

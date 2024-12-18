@@ -15,7 +15,8 @@
             "cash": "Cash",
             "card": "Card",
             "bankbook": "Bankbook",
-            "difference":"Difference",
+            "difference": "Difference",
+            "transfer": "Transfer",
             "cur-key": {
                 "usd": "US Dollar(USD)",
                 "cad": "Canadian Dollar(CAD)",
@@ -57,14 +58,14 @@
             "income": "Income",
             "expense": "Expenditure",
             "date": "Issue Date",
-            "category": "Household Category",
-            "subcategory": "Household Subcategory",
+            "category": "Category",
+            "subcategory": "Subcategory",
             "name": "Household Name",
             "delete": "Household [{item}] Delete"
         },
         "settings": {
             "title": "Settings",
-            "household": "Household Settings"
+            "category": "Household Category Settings"
         },
         "common": {
             "btn": "Button",
@@ -86,18 +87,19 @@
             "no": "No",
             "more": "More",
             "sel-date": "Select Date",
-            "today":"Today",
-            "clear":"Clear",
-            "yesterday":"Yesterday",
-            "tomorrow":"Tomorrow",
+            "today": "Today",
+            "clear": "Clear",
+            "yesterday": "Yesterday",
+            "tomorrow": "Tomorrow",
+            "add-item": "Add {item}",
             "weekend": {
-                "mo":"Mo", 
-                "tu":"Tu", 
-                "we":"We", 
-                "th":"Th", 
-                "fr":"Fr", 
-                "sa":"Sa",
-                "su":"Su"
+                "mo": "Mo",
+                "tu": "Tu",
+                "we": "We",
+                "th": "Th",
+                "fr": "Fr",
+                "sa": "Sa",
+                "su": "Su"
             }
         },
         "users": {
@@ -109,7 +111,48 @@
             "f-name": "First Name",
             "l-name": "Last Name",
             "signup": "Sign Up",
-            "autologin": "Auto Sign"
+            "autologin": "Auto Sign",
+            "init-category": {
+                "salary": "Salary",
+                "ex-income": "Extra Income",
+                "pocket-money": "Pocket Money",
+                "etc-income": "Etc Income",
+                "food-exp": "Food Expenses",
+                "trans-exp": "Transportation Expenses",
+                "enter-exp": "Entertainment Expenses",
+                "util-exp": "Utility Expenses",
+                "cong-exp": "Congratulatory Expenses",
+                "live-exp": "Living expenses",
+                "misc-exp": "Miscellaneous Expenses",
+                "trans-deposit": "Transfer Deposit",
+                "eat-out": "Eat out",
+                "mart": "Supermarket",
+                "conv": "Convenience Store",
+                "public-trans": "Public Transport",
+                "taxi": "Taxi",
+                "gas": "Gas/Oil",
+                "maintain": "Maintainance",
+                "movie": "Movie/Concert",
+                "music": "Music/Books",
+                "app": "Application",
+                "travel": "Travel",
+                "hobby": "Hobby",
+                "karaoke": "Karaoke",
+                "game": "Game",
+                "water-bill": "Water Bill",
+                "elect-bill": "Electric Bill",
+                "gas-bill": "Gas Bill",
+                "month-rent": "Monthly Rent",
+                "phone-bill": "Phone/Internet Bill",
+                "present": "Present",
+                "supplies": "Supplies",
+                "homes": "Furniture/Home appliances",
+                "cloth": "Clothing",
+                "hospital": "Hospital",
+                "medicine": "Medicine",
+                "Parents": "Parents",
+                "trans-withdrawal": "Transfer Withdrawal"
+            }
         }
     },
     "msg": {
@@ -135,7 +178,8 @@
                 "login": "E-mail or Password does not match.",
                 "email-input": "Please enter your E-mail",
                 "pwd-input": "Please enter your Password",
-                "pwd-check-input": "The password does not match."
+                "pwd-check-input": "The password does not match.",
+                "pwd-error": "Password must be at least 8 characters and include letters, numbers, and at least one special character."
             }
         },
         "asset": {
@@ -143,26 +187,71 @@
             "management-info": "This is where you check the data on the asset you entered.",
             "regist-success": "Your asset has been successfully registered.",
             "regist-error": "Your asset registration failed.",
-            "delete-info": "If you delete the asset data, you can't undo it. It will also delete the household data related to that asset. Are you sure you want to delete it?",
-            "modify-info": "The asset amount has been modified. The revised amount will be automatically entered into the household register as the difference. Would that be all right?"
+            "delete-info": "If you delete the asset data, you can't undo it.<br></br> It will also delete the household data related to that asset.<br></br> Are you sure you want to delete it?",
+            "modify-info": "The asset amount has been modified.<br></br> The revised amount will be automatically entered into the household register as the difference.<br></br> Would that be all right?"
         },
         "household": {
-            "management-info": "You can check the household register you entered on a monthly basis.",
+            "management-info": "You can check the household register you entered on a monthly basis.<br></br>Please register your assets first before registering your household register.",
             "regist-info": "Please fill out the household register.",
             "not-exist-datedata": "No data for that date",
             "not-exist-monthdata": "No data for that month",
-            "delete-info": "If you delete the household data, you can't undo it. Are you sure you want to delete it?"
+            "delete-info": "If you delete the household data, you can't undo it.<br></br> Are you sure you want to delete it?"
+        },
+        "settings": {
+            "category-info": "Below is where you set the category and subcategory of the household register."
         },
         "common": {
             "upload-file": "Upload a one file",
             "drag-drop": "or drag and drop",
             "image-limit": "Image File up to 10MB",
-            "input-max": "{item} can be entered up to {max} characters."
+            "input-max": "{item} can be entered up to {max} characters.",
+            "ready":"This service is being prepared."
         },
         "users": {
             "tos": "This service is designed for personal projects.<br></br>It can be used without any terms of use.<br></br>However, we only approve member services for a limited time.",
             "password-info": "Passwords contain English numeric special characters",
-            "password-check-info": "Please enter your password again"
+            "password-check-info": "Please enter your password again",
+            "init-comment": {
+                "salary": "Fixed compensation earned for employment.",
+                "ex-income": "Extra money earned beyond regular salary.",
+                "pocket-money": "Small allowance for minor expenses.",
+                "etc-income": "Other income from various sources.",
+                "food-exp": "Spending on food and beverages.",
+                "trans-exp": "Transportation costs (fares, fuel, maintenance).",
+                "enter-exp": "Entertainment expenses (movies, concerts, etc.).",
+                "util-exp": "Utility bills (electricity, water, gas).",
+                "cong-exp": "Gifts or contributions for events.",
+                "live-exp": "Basic living costs (housing, food, etc.).",
+                "misc-exp": "Small, unplanned expenses.",
+                "trans-deposit": "Funds transferred into an account.",
+                "eat-out": "Expenses from dining at restaurants.",
+                "mart": "Grocery and household goods expenses.",
+                "conv": "Convenience store spending.",
+                "public-trans": "Public transportation fares.",
+                "taxi": "Taxi or ride-hailing fares.",
+                "gas": "Vehicle fuel costs.",
+                "maintain": "Maintenance and repair costs.",
+                "movie": "Movie and cinema expenses.",
+                "music": "Music, concert, and book expenses.",
+                "app": "Software application costs.",
+                "travel": "Travel-related expenses.",
+                "hobby": "Hobby-related costs.",
+                "karaoke": "Karaoke expenses.",
+                "game": "Gaming expenses.",
+                "water-bill": "Water utility bill.",
+                "elect-bill": "Electricity utility bill.",
+                "gas-bill": "Gas utility bill.",
+                "month-rent": "Monthly rent payment.",
+                "phone-bill": "Phone and internet bill.",
+                "present": "Money spent on gifts.",
+                "supplies": "Expenses on needed items.",
+                "homes": "Furniture and appliance expenses.",
+                "cloth": "Clothing expenses.",
+                "hospital": "Medical and healthcare expenses.",
+                "medicine": "Medication and prescription costs.",
+                "Parents": "Financial support or gifts for parents.",
+                "trans-withdrawal": "Funds taken out of an account."
+            }
         }
     }
 }

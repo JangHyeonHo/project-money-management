@@ -8,7 +8,7 @@ import ConfirmModal from "@/app/[locale]/_components/_alert/confirm-modal";
 import { useState } from "react";
 import { useRouter } from "@/i18n/routing";
 
-export default function AssetManagement({ bankbookAssets, cashAssets, cardAssets, etcAssets }: AssetManagementProps) {
+export default function AssetManagement({ bankbookAssets, cashAssets, cardAssets, etcAssets, isBankTransfer }: AssetManagementProps) {
 
     const router = useRouter();
 
@@ -24,13 +24,29 @@ export default function AssetManagement({ bankbookAssets, cashAssets, cardAssets
         setOpenConfirm(true);
     }
 
-    const deleteConfirmYesClick = () => {
-        router.push(`./delete/${deleteItem.key}`);
+    const deleteConfirmYesClick = async () => {
+        const res = await fetch(`/api/asset/delete/${deleteItem.key}`, {
+            method: "DELETE", // 요청 메서드
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (!res.ok) {
+            //에러 표시시
+        }
+        setDeleteItem({ key: "", itemName: deleteItem.itemName });
+        setOpenConfirm(false);
+        router.refresh();
     }
 
     const deleteConfirmNoClick = () => {
-        setOpenConfirm(false);
         setDeleteItem({ key: "", itemName: deleteItem.itemName });
+        setOpenConfirm(false);
+    }
+
+    const confirmModal = () => {
+        return 
     }
 
     return (
@@ -39,17 +55,25 @@ export default function AssetManagement({ bankbookAssets, cashAssets, cardAssets
                 <h2 className="text-base/7 font-semibold text-gray-900">{w('asset.management')}</h2>
                 <p className="mt-1 text-sm/6 text-gray-600">{m('asset.management-info')}</p>
                 <div className="mt-4 flex items-center gap-x-6">
-                    <a
-                        href="./regist"
+                    <button
+                        onClick={() => { router.push("./regist"); }}
                         className="btn btn-info btn-sm">
                         {w('asset.regist')}
-                    </a>
+                    </button>
+                    <button
+                        disabled={isBankTransfer}
+                        onClick={() => {window.alert(m("common.ready"))}}
+                        className="btn btn-warning btn-sm">
+                        {w('asset.transfer')}
+                    </button>
                 </div>
             </div>
             <ConfirmModal
                 isOpen={openConfirm}
                 title={w("asset.delete", { item: deleteItem.itemName })}
-                msg={m("asset.delete-info")}
+                children={<>{m.rich("asset.delete-info", {
+                    br: () => <br />
+                })}</>}
                 onYes={deleteConfirmYesClick}
                 onNo={deleteConfirmNoClick}
             />

@@ -53,8 +53,8 @@ export interface ProcessAlertProps{
 
 export interface ConfirmModalProps{
     title?:string,
-    msg?:string,
+    children?:React.JSX.Element,
     isOpen:boolean,
-    onYes:()=>void,
+    onYes:()=>Promise<void>,
     onNo:()=>void,
 }

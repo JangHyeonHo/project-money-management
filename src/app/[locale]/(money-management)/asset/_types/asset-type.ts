@@ -19,6 +19,7 @@ export interface AssetManagementProps{
     cardAssets:AssetListItemProps[],
     bankbookAssets:AssetListItemProps[],
     etcAssets:AssetListItemProps[],
+    isBankTransfer?:boolean,
 }
 
 export interface AssetRegModFormProps{
@@ -38,4 +39,5 @@ export interface AssetRegModActionProps{
     assetMoney:number,
     assetCurrency:string,
     assetComment:string,
+    updateDate?:Date
 }
