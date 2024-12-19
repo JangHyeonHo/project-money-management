@@ -1,6 +1,7 @@
+import { InputDropdownPropsItem } from "@/app/[locale]/_types/common-types"
 
 export interface CategoryRegModActionProps {
-    id: number
+    id?: number
     categoryName: string,
     parentCategoryId?: number,
     categoryComment?: string,
@@ -35,3 +36,24 @@ export interface SubcategoryItems {
     key: number,
     name: string,
 }
+
+export interface DropdownCategoryItems {
+    categoryType: string,
+    items:InputDropdownPropsItem[],
+}
+
+export interface CategoryRegModFormProps {
+    dropdownCategoryItems: DropdownCategoryItems[],
+    isSubcategory: boolean,
+    isModify?: boolean,
+    categoryKey?: number,
+    categoryName?: string,
+    parentCategoryKey?: number,
+    categoryComment?: string,
+    householdType?: string,
+}
+
+
+export const CategoryRegModParameter = {
+    isSubcategory : "y",
+} as const;

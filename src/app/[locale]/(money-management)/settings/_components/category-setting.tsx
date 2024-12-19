@@ -1,14 +1,19 @@
 "use client"
 import { PencilSquareIcon, PlusCircleIcon, TrashIcon } from "@heroicons/react/20/solid";
 import { useTranslations } from "next-intl";
-import { CategoryItems, CategorySettingProps, SubcategoryItems } from "../_types/settings-type";
+import { CategoryItems, CategoryRegModParameter, CategorySettingProps, SubcategoryItems } from "../_types/settings-type";
 import { useState } from "react";
 import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 import { HouseholdTypes } from "@/app/[locale]/_types/common-const";
+import { useRouter } from "@/i18n/routing";
+import ConfirmModal from "@/app/[locale]/_components/_alert/confirm-modal";
 
 export default function CategorySetting({ categoryItems }: CategorySettingProps) {
 
+    const router = useRouter();
+
     const w = useTranslations("word");
+    const m = useTranslations("msg");
 
     const [selectType, setSelectType] = useState<string>(HouseholdTypes.Income);
 
@@ -29,6 +34,7 @@ export default function CategorySetting({ categoryItems }: CategorySettingProps)
         }
         return categoryItems.filter((item) => item.householdType === HouseholdTypes.Income);
     });
+
     const [selectSubcategoryItems, setSelectSubcategoryItems] = useState<SubcategoryItems[]>(() => {
         if (!categoryItems) {
             return [];
@@ -39,6 +45,9 @@ export default function CategorySetting({ categoryItems }: CategorySettingProps)
         }
         return categoryItem[0].subcategories;
     });
+
+    const [deleteItem, setDeleteItem] = useState<{ key: number, itemName: string }>({ key: -1, itemName: "" });
+    const [openConfirm, setOpenConfirm] = useState<boolean>(false);
 
     const incomeBtnOnClick = () => {
         setSelectType(HouseholdTypes.Income);
@@ -80,10 +89,52 @@ export default function CategorySetting({ categoryItems }: CategorySettingProps)
         }
     }
 
+    const modifyClick = (modifyKey: number, isSubcategory: boolean) => {
+        const param = isSubcategory ? `?s=${CategoryRegModParameter.isSubcategory}` : ""
+        //Confirm창
+        router.push(`./category/modify/${modifyKey}${param}`);
+    }
+
+    const deleteClick = (item: { key: number, itemName: string }) => {
+        setDeleteItem(item);
+        setOpenConfirm(true);
+    }
+
+    const deleteConfirmYesClick = async () => {
+        const res = await fetch(`/api/category/delete/${deleteItem.key}`, {
+            method: "DELETE", // 요청 메서드
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (!res.ok) {
+            //에러 표시시
+        }
+        setDeleteItem({ key: -1, itemName: deleteItem.itemName });
+        setOpenConfirm(false);
+        // 서버 재호출
+        window.location.reload();
+    }
+
+    const deleteConfirmNoClick = () => {
+        setDeleteItem({ key: -1, itemName: deleteItem.itemName });
+        setOpenConfirm(false);
+    }
+
 
 
     return (
         <div>
+            <ConfirmModal
+                isOpen={openConfirm}
+                title={w("settings.category.delete", { item: deleteItem.itemName })}
+                children={m.rich("settings.category-delete-info", {
+                    br: () => <br />
+                })}
+                onYes={deleteConfirmYesClick}
+                onNo={deleteConfirmNoClick}
+            />
             <div className="mt-2">
                 <div className="join">
                     <button
@@ -102,7 +153,7 @@ export default function CategorySetting({ categoryItems }: CategorySettingProps)
             </div>
             <div className="mt-2 grid grid-cols-2 lg:grid-cols-4 gap-x-2">
 
-                <div className="border border-solid w-full">
+                <div className="w-full">
                     <ul role="list" className={(selectType === HouseholdTypes.Income ? "bg-sky-50" : "bg-rose-50")}>
                         {selectCategoryItems.map(({ key, name, householdType }) => (
                             <li key={key + name}>
@@ -118,7 +169,7 @@ export default function CategorySetting({ categoryItems }: CategorySettingProps)
                                             <button className="mr-1">
                                                 <PencilSquareIcon
                                                     className="w-5 hover:text-yellow-500"
-                                                    onClick={() => { }}
+                                                    onClick={() => { modifyClick(key, false) }}
                                                 >
                                                 </PencilSquareIcon>
                                             </button>
@@ -127,7 +178,7 @@ export default function CategorySetting({ categoryItems }: CategorySettingProps)
                                             <button type="button">
                                                 <TrashIcon
                                                     className="w-5 hover:text-red-500"
-                                                    onClick={() => { }}
+                                                    onClick={() => { deleteClick({ key: key, itemName: name }) }}
                                                 >
                                                 </TrashIcon>
                                             </button>
@@ -138,7 +189,9 @@ export default function CategorySetting({ categoryItems }: CategorySettingProps)
                         ))}
 
                         <li>
-                            <button className={"btn w-full btn-ghost"}>
+                            <button
+                                onClick={() => { router.push("./category/regist") }}
+                                className={"btn w-full btn-ghost"}>
                                 <PlusCircleIcon
                                     className="w-6"
                                 ></PlusCircleIcon>
@@ -158,7 +211,7 @@ export default function CategorySetting({ categoryItems }: CategorySettingProps)
                         />
                     </div>
                 </div>
-                <div className="border border-solid w-full">
+                <div className="w-full">
                     <ul role="list" className={(selectType === HouseholdTypes.Income ? "bg-sky-50" : "bg-rose-50")}>
                         {selectSubcategoryItems.map(({ key, name }) => (
                             <li key={key + name}>
@@ -171,7 +224,7 @@ export default function CategorySetting({ categoryItems }: CategorySettingProps)
                                             <button className="mr-1">
                                                 <PencilSquareIcon
                                                     className="w-5 hover:text-yellow-500"
-                                                    onClick={() => { }}
+                                                    onClick={() => { modifyClick(key, true) }}
                                                 >
                                                 </PencilSquareIcon>
                                             </button>
@@ -190,7 +243,9 @@ export default function CategorySetting({ categoryItems }: CategorySettingProps)
                             </li>
                         ))}
                         <li>
-                            <button className="btn w-full btn-ghost">
+                            <button
+                                onClick={() => { router.push(`./category/regist?s=${CategoryRegModParameter.isSubcategory}`) }}
+                                className="btn w-full btn-ghost">
                                 <PlusCircleIcon
                                     className="w-6"
                                 ></PlusCircleIcon>

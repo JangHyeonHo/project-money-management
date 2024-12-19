@@ -17,10 +17,10 @@ export default function SettingMenu({ className, menuCurrent }: SettingMenuProps
                     <div
                         className={menuCurrent === SettingMenus.Category ? "active" : ""}
                         onClick={() => { router.push("/settings/category") }}>
-                        {w("settings.category")}
+                        {w("settings.category.main")}
                     </div>
                 </li>
-                <li>
+                {/* <li>
                     <div
                         onClick={() => { }}>
                         Item2
@@ -31,7 +31,7 @@ export default function SettingMenu({ className, menuCurrent }: SettingMenuProps
                         onClick={() => { }}>
                         Item3
                     </div>
-                </li>
+                </li> */}
             </ul>
         </div>
     )

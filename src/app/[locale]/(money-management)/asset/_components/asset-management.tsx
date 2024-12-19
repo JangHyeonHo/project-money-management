@@ -45,10 +45,6 @@ export default function AssetManagement({ bankbookAssets, cashAssets, cardAssets
         setOpenConfirm(false);
     }
 
-    const confirmModal = () => {
-        return 
-    }
-
     return (
         <div>
             <div className="border-b border-gray-900/10 pb-8">
@@ -71,9 +67,9 @@ export default function AssetManagement({ bankbookAssets, cashAssets, cardAssets
             <ConfirmModal
                 isOpen={openConfirm}
                 title={w("asset.delete", { item: deleteItem.itemName })}
-                children={<>{m.rich("asset.delete-info", {
+                children={m.rich("asset.delete-info", {
                     br: () => <br />
-                })}</>}
+                })}
                 onYes={deleteConfirmYesClick}
                 onNo={deleteConfirmNoClick}
             />

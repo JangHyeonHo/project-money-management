@@ -30,10 +30,10 @@ export default function ConfirmModal({ title, children, isOpen, onYes, onNo }: C
         <dialog id="confirm" className={"modal " + (isOpen && "modal-open")}>
             <div className="modal-box">
                 <h3 className="font-bold text-lg">{title}</h3>
-                <p className="py-4">{children}</p>
+                <p className="pt-4 pl-2 text-sm leading-6">{children}</p>
                 <div className="modal-action">
-                    <button disabled={loading} className="btn w-1/6 btn-success" onClick={()=> onYesClick()}>{w("common.yes")}</button>
-                    <button disabled={loading} className="btn w-1/6 btn-outline btn-error" onClick={()=> onNoClick()}>{w("common.no")}</button>
+                    <button disabled={loading} className="btn w-1/4 btn-success" onClick={()=> onYesClick()}>{w("common.yes")}</button>
+                    <button disabled={loading} className="btn w-1/4 btn-outline btn-error" onClick={()=> onNoClick()}>{w("common.no")}</button>
                 </div>
             </div>
         </dialog>

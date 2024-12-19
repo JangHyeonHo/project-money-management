@@ -8,11 +8,11 @@ import { Prisma } from "../../../../../../prisma/generated/client";
 import { CategoryRegModActionProps } from "../_types/settings-type";
 
 /**
- * 카테고리 등록 서버 액션(복수 등록)
+ * 카테고리 수정 서버 액션
  * @param formData 
  * @returns 
  */
-export async function CategoryRegistAction(datas: CategoryRegModActionProps[]) {
+export async function CategoryModifyAction(data: CategoryRegModActionProps) {
 
     // 로그인 체크
     const session = await getIronSession<SessionData>(await cookies(), sessionOptions)
@@ -23,41 +23,23 @@ export async function CategoryRegistAction(datas: CategoryRegModActionProps[]) {
 
     try {
 
-        //배열 데이터로 넘기기
-        const arrayDatas: {
-            id: number, category_name: string, category_comment?: string, parent_category_id?: number
-            household_type?: string, user_id: string
-        }[] = []
+        if (!data.id) {
+            return null;
+        }
 
-        const nowMaxIdData = await prisma.household_categories.findFirst({
-            select: {
-                id: true,
-            },
-            where: {
-                user_id: userKey,
-            },
-            orderBy: {
-                id: "desc"
-            }
-        })
-
-        // 최대 번호를 취득해서 무조건 그 다음 번으로 등록되게 
-        let maxId = nowMaxIdData ? nowMaxIdData.id + 1 : 1
-
-        for (const data of datas) {
-            arrayDatas.push({
-                id: data.id || maxId,
+        const category = await prisma.household_categories.update({
+            data: {
                 category_name: data.categoryName,
                 category_comment: data.categoryComment,
                 household_type: data.householdType,
                 parent_category_id: data.parentCategoryId,
-                user_id: userKey,
-            });
-            maxId += 1;
-        }
-
-        const category = await prisma.household_categories.createMany({
-            data: arrayDatas,
+            },
+            where: {
+                id_user_id: {
+                    id: data.id,
+                    user_id: userKey,
+                }
+            }
         });
 
         return category;

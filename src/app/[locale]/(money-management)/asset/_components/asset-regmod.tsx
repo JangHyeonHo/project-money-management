@@ -276,9 +276,9 @@ export default function AssetRegModForm({ isModify, assetId, assetType, assetNam
             <ConfirmModal
                 isOpen={openConfirm}
                 title={w("asset.modify")}
-                children={<>{m.rich("asset.modify-info", {
+                children={m.rich("asset.modify-info", {
                     br: () => <br />
-                })}</>}
+                })}
                 onYes={modifyConfirmYesClick}
                 onNo={modifyConfirmNoClick}
             />

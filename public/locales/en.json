@@ -4,8 +4,8 @@
         "asset": {
             "title": "Asset",
             "management": "Asset Management",
-            "regist": "Asset Regist",
-            "modify": "Asset Modify",
+            "regist": "Asset Register",
+            "modify": "Asset Modification",
             "delete": "Asset [{item}] Delete",
             "name": "Asset Name",
             "type": "Asset Type",
@@ -53,7 +53,7 @@
         "household": {
             "title": "Household",
             "management": "Household Management",
-            "regist": "Household Regist",
+            "regist": "Household Register",
             "in-exp": "Income/Expenditure",
             "income": "Income",
             "expense": "Expenditure",
@@ -63,13 +63,25 @@
             "name": "Household Name",
             "delete": "Household [{item}] Delete"
         },
+        "category": {
+            "name": "Category Name",
+            "sub-name": "Subcategory Name",
+            "main-sel": "Top Category Select"
+        },
         "settings": {
             "title": "Settings",
-            "category": "Household Category Settings"
+            "category": {
+                "main": "Household Category Settings",
+                "regist": "Household Category Register",
+                "modify": "Household Category Modification",
+                "delete": "Category Delete [{item}]",
+                "sub-regist": "Household Subcategory Register",
+                "sub-modify": "Household Subcategory Modification"
+            }
         },
         "common": {
             "btn": "Button",
-            "modify": "Modify",
+            "modify": "Modification",
             "delete": "Delete",
             "detail": "Detail",
             "save": "Save",
@@ -198,14 +210,16 @@
             "delete-info": "If you delete the household data, you can't undo it.<br></br> Are you sure you want to delete it?"
         },
         "settings": {
-            "category-info": "Below is where you set the category and subcategory of the household register."
+            "category-info": "Below is where you set the category and subcategory of the household register.",
+            "category-regist-info": "This is where you register the category information for your household. To create a new subcategory, please select an existing category first.",
+            "category-delete-info": "If you delete the category data, you can't undo it.<br></br> Are you sure you want to delete it?<br></br>(※If a subcategory exists, it will be deleted in batches.)"
         },
         "common": {
             "upload-file": "Upload a one file",
             "drag-drop": "or drag and drop",
             "image-limit": "Image File up to 10MB",
-            "input-max": "{item} can be entered up to {max} characters.",
-            "ready":"This service is being prepared."
+            "input-max": "{item} Max {max} char",
+            "ready": "This service is being prepared."
         },
         "users": {
             "tos": "This service is designed for personal projects.<br></br>It can be used without any terms of use.<br></br>However, we only approve member services for a limited time.",

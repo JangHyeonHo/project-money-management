@@ -59,12 +59,12 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         >
             <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4">
                 <SettingMenu
-                    className="h-full md:border-r pr-4"
+                    className="h-full md:border-r px-4"
                     menuCurrent={SettingMenus.Category}
                 ></SettingMenu>
                 <SettingList
-                    className="pl-4 md:col-span-2 lg:col-span-3"
-                    title="settings.category"
+                    className="px-4 md:col-span-2 lg:col-span-3"
+                    title="settings.category.main"
                     info="settings.category-info"
                 >
                     <CategorySetting

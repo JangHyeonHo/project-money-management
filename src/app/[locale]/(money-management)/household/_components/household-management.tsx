@@ -91,9 +91,9 @@ export default function HouseholdManagement({ householdDateTotalAssetItems, hous
             <ConfirmModal
                 isOpen={openConfirm}
                 title={w("household.delete", { item: deleteItem.itemName })}
-                children={<>{m.rich("household.delete-info", {
+                children={m.rich("household.delete-info", {
                     br: () => <br />
-                })}</>}
+                })}
                 onYes={deleteConfirmYesClick}
                 onNo={deleteConfirmNoClick}
             />
