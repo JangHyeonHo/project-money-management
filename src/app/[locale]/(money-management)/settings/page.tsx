@@ -1,8 +1,9 @@
 import GetUserCookieFromSession from "@/app/[locale]/_actions/get-user-cookies";
 import SiteStackedLayout from "@/app/[locale]/_components/_layout/stacked-layout";
 import { LayoutHeaders } from "@/app/[locale]/_types/common-const";
-import SettingList from "./_components/setting-list";
 import { redirect } from "@/i18n/routing";
+import SettingMenu from "./_components/setting-menu";
+import SettingList from "./_components/setting-list";
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
 
@@ -24,7 +25,14 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
             userFirstName={userInfo.userFirstName}
             userLastName={userInfo.userLastName}
         >
-            <SettingList></SettingList>
+            <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <SettingMenu className="h-full md:border-r pr-4"></SettingMenu>
+                <SettingList
+                    className="pl-4 md:grid-cols-2 lg:col-span-3"
+                >
+
+                </SettingList>
+            </div>
 
 
         </SiteStackedLayout>

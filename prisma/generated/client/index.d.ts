@@ -1105,13 +1105,11 @@ export namespace Prisma {
    */
 
   export type Household_categoriesCountOutputType = {
-    household_household_household_categoryTohousehold_categories: number
-    household_household_household_subcategoryTohousehold_categories: number
+    household: number
   }
 
   export type Household_categoriesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    household_household_household_categoryTohousehold_categories?: boolean | Household_categoriesCountOutputTypeCountHousehold_household_household_categoryTohousehold_categoriesArgs
-    household_household_household_subcategoryTohousehold_categories?: boolean | Household_categoriesCountOutputTypeCountHousehold_household_household_subcategoryTohousehold_categoriesArgs
+    household?: boolean | Household_categoriesCountOutputTypeCountHouseholdArgs
   }
 
   // Custom InputTypes
@@ -1128,14 +1126,7 @@ export namespace Prisma {
   /**
    * Household_categoriesCountOutputType without action
    */
-  export type Household_categoriesCountOutputTypeCountHousehold_household_household_categoryTohousehold_categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: householdWhereInput
-  }
-
-  /**
-   * Household_categoriesCountOutputType without action
-   */
-  export type Household_categoriesCountOutputTypeCountHousehold_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Household_categoriesCountOutputTypeCountHouseholdArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: householdWhereInput
   }
 
@@ -1239,13 +1230,11 @@ export namespace Prisma {
   export type HouseholdAvgAggregateOutputType = {
     household_amount: number | null
     household_category: number | null
-    household_subcategory: number | null
   }
 
   export type HouseholdSumAggregateOutputType = {
     household_amount: number | null
-    household_category: bigint | null
-    household_subcategory: bigint | null
+    household_category: number | null
   }
 
   export type HouseholdMinAggregateOutputType = {
@@ -1260,8 +1249,8 @@ export namespace Prisma {
     image_text: string | null
     created_at: Date | null
     updated_at: Date | null
-    household_category: bigint | null
-    household_subcategory: bigint | null
+    household_category: number | null
+    household_category_userid: string | null
     household_name: string | null
   }
 
@@ -1277,8 +1266,8 @@ export namespace Prisma {
     image_text: string | null
     created_at: Date | null
     updated_at: Date | null
-    household_category: bigint | null
-    household_subcategory: bigint | null
+    household_category: number | null
+    household_category_userid: string | null
     household_name: string | null
   }
 
@@ -1295,7 +1284,7 @@ export namespace Prisma {
     created_at: number
     updated_at: number
     household_category: number
-    household_subcategory: number
+    household_category_userid: number
     household_name: number
     _all: number
   }
@@ -1304,13 +1293,11 @@ export namespace Prisma {
   export type HouseholdAvgAggregateInputType = {
     household_amount?: true
     household_category?: true
-    household_subcategory?: true
   }
 
   export type HouseholdSumAggregateInputType = {
     household_amount?: true
     household_category?: true
-    household_subcategory?: true
   }
 
   export type HouseholdMinAggregateInputType = {
@@ -1326,7 +1313,7 @@ export namespace Prisma {
     created_at?: true
     updated_at?: true
     household_category?: true
-    household_subcategory?: true
+    household_category_userid?: true
     household_name?: true
   }
 
@@ -1343,7 +1330,7 @@ export namespace Prisma {
     created_at?: true
     updated_at?: true
     household_category?: true
-    household_subcategory?: true
+    household_category_userid?: true
     household_name?: true
   }
 
@@ -1360,7 +1347,7 @@ export namespace Prisma {
     created_at?: true
     updated_at?: true
     household_category?: true
-    household_subcategory?: true
+    household_category_userid?: true
     household_name?: true
     _all?: true
   }
@@ -1463,8 +1450,8 @@ export namespace Prisma {
     image_text: string | null
     created_at: Date
     updated_at: Date | null
-    household_category: bigint | null
-    household_subcategory: bigint | null
+    household_category: number | null
+    household_category_userid: string | null
     household_name: string | null
     _count: HouseholdCountAggregateOutputType | null
     _avg: HouseholdAvgAggregateOutputType | null
@@ -1500,11 +1487,10 @@ export namespace Prisma {
     created_at?: boolean
     updated_at?: boolean
     household_category?: boolean
-    household_subcategory?: boolean
+    household_category_userid?: boolean
     household_name?: boolean
     Asset?: boolean | assetDefaultArgs<ExtArgs>
-    household_categories_household_household_categoryTohousehold_categories?: boolean | household$household_categories_household_household_categoryTohousehold_categoriesArgs<ExtArgs>
-    household_categories_household_household_subcategoryTohousehold_categories?: boolean | household$household_categories_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs>
+    household_categories?: boolean | household$household_categoriesArgs<ExtArgs>
     User?: boolean | userDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["household"]>
 
@@ -1521,11 +1507,10 @@ export namespace Prisma {
     created_at?: boolean
     updated_at?: boolean
     household_category?: boolean
-    household_subcategory?: boolean
+    household_category_userid?: boolean
     household_name?: boolean
     Asset?: boolean | assetDefaultArgs<ExtArgs>
-    household_categories_household_household_categoryTohousehold_categories?: boolean | household$household_categories_household_household_categoryTohousehold_categoriesArgs<ExtArgs>
-    household_categories_household_household_subcategoryTohousehold_categories?: boolean | household$household_categories_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs>
+    household_categories?: boolean | household$household_categoriesArgs<ExtArgs>
     User?: boolean | userDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["household"]>
 
@@ -1542,20 +1527,18 @@ export namespace Prisma {
     created_at?: boolean
     updated_at?: boolean
     household_category?: boolean
-    household_subcategory?: boolean
+    household_category_userid?: boolean
     household_name?: boolean
   }
 
   export type householdInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Asset?: boolean | assetDefaultArgs<ExtArgs>
-    household_categories_household_household_categoryTohousehold_categories?: boolean | household$household_categories_household_household_categoryTohousehold_categoriesArgs<ExtArgs>
-    household_categories_household_household_subcategoryTohousehold_categories?: boolean | household$household_categories_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs>
+    household_categories?: boolean | household$household_categoriesArgs<ExtArgs>
     User?: boolean | userDefaultArgs<ExtArgs>
   }
   export type householdIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Asset?: boolean | assetDefaultArgs<ExtArgs>
-    household_categories_household_household_categoryTohousehold_categories?: boolean | household$household_categories_household_household_categoryTohousehold_categoriesArgs<ExtArgs>
-    household_categories_household_household_subcategoryTohousehold_categories?: boolean | household$household_categories_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs>
+    household_categories?: boolean | household$household_categoriesArgs<ExtArgs>
     User?: boolean | userDefaultArgs<ExtArgs>
   }
 
@@ -1563,8 +1546,7 @@ export namespace Prisma {
     name: "household"
     objects: {
       Asset: Prisma.$assetPayload<ExtArgs>
-      household_categories_household_household_categoryTohousehold_categories: Prisma.$household_categoriesPayload<ExtArgs> | null
-      household_categories_household_household_subcategoryTohousehold_categories: Prisma.$household_categoriesPayload<ExtArgs> | null
+      household_categories: Prisma.$household_categoriesPayload<ExtArgs> | null
       User: Prisma.$userPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -1579,8 +1561,8 @@ export namespace Prisma {
       image_text: string | null
       created_at: Date
       updated_at: Date | null
-      household_category: bigint | null
-      household_subcategory: bigint | null
+      household_category: number | null
+      household_category_userid: string | null
       household_name: string | null
     }, ExtArgs["result"]["household"]>
     composites: {}
@@ -1947,8 +1929,7 @@ export namespace Prisma {
   export interface Prisma__householdClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     Asset<T extends assetDefaultArgs<ExtArgs> = {}>(args?: Subset<T, assetDefaultArgs<ExtArgs>>): Prisma__assetClient<$Result.GetResult<Prisma.$assetPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    household_categories_household_household_categoryTohousehold_categories<T extends household$household_categories_household_household_categoryTohousehold_categoriesArgs<ExtArgs> = {}>(args?: Subset<T, household$household_categories_household_household_categoryTohousehold_categoriesArgs<ExtArgs>>): Prisma__household_categoriesClient<$Result.GetResult<Prisma.$household_categoriesPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
-    household_categories_household_household_subcategoryTohousehold_categories<T extends household$household_categories_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs> = {}>(args?: Subset<T, household$household_categories_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs>>): Prisma__household_categoriesClient<$Result.GetResult<Prisma.$household_categoriesPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    household_categories<T extends household$household_categoriesArgs<ExtArgs> = {}>(args?: Subset<T, household$household_categoriesArgs<ExtArgs>>): Prisma__household_categoriesClient<$Result.GetResult<Prisma.$household_categoriesPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     User<T extends userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, userDefaultArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1990,8 +1971,8 @@ export namespace Prisma {
     readonly image_text: FieldRef<"household", 'String'>
     readonly created_at: FieldRef<"household", 'DateTime'>
     readonly updated_at: FieldRef<"household", 'DateTime'>
-    readonly household_category: FieldRef<"household", 'BigInt'>
-    readonly household_subcategory: FieldRef<"household", 'BigInt'>
+    readonly household_category: FieldRef<"household", 'Int'>
+    readonly household_category_userid: FieldRef<"household", 'String'>
     readonly household_name: FieldRef<"household", 'String'>
   }
     
@@ -2311,24 +2292,9 @@ export namespace Prisma {
   }
 
   /**
-   * household.household_categories_household_household_categoryTohousehold_categories
+   * household.household_categories
    */
-  export type household$household_categories_household_household_categoryTohousehold_categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the household_categories
-     */
-    select?: household_categoriesSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: household_categoriesInclude<ExtArgs> | null
-    where?: household_categoriesWhereInput
-  }
-
-  /**
-   * household.household_categories_household_household_subcategoryTohousehold_categories
-   */
-  export type household$household_categories_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type household$household_categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the household_categories
      */
@@ -2373,15 +2339,15 @@ export namespace Prisma {
   }
 
   export type Household_categoriesSumAggregateOutputType = {
-    id: bigint | null
-    parent_category_id: bigint | null
+    id: number | null
+    parent_category_id: number | null
   }
 
   export type Household_categoriesMinAggregateOutputType = {
-    id: bigint | null
+    id: number | null
     user_id: string | null
     category_name: string | null
-    parent_category_id: bigint | null
+    parent_category_id: number | null
     category_comment: string | null
     created_at: Date | null
     update_at: Date | null
@@ -2389,10 +2355,10 @@ export namespace Prisma {
   }
 
   export type Household_categoriesMaxAggregateOutputType = {
-    id: bigint | null
+    id: number | null
     user_id: string | null
     category_name: string | null
-    parent_category_id: bigint | null
+    parent_category_id: number | null
     category_comment: string | null
     created_at: Date | null
     update_at: Date | null
@@ -2543,10 +2509,10 @@ export namespace Prisma {
   }
 
   export type Household_categoriesGroupByOutputType = {
-    id: bigint
+    id: number
     user_id: string
     category_name: string
-    parent_category_id: bigint | null
+    parent_category_id: number | null
     category_comment: string | null
     created_at: Date
     update_at: Date | null
@@ -2581,8 +2547,7 @@ export namespace Prisma {
     created_at?: boolean
     update_at?: boolean
     household_type?: boolean
-    household_household_household_categoryTohousehold_categories?: boolean | household_categories$household_household_household_categoryTohousehold_categoriesArgs<ExtArgs>
-    household_household_household_subcategoryTohousehold_categories?: boolean | household_categories$household_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs>
+    household?: boolean | household_categories$householdArgs<ExtArgs>
     User?: boolean | userDefaultArgs<ExtArgs>
     _count?: boolean | Household_categoriesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["household_categories"]>
@@ -2611,8 +2576,7 @@ export namespace Prisma {
   }
 
   export type household_categoriesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    household_household_household_categoryTohousehold_categories?: boolean | household_categories$household_household_household_categoryTohousehold_categoriesArgs<ExtArgs>
-    household_household_household_subcategoryTohousehold_categories?: boolean | household_categories$household_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs>
+    household?: boolean | household_categories$householdArgs<ExtArgs>
     User?: boolean | userDefaultArgs<ExtArgs>
     _count?: boolean | Household_categoriesCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -2623,15 +2587,14 @@ export namespace Prisma {
   export type $household_categoriesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "household_categories"
     objects: {
-      household_household_household_categoryTohousehold_categories: Prisma.$householdPayload<ExtArgs>[]
-      household_household_household_subcategoryTohousehold_categories: Prisma.$householdPayload<ExtArgs>[]
+      household: Prisma.$householdPayload<ExtArgs>[]
       User: Prisma.$userPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: bigint
+      id: number
       user_id: string
       category_name: string
-      parent_category_id: bigint | null
+      parent_category_id: number | null
       category_comment: string | null
       created_at: Date
       update_at: Date | null
@@ -3000,8 +2963,7 @@ export namespace Prisma {
    */
   export interface Prisma__household_categoriesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    household_household_household_categoryTohousehold_categories<T extends household_categories$household_household_household_categoryTohousehold_categoriesArgs<ExtArgs> = {}>(args?: Subset<T, household_categories$household_household_household_categoryTohousehold_categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$householdPayload<ExtArgs>, T, "findMany"> | Null>
-    household_household_household_subcategoryTohousehold_categories<T extends household_categories$household_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs> = {}>(args?: Subset<T, household_categories$household_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$householdPayload<ExtArgs>, T, "findMany"> | Null>
+    household<T extends household_categories$householdArgs<ExtArgs> = {}>(args?: Subset<T, household_categories$householdArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$householdPayload<ExtArgs>, T, "findMany"> | Null>
     User<T extends userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, userDefaultArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3032,10 +2994,10 @@ export namespace Prisma {
    * Fields of the household_categories model
    */ 
   interface household_categoriesFieldRefs {
-    readonly id: FieldRef<"household_categories", 'BigInt'>
+    readonly id: FieldRef<"household_categories", 'Int'>
     readonly user_id: FieldRef<"household_categories", 'String'>
     readonly category_name: FieldRef<"household_categories", 'String'>
-    readonly parent_category_id: FieldRef<"household_categories", 'BigInt'>
+    readonly parent_category_id: FieldRef<"household_categories", 'Int'>
     readonly category_comment: FieldRef<"household_categories", 'String'>
     readonly created_at: FieldRef<"household_categories", 'DateTime'>
     readonly update_at: FieldRef<"household_categories", 'DateTime'>
@@ -3358,29 +3320,9 @@ export namespace Prisma {
   }
 
   /**
-   * household_categories.household_household_household_categoryTohousehold_categories
+   * household_categories.household
    */
-  export type household_categories$household_household_household_categoryTohousehold_categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the household
-     */
-    select?: householdSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: householdInclude<ExtArgs> | null
-    where?: householdWhereInput
-    orderBy?: householdOrderByWithRelationInput | householdOrderByWithRelationInput[]
-    cursor?: householdWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: HouseholdScalarFieldEnum | HouseholdScalarFieldEnum[]
-  }
-
-  /**
-   * household_categories.household_household_household_subcategoryTohousehold_categories
-   */
-  export type household_categories$household_household_household_subcategoryTohousehold_categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type household_categories$householdArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the household
      */
@@ -5512,7 +5454,7 @@ export namespace Prisma {
     created_at: 'created_at',
     updated_at: 'updated_at',
     household_category: 'household_category',
-    household_subcategory: 'household_subcategory',
+    household_category_userid: 'household_category_userid',
     household_name: 'household_name'
   };
 
@@ -5634,27 +5576,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'BigInt'
-   */
-  export type BigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt'>
-    
-
-
-  /**
-   * Reference to a field of type 'BigInt[]'
-   */
-  export type ListBigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -5665,6 +5586,13 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
   /**
    * Deep Input Types
@@ -5686,12 +5614,11 @@ export namespace Prisma {
     image_text?: StringNullableFilter<"household"> | string | null
     created_at?: DateTimeFilter<"household"> | Date | string
     updated_at?: DateTimeNullableFilter<"household"> | Date | string | null
-    household_category?: BigIntNullableFilter<"household"> | bigint | number | null
-    household_subcategory?: BigIntNullableFilter<"household"> | bigint | number | null
+    household_category?: IntNullableFilter<"household"> | number | null
+    household_category_userid?: UuidNullableFilter<"household"> | string | null
     household_name?: StringNullableFilter<"household"> | string | null
     Asset?: XOR<AssetRelationFilter, assetWhereInput>
-    household_categories_household_household_categoryTohousehold_categories?: XOR<Household_categoriesNullableRelationFilter, household_categoriesWhereInput> | null
-    household_categories_household_household_subcategoryTohousehold_categories?: XOR<Household_categoriesNullableRelationFilter, household_categoriesWhereInput> | null
+    household_categories?: XOR<Household_categoriesNullableRelationFilter, household_categoriesWhereInput> | null
     User?: XOR<UserRelationFilter, userWhereInput>
   }
 
@@ -5708,11 +5635,10 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_at?: SortOrderInput | SortOrder
     household_category?: SortOrderInput | SortOrder
-    household_subcategory?: SortOrderInput | SortOrder
+    household_category_userid?: SortOrderInput | SortOrder
     household_name?: SortOrderInput | SortOrder
     Asset?: assetOrderByWithRelationInput
-    household_categories_household_household_categoryTohousehold_categories?: household_categoriesOrderByWithRelationInput
-    household_categories_household_household_subcategoryTohousehold_categories?: household_categoriesOrderByWithRelationInput
+    household_categories?: household_categoriesOrderByWithRelationInput
     User?: userOrderByWithRelationInput
   }
 
@@ -5731,12 +5657,11 @@ export namespace Prisma {
     image_text?: StringNullableFilter<"household"> | string | null
     created_at?: DateTimeFilter<"household"> | Date | string
     updated_at?: DateTimeNullableFilter<"household"> | Date | string | null
-    household_category?: BigIntNullableFilter<"household"> | bigint | number | null
-    household_subcategory?: BigIntNullableFilter<"household"> | bigint | number | null
+    household_category?: IntNullableFilter<"household"> | number | null
+    household_category_userid?: UuidNullableFilter<"household"> | string | null
     household_name?: StringNullableFilter<"household"> | string | null
     Asset?: XOR<AssetRelationFilter, assetWhereInput>
-    household_categories_household_household_categoryTohousehold_categories?: XOR<Household_categoriesNullableRelationFilter, household_categoriesWhereInput> | null
-    household_categories_household_household_subcategoryTohousehold_categories?: XOR<Household_categoriesNullableRelationFilter, household_categoriesWhereInput> | null
+    household_categories?: XOR<Household_categoriesNullableRelationFilter, household_categoriesWhereInput> | null
     User?: XOR<UserRelationFilter, userWhereInput>
   }, "id">
 
@@ -5753,7 +5678,7 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_at?: SortOrderInput | SortOrder
     household_category?: SortOrderInput | SortOrder
-    household_subcategory?: SortOrderInput | SortOrder
+    household_category_userid?: SortOrderInput | SortOrder
     household_name?: SortOrderInput | SortOrder
     _count?: householdCountOrderByAggregateInput
     _avg?: householdAvgOrderByAggregateInput
@@ -5777,8 +5702,8 @@ export namespace Prisma {
     image_text?: StringNullableWithAggregatesFilter<"household"> | string | null
     created_at?: DateTimeWithAggregatesFilter<"household"> | Date | string
     updated_at?: DateTimeNullableWithAggregatesFilter<"household"> | Date | string | null
-    household_category?: BigIntNullableWithAggregatesFilter<"household"> | bigint | number | null
-    household_subcategory?: BigIntNullableWithAggregatesFilter<"household"> | bigint | number | null
+    household_category?: IntNullableWithAggregatesFilter<"household"> | number | null
+    household_category_userid?: UuidNullableWithAggregatesFilter<"household"> | string | null
     household_name?: StringNullableWithAggregatesFilter<"household"> | string | null
   }
 
@@ -5786,16 +5711,15 @@ export namespace Prisma {
     AND?: household_categoriesWhereInput | household_categoriesWhereInput[]
     OR?: household_categoriesWhereInput[]
     NOT?: household_categoriesWhereInput | household_categoriesWhereInput[]
-    id?: BigIntFilter<"household_categories"> | bigint | number
+    id?: IntFilter<"household_categories"> | number
     user_id?: UuidFilter<"household_categories"> | string
     category_name?: StringFilter<"household_categories"> | string
-    parent_category_id?: BigIntNullableFilter<"household_categories"> | bigint | number | null
+    parent_category_id?: IntNullableFilter<"household_categories"> | number | null
     category_comment?: StringNullableFilter<"household_categories"> | string | null
     created_at?: DateTimeFilter<"household_categories"> | Date | string
     update_at?: DateTimeNullableFilter<"household_categories"> | Date | string | null
     household_type?: StringFilter<"household_categories"> | string
-    household_household_household_categoryTohousehold_categories?: HouseholdListRelationFilter
-    household_household_household_subcategoryTohousehold_categories?: HouseholdListRelationFilter
+    household?: HouseholdListRelationFilter
     User?: XOR<UserRelationFilter, userWhereInput>
   }
 
@@ -5808,27 +5732,26 @@ export namespace Prisma {
     created_at?: SortOrder
     update_at?: SortOrderInput | SortOrder
     household_type?: SortOrder
-    household_household_household_categoryTohousehold_categories?: householdOrderByRelationAggregateInput
-    household_household_household_subcategoryTohousehold_categories?: householdOrderByRelationAggregateInput
+    household?: householdOrderByRelationAggregateInput
     User?: userOrderByWithRelationInput
   }
 
   export type household_categoriesWhereUniqueInput = Prisma.AtLeast<{
-    id?: bigint | number
+    id_user_id?: household_categoriesIdUser_idCompoundUniqueInput
     AND?: household_categoriesWhereInput | household_categoriesWhereInput[]
     OR?: household_categoriesWhereInput[]
     NOT?: household_categoriesWhereInput | household_categoriesWhereInput[]
+    id?: IntFilter<"household_categories"> | number
     user_id?: UuidFilter<"household_categories"> | string
     category_name?: StringFilter<"household_categories"> | string
-    parent_category_id?: BigIntNullableFilter<"household_categories"> | bigint | number | null
+    parent_category_id?: IntNullableFilter<"household_categories"> | number | null
     category_comment?: StringNullableFilter<"household_categories"> | string | null
     created_at?: DateTimeFilter<"household_categories"> | Date | string
     update_at?: DateTimeNullableFilter<"household_categories"> | Date | string | null
     household_type?: StringFilter<"household_categories"> | string
-    household_household_household_categoryTohousehold_categories?: HouseholdListRelationFilter
-    household_household_household_subcategoryTohousehold_categories?: HouseholdListRelationFilter
+    household?: HouseholdListRelationFilter
     User?: XOR<UserRelationFilter, userWhereInput>
-  }, "id">
+  }, "id_user_id">
 
   export type household_categoriesOrderByWithAggregationInput = {
     id?: SortOrder
@@ -5850,10 +5773,10 @@ export namespace Prisma {
     AND?: household_categoriesScalarWhereWithAggregatesInput | household_categoriesScalarWhereWithAggregatesInput[]
     OR?: household_categoriesScalarWhereWithAggregatesInput[]
     NOT?: household_categoriesScalarWhereWithAggregatesInput | household_categoriesScalarWhereWithAggregatesInput[]
-    id?: BigIntWithAggregatesFilter<"household_categories"> | bigint | number
+    id?: IntWithAggregatesFilter<"household_categories"> | number
     user_id?: UuidWithAggregatesFilter<"household_categories"> | string
     category_name?: StringWithAggregatesFilter<"household_categories"> | string
-    parent_category_id?: BigIntNullableWithAggregatesFilter<"household_categories"> | bigint | number | null
+    parent_category_id?: IntNullableWithAggregatesFilter<"household_categories"> | number | null
     category_comment?: StringNullableWithAggregatesFilter<"household_categories"> | string | null
     created_at?: DateTimeWithAggregatesFilter<"household_categories"> | Date | string
     update_at?: DateTimeNullableWithAggregatesFilter<"household_categories"> | Date | string | null
@@ -6028,8 +5951,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     household_name?: string | null
     Asset: assetCreateNestedOneWithoutHouseholdInput
-    household_categories_household_household_categoryTohousehold_categories?: household_categoriesCreateNestedOneWithoutHousehold_household_household_categoryTohousehold_categoriesInput
-    household_categories_household_household_subcategoryTohousehold_categories?: household_categoriesCreateNestedOneWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput
+    household_categories?: household_categoriesCreateNestedOneWithoutHouseholdInput
     User: userCreateNestedOneWithoutHouseholdInput
   }
 
@@ -6045,8 +5967,8 @@ export namespace Prisma {
     image_text?: string | null
     created_at?: Date | string
     updated_at?: Date | string | null
-    household_category?: bigint | number | null
-    household_subcategory?: bigint | number | null
+    household_category?: number | null
+    household_category_userid?: string | null
     household_name?: string | null
   }
 
@@ -6062,8 +5984,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     household_name?: NullableStringFieldUpdateOperationsInput | string | null
     Asset?: assetUpdateOneRequiredWithoutHouseholdNestedInput
-    household_categories_household_household_categoryTohousehold_categories?: household_categoriesUpdateOneWithoutHousehold_household_household_categoryTohousehold_categoriesNestedInput
-    household_categories_household_household_subcategoryTohousehold_categories?: household_categoriesUpdateOneWithoutHousehold_household_household_subcategoryTohousehold_categoriesNestedInput
+    household_categories?: household_categoriesUpdateOneWithoutHouseholdNestedInput
     User?: userUpdateOneRequiredWithoutHouseholdNestedInput
   }
 
@@ -6079,8 +6000,8 @@ export namespace Prisma {
     image_text?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    household_category?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    household_subcategory?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_category?: NullableIntFieldUpdateOperationsInput | number | null
+    household_category_userid?: NullableStringFieldUpdateOperationsInput | string | null
     household_name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -6096,8 +6017,8 @@ export namespace Prisma {
     image_text?: string | null
     created_at?: Date | string
     updated_at?: Date | string | null
-    household_category?: bigint | number | null
-    household_subcategory?: bigint | number | null
+    household_category?: number | null
+    household_category_userid?: string | null
     household_name?: string | null
   }
 
@@ -6126,68 +6047,64 @@ export namespace Prisma {
     image_text?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    household_category?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    household_subcategory?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_category?: NullableIntFieldUpdateOperationsInput | number | null
+    household_category_userid?: NullableStringFieldUpdateOperationsInput | string | null
     household_name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type household_categoriesCreateInput = {
-    id?: bigint | number
+    id: number
     category_name: string
-    parent_category_id?: bigint | number | null
+    parent_category_id?: number | null
     category_comment?: string | null
     created_at?: Date | string
     update_at?: Date | string | null
     household_type?: string
-    household_household_household_categoryTohousehold_categories?: householdCreateNestedManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput
-    household_household_household_subcategoryTohousehold_categories?: householdCreateNestedManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput
+    household?: householdCreateNestedManyWithoutHousehold_categoriesInput
     User: userCreateNestedOneWithoutHousehold_categoriesInput
   }
 
   export type household_categoriesUncheckedCreateInput = {
-    id?: bigint | number
+    id: number
     user_id: string
     category_name: string
-    parent_category_id?: bigint | number | null
+    parent_category_id?: number | null
     category_comment?: string | null
     created_at?: Date | string
     update_at?: Date | string | null
     household_type?: string
-    household_household_household_categoryTohousehold_categories?: householdUncheckedCreateNestedManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput
-    household_household_household_subcategoryTohousehold_categories?: householdUncheckedCreateNestedManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput
+    household?: householdUncheckedCreateNestedManyWithoutHousehold_categoriesInput
   }
 
   export type household_categoriesUpdateInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    id?: IntFieldUpdateOperationsInput | number
     category_name?: StringFieldUpdateOperationsInput | string
-    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    parent_category_id?: NullableIntFieldUpdateOperationsInput | number | null
     category_comment?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     household_type?: StringFieldUpdateOperationsInput | string
-    household_household_household_categoryTohousehold_categories?: householdUpdateManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesNestedInput
-    household_household_household_subcategoryTohousehold_categories?: householdUpdateManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesNestedInput
+    household?: householdUpdateManyWithoutHousehold_categoriesNestedInput
     User?: userUpdateOneRequiredWithoutHousehold_categoriesNestedInput
   }
 
   export type household_categoriesUncheckedUpdateInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    id?: IntFieldUpdateOperationsInput | number
     user_id?: StringFieldUpdateOperationsInput | string
     category_name?: StringFieldUpdateOperationsInput | string
-    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    parent_category_id?: NullableIntFieldUpdateOperationsInput | number | null
     category_comment?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     household_type?: StringFieldUpdateOperationsInput | string
-    household_household_household_categoryTohousehold_categories?: householdUncheckedUpdateManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesNestedInput
-    household_household_household_subcategoryTohousehold_categories?: householdUncheckedUpdateManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesNestedInput
+    household?: householdUncheckedUpdateManyWithoutHousehold_categoriesNestedInput
   }
 
   export type household_categoriesCreateManyInput = {
-    id?: bigint | number
+    id: number
     user_id: string
     category_name: string
-    parent_category_id?: bigint | number | null
+    parent_category_id?: number | null
     category_comment?: string | null
     created_at?: Date | string
     update_at?: Date | string | null
@@ -6195,9 +6112,9 @@ export namespace Prisma {
   }
 
   export type household_categoriesUpdateManyMutationInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    id?: IntFieldUpdateOperationsInput | number
     category_name?: StringFieldUpdateOperationsInput | string
-    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    parent_category_id?: NullableIntFieldUpdateOperationsInput | number | null
     category_comment?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6205,10 +6122,10 @@ export namespace Prisma {
   }
 
   export type household_categoriesUncheckedUpdateManyInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    id?: IntFieldUpdateOperationsInput | number
     user_id?: StringFieldUpdateOperationsInput | string
     category_name?: StringFieldUpdateOperationsInput | string
-    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    parent_category_id?: NullableIntFieldUpdateOperationsInput | number | null
     category_comment?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6466,15 +6383,27 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type BigIntNullableFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntNullableFilter<$PrismaModel> | bigint | number | null
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type UuidNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidNullableFilter<$PrismaModel> | string | null
   }
 
   export type AssetRelationFilter = {
@@ -6510,14 +6439,13 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_at?: SortOrder
     household_category?: SortOrder
-    household_subcategory?: SortOrder
+    household_category_userid?: SortOrder
     household_name?: SortOrder
   }
 
   export type householdAvgOrderByAggregateInput = {
     household_amount?: SortOrder
     household_category?: SortOrder
-    household_subcategory?: SortOrder
   }
 
   export type householdMaxOrderByAggregateInput = {
@@ -6533,7 +6461,7 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_at?: SortOrder
     household_category?: SortOrder
-    household_subcategory?: SortOrder
+    household_category_userid?: SortOrder
     household_name?: SortOrder
   }
 
@@ -6550,14 +6478,13 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_at?: SortOrder
     household_category?: SortOrder
-    household_subcategory?: SortOrder
+    household_category_userid?: SortOrder
     household_name?: SortOrder
   }
 
   export type householdSumOrderByAggregateInput = {
     household_amount?: SortOrder
     household_category?: SortOrder
-    household_subcategory?: SortOrder
   }
 
   export type UuidWithAggregatesFilter<$PrismaModel = never> = {
@@ -6655,31 +6582,46 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type BigIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntNullableWithAggregatesFilter<$PrismaModel> | bigint | number | null
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
     _count?: NestedIntNullableFilter<$PrismaModel>
     _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedBigIntNullableFilter<$PrismaModel>
-    _min?: NestedBigIntNullableFilter<$PrismaModel>
-    _max?: NestedBigIntNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type BigIntFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
+  export type UuidNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type HouseholdListRelationFilter = {
@@ -6690,6 +6632,11 @@ export namespace Prisma {
 
   export type householdOrderByRelationAggregateInput = {
     _count?: SortOrder
+  }
+
+  export type household_categoriesIdUser_idCompoundUniqueInput = {
+    id: number
+    user_id: string
   }
 
   export type household_categoriesCountOrderByAggregateInput = {
@@ -6735,20 +6682,20 @@ export namespace Prisma {
     parent_category_id?: SortOrder
   }
 
-  export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
     _count?: NestedIntFilter<$PrismaModel>
     _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedBigIntFilter<$PrismaModel>
-    _min?: NestedBigIntFilter<$PrismaModel>
-    _max?: NestedBigIntFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type assetCountOrderByAggregateInput = {
@@ -6867,15 +6814,9 @@ export namespace Prisma {
     connect?: assetWhereUniqueInput
   }
 
-  export type household_categoriesCreateNestedOneWithoutHousehold_household_household_categoryTohousehold_categoriesInput = {
-    create?: XOR<household_categoriesCreateWithoutHousehold_household_household_categoryTohousehold_categoriesInput, household_categoriesUncheckedCreateWithoutHousehold_household_household_categoryTohousehold_categoriesInput>
-    connectOrCreate?: household_categoriesCreateOrConnectWithoutHousehold_household_household_categoryTohousehold_categoriesInput
-    connect?: household_categoriesWhereUniqueInput
-  }
-
-  export type household_categoriesCreateNestedOneWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput = {
-    create?: XOR<household_categoriesCreateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput, household_categoriesUncheckedCreateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput>
-    connectOrCreate?: household_categoriesCreateOrConnectWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput
+  export type household_categoriesCreateNestedOneWithoutHouseholdInput = {
+    create?: XOR<household_categoriesCreateWithoutHouseholdInput, household_categoriesUncheckedCreateWithoutHouseholdInput>
+    connectOrCreate?: household_categoriesCreateOrConnectWithoutHouseholdInput
     connect?: household_categoriesWhereUniqueInput
   }
 
@@ -6917,24 +6858,14 @@ export namespace Prisma {
     update?: XOR<XOR<assetUpdateToOneWithWhereWithoutHouseholdInput, assetUpdateWithoutHouseholdInput>, assetUncheckedUpdateWithoutHouseholdInput>
   }
 
-  export type household_categoriesUpdateOneWithoutHousehold_household_household_categoryTohousehold_categoriesNestedInput = {
-    create?: XOR<household_categoriesCreateWithoutHousehold_household_household_categoryTohousehold_categoriesInput, household_categoriesUncheckedCreateWithoutHousehold_household_household_categoryTohousehold_categoriesInput>
-    connectOrCreate?: household_categoriesCreateOrConnectWithoutHousehold_household_household_categoryTohousehold_categoriesInput
-    upsert?: household_categoriesUpsertWithoutHousehold_household_household_categoryTohousehold_categoriesInput
+  export type household_categoriesUpdateOneWithoutHouseholdNestedInput = {
+    create?: XOR<household_categoriesCreateWithoutHouseholdInput, household_categoriesUncheckedCreateWithoutHouseholdInput>
+    connectOrCreate?: household_categoriesCreateOrConnectWithoutHouseholdInput
+    upsert?: household_categoriesUpsertWithoutHouseholdInput
     disconnect?: household_categoriesWhereInput | boolean
     delete?: household_categoriesWhereInput | boolean
     connect?: household_categoriesWhereUniqueInput
-    update?: XOR<XOR<household_categoriesUpdateToOneWithWhereWithoutHousehold_household_household_categoryTohousehold_categoriesInput, household_categoriesUpdateWithoutHousehold_household_household_categoryTohousehold_categoriesInput>, household_categoriesUncheckedUpdateWithoutHousehold_household_household_categoryTohousehold_categoriesInput>
-  }
-
-  export type household_categoriesUpdateOneWithoutHousehold_household_household_subcategoryTohousehold_categoriesNestedInput = {
-    create?: XOR<household_categoriesCreateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput, household_categoriesUncheckedCreateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput>
-    connectOrCreate?: household_categoriesCreateOrConnectWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput
-    upsert?: household_categoriesUpsertWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput
-    disconnect?: household_categoriesWhereInput | boolean
-    delete?: household_categoriesWhereInput | boolean
-    connect?: household_categoriesWhereUniqueInput
-    update?: XOR<XOR<household_categoriesUpdateToOneWithWhereWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput, household_categoriesUpdateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput>, household_categoriesUncheckedUpdateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput>
+    update?: XOR<XOR<household_categoriesUpdateToOneWithWhereWithoutHouseholdInput, household_categoriesUpdateWithoutHouseholdInput>, household_categoriesUncheckedUpdateWithoutHouseholdInput>
   }
 
   export type userUpdateOneRequiredWithoutHouseholdNestedInput = {
@@ -6945,25 +6876,18 @@ export namespace Prisma {
     update?: XOR<XOR<userUpdateToOneWithWhereWithoutHouseholdInput, userUpdateWithoutHouseholdInput>, userUncheckedUpdateWithoutHouseholdInput>
   }
 
-  export type NullableBigIntFieldUpdateOperationsInput = {
-    set?: bigint | number | null
-    increment?: bigint | number
-    decrement?: bigint | number
-    multiply?: bigint | number
-    divide?: bigint | number
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
-  export type householdCreateNestedManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
-    create?: XOR<householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput> | householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[] | householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
-    connectOrCreate?: householdCreateOrConnectWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdCreateOrConnectWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
-    createMany?: householdCreateManyHousehold_categories_household_household_categoryTohousehold_categoriesInputEnvelope
-    connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
-  }
-
-  export type householdCreateNestedManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
-    create?: XOR<householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput> | householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[] | householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
-    connectOrCreate?: householdCreateOrConnectWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdCreateOrConnectWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
-    createMany?: householdCreateManyHousehold_categories_household_household_subcategoryTohousehold_categoriesInputEnvelope
+  export type householdCreateNestedManyWithoutHousehold_categoriesInput = {
+    create?: XOR<householdCreateWithoutHousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categoriesInput> | householdCreateWithoutHousehold_categoriesInput[] | householdUncheckedCreateWithoutHousehold_categoriesInput[]
+    connectOrCreate?: householdCreateOrConnectWithoutHousehold_categoriesInput | householdCreateOrConnectWithoutHousehold_categoriesInput[]
+    createMany?: householdCreateManyHousehold_categoriesInputEnvelope
     connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
   }
 
@@ -6973,53 +6897,32 @@ export namespace Prisma {
     connect?: userWhereUniqueInput
   }
 
-  export type householdUncheckedCreateNestedManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
-    create?: XOR<householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput> | householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[] | householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
-    connectOrCreate?: householdCreateOrConnectWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdCreateOrConnectWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
-    createMany?: householdCreateManyHousehold_categories_household_household_categoryTohousehold_categoriesInputEnvelope
+  export type householdUncheckedCreateNestedManyWithoutHousehold_categoriesInput = {
+    create?: XOR<householdCreateWithoutHousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categoriesInput> | householdCreateWithoutHousehold_categoriesInput[] | householdUncheckedCreateWithoutHousehold_categoriesInput[]
+    connectOrCreate?: householdCreateOrConnectWithoutHousehold_categoriesInput | householdCreateOrConnectWithoutHousehold_categoriesInput[]
+    createMany?: householdCreateManyHousehold_categoriesInputEnvelope
     connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
   }
 
-  export type householdUncheckedCreateNestedManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
-    create?: XOR<householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput> | householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[] | householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
-    connectOrCreate?: householdCreateOrConnectWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdCreateOrConnectWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
-    createMany?: householdCreateManyHousehold_categories_household_household_subcategoryTohousehold_categoriesInputEnvelope
-    connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
-  export type BigIntFieldUpdateOperationsInput = {
-    set?: bigint | number
-    increment?: bigint | number
-    decrement?: bigint | number
-    multiply?: bigint | number
-    divide?: bigint | number
-  }
-
-  export type householdUpdateManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesNestedInput = {
-    create?: XOR<householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput> | householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[] | householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
-    connectOrCreate?: householdCreateOrConnectWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdCreateOrConnectWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
-    upsert?: householdUpsertWithWhereUniqueWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdUpsertWithWhereUniqueWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
-    createMany?: householdCreateManyHousehold_categories_household_household_categoryTohousehold_categoriesInputEnvelope
+  export type householdUpdateManyWithoutHousehold_categoriesNestedInput = {
+    create?: XOR<householdCreateWithoutHousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categoriesInput> | householdCreateWithoutHousehold_categoriesInput[] | householdUncheckedCreateWithoutHousehold_categoriesInput[]
+    connectOrCreate?: householdCreateOrConnectWithoutHousehold_categoriesInput | householdCreateOrConnectWithoutHousehold_categoriesInput[]
+    upsert?: householdUpsertWithWhereUniqueWithoutHousehold_categoriesInput | householdUpsertWithWhereUniqueWithoutHousehold_categoriesInput[]
+    createMany?: householdCreateManyHousehold_categoriesInputEnvelope
     set?: householdWhereUniqueInput | householdWhereUniqueInput[]
     disconnect?: householdWhereUniqueInput | householdWhereUniqueInput[]
     delete?: householdWhereUniqueInput | householdWhereUniqueInput[]
     connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
-    update?: householdUpdateWithWhereUniqueWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdUpdateWithWhereUniqueWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
-    updateMany?: householdUpdateManyWithWhereWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdUpdateManyWithWhereWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
-    deleteMany?: householdScalarWhereInput | householdScalarWhereInput[]
-  }
-
-  export type householdUpdateManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesNestedInput = {
-    create?: XOR<householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput> | householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[] | householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
-    connectOrCreate?: householdCreateOrConnectWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdCreateOrConnectWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
-    upsert?: householdUpsertWithWhereUniqueWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdUpsertWithWhereUniqueWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
-    createMany?: householdCreateManyHousehold_categories_household_household_subcategoryTohousehold_categoriesInputEnvelope
-    set?: householdWhereUniqueInput | householdWhereUniqueInput[]
-    disconnect?: householdWhereUniqueInput | householdWhereUniqueInput[]
-    delete?: householdWhereUniqueInput | householdWhereUniqueInput[]
-    connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
-    update?: householdUpdateWithWhereUniqueWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdUpdateWithWhereUniqueWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
-    updateMany?: householdUpdateManyWithWhereWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdUpdateManyWithWhereWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
+    update?: householdUpdateWithWhereUniqueWithoutHousehold_categoriesInput | householdUpdateWithWhereUniqueWithoutHousehold_categoriesInput[]
+    updateMany?: householdUpdateManyWithWhereWithoutHousehold_categoriesInput | householdUpdateManyWithWhereWithoutHousehold_categoriesInput[]
     deleteMany?: householdScalarWhereInput | householdScalarWhereInput[]
   }
 
@@ -7031,31 +6934,17 @@ export namespace Prisma {
     update?: XOR<XOR<userUpdateToOneWithWhereWithoutHousehold_categoriesInput, userUpdateWithoutHousehold_categoriesInput>, userUncheckedUpdateWithoutHousehold_categoriesInput>
   }
 
-  export type householdUncheckedUpdateManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesNestedInput = {
-    create?: XOR<householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput> | householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[] | householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
-    connectOrCreate?: householdCreateOrConnectWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdCreateOrConnectWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
-    upsert?: householdUpsertWithWhereUniqueWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdUpsertWithWhereUniqueWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
-    createMany?: householdCreateManyHousehold_categories_household_household_categoryTohousehold_categoriesInputEnvelope
+  export type householdUncheckedUpdateManyWithoutHousehold_categoriesNestedInput = {
+    create?: XOR<householdCreateWithoutHousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categoriesInput> | householdCreateWithoutHousehold_categoriesInput[] | householdUncheckedCreateWithoutHousehold_categoriesInput[]
+    connectOrCreate?: householdCreateOrConnectWithoutHousehold_categoriesInput | householdCreateOrConnectWithoutHousehold_categoriesInput[]
+    upsert?: householdUpsertWithWhereUniqueWithoutHousehold_categoriesInput | householdUpsertWithWhereUniqueWithoutHousehold_categoriesInput[]
+    createMany?: householdCreateManyHousehold_categoriesInputEnvelope
     set?: householdWhereUniqueInput | householdWhereUniqueInput[]
     disconnect?: householdWhereUniqueInput | householdWhereUniqueInput[]
     delete?: householdWhereUniqueInput | householdWhereUniqueInput[]
     connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
-    update?: householdUpdateWithWhereUniqueWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdUpdateWithWhereUniqueWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
-    updateMany?: householdUpdateManyWithWhereWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdUpdateManyWithWhereWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
-    deleteMany?: householdScalarWhereInput | householdScalarWhereInput[]
-  }
-
-  export type householdUncheckedUpdateManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesNestedInput = {
-    create?: XOR<householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput> | householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[] | householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
-    connectOrCreate?: householdCreateOrConnectWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdCreateOrConnectWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
-    upsert?: householdUpsertWithWhereUniqueWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdUpsertWithWhereUniqueWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
-    createMany?: householdCreateManyHousehold_categories_household_household_subcategoryTohousehold_categoriesInputEnvelope
-    set?: householdWhereUniqueInput | householdWhereUniqueInput[]
-    disconnect?: householdWhereUniqueInput | householdWhereUniqueInput[]
-    delete?: householdWhereUniqueInput | householdWhereUniqueInput[]
-    connect?: householdWhereUniqueInput | householdWhereUniqueInput[]
-    update?: householdUpdateWithWhereUniqueWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdUpdateWithWhereUniqueWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
-    updateMany?: householdUpdateManyWithWhereWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdUpdateManyWithWhereWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
+    update?: householdUpdateWithWhereUniqueWithoutHousehold_categoriesInput | householdUpdateWithWhereUniqueWithoutHousehold_categoriesInput[]
+    updateMany?: householdUpdateManyWithWhereWithoutHousehold_categoriesInput | householdUpdateManyWithWhereWithoutHousehold_categoriesInput[]
     deleteMany?: householdScalarWhereInput | householdScalarWhereInput[]
   }
 
@@ -7317,15 +7206,26 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type NestedBigIntNullableFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntNullableFilter<$PrismaModel> | bigint | number | null
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedUuidNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidNullableFilter<$PrismaModel> | string | null
   }
 
   export type NestedUuidWithAggregatesFilter<$PrismaModel = never> = {
@@ -7417,17 +7317,6 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -7442,20 +7331,20 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type NestedBigIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntNullableWithAggregatesFilter<$PrismaModel> | bigint | number | null
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
     _count?: NestedIntNullableFilter<$PrismaModel>
     _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedBigIntNullableFilter<$PrismaModel>
-    _min?: NestedBigIntNullableFilter<$PrismaModel>
-    _max?: NestedBigIntNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type NestedFloatNullableFilter<$PrismaModel = never> = {
@@ -7469,31 +7358,34 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedBigIntFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
+  export type NestedUuidNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedBigIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
     _count?: NestedIntFilter<$PrismaModel>
     _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedBigIntFilter<$PrismaModel>
-    _min?: NestedBigIntFilter<$PrismaModel>
-    _max?: NestedBigIntFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
@@ -7538,62 +7430,31 @@ export namespace Prisma {
     create: XOR<assetCreateWithoutHouseholdInput, assetUncheckedCreateWithoutHouseholdInput>
   }
 
-  export type household_categoriesCreateWithoutHousehold_household_household_categoryTohousehold_categoriesInput = {
-    id?: bigint | number
+  export type household_categoriesCreateWithoutHouseholdInput = {
+    id: number
     category_name: string
-    parent_category_id?: bigint | number | null
+    parent_category_id?: number | null
     category_comment?: string | null
     created_at?: Date | string
     update_at?: Date | string | null
     household_type?: string
-    household_household_household_subcategoryTohousehold_categories?: householdCreateNestedManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput
     User: userCreateNestedOneWithoutHousehold_categoriesInput
   }
 
-  export type household_categoriesUncheckedCreateWithoutHousehold_household_household_categoryTohousehold_categoriesInput = {
-    id?: bigint | number
+  export type household_categoriesUncheckedCreateWithoutHouseholdInput = {
+    id: number
     user_id: string
     category_name: string
-    parent_category_id?: bigint | number | null
+    parent_category_id?: number | null
     category_comment?: string | null
     created_at?: Date | string
     update_at?: Date | string | null
     household_type?: string
-    household_household_household_subcategoryTohousehold_categories?: householdUncheckedCreateNestedManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput
   }
 
-  export type household_categoriesCreateOrConnectWithoutHousehold_household_household_categoryTohousehold_categoriesInput = {
+  export type household_categoriesCreateOrConnectWithoutHouseholdInput = {
     where: household_categoriesWhereUniqueInput
-    create: XOR<household_categoriesCreateWithoutHousehold_household_household_categoryTohousehold_categoriesInput, household_categoriesUncheckedCreateWithoutHousehold_household_household_categoryTohousehold_categoriesInput>
-  }
-
-  export type household_categoriesCreateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput = {
-    id?: bigint | number
-    category_name: string
-    parent_category_id?: bigint | number | null
-    category_comment?: string | null
-    created_at?: Date | string
-    update_at?: Date | string | null
-    household_type?: string
-    household_household_household_categoryTohousehold_categories?: householdCreateNestedManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput
-    User: userCreateNestedOneWithoutHousehold_categoriesInput
-  }
-
-  export type household_categoriesUncheckedCreateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput = {
-    id?: bigint | number
-    user_id: string
-    category_name: string
-    parent_category_id?: bigint | number | null
-    category_comment?: string | null
-    created_at?: Date | string
-    update_at?: Date | string | null
-    household_type?: string
-    household_household_household_categoryTohousehold_categories?: householdUncheckedCreateNestedManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput
-  }
-
-  export type household_categoriesCreateOrConnectWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput = {
-    where: household_categoriesWhereUniqueInput
-    create: XOR<household_categoriesCreateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput, household_categoriesUncheckedCreateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput>
+    create: XOR<household_categoriesCreateWithoutHouseholdInput, household_categoriesUncheckedCreateWithoutHouseholdInput>
   }
 
   export type userCreateWithoutHouseholdInput = {
@@ -7662,74 +7523,37 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type household_categoriesUpsertWithoutHousehold_household_household_categoryTohousehold_categoriesInput = {
-    update: XOR<household_categoriesUpdateWithoutHousehold_household_household_categoryTohousehold_categoriesInput, household_categoriesUncheckedUpdateWithoutHousehold_household_household_categoryTohousehold_categoriesInput>
-    create: XOR<household_categoriesCreateWithoutHousehold_household_household_categoryTohousehold_categoriesInput, household_categoriesUncheckedCreateWithoutHousehold_household_household_categoryTohousehold_categoriesInput>
+  export type household_categoriesUpsertWithoutHouseholdInput = {
+    update: XOR<household_categoriesUpdateWithoutHouseholdInput, household_categoriesUncheckedUpdateWithoutHouseholdInput>
+    create: XOR<household_categoriesCreateWithoutHouseholdInput, household_categoriesUncheckedCreateWithoutHouseholdInput>
     where?: household_categoriesWhereInput
   }
 
-  export type household_categoriesUpdateToOneWithWhereWithoutHousehold_household_household_categoryTohousehold_categoriesInput = {
+  export type household_categoriesUpdateToOneWithWhereWithoutHouseholdInput = {
     where?: household_categoriesWhereInput
-    data: XOR<household_categoriesUpdateWithoutHousehold_household_household_categoryTohousehold_categoriesInput, household_categoriesUncheckedUpdateWithoutHousehold_household_household_categoryTohousehold_categoriesInput>
+    data: XOR<household_categoriesUpdateWithoutHouseholdInput, household_categoriesUncheckedUpdateWithoutHouseholdInput>
   }
 
-  export type household_categoriesUpdateWithoutHousehold_household_household_categoryTohousehold_categoriesInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
+  export type household_categoriesUpdateWithoutHouseholdInput = {
+    id?: IntFieldUpdateOperationsInput | number
     category_name?: StringFieldUpdateOperationsInput | string
-    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    parent_category_id?: NullableIntFieldUpdateOperationsInput | number | null
     category_comment?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     household_type?: StringFieldUpdateOperationsInput | string
-    household_household_household_subcategoryTohousehold_categories?: householdUpdateManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesNestedInput
     User?: userUpdateOneRequiredWithoutHousehold_categoriesNestedInput
   }
 
-  export type household_categoriesUncheckedUpdateWithoutHousehold_household_household_categoryTohousehold_categoriesInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
+  export type household_categoriesUncheckedUpdateWithoutHouseholdInput = {
+    id?: IntFieldUpdateOperationsInput | number
     user_id?: StringFieldUpdateOperationsInput | string
     category_name?: StringFieldUpdateOperationsInput | string
-    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    parent_category_id?: NullableIntFieldUpdateOperationsInput | number | null
     category_comment?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     household_type?: StringFieldUpdateOperationsInput | string
-    household_household_household_subcategoryTohousehold_categories?: householdUncheckedUpdateManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesNestedInput
-  }
-
-  export type household_categoriesUpsertWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput = {
-    update: XOR<household_categoriesUpdateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput, household_categoriesUncheckedUpdateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput>
-    create: XOR<household_categoriesCreateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput, household_categoriesUncheckedCreateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput>
-    where?: household_categoriesWhereInput
-  }
-
-  export type household_categoriesUpdateToOneWithWhereWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput = {
-    where?: household_categoriesWhereInput
-    data: XOR<household_categoriesUpdateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput, household_categoriesUncheckedUpdateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput>
-  }
-
-  export type household_categoriesUpdateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    category_name?: StringFieldUpdateOperationsInput | string
-    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    category_comment?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    household_type?: StringFieldUpdateOperationsInput | string
-    household_household_household_categoryTohousehold_categories?: householdUpdateManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesNestedInput
-    User?: userUpdateOneRequiredWithoutHousehold_categoriesNestedInput
-  }
-
-  export type household_categoriesUncheckedUpdateWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    user_id?: StringFieldUpdateOperationsInput | string
-    category_name?: StringFieldUpdateOperationsInput | string
-    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    category_comment?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    household_type?: StringFieldUpdateOperationsInput | string
-    household_household_household_categoryTohousehold_categories?: householdUncheckedUpdateManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesNestedInput
   }
 
   export type userUpsertWithoutHouseholdInput = {
@@ -7769,7 +7593,7 @@ export namespace Prisma {
     household_categories?: household_categoriesUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+  export type householdCreateWithoutHousehold_categoriesInput = {
     id?: string
     issue_date: Date | string
     household_type: string
@@ -7781,11 +7605,10 @@ export namespace Prisma {
     updated_at?: Date | string | null
     household_name?: string | null
     Asset: assetCreateNestedOneWithoutHouseholdInput
-    household_categories_household_household_subcategoryTohousehold_categories?: household_categoriesCreateNestedOneWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput
     User: userCreateNestedOneWithoutHouseholdInput
   }
 
-  export type householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+  export type householdUncheckedCreateWithoutHousehold_categoriesInput = {
     id?: string
     issue_date: Date | string
     asset_id: string
@@ -7797,59 +7620,16 @@ export namespace Prisma {
     image_text?: string | null
     created_at?: Date | string
     updated_at?: Date | string | null
-    household_subcategory?: bigint | number | null
     household_name?: string | null
   }
 
-  export type householdCreateOrConnectWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+  export type householdCreateOrConnectWithoutHousehold_categoriesInput = {
     where: householdWhereUniqueInput
-    create: XOR<householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput>
+    create: XOR<householdCreateWithoutHousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categoriesInput>
   }
 
-  export type householdCreateManyHousehold_categories_household_household_categoryTohousehold_categoriesInputEnvelope = {
-    data: householdCreateManyHousehold_categories_household_household_categoryTohousehold_categoriesInput | householdCreateManyHousehold_categories_household_household_categoryTohousehold_categoriesInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
-    id?: string
-    issue_date: Date | string
-    household_type: string
-    household_amount?: number
-    household_comment?: string | null
-    image_path?: string | null
-    image_text?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string | null
-    household_name?: string | null
-    Asset: assetCreateNestedOneWithoutHouseholdInput
-    household_categories_household_household_categoryTohousehold_categories?: household_categoriesCreateNestedOneWithoutHousehold_household_household_categoryTohousehold_categoriesInput
-    User: userCreateNestedOneWithoutHouseholdInput
-  }
-
-  export type householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
-    id?: string
-    issue_date: Date | string
-    asset_id: string
-    user_id: string
-    household_type: string
-    household_amount?: number
-    household_comment?: string | null
-    image_path?: string | null
-    image_text?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string | null
-    household_category?: bigint | number | null
-    household_name?: string | null
-  }
-
-  export type householdCreateOrConnectWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
-    where: householdWhereUniqueInput
-    create: XOR<householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput>
-  }
-
-  export type householdCreateManyHousehold_categories_household_household_subcategoryTohousehold_categoriesInputEnvelope = {
-    data: householdCreateManyHousehold_categories_household_household_subcategoryTohousehold_categoriesInput | householdCreateManyHousehold_categories_household_household_subcategoryTohousehold_categoriesInput[]
+  export type householdCreateManyHousehold_categoriesInputEnvelope = {
+    data: householdCreateManyHousehold_categoriesInput | householdCreateManyHousehold_categoriesInput[]
     skipDuplicates?: boolean
   }
 
@@ -7884,20 +7664,20 @@ export namespace Prisma {
     create: XOR<userCreateWithoutHousehold_categoriesInput, userUncheckedCreateWithoutHousehold_categoriesInput>
   }
 
-  export type householdUpsertWithWhereUniqueWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+  export type householdUpsertWithWhereUniqueWithoutHousehold_categoriesInput = {
     where: householdWhereUniqueInput
-    update: XOR<householdUpdateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput, householdUncheckedUpdateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput>
-    create: XOR<householdCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput>
+    update: XOR<householdUpdateWithoutHousehold_categoriesInput, householdUncheckedUpdateWithoutHousehold_categoriesInput>
+    create: XOR<householdCreateWithoutHousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categoriesInput>
   }
 
-  export type householdUpdateWithWhereUniqueWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+  export type householdUpdateWithWhereUniqueWithoutHousehold_categoriesInput = {
     where: householdWhereUniqueInput
-    data: XOR<householdUpdateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput, householdUncheckedUpdateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput>
+    data: XOR<householdUpdateWithoutHousehold_categoriesInput, householdUncheckedUpdateWithoutHousehold_categoriesInput>
   }
 
-  export type householdUpdateManyWithWhereWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+  export type householdUpdateManyWithWhereWithoutHousehold_categoriesInput = {
     where: householdScalarWhereInput
-    data: XOR<householdUpdateManyMutationInput, householdUncheckedUpdateManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput>
+    data: XOR<householdUpdateManyMutationInput, householdUncheckedUpdateManyWithoutHousehold_categoriesInput>
   }
 
   export type householdScalarWhereInput = {
@@ -7915,25 +7695,9 @@ export namespace Prisma {
     image_text?: StringNullableFilter<"household"> | string | null
     created_at?: DateTimeFilter<"household"> | Date | string
     updated_at?: DateTimeNullableFilter<"household"> | Date | string | null
-    household_category?: BigIntNullableFilter<"household"> | bigint | number | null
-    household_subcategory?: BigIntNullableFilter<"household"> | bigint | number | null
+    household_category?: IntNullableFilter<"household"> | number | null
+    household_category_userid?: UuidNullableFilter<"household"> | string | null
     household_name?: StringNullableFilter<"household"> | string | null
-  }
-
-  export type householdUpsertWithWhereUniqueWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
-    where: householdWhereUniqueInput
-    update: XOR<householdUpdateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput, householdUncheckedUpdateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput>
-    create: XOR<householdCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput, householdUncheckedCreateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput>
-  }
-
-  export type householdUpdateWithWhereUniqueWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
-    where: householdWhereUniqueInput
-    data: XOR<householdUpdateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput, householdUncheckedUpdateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput>
-  }
-
-  export type householdUpdateManyWithWhereWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
-    where: householdScalarWhereInput
-    data: XOR<householdUpdateManyMutationInput, householdUncheckedUpdateManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput>
   }
 
   export type userUpsertWithoutHousehold_categoriesInput = {
@@ -8015,8 +7779,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string | null
     household_name?: string | null
-    household_categories_household_household_categoryTohousehold_categories?: household_categoriesCreateNestedOneWithoutHousehold_household_household_categoryTohousehold_categoriesInput
-    household_categories_household_household_subcategoryTohousehold_categories?: household_categoriesCreateNestedOneWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput
+    household_categories?: household_categoriesCreateNestedOneWithoutHouseholdInput
     User: userCreateNestedOneWithoutHouseholdInput
   }
 
@@ -8031,8 +7794,8 @@ export namespace Prisma {
     image_text?: string | null
     created_at?: Date | string
     updated_at?: Date | string | null
-    household_category?: bigint | number | null
-    household_subcategory?: bigint | number | null
+    household_category?: number | null
+    household_category_userid?: string | null
     household_name?: string | null
   }
 
@@ -8145,8 +7908,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     household_name?: string | null
     Asset: assetCreateNestedOneWithoutHouseholdInput
-    household_categories_household_household_categoryTohousehold_categories?: household_categoriesCreateNestedOneWithoutHousehold_household_household_categoryTohousehold_categoriesInput
-    household_categories_household_household_subcategoryTohousehold_categories?: household_categoriesCreateNestedOneWithoutHousehold_household_household_subcategoryTohousehold_categoriesInput
+    household_categories?: household_categoriesCreateNestedOneWithoutHouseholdInput
   }
 
   export type householdUncheckedCreateWithoutUserInput = {
@@ -8160,8 +7922,8 @@ export namespace Prisma {
     image_text?: string | null
     created_at?: Date | string
     updated_at?: Date | string | null
-    household_category?: bigint | number | null
-    household_subcategory?: bigint | number | null
+    household_category?: number | null
+    household_category_userid?: string | null
     household_name?: string | null
   }
 
@@ -8176,27 +7938,25 @@ export namespace Prisma {
   }
 
   export type household_categoriesCreateWithoutUserInput = {
-    id?: bigint | number
+    id: number
     category_name: string
-    parent_category_id?: bigint | number | null
+    parent_category_id?: number | null
     category_comment?: string | null
     created_at?: Date | string
     update_at?: Date | string | null
     household_type?: string
-    household_household_household_categoryTohousehold_categories?: householdCreateNestedManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput
-    household_household_household_subcategoryTohousehold_categories?: householdCreateNestedManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput
+    household?: householdCreateNestedManyWithoutHousehold_categoriesInput
   }
 
   export type household_categoriesUncheckedCreateWithoutUserInput = {
-    id?: bigint | number
+    id: number
     category_name: string
-    parent_category_id?: bigint | number | null
+    parent_category_id?: number | null
     category_comment?: string | null
     created_at?: Date | string
     update_at?: Date | string | null
     household_type?: string
-    household_household_household_categoryTohousehold_categories?: householdUncheckedCreateNestedManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput
-    household_household_household_subcategoryTohousehold_categories?: householdUncheckedCreateNestedManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput
+    household?: householdUncheckedCreateNestedManyWithoutHousehold_categoriesInput
   }
 
   export type household_categoriesCreateOrConnectWithoutUserInput = {
@@ -8276,17 +8036,17 @@ export namespace Prisma {
     AND?: household_categoriesScalarWhereInput | household_categoriesScalarWhereInput[]
     OR?: household_categoriesScalarWhereInput[]
     NOT?: household_categoriesScalarWhereInput | household_categoriesScalarWhereInput[]
-    id?: BigIntFilter<"household_categories"> | bigint | number
+    id?: IntFilter<"household_categories"> | number
     user_id?: UuidFilter<"household_categories"> | string
     category_name?: StringFilter<"household_categories"> | string
-    parent_category_id?: BigIntNullableFilter<"household_categories"> | bigint | number | null
+    parent_category_id?: IntNullableFilter<"household_categories"> | number | null
     category_comment?: StringNullableFilter<"household_categories"> | string | null
     created_at?: DateTimeFilter<"household_categories"> | Date | string
     update_at?: DateTimeNullableFilter<"household_categories"> | Date | string | null
     household_type?: StringFilter<"household_categories"> | string
   }
 
-  export type householdCreateManyHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+  export type householdCreateManyHousehold_categoriesInput = {
     id?: string
     issue_date: Date | string
     asset_id: string
@@ -8298,27 +8058,10 @@ export namespace Prisma {
     image_text?: string | null
     created_at?: Date | string
     updated_at?: Date | string | null
-    household_subcategory?: bigint | number | null
     household_name?: string | null
   }
 
-  export type householdCreateManyHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
-    id?: string
-    issue_date: Date | string
-    asset_id: string
-    user_id: string
-    household_type: string
-    household_amount?: number
-    household_comment?: string | null
-    image_path?: string | null
-    image_text?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string | null
-    household_category?: bigint | number | null
-    household_name?: string | null
-  }
-
-  export type householdUpdateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+  export type householdUpdateWithoutHousehold_categoriesInput = {
     id?: StringFieldUpdateOperationsInput | string
     issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
     household_type?: StringFieldUpdateOperationsInput | string
@@ -8330,11 +8073,10 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     household_name?: NullableStringFieldUpdateOperationsInput | string | null
     Asset?: assetUpdateOneRequiredWithoutHouseholdNestedInput
-    household_categories_household_household_subcategoryTohousehold_categories?: household_categoriesUpdateOneWithoutHousehold_household_household_subcategoryTohousehold_categoriesNestedInput
     User?: userUpdateOneRequiredWithoutHouseholdNestedInput
   }
 
-  export type householdUncheckedUpdateWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+  export type householdUncheckedUpdateWithoutHousehold_categoriesInput = {
     id?: StringFieldUpdateOperationsInput | string
     issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
     asset_id?: StringFieldUpdateOperationsInput | string
@@ -8346,11 +8088,10 @@ export namespace Prisma {
     image_text?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    household_subcategory?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     household_name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type householdUncheckedUpdateManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesInput = {
+  export type householdUncheckedUpdateManyWithoutHousehold_categoriesInput = {
     id?: StringFieldUpdateOperationsInput | string
     issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
     asset_id?: StringFieldUpdateOperationsInput | string
@@ -8362,55 +8103,6 @@ export namespace Prisma {
     image_text?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    household_subcategory?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    household_name?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type householdUpdateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    household_type?: StringFieldUpdateOperationsInput | string
-    household_amount?: FloatFieldUpdateOperationsInput | number
-    household_comment?: NullableStringFieldUpdateOperationsInput | string | null
-    image_path?: NullableStringFieldUpdateOperationsInput | string | null
-    image_text?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    household_name?: NullableStringFieldUpdateOperationsInput | string | null
-    Asset?: assetUpdateOneRequiredWithoutHouseholdNestedInput
-    household_categories_household_household_categoryTohousehold_categories?: household_categoriesUpdateOneWithoutHousehold_household_household_categoryTohousehold_categoriesNestedInput
-    User?: userUpdateOneRequiredWithoutHouseholdNestedInput
-  }
-
-  export type householdUncheckedUpdateWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    asset_id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    household_type?: StringFieldUpdateOperationsInput | string
-    household_amount?: FloatFieldUpdateOperationsInput | number
-    household_comment?: NullableStringFieldUpdateOperationsInput | string | null
-    image_path?: NullableStringFieldUpdateOperationsInput | string | null
-    image_text?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    household_category?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    household_name?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type householdUncheckedUpdateManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    issue_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    asset_id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    household_type?: StringFieldUpdateOperationsInput | string
-    household_amount?: FloatFieldUpdateOperationsInput | number
-    household_comment?: NullableStringFieldUpdateOperationsInput | string | null
-    image_path?: NullableStringFieldUpdateOperationsInput | string | null
-    image_text?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    household_category?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     household_name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -8425,8 +8117,8 @@ export namespace Prisma {
     image_text?: string | null
     created_at?: Date | string
     updated_at?: Date | string | null
-    household_category?: bigint | number | null
-    household_subcategory?: bigint | number | null
+    household_category?: number | null
+    household_category_userid?: string | null
     household_name?: string | null
   }
 
@@ -8441,8 +8133,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     household_name?: NullableStringFieldUpdateOperationsInput | string | null
-    household_categories_household_household_categoryTohousehold_categories?: household_categoriesUpdateOneWithoutHousehold_household_household_categoryTohousehold_categoriesNestedInput
-    household_categories_household_household_subcategoryTohousehold_categories?: household_categoriesUpdateOneWithoutHousehold_household_household_subcategoryTohousehold_categoriesNestedInput
+    household_categories?: household_categoriesUpdateOneWithoutHouseholdNestedInput
     User?: userUpdateOneRequiredWithoutHouseholdNestedInput
   }
 
@@ -8457,8 +8148,8 @@ export namespace Prisma {
     image_text?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    household_category?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    household_subcategory?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_category?: NullableIntFieldUpdateOperationsInput | number | null
+    household_category_userid?: NullableStringFieldUpdateOperationsInput | string | null
     household_name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -8473,8 +8164,8 @@ export namespace Prisma {
     image_text?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    household_category?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    household_subcategory?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_category?: NullableIntFieldUpdateOperationsInput | number | null
+    household_category_userid?: NullableStringFieldUpdateOperationsInput | string | null
     household_name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -8500,15 +8191,15 @@ export namespace Prisma {
     image_text?: string | null
     created_at?: Date | string
     updated_at?: Date | string | null
-    household_category?: bigint | number | null
-    household_subcategory?: bigint | number | null
+    household_category?: number | null
+    household_category_userid?: string | null
     household_name?: string | null
   }
 
   export type household_categoriesCreateManyUserInput = {
-    id?: bigint | number
+    id: number
     category_name: string
-    parent_category_id?: bigint | number | null
+    parent_category_id?: number | null
     category_comment?: string | null
     created_at?: Date | string
     update_at?: Date | string | null
@@ -8562,8 +8253,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     household_name?: NullableStringFieldUpdateOperationsInput | string | null
     Asset?: assetUpdateOneRequiredWithoutHouseholdNestedInput
-    household_categories_household_household_categoryTohousehold_categories?: household_categoriesUpdateOneWithoutHousehold_household_household_categoryTohousehold_categoriesNestedInput
-    household_categories_household_household_subcategoryTohousehold_categories?: household_categoriesUpdateOneWithoutHousehold_household_household_subcategoryTohousehold_categoriesNestedInput
+    household_categories?: household_categoriesUpdateOneWithoutHouseholdNestedInput
   }
 
   export type householdUncheckedUpdateWithoutUserInput = {
@@ -8577,8 +8267,8 @@ export namespace Prisma {
     image_text?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    household_category?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    household_subcategory?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_category?: NullableIntFieldUpdateOperationsInput | number | null
+    household_category_userid?: NullableStringFieldUpdateOperationsInput | string | null
     household_name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -8593,39 +8283,37 @@ export namespace Prisma {
     image_text?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    household_category?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    household_subcategory?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    household_category?: NullableIntFieldUpdateOperationsInput | number | null
+    household_category_userid?: NullableStringFieldUpdateOperationsInput | string | null
     household_name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type household_categoriesUpdateWithoutUserInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    id?: IntFieldUpdateOperationsInput | number
     category_name?: StringFieldUpdateOperationsInput | string
-    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    parent_category_id?: NullableIntFieldUpdateOperationsInput | number | null
     category_comment?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     household_type?: StringFieldUpdateOperationsInput | string
-    household_household_household_categoryTohousehold_categories?: householdUpdateManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesNestedInput
-    household_household_household_subcategoryTohousehold_categories?: householdUpdateManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesNestedInput
+    household?: householdUpdateManyWithoutHousehold_categoriesNestedInput
   }
 
   export type household_categoriesUncheckedUpdateWithoutUserInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    id?: IntFieldUpdateOperationsInput | number
     category_name?: StringFieldUpdateOperationsInput | string
-    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    parent_category_id?: NullableIntFieldUpdateOperationsInput | number | null
     category_comment?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     household_type?: StringFieldUpdateOperationsInput | string
-    household_household_household_categoryTohousehold_categories?: householdUncheckedUpdateManyWithoutHousehold_categories_household_household_categoryTohousehold_categoriesNestedInput
-    household_household_household_subcategoryTohousehold_categories?: householdUncheckedUpdateManyWithoutHousehold_categories_household_household_subcategoryTohousehold_categoriesNestedInput
+    household?: householdUncheckedUpdateManyWithoutHousehold_categoriesNestedInput
   }
 
   export type household_categoriesUncheckedUpdateManyWithoutUserInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    id?: IntFieldUpdateOperationsInput | number
     category_name?: StringFieldUpdateOperationsInput | string
-    parent_category_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    parent_category_id?: NullableIntFieldUpdateOperationsInput | number | null
     category_comment?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

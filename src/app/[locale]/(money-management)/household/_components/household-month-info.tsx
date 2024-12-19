@@ -96,13 +96,13 @@ export default function HouseholdMonthInfo({ className, householdSelectedMonth, 
                                             <div className={"my-2 truncate font-semibold text-sm/6"}>
                                                 {AmountChangeAutoComma(householdAmount)}
                                                 <span className="mx-1">
-                                                    {currency}
+                                                    {currency.toUpperCase()}
                                                 </span>
                                             </div>
                                             <div className="text-xs text-gray-500 mx-1">{assetName}</div>
                                             <div className="text-xs text-gray-500 mx-1 mt-2">
                                                 <div className="grid grid-cols-2 gap-x-4 content-center">
-                                                    <div className="tooltip tooltip-bottom" data-tip={w('common.modify')}>
+                                                    <div className="tooltip tooltip-top" data-tip={w('common.modify')}>
                                                         <button>
                                                             <PencilSquareIcon
                                                                 className="w-6 hover:text-yellow-500"
@@ -111,7 +111,7 @@ export default function HouseholdMonthInfo({ className, householdSelectedMonth, 
                                                             </PencilSquareIcon>
                                                         </button>
                                                     </div>
-                                                    <div className="tooltip tooltip-bottom" data-tip={w('common.delete')}>
+                                                    <div className="tooltip tooltip-top" data-tip={w('common.delete')}>
                                                         <button type="button">
                                                             <TrashIcon
                                                                 className="w-6 hover:text-red-500"

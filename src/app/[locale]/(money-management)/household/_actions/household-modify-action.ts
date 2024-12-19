@@ -28,13 +28,14 @@ export async function HouseholdModifyAction(data: HouseholdRegModActionProps) {
                 asset_id: data.assetKey,
                 household_type: data.householdType,
                 household_category: data.householdCategory ? data.householdCategory : null,
-                household_subcategory: data.householdSubcategory ? data.householdSubcategory : null,
+                household_category_userid: data.householdCategory ? userKey : null,
                 household_name: data.householdName,
                 household_amount: data.householdAmount,
                 household_comment: data.householdComment,
+                updated_at: data.updateDate,
             },
             where: {
-                id: data.assetKey,
+                id: data.householdKey,
                 user_id: userKey
             }
         });

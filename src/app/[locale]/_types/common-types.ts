@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface SiteStackedLayoutProps{
     children?:React.JSX.Element,
     headtitle?:string,
@@ -53,8 +55,8 @@ export interface ProcessAlertProps{
 
 export interface ConfirmModalProps{
     title?:string,
-    msg?:string,
+    children?:ReactNode,
     isOpen:boolean,
-    onYes:()=>void,
+    onYes:()=>Promise<void>,
     onNo:()=>void,
 }

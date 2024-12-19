@@ -28,59 +28,61 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
 
     const assetManagementDatas = await GetAssetDatas(userInfo.userKey);
 
-    const cashAssets:AssetListItemProps[] = [];
-    const cardAssets:AssetListItemProps[] = [];
-    const bankbookAssets:AssetListItemProps[] = [];
-    const etcAssets:AssetListItemProps[] = [];
+    const cashAssets: AssetListItemProps[] = [];
+    const cardAssets: AssetListItemProps[] = [];
+    const bankbookAssets: AssetListItemProps[] = [];
+    const etcAssets: AssetListItemProps[] = [];
 
     if (assetManagementDatas) {
         for (let i = 0; i < assetManagementDatas.length; i++) {
             let totalIncome = 0;
-            assetManagementDatas[i].household.filter((item)=> item.household_type === HouseholdTypes.Income)
-            .forEach(({household_amount})=>{
-                totalIncome += household_amount;
-            })
-            assetManagementDatas[i].household.filter((item)=> item.household_type === HouseholdTypes.Expenditure)
-            .forEach(({household_amount})=>{
-                totalIncome -= household_amount;
-            })
+            assetManagementDatas[i].household.filter((item) => item.household_type === HouseholdTypes.Income)
+                .forEach(({ household_amount }) => {
+                    totalIncome += household_amount;
+                })
+            assetManagementDatas[i].household.filter((item) => item.household_type === HouseholdTypes.Expenditure)
+                .forEach(({ household_amount }) => {
+                    totalIncome -= household_amount;
+                })
 
             switch (assetManagementDatas[i].asset_type) {
                 case AssetTypes.Cash:
                     cashAssets.push({
-                        key:assetManagementDatas[i].id,
-                        name:assetManagementDatas[i].asset_name,
-                        currency:NullChangeBlankValueFromString(assetManagementDatas[i].asset_currency),
-                        money:assetManagementDatas[i].asset_money + totalIncome,
+                        key: assetManagementDatas[i].id,
+                        name: assetManagementDatas[i].asset_name,
+                        currency: NullChangeBlankValueFromString(assetManagementDatas[i].asset_currency),
+                        money: assetManagementDatas[i].asset_money + totalIncome,
                     });
                     break;
                 case AssetTypes.Card:
                     cardAssets.push({
-                        key:assetManagementDatas[i].id,
-                        name:assetManagementDatas[i].asset_name,
-                        currency:NullChangeBlankValueFromString(assetManagementDatas[i].asset_currency),
-                        money:assetManagementDatas[i].asset_money + totalIncome,
+                        key: assetManagementDatas[i].id,
+                        name: assetManagementDatas[i].asset_name,
+                        currency: NullChangeBlankValueFromString(assetManagementDatas[i].asset_currency),
+                        money: assetManagementDatas[i].asset_money + totalIncome,
                     });
                     break;
                 case AssetTypes.Bankbook:
                     bankbookAssets.push({
-                        key:assetManagementDatas[i].id,
-                        name:assetManagementDatas[i].asset_name,
-                        currency:NullChangeBlankValueFromString(assetManagementDatas[i].asset_currency),
-                        money:assetManagementDatas[i].asset_money + totalIncome,
+                        key: assetManagementDatas[i].id,
+                        name: assetManagementDatas[i].asset_name,
+                        currency: NullChangeBlankValueFromString(assetManagementDatas[i].asset_currency),
+                        money: assetManagementDatas[i].asset_money + totalIncome,
                     });
                     break;
                 case AssetTypes.Etc:
                     etcAssets.push({
-                        key:assetManagementDatas[i].id,
-                        name:assetManagementDatas[i].asset_name,
-                        currency:NullChangeBlankValueFromString(assetManagementDatas[i].asset_currency),
-                        money:assetManagementDatas[i].asset_money + totalIncome,
+                        key: assetManagementDatas[i].id,
+                        name: assetManagementDatas[i].asset_name,
+                        currency: NullChangeBlankValueFromString(assetManagementDatas[i].asset_currency),
+                        money: assetManagementDatas[i].asset_money + totalIncome,
                     });
                     break;
             }
         }
     }
+
+    const isBankTransfer = (assetManagementDatas ? assetManagementDatas.length : 0) > 1;
 
 
     return (
@@ -97,6 +99,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                     cardAssets={cardAssets}
                     cashAssets={cashAssets}
                     etcAssets={etcAssets}
+                    isBankTransfer={isBankTransfer}
                 >
 
                 </AssetManagement>

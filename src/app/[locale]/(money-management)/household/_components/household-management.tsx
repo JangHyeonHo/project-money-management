@@ -9,7 +9,7 @@ import HouseholdMonthInfo from "./household-month-info";
 import ConfirmModal from "@/app/[locale]/_components/_alert/confirm-modal";
 import { useRouter } from "@/i18n/routing";
 
-export default function HouseholdManagement({ householdDateTotalAssetItems, householdMonthItems, calendarEvents, locale }: HouseholdManagementProps) {
+export default function HouseholdManagement({ householdDateTotalAssetItems, householdMonthItems, calendarEvents, isNothingAsset, locale }: HouseholdManagementProps) {
 
     const router = useRouter();
 
@@ -50,35 +50,54 @@ export default function HouseholdManagement({ householdDateTotalAssetItems, hous
         setOpenConfirm(true);
     }
 
-    const deleteConfirmYesClick = () => {
-        router.push(`./delete/${deleteItem.key}`);
+    const deleteConfirmYesClick = async () => {
+        const res = await fetch(`/api/household/delete/${deleteItem.key}`, {
+            method: "DELETE", // 요청 메서드
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (!res.ok) {
+            //에러 표시시
+        }
+        setDeleteItem({ key: "", itemName: deleteItem.itemName });
+        setOpenConfirm(false);
+        // 서버 재호출
+        window.location.reload();
     }
 
     const deleteConfirmNoClick = () => {
-        setOpenConfirm(false);
         setDeleteItem({ key: "", itemName: deleteItem.itemName });
+        setOpenConfirm(false);
     }
 
     return (
         <div>
             <div className="border-b border-gray-900/10 pb-8">
                 <h2 className="text-base/7 font-semibold text-gray-900">{w('household.management')}</h2>
-                <p className="mt-1 text-sm/6 text-gray-600">{m('household.management-info')}</p>
+                <p className="mt-1 text-sm/6 text-gray-600">{m.rich('household.management-info', {
+                    br: () => <br />
+                })}</p>
                 <div className="mt-4 flex items-center gap-x-6">
-                    <a
-                        href="./regist"
+                    <button
+                        disabled={isNothingAsset}
+                        onClick={() => { router.push("./regist"); }}
                         className="btn btn-info btn-sm">
                         {w('household.regist')}
-                    </a>
+                    </button>
                 </div>
             </div>
             <ConfirmModal
                 isOpen={openConfirm}
                 title={w("household.delete", { item: deleteItem.itemName })}
-                msg={m("household.delete-info")}
                 onYes={deleteConfirmYesClick}
                 onNo={deleteConfirmNoClick}
-            />
+            >
+                {m.rich("household.delete-info", {
+                    br: () => <br />
+                })}
+            </ConfirmModal>
             <div className="grid md:grid-cols-2 md:gap-8 border-b border-gray-900/10 pb-8">
                 <HouseholdCalendar
                     className="mt-4"
@@ -93,7 +112,7 @@ export default function HouseholdManagement({ householdDateTotalAssetItems, hous
                     householdSelectedDate={selectDate}
                     householdDateTotalAssetItem={totalAssetData}
                     locale={locale}
-                    >
+                >
 
                 </HouseholdDayInfo>
             </div>

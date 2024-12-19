@@ -1,7 +1,7 @@
 import { EventSourceInput } from "@fullcalendar/core/index.js"
 
 export interface HouseholdCategoryItemProps{
-    key:bigint,
+    key:number,
     name:string,
     type:string,
     subcategory?:HouseholdSubcategoryItemProps[],
@@ -13,7 +13,7 @@ export interface AssetKeyItemProps{
 };
 
 export interface HouseholdSubcategoryItemProps{
-    key:bigint,
+    key:number,
     name:string,
 };
 
@@ -57,8 +57,8 @@ export interface HouseholdRegModFormProps{
     householdImage?:File,
     assetKey?:string,
     householdType?:string,
-    householdCategory?:bigint,
-    householdSubcategory?:bigint,
+    householdCategory?:number,
+    householdSubcategory?:number,
     householdName?:string,
     householdAmount?:number,
     householdComment?:string,
@@ -70,17 +70,18 @@ export interface HouseholdRegModActionProps{
     householdImage?:File,
     assetKey:string,
     householdType:string,
-    householdCategory?:bigint,
-    householdSubcategory?:bigint,
+    householdCategory?:number,
     householdName?:string,
     householdAmount:number,
     householdComment?:string,
+    updateDate?:Date,
 }
 
 export interface HouseholdManagementProps{
     householdDateTotalAssetItems?:HouseholdDateTotalAssetItem[],
     householdMonthItems?:HouseholdMonthItem[],
     calendarEvents?:EventSourceInput,
+    isNothingAsset?:boolean,
     locale?:string,
 }
 

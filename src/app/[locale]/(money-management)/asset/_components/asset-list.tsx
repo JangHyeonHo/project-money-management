@@ -42,7 +42,7 @@ export default function AssetList({ items, onDeleteClick }: AssetListProps) {
                             <div className={"my-2 truncate text-semibold text-sm/6 " + (money < 0 ? "text-red-600" : "text-indigo-600")}>
                                 {AmountChangeAutoComma(money)}
                                 <span className="mx-1">
-                                    {currency}
+                                    {currency.toUpperCase()}
                                 </span>
                             </div>
                             <div className="grid grid-cols-2 gap-x-4 mb-3 content-center">
