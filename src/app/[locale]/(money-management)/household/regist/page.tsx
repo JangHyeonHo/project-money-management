@@ -6,6 +6,7 @@ import { GetHouseholdCategories } from "../_actions/get-household-categories";
 import { HouseholdCategoryItemProps, HouseholdSubcategoryItemProps, AssetKeyItemProps } from "../_types/household-type";
 import { GetAssetKeys } from "../_actions/get-asset-keys";
 import { redirect } from "@/i18n/routing";
+import { IsExistUserAssetData } from "../../asset/_actions/is-exist-asset";
 
 /**
  * 가계부 등록 화면
@@ -21,6 +22,12 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
 
     if (!userInfo.isLogin) {
         redirect({ href: "/signin", locale: locale });
+        return;
+    }
+
+    const isAssetExist = await IsExistUserAssetData(userInfo.userKey);
+    if (isAssetExist === 0) {
+        redirect({ href: "/asset/management", locale: locale });
         return;
     }
 

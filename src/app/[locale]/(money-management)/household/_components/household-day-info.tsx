@@ -39,7 +39,7 @@ export default function HouseholdDayInfo({ className, householdSelectedDate, hou
                                         className={totalAmount > 0 ? "bg-indigo-100" : "bg-red-100"}
                                     >
                                         <td className={tableDefaultClassName + "truncate"}>{assetName}</td>
-                                        <td className={tableDefaultClassName}>{AmountChangeAutoComma(totalAmount)}<span className="ml-2">{currency}</span></td>
+                                        <td className={tableDefaultClassName}>{AmountChangeAutoComma(totalAmount)}<span className="ml-2">{currency.toUpperCase()}</span></td>
                                     </tr>
                                 ))
                                 :

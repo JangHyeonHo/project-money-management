@@ -23,6 +23,9 @@ export default function AssetRegModForm({ isModify, assetId, assetType, assetNam
 
     const router = useRouter();
 
+    dayjs.extend(utc);
+    dayjs.extend(timezone);
+
     const w = useTranslations('word');
     const m = useTranslations('msg');
     const e = useTranslations('msg.error');
@@ -131,6 +134,7 @@ export default function AssetRegModForm({ isModify, assetId, assetType, assetNam
                 if (data === null) {
                     //처리 에러 알람 표시
                     //setEmailError(e('login'));
+                    setLoading(false);
                 } else {
                     // 이전 화면으로 돌아가게(완료 메시지 띄울까..?)
                     router.push("/asset/management");
@@ -142,6 +146,7 @@ export default function AssetRegModForm({ isModify, assetId, assetType, assetNam
             if (data === null) {
                 //처리 에러 알람 표시
                 //setEmailError(e('login'));
+                setLoading(false);
             } else {
                 // 이전 화면으로 돌아가게(완료 메시지 띄울까..?)
                 router.push("/asset/management");
@@ -168,6 +173,7 @@ export default function AssetRegModForm({ isModify, assetId, assetType, assetNam
             assetMoney: money === null ? 0 : Number(money.toString()), //Error시 NaN을 배출
             assetCurrency: currency === null ? "" : currency.toString(),
             assetComment: comment === null ? "" : comment.toString(),
+            updateDate: dayjs(new Date()).utc(true).toDate(),
         }
         const error = validationCheck(data);
 
@@ -223,8 +229,6 @@ export default function AssetRegModForm({ isModify, assetId, assetType, assetNam
     const modifyConfirmYesClick = async () => {
         if (modifyFormData) {
             // 1. 가계부 데이터 추가(차액)
-            dayjs.extend(utc);
-            dayjs.extend(timezone);
 
             const householdType = UndefinedChangeZeroFromNumber(assetMoney) < modifyFormData.assetMoney ? HouseholdTypes.Income : HouseholdTypes.Expenditure;
             const householdAmount = householdType === HouseholdTypes.Income ?
@@ -272,10 +276,13 @@ export default function AssetRegModForm({ isModify, assetId, assetType, assetNam
             <ConfirmModal
                 isOpen={openConfirm}
                 title={w("asset.modify")}
-                msg={m("asset.modify-info")}
                 onYes={modifyConfirmYesClick}
                 onNo={modifyConfirmNoClick}
-            />
+            >
+                {m.rich("asset.modify-info", {
+                    br: () => <br />
+                })}
+            </ConfirmModal>
             <form onSubmit={assetSubmit}>
                 <div className="border-b border-gray-900/10 pb-8">
                     <h2 className="text-base/7 font-semibold text-gray-900">{w('asset.regist')}</h2>
@@ -414,11 +421,12 @@ export default function AssetRegModForm({ isModify, assetId, assetType, assetNam
                         type="submit"
                         disabled={loading}
                         className="btn btn-info btn-sm">
+                        {loading && <span className="loading loading-spinner"></span>}
                         {w('common.save')}
                     </button>
                     <button
                         type="button"
-                        onClick={()=>{router.push("/asset/management")}}
+                        onClick={() => { router.push("/asset/management") }}
                         className="btn btn-ghost btn-sm">
                         {w('common.cancel')}
                     </button>

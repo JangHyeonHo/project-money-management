@@ -40,7 +40,6 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
     const [dateError, setDateError] = useState<string>("");
     const [assetDataError, setAssetDataError] = useState<string>("");
     const [typeError, setTypeError] = useState<string>("");
-    const [categoryError, setCategoryError] = useState<string>("");
     const [nameError, setNameError] = useState<string>("");
     const [amountError, setAmountError] = useState<string>("");
     const [commentError, setCommentError] = useState<string>("");
@@ -66,13 +65,13 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
             return items;
         }
     )
-    const [householdValue, setHouseHoldValue] = useState<string>(HouseholdTypes.Income);
+    const [householdValue, setHouseHoldValue] = useState<string>(isModify ? householdType || HouseholdTypes.Income : HouseholdTypes.Income);
     const [householdCategoryItems, setHouseholdCategoryItems] = useState<InputDropdownPropsItem[]>(
         () => {
             const items: InputDropdownPropsItem[] = [];
             if (categoryItems) {
                 for (const item of categoryItems) {
-                    if (item.type === HouseholdTypes.Expenditure) continue;
+                    if (item.type !== householdValue) continue;
                     items.push({
                         key: item.key.toString(),
                         value: item.name,
@@ -82,7 +81,22 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
             return items;
         }
     );
-    const [householdSubcategoryItems, setHouseholdSubcategoryItems] = useState<InputDropdownPropsItem[]>([]);
+    const [householdSubcategoryItems, setHouseholdSubcategoryItems] = useState<InputDropdownPropsItem[]>(
+        () => {
+            const subcategoryItems: InputDropdownPropsItem[] = [];
+            if (isModify && categoryItems) {
+                const subcategory = categoryItems.find((item) => item.key === Number(householdCategory))?.subcategory;
+                if (subcategory) {
+                    subcategory.forEach((item) => {
+                        subcategoryItems.push({
+                            key: item.key.toString(),
+                            value: item.name,
+                        });
+                    });
+                }
+            };
+            return subcategoryItems;
+        });
 
     const setHouseholdKey = (key: string) => {
         setHouseHoldValue(key);
@@ -106,7 +120,7 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
     const categoryChange = (key: string) => {
         const subcategoryItems: InputDropdownPropsItem[] = [];
         if (categoryItems) {
-            const subcategory = categoryItems.find((item) => item.key === BigInt(key))?.subcategory;
+            const subcategory = categoryItems.find((item) => item.key === Number(key))?.subcategory;
             if (subcategory) {
                 subcategory.forEach((item) => {
                     subcategoryItems.push({
@@ -127,7 +141,6 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
         setDateError("");
         setAssetDataError("");
         setTypeError("");
-        setCategoryError("");
         setNameError("");
         setCommentError("");
         setAmountError("");
@@ -150,6 +163,7 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
             if (data === null) {
                 //처리 에러 알람 표시
                 //setEmailError(e('login'));
+                setLoading(false);
             } else {
                 // 이전 화면으로 돌아가게(완료 메시지 띄울까..?)
                 router.push("/household/management");
@@ -160,12 +174,22 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
             if (data === null) {
                 //처리 에러 알람 표시
                 //setEmailError(e('login'));
+                setLoading(false);
             } else {
                 // 이전 화면으로 돌아가게(완료 메시지 띄울까..?)
                 router.push("/household/management");
             }
         }
-        setLoading(false);
+    }
+
+    const getCategoryValue = (category: FormDataEntryValue | null, subcategory: FormDataEntryValue | null) => {
+        if (category === null || category.toString().trim().length === 0) {
+            return undefined;
+        }
+        if (subcategory === null || subcategory.toString().trim().length === 0) {
+            return category.toString();
+        }
+        return subcategory.toString();
     }
 
     /**
@@ -197,11 +221,11 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
             issueDate: issue === null ? undefined : dayjs(issue).utc(true).toDate(),
             assetKey: asset === null ? "" : asset.toString(),
             householdType: hType === null ? "" : hType.toString(),
-            householdCategory: category === null ? BigInt(-1) : BigInt(category.toString()),
-            householdSubcategory: subcategory === null ? undefined : BigInt(subcategory.toString()),
+            householdCategory: Number(getCategoryValue(category, subcategory)),
             householdName: name === null ? "" : name.toString(),
             householdAmount: amount === null ? 0 : Number(amount.toString()), //Error시 NaN을 배출
             householdComment: comment === null ? "" : comment.toString(),
+            updateDate: isModify ? dayjs(new Date()).utc(true).toDate() : undefined,
         }
         const error = validationCheck(data);
 
@@ -210,7 +234,6 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
         }
 
         return data;
-
     }
 
     /**
@@ -236,12 +259,6 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
         if (form.householdType !== HouseholdTypes.Income && form.householdType !== HouseholdTypes.Expenditure) {
             //name error
             setTypeError(e('input.select', { item: w('household.in-exp') }));
-            error = true;
-        }
-        // 대분류 미선택일 경우
-        if (form.householdCategory === BigInt(-1)) {
-            //name error
-            setCategoryError(e('input.select', { item: w('household.category') }));
             error = true;
         }
         // 이름이 0~30자가 아닐 경우
@@ -282,7 +299,7 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
         return selectItem;
     }
 
-    const getCategoryKeyItem = (itemKey?: bigint) => {
+    const getCategoryKeyItem = (itemKey?: number) => {
         if (itemKey === undefined) return w('common.select');
 
         const selectItem = householdCategoryItems.find(({ key }) => key === itemKey.toString());
@@ -290,7 +307,7 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
         return selectItem ? selectItem.value : w('common.select');
     }
 
-    const getSubcategoryKeyItem = (itemKey?: bigint) => {
+    const getSubcategoryKeyItem = (itemKey?: number) => {
         if (itemKey === undefined) return w('common.select');
 
         const selectItem = householdSubcategoryItems.find(({ key }) => key === itemKey.toString());
@@ -414,15 +431,9 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
                                 defaultBtnName={isModify ? getCategoryKeyItem(householdCategory) : w('common.select')}
                                 defaultInputValue={isModify ? householdCategory?.toString() : undefined}
                                 className="w-full max-w-md"
-                                required
                                 onChange={(key) => categoryChange(key)}
                                 isChangeBtnName={true}
                             />
-                            {categoryError !== "" &&
-                                <div className="label">
-                                    <span className="label-text-alt text-red-500">{categoryError}</span>
-                                </div>
-                            }
                         </label>
                     </div>
                     <div className="sm:col-span-4">
@@ -511,6 +522,7 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
                     type="submit"
                     disabled={loading}
                     className="btn btn-info btn-sm">
+                    {loading && <span className="loading loading-spinner"></span>}
                     {w('common.save')}
                 </button>
                 <button

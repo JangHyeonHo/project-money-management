@@ -6,7 +6,7 @@ import { GetHouseholdCategories } from "../../_actions/get-household-categories"
 import { HouseholdCategoryItemProps, HouseholdSubcategoryItemProps, AssetKeyItemProps } from "../../_types/household-type";
 import { GetAssetKeys } from "../../_actions/get-asset-keys";
 import { GetHouseholdDataOne } from "../../_actions/get-household-data-one";
-import { NullChangeBlankValueFromString, NullChangeZeroValueFromBigInt } from "@/app/[locale]/_utils/common-utils";
+import { NullChangeBlankValueFromString } from "@/app/[locale]/_utils/common-utils";
 import { redirect } from "@/i18n/routing";
 
 /**
@@ -79,6 +79,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         }
     }
 
+    const category = modifyData.household_categories === null ? undefined : modifyData.household_categories;
 
     return (
 
@@ -99,8 +100,8 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                 assetKey={modifyData.Asset.id}
                 householdType={modifyData.household_type}
                 householdName={NullChangeBlankValueFromString(modifyData.household_name)}
-                householdCategory={NullChangeZeroValueFromBigInt(modifyData.household_category)}
-                householdSubcategory={NullChangeZeroValueFromBigInt(modifyData.household_subcategory)}
+                householdCategory={category?.parent_category_id === null ? category?.id : category?.parent_category_id}
+                householdSubcategory={category?.parent_category_id === null ? undefined : category?.id}
                 householdAmount={modifyData.household_amount}
                 householdComment={NullChangeBlankValueFromString(modifyData.household_comment)}
             >

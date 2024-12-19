@@ -93,7 +93,7 @@ export default function SiteStackedLayout({ children, headtitle, headCurrent, is
                                         <button
                                             key={item.name}
                                             type="button"
-                                            onClick={()=>{titleClick(item.current)}}
+                                            onClick={() => { titleClick(item.current) }}
                                             aria-current={item.current === headCurrent ? 'page' : undefined}
                                             className={
                                                 (item.current === headCurrent ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white')
@@ -174,7 +174,7 @@ export default function SiteStackedLayout({ children, headtitle, headCurrent, is
                             <DisclosureButton
                                 key={item.name}
                                 as="a"
-                                onClick={()=>{titleClick(item.current)}}
+                                onClick={() => { titleClick(item.current) }}
                                 aria-current={item.current === headCurrent ? 'page' : undefined}
                                 className={
                                     (item.current === headCurrent ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white') +

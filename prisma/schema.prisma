@@ -12,40 +12,40 @@ datasource db {
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model household {
-  id                                                                         String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  issue_date                                                                 DateTime              @db.Date
-  asset_id                                                                   String                @db.Uuid
-  user_id                                                                    String                @db.Uuid
-  household_type                                                             String                @db.VarChar
-  household_amount                                                           Float                 @default(0)
-  household_comment                                                          String?
-  image_path                                                                 String?               @db.VarChar
-  image_text                                                                 String?
-  created_at                                                                 DateTime              @default(now()) @db.Timestamptz(6)
-  updated_at                                                                 DateTime?             @db.Timestamptz(6)
-  household_category                                                         BigInt?
-  household_subcategory                                                      BigInt?
-  household_name                                                             String?               @db.VarChar
-  Asset                                                                      asset                 @relation(fields: [asset_id], references: [id], onDelete: Cascade)
-  household_categories_household_household_categoryTohousehold_categories    household_categories? @relation("household_household_categoryTohousehold_categories", fields: [household_category], references: [id])
-  household_categories_household_household_subcategoryTohousehold_categories household_categories? @relation("household_household_subcategoryTohousehold_categories", fields: [household_subcategory], references: [id])
-  User                                                                       user                  @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  id                        String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  issue_date                DateTime              @db.Date
+  asset_id                  String                @db.Uuid
+  user_id                   String                @db.Uuid
+  household_type            String                @db.VarChar
+  household_amount          Float                 @default(0)
+  household_comment         String?
+  image_path                String?               @db.VarChar
+  image_text                String?
+  created_at                DateTime              @default(now()) @db.Timestamptz(6)
+  updated_at                DateTime?             @default(now()) @db.Timestamptz(6)
+  household_category        Int?
+  household_category_userid String?               @db.Uuid
+  household_name            String?               @db.VarChar
+  Asset                     asset                 @relation(fields: [asset_id], references: [id], onDelete: Cascade)
+  household_categories      household_categories? @relation(fields: [household_category, household_category_userid], references: [id, user_id])
+  User                      user                  @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model household_categories {
-  id                                                              BigInt      @id @default(autoincrement())
-  user_id                                                         String      @db.Uuid
-  category_name                                                   String      @db.VarChar
-  parent_category_id                                              BigInt?
-  category_comment                                                String?
-  created_at                                                      DateTime    @default(now()) @db.Timestamptz(6)
-  update_at                                                       DateTime?   @db.Timestamptz(6)
-  household_type                                                  String      @default("I") @db.VarChar
-  household_household_household_categoryTohousehold_categories    household[] @relation("household_household_categoryTohousehold_categories")
-  household_household_household_subcategoryTohousehold_categories household[] @relation("household_household_subcategoryTohousehold_categories")
-  User                                                            user        @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  id                 Int
+  user_id            String      @db.Uuid
+  category_name      String      @db.VarChar
+  parent_category_id Int?
+  category_comment   String?
+  created_at         DateTime    @default(now()) @db.Timestamptz(6)
+  update_at          DateTime?   @default(now()) @db.Timestamptz(6)
+  household_type     String      @default("I") @db.VarChar
+  household          household[]
+  User               user        @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([id, user_id])
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -59,7 +59,7 @@ model asset {
   asset_currency String      @db.VarChar
   asset_comment  String?
   created_at     DateTime    @default(now()) @db.Timestamptz(6)
-  updated_at     DateTime?   @db.Timestamptz(6)
+  updated_at     DateTime?   @default(now()) @db.Timestamptz(6)
   user           user        @relation(fields: [user_id], references: [id], onDelete: NoAction, map: "Capital_user_id_fkey")
   household      household[]
 }
@@ -74,7 +74,7 @@ model user {
   user_last_name       String?                @db.VarChar
   delete_flg           Boolean                @default(false)
   created_at           DateTime               @default(now()) @db.Timestamptz(6)
-  updated_at           DateTime?              @db.Timestamptz(6)
+  updated_at           DateTime?              @default(now()) @db.Timestamptz(6)
   asset                asset[]
   household            household[]
   household_categories household_categories[]
