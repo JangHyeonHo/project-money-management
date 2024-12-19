@@ -421,6 +421,7 @@ export default function AssetRegModForm({ isModify, assetId, assetType, assetNam
                         type="submit"
                         disabled={loading}
                         className="btn btn-info btn-sm">
+                        {loading && <span className="loading loading-spinner"></span>}
                         {w('common.save')}
                     </button>
                     <button

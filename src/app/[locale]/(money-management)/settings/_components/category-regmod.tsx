@@ -313,6 +313,7 @@ export default function CategoryRegModForm({ dropdownCategoryItems, isSubcategor
                         type="submit"
                         disabled={loading}
                         className="btn btn-info btn-sm">
+                        {loading && <span className="loading loading-spinner"></span>}
                         {w('common.save')}
                     </button>
                     <button

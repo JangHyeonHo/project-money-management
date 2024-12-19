@@ -83,20 +83,20 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
     );
     const [householdSubcategoryItems, setHouseholdSubcategoryItems] = useState<InputDropdownPropsItem[]>(
         () => {
-        const subcategoryItems: InputDropdownPropsItem[] = [];
-        if (isModify && categoryItems) {
-            const subcategory = categoryItems.find((item) => item.key === Number(householdCategory))?.subcategory;
-            if (subcategory) {
-                subcategory.forEach((item) => {
-                    subcategoryItems.push({
-                        key: item.key.toString(),
-                        value: item.name,
+            const subcategoryItems: InputDropdownPropsItem[] = [];
+            if (isModify && categoryItems) {
+                const subcategory = categoryItems.find((item) => item.key === Number(householdCategory))?.subcategory;
+                if (subcategory) {
+                    subcategory.forEach((item) => {
+                        subcategoryItems.push({
+                            key: item.key.toString(),
+                            value: item.name,
+                        });
                     });
-                });
-            }
-        };
-        return subcategoryItems;
-    });
+                }
+            };
+            return subcategoryItems;
+        });
 
     const setHouseholdKey = (key: string) => {
         setHouseHoldValue(key);
@@ -522,6 +522,7 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
                     type="submit"
                     disabled={loading}
                     className="btn btn-info btn-sm">
+                    {loading && <span className="loading loading-spinner"></span>}
                     {w('common.save')}
                 </button>
                 <button

@@ -164,7 +164,6 @@ export default function SignIn() {
                                 onClick={()=>{router.push("/signup")}}
                                 disabled={loading}
                                 className="btn btn-outline w-full max-w-md">
-                                {loading && <span className="loading loading-spinner"></span>}
                                 {w('users.signup')}
                             </button>
                         </div>

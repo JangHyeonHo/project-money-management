@@ -109,7 +109,7 @@ export default function Signup() {
             error = true;
         }
         // 영어/숫자/특수문자 포함 8글자 이상 체크
-        if (!checkPasswordWithEscapedSpecialChars(form.userPassword)){
+        if (!checkPasswordWithEscapedSpecialChars(form.userPassword)) {
             setPasswordError(e('users.pwd-error'));
             error = true;
         }
@@ -528,6 +528,7 @@ export default function Signup() {
                         type="submit"
                         disabled={loading}
                         className="btn btn-secondary w-1/2 max-w-md">
+                        {loading && <span className="loading loading-spinner"></span>}
                         {w('users.signup')}
                     </button>
                 </div>
