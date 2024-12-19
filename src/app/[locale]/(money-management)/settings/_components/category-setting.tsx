@@ -129,12 +129,13 @@ export default function CategorySetting({ categoryItems }: CategorySettingProps)
             <ConfirmModal
                 isOpen={openConfirm}
                 title={w("settings.category.delete", { item: deleteItem.itemName })}
-                children={m.rich("settings.category-delete-info", {
-                    br: () => <br />
-                })}
                 onYes={deleteConfirmYesClick}
                 onNo={deleteConfirmNoClick}
-            />
+            >
+                {m.rich("settings.category-delete-info", {
+                    br: () => <br />
+                })}
+            </ConfirmModal>
             <div className="mt-2">
                 <div className="join">
                     <button

@@ -58,7 +58,7 @@ export default function AssetManagement({ bankbookAssets, cashAssets, cardAssets
                     </button>
                     <button
                         disabled={isBankTransfer}
-                        onClick={() => {window.alert(m("common.ready"))}}
+                        onClick={() => { window.alert(m("common.ready")) }}
                         className="btn btn-warning btn-sm">
                         {w('asset.transfer')}
                     </button>
@@ -67,12 +67,13 @@ export default function AssetManagement({ bankbookAssets, cashAssets, cardAssets
             <ConfirmModal
                 isOpen={openConfirm}
                 title={w("asset.delete", { item: deleteItem.itemName })}
-                children={m.rich("asset.delete-info", {
-                    br: () => <br />
-                })}
                 onYes={deleteConfirmYesClick}
                 onNo={deleteConfirmNoClick}
-            />
+            >
+                {m.rich("asset.delete-info", {
+                    br: () => <br />
+                })}
+            </ConfirmModal>
             <div className="border-b border-gray-900/10 py-4">
                 <AssetListCollapse
                     title={w('asset.cash')}

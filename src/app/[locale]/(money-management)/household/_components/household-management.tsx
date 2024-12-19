@@ -58,7 +58,7 @@ export default function HouseholdManagement({ householdDateTotalAssetItems, hous
             },
         });
 
-        if(!res.ok){
+        if (!res.ok) {
             //에러 표시시
         }
         setDeleteItem({ key: "", itemName: deleteItem.itemName });
@@ -91,12 +91,13 @@ export default function HouseholdManagement({ householdDateTotalAssetItems, hous
             <ConfirmModal
                 isOpen={openConfirm}
                 title={w("household.delete", { item: deleteItem.itemName })}
-                children={m.rich("household.delete-info", {
-                    br: () => <br />
-                })}
                 onYes={deleteConfirmYesClick}
                 onNo={deleteConfirmNoClick}
-            />
+            >
+                {m.rich("household.delete-info", {
+                    br: () => <br />
+                })}
+            </ConfirmModal>
             <div className="grid md:grid-cols-2 md:gap-8 border-b border-gray-900/10 pb-8">
                 <HouseholdCalendar
                     className="mt-4"

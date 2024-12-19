@@ -22,7 +22,7 @@ import { useRouter } from "@/i18n/routing";
 export default function AssetRegModForm({ isModify, assetId, assetType, assetName, assetMoney, assetCurrency, assetComment }: AssetRegModFormProps) {
 
     const router = useRouter();
-    
+
     dayjs.extend(utc);
     dayjs.extend(timezone);
 
@@ -276,12 +276,13 @@ export default function AssetRegModForm({ isModify, assetId, assetType, assetNam
             <ConfirmModal
                 isOpen={openConfirm}
                 title={w("asset.modify")}
-                children={m.rich("asset.modify-info", {
-                    br: () => <br />
-                })}
                 onYes={modifyConfirmYesClick}
                 onNo={modifyConfirmNoClick}
-            />
+            >
+                {m.rich("asset.modify-info", {
+                    br: () => <br />
+                })}
+            </ConfirmModal>
             <form onSubmit={assetSubmit}>
                 <div className="border-b border-gray-900/10 pb-8">
                     <h2 className="text-base/7 font-semibold text-gray-900">{w('asset.regist')}</h2>
@@ -424,7 +425,7 @@ export default function AssetRegModForm({ isModify, assetId, assetType, assetNam
                     </button>
                     <button
                         type="button"
-                        onClick={()=>{router.push("/asset/management")}}
+                        onClick={() => { router.push("/asset/management") }}
                         className="btn btn-ghost btn-sm">
                         {w('common.cancel')}
                     </button>
