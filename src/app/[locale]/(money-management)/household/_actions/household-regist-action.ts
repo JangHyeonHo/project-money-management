@@ -33,6 +33,7 @@ export async function HouseholdRegistAction(data: HouseholdRegModActionProps) {
                 household_type: data.householdType,
                 household_category: data.householdCategory ? data.householdCategory : null,
                 household_category_userid: data.householdCategory ? userKey : null,
+                image_text: data.imageText === "" ? null : data.imageText,
                 household_name: data.householdName,
                 household_amount: data.householdAmount,
                 household_comment: data.householdComment,

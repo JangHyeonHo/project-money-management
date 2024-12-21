@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ChangeEvent, ReactNode, RefObject } from "react";
 
 export interface SiteStackedLayoutProps{
     children?:React.JSX.Element,
@@ -15,6 +15,7 @@ export interface ImageUploaderProps{
     name?:string,
     id?:string,
     disabled?:boolean,
+    setImage?:(event:ChangeEvent<HTMLInputElement>)=>void
 };
 
 export interface InputDropdownProps{
@@ -59,4 +60,11 @@ export interface ConfirmModalProps{
     isOpen:boolean,
     onYes:()=>Promise<void>,
     onNo:()=>void,
+}
+
+export interface TextModalProps{
+    title?:string,
+    children?:ReactNode,
+    isOpen:boolean,
+    onClose:()=>void,
 }

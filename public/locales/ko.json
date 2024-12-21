@@ -61,7 +61,11 @@
             "category": "대분류",
             "subcategory": "소분류",
             "name": "가계부 명",
-            "delete": "가계부 삭제 [{item}]"
+            "delete": "가계부 삭제 [{item}]",
+            "image-read-ai": "이미지 읽기/자동 입력",
+            "image-read-end": "이미지 읽기 완료",
+            "image-title": "이미지 자동 분석 (AI)",
+            "image-ai-unused": "이미지 자동 분석(AI) 을 사용하지 않음"
         },
         "category":{
             "name":"대분류 명",
@@ -86,12 +90,15 @@
             "detail": "상세",
             "save": "저장",
             "cancel": "취소",
+            "open": "열기",
+            "close": "닫기",
             "select": "선택",
             "etc": "기타",
             "image": "이미지",
             "data": "데이터",
             "upload": "업로드",
             "read": "읽기",
+            "check": "확인하기",
             "comment": "비고",
             "config": "설정",
             "user": "유저",
@@ -207,7 +214,9 @@
             "regist-info": "가계부를 등록해주세요.",
             "not-exist-datedata": "해당 날짜에 데이터가 존재하지 않습니다.",
             "not-exist-monthdata": "해당 월에 대한 데이터가 존재하지 않습니다.",
-            "delete-info": "가계부 데이터를 삭제하면 되돌릴 수 없습니다.<br></br>정말 삭제하시겠습니까?"
+            "delete-info": "가계부 데이터를 삭제하면 되돌릴 수 없습니다.<br></br>정말 삭제하시겠습니까?",
+            "image-ai-unused": "이제 이미지 자동 분석(AI) 을 사용하지 않습니다.",
+            "file-error": "이미지 파일이 4MB를 넘어갑니다."
         },
         "settings": {
             "category-info": "아래는 가계부 시스템의 분류 정보를 설정하는 곳입니다.",
@@ -217,7 +226,7 @@
         "common": {
             "upload-file": "파일 하나 업로드",
             "drag-drop": "혹은 드래그 앤 드롭",
-            "image-limit": "최대 10MB의 이미지 파일",
+            "image-limit": "최대 4MB의 이미지 파일",
             "input-max": "{item}은/는 최대 {max} 글자까지",
             "ready":"해당 서비스는 준비중입니다."
         },

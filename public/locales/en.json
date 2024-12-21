@@ -61,7 +61,11 @@
             "category": "Category",
             "subcategory": "Subcategory",
             "name": "Household Name",
-            "delete": "Household [{item}] Delete"
+            "delete": "Household [{item}] Delete",
+            "image-read-ai": "Image Read/Auto Input",
+            "image-read-end": "Image Read Success",
+            "image-title": "Automatic Image Analysis (AI)",
+            "image-ai-unused": "Disable Image Automatic Analysis (AI)"
         },
         "category": {
             "name": "Category Name",
@@ -86,12 +90,15 @@
             "detail": "Detail",
             "save": "Save",
             "cancel": "Cancel",
+            "open": "Open",
+            "close": "Close",
             "select": "Choice",
             "etc": "ETC",
             "image": "Image",
             "data": "Data",
             "upload": "Upload",
             "read": "Read",
+            "check": "Check",
             "comment": "Comment",
             "config": "Configration",
             "user": "User",
@@ -207,7 +214,9 @@
             "regist-info": "Please fill out the household register.",
             "not-exist-datedata": "No data for that date",
             "not-exist-monthdata": "No data for that month",
-            "delete-info": "If you delete the household data, you can't undo it.<br></br> Are you sure you want to delete it?"
+            "delete-info": "If you delete the household data, you can't undo it.<br></br> Are you sure you want to delete it?",
+            "image-ai-unused": "Automatic Image Analysis (AI) is now disabled.",
+            "file-error": "The image file exceeds 4MB."
         },
         "settings": {
             "category-info": "Below is where you set the category and subcategory of the household register.",
@@ -217,7 +226,7 @@
         "common": {
             "upload-file": "Upload a one file",
             "drag-drop": "or drag and drop",
-            "image-limit": "Image File up to 10MB",
+            "image-limit": "Image File up to 4MB",
             "input-max": "{item} Max {max} char",
             "ready": "This service is being prepared."
         },

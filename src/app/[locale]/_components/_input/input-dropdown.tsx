@@ -1,9 +1,16 @@
 "use client"
-
 import { InputDropdownProps } from "@/app/[locale]/_types/common-types";
-import { useEffect, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 
-export default function InputDropdown({ dropdownItems, defaultBtnName, id, name, required, disabled, className, isChangeBtnName, defaultInputValue, setParentValue, onChange }: InputDropdownProps) {
+const InputDropdown = forwardRef(({ dropdownItems, id, name,
+    className,
+    defaultBtnName,
+    defaultInputValue,
+    disabled,
+    isChangeBtnName,
+    onChange,
+    required,
+    setParentValue }: InputDropdownProps, ref) => {
 
     const [inputValue, setInputValue] = useState<string>(defaultInputValue || "");
     const [inputButtonName, setInputButtonName] = useState<string>(defaultBtnName || "");
@@ -11,9 +18,13 @@ export default function InputDropdown({ dropdownItems, defaultBtnName, id, name,
 
     // 고민을 좀 해봅시다... 초기화에 대해서
 
-    const itemOnClick = (key: string, value: string) => {
+    const itemOnClick = (key: string) => {
         if (isChangeBtnName) {
-            setInputButtonName(value);
+            const selectedItem = dropdownItems.find((item) => item.key === key);
+            //console.log(dropdownItems);
+            if (selectedItem) {
+                setInputButtonName(selectedItem.value);
+            }
         }
         if (inputValue !== key) {
             if (onChange) {
@@ -33,7 +44,11 @@ export default function InputDropdown({ dropdownItems, defaultBtnName, id, name,
             setParentValue(defaultInputValue || "");
         }
         setInputValue(defaultInputValue || "");
-    }, [dropdownItems])
+    }, [dropdownItems]);
+
+    useImperativeHandle(ref, () => ({
+        itemOnClick,
+    }));
 
     return (
         <>
@@ -47,7 +62,7 @@ export default function InputDropdown({ dropdownItems, defaultBtnName, id, name,
                 <ul
                     className={className + " dropdown-content menu bg-base-100 rounded-box z-[1] mx-1 p-2 shadow"}>
                     {dropdownItems.map(({ key, value }) => (
-                        <li key={"opt" + key} value={key} onClick={() => { itemOnClick(key, value) }} >
+                        <li key={"opt" + key} value={key} onClick={() => { itemOnClick(key) }} >
                             <a>
                                 {value}
                             </a>
@@ -64,4 +79,6 @@ export default function InputDropdown({ dropdownItems, defaultBtnName, id, name,
             </details>
         </>
     )
-}
+})
+
+export default InputDropdown
