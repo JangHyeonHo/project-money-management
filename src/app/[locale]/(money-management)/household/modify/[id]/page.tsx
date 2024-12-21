@@ -1,5 +1,5 @@
 import GetUserCookieFromSession from "@/app/[locale]/_actions/get-user-cookies";
-import HouseholdRegModForm from "../../_components/household-regmod";
+import HouseholdRegMod from "../../_components/household-regmod";
 import SiteStackedLayout from "@/app/[locale]/_components/_layout/stacked-layout";
 import { LayoutHeaders } from "@/app/[locale]/_types/common-const";
 import { GetHouseholdCategories } from "../../_actions/get-household-categories";
@@ -90,7 +90,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
             userFirstName={userInfo.userFirstName}
             userLastName={userInfo.userLastName}
         >
-            <HouseholdRegModForm
+            <HouseholdRegMod
                 categoryItems={mainCategoryItems}
                 assetItems={assetKeyItems}
                 isModify={true}
@@ -106,7 +106,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                 householdComment={NullChangeBlankValueFromString(modifyData.household_comment)}
             >
 
-            </HouseholdRegModForm>
+            </HouseholdRegMod>
         </SiteStackedLayout>
     )
 }

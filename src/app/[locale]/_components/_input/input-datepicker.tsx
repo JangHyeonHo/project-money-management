@@ -3,13 +3,17 @@
 import { InputDatePickerProps } from "@/app/[locale]/_types/common-types"
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline"
 import { useTranslations } from "next-intl"
-import { useState } from "react"
+import { forwardRef, useImperativeHandle, useState } from "react"
 import DatePicker from "tailwind-datepicker-react"
 import { IOptions } from "tailwind-datepicker-react/types/Options"
 
-export default function InputDatePicker({title, language, id, name, defaultDate, disabled, setDate }:InputDatePickerProps) {
+const InputDatePicker = forwardRef(({ title, language, id, name, defaultDate, disabled, setDate }: InputDatePickerProps, ref) => {
 
     const w = useTranslations('word');
+
+    useImperativeHandle(ref, () => ({
+        handleChange,
+    }));
 
     /**시간관계상 DatePicker는 일단 기성품을 쓰기로 함
      * 이후에 만들 여유가 있으면 수제 커스텀으로 만들어 보는것도 괜찮을지도
@@ -36,8 +40,8 @@ export default function InputDatePicker({title, language, id, name, defaultDate,
         },
         icons: {
             // () => ReactElement | JSX.Element
-            prev: () => <ChevronLeftIcon className="w-4"/>,
-            next: () => <ChevronRightIcon className="w-4"/>,
+            prev: () => <ChevronLeftIcon className="w-4" />,
+            next: () => <ChevronRightIcon className="w-4" />,
         },
         datepickerClassNames: "top-auto",
         defaultDate: defaultDate || new Date(),
@@ -59,7 +63,7 @@ export default function InputDatePicker({title, language, id, name, defaultDate,
     const handleChange = (selectedDate: Date) => {
         //console.log(selectedDate)
         setSelectDate(selectedDate);
-        if(setDate){
+        if (setDate) {
             setDate(selectedDate);
         }
     }
@@ -70,11 +74,15 @@ export default function InputDatePicker({title, language, id, name, defaultDate,
     return (
         <div>
             <DatePicker
-                options={options} 
+                options={options}
                 onChange={handleChange}
                 show={!disabled && show}
                 value={selectDate}
                 setShow={handleClose} />
         </div>
     )
-}
+});
+
+InputDatePicker.displayName = 'InputDatePicker';
+
+export default InputDatePicker;

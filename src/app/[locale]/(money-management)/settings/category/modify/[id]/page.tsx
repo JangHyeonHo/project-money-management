@@ -34,7 +34,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
 
     const categoryItems: DropdownCategoryItems[] = [];
 
-    const getCategory = await GetCategoryDataOne(userInfo.userKey, Number(id));
+    const getCategory = await GetCategoryDataOne(Number(id), userInfo.userKey);
 
     if (!getCategory) {
         redirect({ href: "/settings/category", locale: locale });

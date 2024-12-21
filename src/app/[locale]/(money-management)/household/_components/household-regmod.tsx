@@ -4,8 +4,8 @@ import ImageUploader from "@/app/[locale]/_components/_input/image-uploader";
 import InputDropdown from "@/app/[locale]/_components/_input/input-dropdown";
 import { HouseholdTypes } from "@/app/[locale]/_types/common-const";
 import { useTranslations } from "next-intl";
-import { FormEvent, useState } from "react";
-import { HouseholdRegModFormProps, HouseholdRegModActionProps } from "../_types/household-type";
+import { ChangeEvent, FormEvent, useRef, useState } from "react";
+import { HouseholdRegModProps, HouseholdRegModActionProps } from "../_types/household-type";
 import { InputDropdownPropsItem } from "@/app/[locale]/_types/common-types";
 import InputDatePicker from "@/app/[locale]/_components/_input/input-datepicker";
 import { StringRangeCheck } from "@/app/[locale]/_utils/common-utils";
@@ -15,8 +15,12 @@ import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import { HouseholdModifyAction } from "../_actions/household-modify-action";
 import { useRouter } from "@/i18n/routing";
+import { XMarkIcon } from "@heroicons/react/20/solid";
+import TextModal from "@/app/[locale]/_components/_modal/text-modal";
+import { GetCategoryDataOne } from "../../settings/_actions/get-category-data-one";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
-export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
+export default function HouseholdRegMod({ categoryItems, assetItems, locale,
     isModify,
     issueDate,
     householdKey,
@@ -27,7 +31,10 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
     householdName,
     householdAmount,
     householdComment
-}: HouseholdRegModFormProps) {
+}: HouseholdRegModProps) {
+
+    dayjs.extend(utc);
+    dayjs.extend(timezone);
 
     const router = useRouter();
 
@@ -37,6 +44,7 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
 
     const [loading, setLoading] = useState<boolean>(false);
 
+    // 에러 발생시 에러 메시지용
     const [dateError, setDateError] = useState<string>("");
     const [assetDataError, setAssetDataError] = useState<string>("");
     const [typeError, setTypeError] = useState<string>("");
@@ -44,7 +52,21 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
     const [amountError, setAmountError] = useState<string>("");
     const [commentError, setCommentError] = useState<string>("");
 
+    // 이미지 변경 후 일괄 적용을 위해 Ref사용
+    const issueDateRef = useRef<{ handleChange: (selectedDate: Date) => void }>(null);
+    const assetRef = useRef<{ itemOnClick: (key: string) => void }>(null);
+    const typeRef = useRef<{ itemOnClick: (key: string) => void }>(null);
+    const categoryRef = useRef<{ itemOnClick: (key: string) => void }>(null);
+    const nameRef = useRef<HTMLInputElement>(null);
+    const amountRef = useRef<HTMLInputElement>(null);
+    const commentRef = useRef<HTMLTextAreaElement>(null);
+
     const [inputIssueDate, setInputIssueDate] = useState<Date | undefined>(issueDate);
+    const [imageName, setImageName] = useState<string>("");
+    const [imageFile, setImageFile] = useState<File | undefined>(undefined);
+    const [imageText, setImageText] = useState<string>("");
+
+    const [imageTextModalOpen, setImageTextModalOpen] = useState<boolean>(false);
 
     const [householdTypeItems] = useState<InputDropdownPropsItem[]>([
         { key: HouseholdTypes.Income, value: w('household.income') },
@@ -209,8 +231,6 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
         const comment = form.get("householdComment");
 
         //utc날짜 제거용
-        dayjs.extend(utc);
-        dayjs.extend(timezone);
 
         // if(issue){
         //     console.log(dayjs(issue).utc(true).toDate());
@@ -218,6 +238,7 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
 
         const data: HouseholdRegModActionProps = {
             householdKey: isModify ? householdKey : undefined,
+            imageText: isModify ? undefined : imageText,
             issueDate: issue === null ? undefined : dayjs(issue).utc(true).toDate(),
             assetKey: asset === null ? "" : asset.toString(),
             householdType: hType === null ? "" : hType.toString(),
@@ -315,33 +336,196 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
         return selectItem ? selectItem.value : w('common.select');
     }
 
+    const changeImage = (event: ChangeEvent<HTMLInputElement>) => {
+        // 실제 이벤트 값은 비운다.(다음 이벤트에 계속 change하게 만들기 위해서)
+        //console.log(event.target.files?.item(0));
+        setImageText("");
+        if (event.target.files && event.target.files.length > 0) {
+            const item = event.target.files.item(0);
+            if (item != null) {
+                const size = item.size / (1024 * 1024)
+                if (item.size < 1024 * 1024 * 4) {
+                    event.target.value = "";
+                    setImageFile(item);
+                    setImageName(item.name);
+                    return;
+                }
+                window.alert(`${m("household.file-error")} [${size.toFixed(2)}MB]`);
+            }
+        }
+        event.target.value = "";
+        setImageFile(undefined);
+        setImageName("");
+        return;
+    }
+
+    const imageDeleteClick = () => {
+        setImageFile(undefined);
+        setImageName("");
+        setImageText("");
+    }
+
+    const imageReadClick = async () => {
+        if (!imageFile) return;
+
+        setLoading(true);
+
+        // 이미지 파일 변환(읽기 위해서는 string으로 데이터를 보내야 하므로로)
+        async function blobToBase64(blob: Blob) {
+            return blob.arrayBuffer().then(buffer => {
+                return Buffer.from(buffer).toString('base64');
+            });
+        }
+
+        const base64ImageFile = await blobToBase64(imageFile);
+
+        // 이미지가 있으면 이미지를 요청시킴
+        const res = await fetch(`/api/household/image`, {
+            method: "POST", // 요청 메서드
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ image: base64ImageFile })
+        });
+
+        if (!res.ok) {
+            //에러 표시시
+        }
+
+        const text = await res.json();
+
+        // AI로 자동으로 등록이 되게끔 하기 위해 API호출
+        const aiRes = await fetch(`/api/household/ai`, {
+            method: "POST", // 요청 메서드
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ assets: JSON.stringify(assetItems), categories: JSON.stringify(categoryItems), text: text.res, locale: locale })
+        });
+
+        //
+        const aiResponse = await aiRes.json();
+        //console.log(aiResponse.res);
+
+        //aiResponse.res의 데이터 반환 타입
+        //{asset: , type: 'E', category: , householdName: , amount: }
+        if (assetRef.current) {
+            assetRef.current.itemOnClick(aiResponse.res.asset);
+        }
+        if (typeRef.current) {
+            typeRef.current.itemOnClick(aiResponse.res.type);
+        }
+        if (issueDateRef.current) {
+            issueDateRef.current.handleChange(new Date(aiResponse.res.issueDate))
+        }
+
+        if (categoryItems) {
+            // 카테고리에 데이터 취득
+            const category = await GetCategoryDataOne(aiResponse.res.category);
+            if (category !== null) {
+                if (category.parent_category_id === null) {
+                    if (categoryRef.current) {
+                        categoryRef.current.itemOnClick(category.id.toString());
+                    }
+                } else {
+                    if (categoryRef.current) {
+                        categoryRef.current.itemOnClick(category.parent_category_id.toString());
+                    }
+                }
+
+            }
+        }
+
+        if (nameRef.current) {
+            nameRef.current.value = aiResponse.res.householdName;
+        }
+        if (amountRef.current) {
+            amountRef.current.value = aiResponse.res.amount.toString();
+        }
+        if (commentRef.current) {
+            commentRef.current.value = aiResponse.res.comment;
+        }
+
+        setImageText(text.res);
+
+        setLoading(false);
+    }
+
+    const modalOpen = () => {
+        if (imageText === "") return;
+        setImageTextModalOpen(true);
+    }
+
+    const modalClose = () => {
+        setImageTextModalOpen(false);
+    }
+
     return (
         <form onSubmit={householdSubmit}>
+            <TextModal
+                title={w('common.data') + " " + w('common.check')}
+                isOpen={imageTextModalOpen}
+                onClose={modalClose}
+            >
+                {imageText}
+            </TextModal>
             <div className="border-b border-gray-900/10 pb-8">
                 <h2 className="text-base/7 font-semibold text-gray-900">{w('household.regist')}</h2>
                 <p className="mt-1 text-sm/6 text-gray-600">{m('household.regist-info')}</p>
                 <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-4">
-                    <div className="sm:col-span-4">
-                        <label className="form-control w-full max-w-md">
-                            <div className="label">
-                                <span className="label-text">{w('common.image') + " " + w('common.upload')}</span>
+                    {!isModify &&
+                        <div className="sm:col-span-4">
+                            <label className="form-control w-full max-w-md">
+                                <div className="label">
+                                    <span className="label-text">{w('household.image-title')}</span>
+                                    <div className="tooltip" data-tip="gpt-4o-mini">
+                                        <InformationCircleIcon
+                                            className="w-4"
+                                        ></InformationCircleIcon>
+                                    </div>
+                                </div>
+                            </label>
+                            <ImageUploader
+                                className="max-w-md mb-4"
+                                id="householdImage"
+                                name="householdImage"
+                                disabled={loading}
+                                setImage={changeImage}
+                            />
+                            {imageName !== "" &&
+                                <div className="mb-4 flex justify-between w-full max-w-md">
+                                    <div className="badge badge-lg badge-success gap-2">
+                                        <button onClick={() => { imageDeleteClick(); }}>
+                                            <XMarkIcon className="w-4">
+
+                                            </XMarkIcon>
+                                        </button>
+                                        {imageName}
+                                    </div>
+                                    {imageText !== "" &&
+                                        <span className="content-end text-xs text-green-700 font-bold">{w("household.image-read-end")}</span>
+                                    }
+                                </div>
+                            }
+                            <div className="join join-vertical w-full max-w-md">
+                                <button
+                                    type="button"
+                                    className="btn btn-outline join-item btn-sm"
+                                    onClick={() => { imageReadClick(); }}
+                                    disabled={loading || imageName === "" || imageText !== ""}>
+                                    {loading && <span className="loading loading-spinner"></span>}
+                                    {w('household.image-read-ai')}
+                                </button>
+                                <button
+                                    type="button"
+                                    className="btn btn-outline join-item btn-success btn-sm"
+                                    onClick={() => { modalOpen(); }}
+                                    disabled={loading || imageText === ""}>
+                                    {w('common.data') + " " + w('common.check')}
+                                </button>
                             </div>
-                        </label>
-                        <ImageUploader
-                            className="max-w-md mb-4"
-                            id="householdImage"
-                            name="householdImage"
-                            disabled={loading}
-                        />
-                        <div className="join join-vertical w-full max-w-md">
-                            <button className="btn btn-outline join-item btn-sm" disabled>
-                                {w('common.image') + " " + w('common.read')}
-                            </button>
-                            <button className="btn btn-outline join-item btn-success btn-sm" disabled>
-                                {w('common.data') + " " + w('common.read')}
-                            </button>
                         </div>
-                    </div>
+                    }
                     <div className="sm:col-span-4">
                         <label className="form-control w-full max-w-md">
                             <div className="label">
@@ -352,6 +536,7 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
                                 name="issueDate"
                                 disabled={loading}
                                 language={locale}
+                                ref={issueDateRef}
                                 defaultDate={isModify ? issueDate : inputIssueDate}
                                 setDate={setInputIssueDate}
                             ></InputDatePicker>
@@ -378,6 +563,7 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
                                 key="assetKey"
                                 name="assetKey"
                                 disabled={loading}
+                                ref={assetRef}
                                 defaultBtnName={isModify ? getAssetKeyItem(assetKey) : w('common.select')}
                                 defaultInputValue={isModify ? assetKey : undefined}
                                 className="w-full max-w-md"
@@ -402,6 +588,7 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
                                 key="householdType"
                                 name="householdType"
                                 disabled={loading}
+                                ref={typeRef}
                                 defaultBtnName={isModify ? getHouseholdTypeItem(householdType) : w('household.income')}
                                 defaultInputValue={isModify ? householdType : HouseholdTypes.Income}
                                 className={"w-full max-w-md " + (householdValue === HouseholdTypes.Income ? "bg-indigo-100" : "bg-red-100")}
@@ -428,6 +615,7 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
                                 key="householdCategory"
                                 name="householdCategory"
                                 disabled={loading}
+                                ref={categoryRef}
                                 defaultBtnName={isModify ? getCategoryKeyItem(householdCategory) : w('common.select')}
                                 defaultInputValue={isModify ? householdCategory?.toString() : undefined}
                                 className="w-full max-w-md"
@@ -464,6 +652,7 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
                                 id="householdName"
                                 name="householdName"
                                 disabled={loading}
+                                ref={nameRef}
                                 maxLength={30}
                                 defaultValue={isModify ? householdName : ""}
                                 className="input input-bordered w-full" />
@@ -483,6 +672,7 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
                                 id="householdAmount"
                                 name="householdAmount"
                                 disabled={loading}
+                                ref={amountRef}
                                 required
                                 defaultValue={isModify ? householdAmount : 0}
                                 step={0.01}
@@ -505,6 +695,7 @@ export default function HouseholdRegModForm({ categoryItems, assetItems, locale,
                                 id="householdComment"
                                 name="householdComment"
                                 disabled={loading}
+                                ref={commentRef}
                                 defaultValue={isModify ? householdComment : undefined}
                                 maxLength={500}
                                 rows={5} />
