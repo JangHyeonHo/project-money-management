@@ -81,6 +81,8 @@ const InputDatePicker = forwardRef(({ title, language, id, name, defaultDate, di
                 setShow={handleClose} />
         </div>
     )
-})
+});
+
+InputDatePicker.displayName = 'InputDatePicker';
 
 export default InputDatePicker;

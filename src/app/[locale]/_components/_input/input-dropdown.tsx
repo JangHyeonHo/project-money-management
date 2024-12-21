@@ -79,6 +79,8 @@ const InputDropdown = forwardRef(({ dropdownItems, id, name,
             </details>
         </>
     )
-})
+});
 
-export default InputDropdown
+InputDropdown.displayName = 'InputDropdown';
+
+export default InputDropdown;

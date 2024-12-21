@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode, RefObject } from "react";
+import { ChangeEvent, ReactNode } from "react";
 
 export interface SiteStackedLayoutProps{
     children?:React.JSX.Element,
