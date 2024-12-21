@@ -49,8 +49,9 @@ export async function POST(req: NextRequest) {
         // 구글 이미지 API 불러오기
         const { ImageAnnotatorClient } = v1p4beta1;
 
-        // Instantiates a client
-        const visionClient = new ImageAnnotatorClient({ auth:auth });
+        const visionClient = (process.env.NODE_ENV === 'development') ?
+            new ImageAnnotatorClient({ apiKey: process.env.GOOGLE_VISION_APIKEY }) :
+            new ImageAnnotatorClient({ auth: auth });
 
         async function callAsyncBatchAnnotateImages() {
 
