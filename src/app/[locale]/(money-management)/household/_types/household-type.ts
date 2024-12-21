@@ -47,7 +47,7 @@ export interface HouseholdDateTotalAssetData{
 }
 
 
-export interface HouseholdRegModFormProps{
+export interface HouseholdRegModProps{
     categoryItems?:HouseholdCategoryItemProps[]
     assetItems?:AssetKeyItemProps[],
     locale?:string,
@@ -67,7 +67,7 @@ export interface HouseholdRegModFormProps{
 export interface HouseholdRegModActionProps{
     householdKey?:string,
     issueDate?:Date,
-    householdImage?:File,
+    imageText?:string,
     assetKey:string,
     householdType:string,
     householdCategory?:number,

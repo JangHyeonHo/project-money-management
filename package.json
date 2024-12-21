@@ -1,6 +1,6 @@
 {
   "name": "project-money-management",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -14,6 +14,7 @@
     "@fullcalendar/daygrid": "^6.1.15",
     "@fullcalendar/interaction": "^6.1.15",
     "@fullcalendar/react": "^6.1.15",
+    "@google-cloud/vision": "^4.3.2",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "@prisma/client": "^5.22.0",
@@ -23,9 +24,11 @@
     "iron-session": "^8.0.4",
     "next": "^15",
     "next-intl": "^3.25.1",
+    "openai": "^4.77.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tailwind-datepicker-react": "^1.4.3"
+    "tailwind-datepicker-react": "^1.4.3",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.9",
