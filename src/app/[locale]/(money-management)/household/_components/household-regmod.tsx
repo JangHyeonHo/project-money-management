@@ -390,6 +390,8 @@ export default function HouseholdRegMod({ categoryItems, assetItems, locale,
 
         if (!res.ok) {
             //에러 표시시
+            setLoading(false);
+            return;
         }
 
         const text = await res.json();
